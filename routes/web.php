@@ -49,6 +49,10 @@ Route::get('/mahasiswa/classes', function () {
     return view('mahasiswa.classes');
 });
 
+Route::get('/mahasiswa/quizzes', function () {
+    return view('mahasiswa.quizzes');
+});
+
 
 
 Route::post('login', 'Auth\LoginController@login');

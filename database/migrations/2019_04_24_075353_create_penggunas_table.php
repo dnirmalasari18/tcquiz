@@ -13,8 +13,10 @@ class CreatePenggunasTable extends Migration
      */
     public function up()
     {
-        Schema::create('penggunas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('pengguna', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nip_nrp',20);
+            $table->string('password',100);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePenggunasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penggunas');
+        Schema::dropIfExists('pengguna');
     }
 }

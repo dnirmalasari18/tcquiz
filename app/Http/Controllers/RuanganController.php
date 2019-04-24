@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Ruangan;
 use Illuminate\Http\Request;
-use App\User;
 
-class UserController extends Controller
+class RuanganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admin.users',compact('users'));
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.createuser');
+        //
     }
 
     /**
@@ -36,17 +35,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());      
-        return redirect('/admin/users');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Ruangan  $ruangan
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Ruangan $ruangan)
     {
         //
     }
@@ -54,39 +52,34 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Ruangan  $ruangan
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ruangan $ruangan)
     {
-        $user = User::findorfail($id);
-        return view('admin.edituser',compact('user'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Ruangan  $ruangan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Ruangan $ruangan)
     {
-        $user = User::findorfail($id);
-        $user->update($request->all());
-        return redirect()->back()->with(['update_done' => 'Data berhasil diupdate', 'user' => $user]);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Ruangan  $ruangan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ruangan $ruangan)
     {
-        $user = User::findorfail($id);
-        $user->delete();
-        return redirect('/admin/users');
+        //
     }
 }

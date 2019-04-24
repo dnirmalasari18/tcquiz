@@ -58,7 +58,7 @@
                         <a href="/admin/users"> <i class="menu-icon fa fa-users"></i>Manage Users </a>
                     </li>
                     <li class="@yield('classes')">
-                        <a href="/admin/classes"> <i class="menu-icon fa fa-book"></i>Classes </a>
+                        <a href="/admin/kelas"> <i class="menu-icon fa fa-book"></i>Classes </a>
                     </li>
 
                     <h3 class="menu-title">Quizzes</h3><!-- /.menu-title -->
@@ -118,7 +118,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="https://cdn4.iconfinder.com/data/icons/ios-edge-glyph-12/25/User-Circle-512.png" alt="User Avatar">
                         </a>
-
+                        <span class="float-left"><p>{{ Auth::user()->name}}</p></span>
+                        <span class="float-left"><p>&nbsp{{ Auth::user()->username}}&nbsp</p></span>
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
                             <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>

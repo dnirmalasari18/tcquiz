@@ -18,11 +18,12 @@
                             <h3 class="m-0">Classes</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-primary float-right" href="/admin/add-class" role="button">Add Class</a>
+                            <a class="btn btn-primary float-right" href="{{route('kelas.create')}}" role="button">Add Class</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
+                    @if(count($classes))
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
                             <tr>
@@ -34,25 +35,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr >
-                                <td>Manajemen Proyek Perangkat Lunak</td>
-                                <td>A</td>
-                                <td>Dwi Sunaryono, S. Kom., M. Kom</td>
-                                <td>34</td>
+                            @foreach($classes as $class)
+                            <tr>
+                                <td>{{ $class->matakuliah->nama_mata_kuliah }}</td>
+                                <td align="center">{{ $class->kelas }}</td>
+                                <td>{{ $class->dosenpengajar->name }}</td>
+                                <td align="center">MASIH BELUM</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#class-detail-{{ $class->id }}"">Detail
                                     </button>
-                                    <a class="btn btn-warning btn-sm" href="/admin/edit-class/1" role="button">Edit</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('kelas.edit', $class->id)}}" role="button">Edit</a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    @else
+                    <div class="alert alert-warning">
+                        <i class="fa fa-exclamation-triangle"></i> Data user belum ada
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div><!-- .animated -->
-<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+@foreach($classes as $class)
+<div class="modal fade" id="class-detail-{{ $class->id }}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -66,35 +75,40 @@
                     <tbody >
                         <tr>
                             <td>Mata Kuliah</td>
-                            <td>: Manajemen Proyek Perangkat Lunak</td>
+                            <td>: {{ $class->matakuliah->nama_mata_kuliah }}</td>
                         </tr>
                         <tr>
                             <td>Kelas</td>
-                            <td>: A</td>
-                        </tr>
-                        <tr>
-                            <td>SKS</td>
-                            <td>: 3</td>
-                        </tr>
-                        <tr>
-                            <td>Semester</td>
-                            <td>: 6</td>
-                        </tr>
-                        <tr>
-                            <td>Dosen Pengajar</td>
-                            <td>: Dwi Sunaryono, S. Kom., M. Kom</td>
+                            <td>: {{ $class->kelas }}</td>
                         </tr>
                         <tr>
                             <td>Jumlah Mahasiswa</td>
-                            <td>: 34</td>
+                            <td>: BELUM</td>
                         </tr>
                         <tr>
+                            <td>Kuota</td>
+                            <td>: {{ $class->kuota }}</td>
+                        </tr>
+                        <tr>
+                            <td>SKS</td>
+                            <td>: {{ $class->matakuliah->sks }}</td>
+                        </tr>
+                        <tr>
+                            <td>Semester</td>
+                            <td>: {{ $class->matakuliah->semester }}</td>
+                        </tr>
+                        <tr>
+                            <td>Dosen Pengajar</td>
+                            <td>: {{ $class->dosenpengajar->name }}</td>
+                        </tr>
+                        
+                        <tr>
                             <td>Ruangan</td>
-                            <td>: IF-105A</td>
+                            <td>: {{ $class->ruangan->nama_ruangan }}</td>
                         </tr>
                         <tr>
                             <td>Jadwal</td>
-                            <td>: Senin | 13.00 - 15.30</td>
+                            <td>: {{ $class->hari }} | {{ $class->jam }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -102,4 +116,5 @@
         </div>
     </div>
 </div>
+@endforeach
 @endsection

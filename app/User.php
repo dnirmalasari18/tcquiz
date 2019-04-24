@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         // 'email_verified_at' => 'datetime',
     ];
+
+    public function mengajars() {
+        return $this->hasMany('App\Kelas', 'user_nip', 'username');
+    }
 }

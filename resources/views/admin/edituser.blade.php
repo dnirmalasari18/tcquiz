@@ -61,7 +61,7 @@
                                     @else
                                         <option value="Admin">Admin</option>
                                         <option value="Dosen">Dosen</option>
-                                        <option selectedvalue="Mahasiswa">Mahasiswa</option>
+                                        <option selected value="Mahasiswa">Mahasiswa</option>
                                     @endif
                                     
                 			    </select>
@@ -73,6 +73,7 @@
                 		</form><br>
                         <form method="POST" action="{{ route('users.destroy', $user->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">
+                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
                             <input type="submit" class="btn btn-lg btn-danger btn-block" onclick="return confirm('Anda yakin akan menghapus data?');" value="Delete">
                         </form>
                 	</div>

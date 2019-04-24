@@ -18,51 +18,47 @@
                             <h3 class="m-0">Edit Class</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-secondary float-right" href="/admin/classes" role="button">Back</a>
+                            <a class="btn btn-secondary float-right" href="/admin/kelas" role="button">Back</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST" accept-charset="UTF-8">
+                    <div>
+                        @if (\Session::has('update_done'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                              {!! \Session::get('update_done') !!}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>                                    
+                            </div>
+                        @endif
+                    </div>
+                    <form action="{{route('kelas.update', $class->id)}}" method="POST">
+                        <input name="_method" type="hidden" value="PATCH">
+                        {{csrf_field()}}
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Mata Kuliah</label>
-                            <select class="form-control" value="Manajemen Proyek Perangkat Lunak">
-                                <option>Manajemen Proyek Perangkat Lunak</option>
-                                <option>Pemrograman Berbasis Kerangka Kerja</option>
-                                <option>Rekayasa Kebutuhan</option>
-                            </select>
+                            {!! Form::select('mata_kuliah_id', $matakuliah, $class->mata_kuliah_id, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Kelas</label>
-                            <input type="text" class="form-control" id="" placeholder="" value="A">
+                            <input type="text" class="form-control" id="" placeholder="" value="{{ $class->kelas }}" name="kelas">
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="font-weight-bold" for="">SKS</label>
-                            <input type="number" min="1" class="form-control" id="" placeholder="" value="3">
+                            <label class="font-weight-bold" for="">Kuota</label>
+                            <input type="number" min="1" class="form-control" id="" placeholder="" value="{{ $class->kuota }}" name="kuota">
                         </div>
                         <div class="form-group col-md-6">
-                            <label class="font-weight-bold" for="">Semester</label>
-                            <input type="number" min="1" class="form-control" id="" placeholder="" value="6">
-                        </div>
-                        <div class="form-group col-md-12">
                             <label class="font-weight-bold" for="">Dosen Pengajar</label>
-                            <select class="form-control" value="Dwi Sunaryono, S. Kom., M. Kom">
-                                <option>Dwi Sunaryono, S. Kom., M. Kom</option>
-                                <option>Sarwosri, S.Kom. , MT</option>
-                                <option>Dr. Eng Darlis Herumurti, S.Kom, M.Kom</option>
-                            </select>
+                            {!! Form::select('user_nip', $dosen, $class->user_nip, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold" for="">Ruangan</label>
-                            <select class="form-control" value="IF-105A">
-                                <option>IF-101</option>
-                                <option>IF-102</option>
-                                <option>IF-103</option>
-                            </select>
+                            {!! Form::select('ruangan_id', $ruang, $class->ruangan_id, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold" for="">Hari</label>
-                            <select class="form-control" value="Senin">
+                            <select class="form-control" value="{{ $class->hari }}" name="hari">
                                 <option>Senin</option>
                                 <option>Selasa</option>
                                 <option>Rabu</option>
@@ -72,7 +68,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold" for="">Jam</label>
-                            <select class="form-control" value="13.00 - 15.30">
+                            <select class="form-control" value="{{ $class->jam }}" name="jam">
                                 <option>08.30 - 10.00</option>
                                 <option>10.00 - 12.30</option>
                                 <option>13.00 - 15.30</option>
@@ -84,6 +80,15 @@
                             <button id="" type="submit" class="btn btn-lg btn-info btn-block ">
                                 Save
                             </button>
+                        </div>
+                    </form>
+
+                    <form method="POST" action="{{ route('kelas.destroy', $class->id) }}" accept-charset="UTF-8">
+                        <div class="col-md-12">
+                            <br>
+                            <input name="_method" type="hidden" value="Delete">
+                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                            <input type="submit" class="btn btn-lg btn-danger btn-block" onclick="return confirm('Anda yakin akan menghapus data?');" value="Delete">
                         </div>
                     </form>
                 </div>

@@ -45,6 +45,10 @@ Route::get('/admin/quiz/1/questions', function () {
     return view('admin.questions');
 });
 
+Route::get('/mahasiswa/classes', function () {
+    return view('mahasiswa.classes');
+});
+
 
 
 Route::post('login', 'Auth\LoginController@login');

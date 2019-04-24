@@ -35,6 +35,15 @@ Route::get('/admin/quiz/1/questions', function () {
     return view('admin.questions');
 });
 
+Route::get('/mahasiswa/classes', function () {
+    return view('mahasiswa.classes');
+});
+
+Route::get('/mahasiswa/quizzes', function () {
+    return view('mahasiswa.quizzes');
+});
+
+
 Route::post('login', 'Auth\LoginController@login');
 Route::get('login', 'Auth\LoginController@loginPage');
 Auth::routes();

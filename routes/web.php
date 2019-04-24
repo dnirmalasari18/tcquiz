@@ -15,25 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
 
-Route::get('/admin', function () {
-    return view('layouts.admin');
-});
-
-Route::get('/admin/users', function () {
-    return view('admin.users');
-});
-
-Route::get('/admin/add-user', function () {
-    return view('admin.createuser');
-});
-
-Route::get('/admin/edit-user/1', function () {
-    return view('admin.edituser');
-});
 
 Route::get('/admin/classes', function () {
     return view('admin.classes');
@@ -58,3 +40,28 @@ Route::get('/admin/quiz-list', function () {
 Route::get('/admin/edit-quiz/1', function () {
     return view('admin.createquiz');
 });
+
+Route::get('/admin/quiz/1/questions', function () {
+    return view('admin.questions');
+});
+
+
+
+Route::post('login', 'Auth\LoginController@login');
+Route::get('login', 'Auth\LoginController@loginPage');
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::middleware(['is_authenticated', 'is_admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        });
+        Route::resource('users', 'UserController');
+        Route::get('admin/users', 'UserController@index');
+    });
+});
+

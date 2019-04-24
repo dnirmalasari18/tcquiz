@@ -24,21 +24,22 @@
                 </div>
                 <div class="card-body">
                 	<div class="col-12 col-md-6 offset-md-3">
-                		<form action="" method="POST" accept-charset="UTF-8">
+                		<form action="{{route('users.store')}}" method="POST">
+                            {{csrf_field()}}
                 			<div class="form-group">
                 			    <label class="font-weight-bold" for="">NRP/NIP</label>
-                			    <input type="text" class="form-control" id="" placeholder="">
+                			    <input type="text" class="form-control" id="" placeholder="" name="username">
                 			</div>
                 			<div class="form-group">
                 			    <label class="font-weight-bold" for="">Nama</label>
-                			    <input type="text" class="form-control" id="" placeholder="">
+                			    <input type="text" class="form-control" id="" placeholder="" name="name">
                 			</div>
                 			<div class="form-group">
                 				<label class="font-weight-bold" for="">Role</label>
-                			    <select class="form-control">
-                			      	<option>Admin</option>
-                			      	<option>Mahasiswa</option>
-                			      	<option>Dosen</option>
+                			    <select class="form-control" name="role">
+                			      	<option value="Admin">Admin</option>
+                                    <option value="Dosen">Dosen</option>
+                			      	<option value="Mahasiswa">Mahasiswa</option>
                 			    </select>
                 			</div>
                 			<br>

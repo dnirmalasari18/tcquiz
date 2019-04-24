@@ -18,14 +18,15 @@
                             <h3 class="m-0">Users</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-primary float-right" href="/admin/add-user" role="button">Add User</a>
+                            <a class="btn btn-primary float-right" href="/admin/create-user" role="button">Add User</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
+                    @if(count($users))
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
-                            <tr>
+                            <tr align="center">
                                 <th>NRP/NIP</th>
                                 <th>Nama</th>
                                 <th>Role</th>
@@ -33,74 +34,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr >
-                                <td>admin001</td>
-                                <td>Admin</td>
-                                <td>Admin</td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="/admin/edit-user/1" role="button">Edit</a>
-                                </td>
-                            </tr>
+                            @foreach($users as $user)
                             <tr>
-                                <td>197205281997021001</td>
-                                <td>Dwi Sunaryono, S. Kom., M. Kom</td>
-                                <td>Dosen</td>
+                                <td align="center">{{ $user->username }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td align="center">{{ $user->role }}</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#user-detail-{{ $user->id }}">Detail
                                     </button>
-                                    <a class="btn btn-warning btn-sm" href="" role="button">Edit</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('users.edit', $user->id)}}" role="button">Edit</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>197712172003121001</td>
-                                <td>Dr. Eng. Darlis Herumurti,S.Kom.,M. Kom</td>
-                                <td>Dosen</td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="" role="button">Edit</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>05111640000057</td>
-                                <td>Ghifaroza R.</td>
-                                <td>Mahasiswa</td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="" role="button">Edit</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>05111640000014</td>
-                                <td>Nuzha Musyafira</td>
-                                <td>Mahasiswa</td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="" role="button">Edit</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>05111640000106</td>
-                                <td>Azkiatunnisa F.</td>
-                                <td>Mahasiswa</td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="" role="button">Edit</a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    @else
+                    <div class="alert alert-warning">
+                        <i class="fa fa-exclamation-triangle"></i> Data user belum ada
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div><!-- .animated -->
-<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+@foreach($users as $user)
+<div class="modal fade" id="user-detail-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -113,20 +72,16 @@
                 <table class="table">
                     <tbody >
                         <tr>
-                            <td>NRP</td>
-                            <td>: 05111640000057</td>
+                            <td>NRP/NIP</td>
+                            <td>: {{ $user->username }}</td>
                         </tr>
                         <tr>
                             <td>Nama</td>
-                            <td>: Ghifaroza R.</td>
+                            <td>: {{ $user->name }}</td>
                         </tr>
                         <tr>
                             <td>Role</td>
-                            <td>: Mahasiswa</td>
-                        </tr>
-                        <tr>
-                            <td>Semester</td>
-                            <td>: 6</td>
+                            <td>: {{ $user->role }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -134,4 +89,5 @@
         </div>
     </div>
 </div>
+@endforeach
 @endsection

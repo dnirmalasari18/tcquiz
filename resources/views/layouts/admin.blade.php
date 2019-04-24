@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="{{asset('dashboard/vendors/bootstrap/dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('dashboard/vendors/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('dashboard/vendors/themify-icons/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('dashboard/vendors/flag-icon-css/css/flag-icon.min.css')}}">
     <link rel="stylesheet" href="{{asset('dashboard/vendors/selectFX/css/cs-skin-elastic.css')}}">
     <link rel="stylesheet" href="{{asset('dashboard/vendors/jqvmap/dist/jqvmap.min.css')}}">
     <link rel="stylesheet" href="{{asset('dashboard/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
@@ -51,8 +50,8 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse" >
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    <li class="@yield('dashboard')">
+                        <a href="/admin"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">Users</h3><!-- /.menu-title -->
                     <li class="@yield('users')">
@@ -122,35 +121,18 @@
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
-
                             <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
+                            <a class="nav-link" href="#" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
-                        </div>
-                    </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
 
-                    <div class="language-select dropdown" id="language-select">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                            <i class="flag-icon flag-icon-us"></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="language">
-                            <div class="dropdown-item">
-                                <span class="flag-icon flag-icon-fr"></span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-es"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-us"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-it"></i>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 

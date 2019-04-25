@@ -7,26 +7,94 @@
 @endsection
 
 @section('content')
-<div class="animated fadeIn">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-white">
-                    <div class="row">
-                        <div class="col">
-                            <h3 class="m-0">Upcoming Quizzes</h3>
-                        </div>
-                        <div class="col ">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body" style="height: 432px;">
-                	There are no upcoming quizzes.
-                </div>
-            </div>
-        </div>
+<div class="col-sm-12">
+    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+      <span class="badge badge-pill badge-success">Reminder</span> You have upcoming quizzes!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-</div><!-- .animated -->
+</div>
+<style type="text/css">
+	.nuzha{
+		height: 110px;
+		font-size: 20px; background-color: #3b5998;
+		background-position-x: 0%;
+		background-position-y: 0%;
+		background-repeat: repeat;
+		background-attachment: scroll;
+		background-image: none;
+		background-size: auto;
+		background-origin: padding-box;
+		background-clip: border-box;
+	}
+</style>
+<div class="col-lg-3 col-md-6">
+    <div class="social-box">
+    	<div class="nuzha">
+	    </div>
+        <ul>
+        	<li>
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#">Detail
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#">Take Quiz
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="social-box">
+    	<div class="nuzha">
+	    </div>
+        <ul>
+        	<li>
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#">Detail
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#">Take Quiz
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="social-box">
+    	<div class="nuzha">
+	    </div>
+        <ul>
+        	<li>
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#">Detail
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#">Take Quiz
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="social-box">
+    	<div class="nuzha">
+	    </div>
+        <ul>
+        	<li>
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#">Detail
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#">Take Quiz
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- .animated -->
 <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

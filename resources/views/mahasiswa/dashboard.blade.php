@@ -2,6 +2,10 @@
 
 @section('dashboard', 'active')
 
+@section('title')
+<h1>Dashboard</h1>
+@endsection
+
 @section('breadcrumbs')
 <li class="active">Dashboard</li>
 @endsection

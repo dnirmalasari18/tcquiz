@@ -15,14 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/edit-class/1', function () {
-    return view('admin.editclass');
-});
-
-Route::get('/admin/create-quiz', function () {
-    return view('admin.createquiz');
-});
-
 Route::get('/admin/quiz-list', function () {
     return view('admin.listofquizzes');
 });
@@ -34,15 +26,6 @@ Route::get('/admin/edit-quiz/1', function () {
 Route::get('/admin/quiz/1/questions', function () {
     return view('admin.questions');
 });
-
-Route::get('/mahasiswa/classes', function () {
-    return view('mahasiswa.classes');
-});
-
-Route::get('/mahasiswa/quizzes', function () {
-    return view('mahasiswa.quizzes');
-});
-
 
 Route::post('login', 'Auth\LoginController@login');
 Route::get('login', 'Auth\LoginController@loginPage');
@@ -60,3 +43,26 @@ Route::middleware(['is_authenticated', 'is_admin'])->group(function () {
     });
 });
 
+Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
+    Route::prefix('mahasiswa')->group(function () {
+        Route::get('/', function () {
+            return view('mahasiswa.dashboard');
+        });
+
+        Route::get('/kelas', function () {
+            return view('mahasiswa.classes');
+        });
+
+        Route::get('/quizzes', function () {
+            return view('mahasiswa.quizzes');
+        });
+    });
+});
+
+Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
+    Route::prefix('dosen')->group(function () {
+        Route::get('/', function () {
+            return view('dosen.dashboard');
+        });
+    });
+});

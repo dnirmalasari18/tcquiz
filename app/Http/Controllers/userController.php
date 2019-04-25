@@ -36,7 +36,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());      
+        $username_taken = User::where('username', $request->username)->count();
+        if($username_taken) {
+            return redirect()->back()->with('error', 'Username already exists.');
+        }
+        User::create($request->all());
         return redirect('/admin/users');
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.mahasiswa')
 
 @section('dashboard', 'active')
 
@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-<h1>dashboard ini admin</h1>
+<h1>dashboard ini mahasiswa</h1>
 @endsection

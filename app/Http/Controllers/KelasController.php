@@ -42,6 +42,10 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
+        $kelas_taken = Kelas::where('mata_kuliah_id', $request->mata_kuliah_id)->where('kelas', $request->kelas)->count();
+        if($kelas_taken) {
+            return redirect()->back()->with('error', 'Kelas already exists.');
+        }
         Kelas::create($request->all());      
         return redirect('/admin/kelas');
     }

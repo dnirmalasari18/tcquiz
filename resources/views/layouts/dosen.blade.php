@@ -51,16 +51,22 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse" >
                 <ul class="nav navbar-nav">
                     <li class="@yield('dashboard')">
-                        <a href="/mahasiswa"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="/dosen"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">Users</h3><!-- /.menu-title -->
                     <li class="@yield('classes')">
-                        <a href="/mahasiswa/kelas"> <i class="menu-icon fa fa-book"></i>Classes </a>
-                    </li>
-                    <li class="@yield('quiz')">
-                        <a href="/mahasiswa/quizzes"> <i class="menu-icon fa fa-file-text"></i>Quizzes </a>
+                        <a href="/dosen/kelas"> <i class="menu-icon fa fa-book"></i>Classes </a>
                     </li>
 
+                    <h3 class="menu-title">Quizzes</h3><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children @yield('quiz') dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Quiz</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-pencil"></i><a href="/dosen/create-quiz">Create a Quiz</a></li>
+                            <li><i class="menu-icon fa fa-list-ul"></i><a href="/dosen/quiz-list">List of Quizzes</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -109,7 +115,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="https://cdn4.iconfinder.com/data/icons/ios-edge-glyph-12/25/User-Circle-512.png" alt="User Avatar">
                         </a>
-
+                        <span class="float-left"><p>{{ Auth::user()->name}}</p></span>
+                        <span class="float-left"><p>&nbsp{{ Auth::user()->username}}&nbsp</p></span>
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
                             <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>

@@ -58,22 +58,11 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold" for="">Hari</label>
-                            <select class="form-control" value="{{ $class->hari }}" name="hari">
-                                <option>Senin</option>
-                                <option>Selasa</option>
-                                <option>Rabu</option>
-                                <option>Kamis</option>
-                                <option>Jumat</option>
-                            </select>
+                            {!! Form::select('hari', array('Senin' => 'Senin', 'Selasa' => 'Selasa', 'Rabu' => 'Rabu', 'Kamis' => 'Kamis', 'Jumat' => 'Jumat'), $class->hari, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold" for="">Jam</label>
-                            <select class="form-control" value="{{ $class->jam }}" name="jam">
-                                <option>08.30 - 10.00</option>
-                                <option>10.00 - 12.30</option>
-                                <option>13.00 - 15.30</option>
-                                <option>15.30 - 18.00</option>
-                            </select>
+                            {!! Form::select('jam', array('08.30 - 10.00' => '08.30 - 10.00', '10.00 - 12.30' => '10.00 - 12.30', '13.00 - 15.30' => '13.00 - 15.30', '15.30 - 18.00' => '15.30 - 18.00'), $class->jam, array('class' => 'form-control')) !!}
                         </div>
                         <br>
                         <div class="col-md-12">

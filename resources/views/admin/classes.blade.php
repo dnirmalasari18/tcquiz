@@ -52,7 +52,7 @@
                     </table>
                     @else
                     <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle"></i> Data user belum ada
+                        <i class="fa fa-exclamation-triangle"></i> Data kelas belum ada
                     </div>
                     @endif
                 </div>

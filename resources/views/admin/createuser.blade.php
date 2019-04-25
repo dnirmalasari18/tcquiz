@@ -24,6 +24,16 @@
                 </div>
                 <div class="card-body">
                 	<div class="col-12 col-md-6 offset-md-3">
+                        <div>
+                            @if (\Session::has('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  {!! \Session::get('error') !!}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>                                    
+                                </div>
+                            @endif
+                        </div>
                 		<form action="{{route('users.store')}}" method="POST">
                             {{csrf_field()}}
                 			<div class="form-group">

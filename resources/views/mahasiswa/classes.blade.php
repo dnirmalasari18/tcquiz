@@ -62,7 +62,7 @@
             <div class="modal-body">
                 <table class="table">
                     <tbody >
-                        <tr>
+                        <tr style="border-top-style: hidden;">
                             <td>Mata Kuliah</td>
                             <td>: Manajemen Proyek Perangkat Lunak</td>
                         </tr>

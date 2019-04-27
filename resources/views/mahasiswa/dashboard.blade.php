@@ -39,11 +39,11 @@
 	    </div>
         <ul>
         	<li>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#">Detail
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
                 </button>
             </li>
             <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#">Take Quiz
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
                 </button>
             </li>
         </ul>
@@ -55,11 +55,11 @@
 	    </div>
         <ul>
         	<li>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#">Detail
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
                 </button>
             </li>
             <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#">Take Quiz
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
                 </button>
             </li>
         </ul>
@@ -71,11 +71,11 @@
 	    </div>
         <ul>
         	<li>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#">Detail
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
                 </button>
             </li>
             <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#">Take Quiz
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
                 </button>
             </li>
         </ul>
@@ -87,11 +87,11 @@
 	    </div>
         <ul>
         	<li>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#">Detail
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
                 </button>
             </li>
             <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#">Take Quiz
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
                 </button>
             </li>
         </ul>
@@ -99,11 +99,45 @@
 </div>
 
 <!-- .animated -->
-<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+<div class="modal fade" id="quizDetail" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mediumModalLabel">Result Detail</h5>
+                <h5 class="modal-title" id="mediumModalLabel">Quiz Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tbody >
+                        <tr style="border-top-style: hidden;">
+                            <td>Mata Kuliah</td>
+                            <td>: Manajemen Proyek Perangkat Lunak</td>
+                        </tr>
+                        <tr>
+                            <td>Kelas</td>
+                            <td>: A</td>
+                        </tr>
+                        <tr>
+                            <td>Tanggal</td>
+                            <td>: 25 April 2019</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>: <span class="badge badge-pill badge-success">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="takeQuiz" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">Quiz Confirmation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -111,28 +145,19 @@
             <div class="modal-body">
                 <table class="table">
                     <tbody>
-                        <tr>
-                            <td>Waktu Mulai</td>
-                            <td>: 24 April 2019, 13:02:11</td>
+                        <tr style="border-top-style: hidden;">
+                            <td>Waktu</td>
+                            <td>: 02:00:00</td>
                         </tr>
                         <tr>
-                            <td>Waktu Selesai</td>
-                            <td>: 24 April 2019, 14:26:08</td>
-                        </tr>
-                        <tr>
-                            <td>Poin</td>
-                            <td>: 80.000 / 100.000 (80%)</td>
-                        </tr>
-                        <tr>
-                            <td>Jawaban Benar</td>
-                            <td>: 16 / 20</td>
-                        </tr>
-                        <tr>
-                            <td>Komentar</td>
-                            <td>: -</td>
+                            <td>Total Soal</td>
+                            <td>: 25</td>
                         </tr>
                     </tbody>
                 </table>
+                <div align="center"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#takeQuiz">Enroll Me
+                </button></div>
+                
             </div>
         </div>
     </div>

@@ -43,9 +43,9 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
             return view('dosen.dashboard');
         });
         Route::resource('users', 'UserController');
-        Route::resource('kelas', 'KelasController');
-        Route::get('kelas/{id}/detail', 'KelasController@detailkelas');
-        Route::get('kelas/{id}/addmahasiswa', 'KelasController@addmahasiswa');
+        Route::resource('agenda', 'AgendaController');
+        Route::get('agenda/{id}/detail', 'AgendaController@detailkelas');
+        Route::get('agenda/{id}/addmahasiswa', 'AgendaController@addmahasiswa');
     });
 });
 

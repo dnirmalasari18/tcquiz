@@ -58,7 +58,7 @@
                         <a href="/dosen/users"> <i class="menu-icon fa fa-users"></i>Manage Users </a>
                     </li>
                     <li class="@yield('classes')">
-                        <a href="/dosen/kelas"> <i class="menu-icon fa fa-book"></i>Classes </a>
+                        <a href="/dosen/agenda"> <i class="menu-icon fa fa-book"></i>Agenda </a>
                     </li>
 
                     <h3 class="menu-title">Quizzes</h3><!-- /.menu-title -->

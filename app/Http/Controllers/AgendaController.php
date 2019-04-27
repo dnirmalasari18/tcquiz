@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\MahasiswaMengambil;
-use App\User;
 use Illuminate\Http\Request;
+use App\Agenda;
 
-class MahasiswaMengambilController extends Controller
+class AgendaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,8 @@ class MahasiswaMengambilController extends Controller
      */
     public function index()
     {
-        //
+        $agenda = Agenda::all();
+        return view('dosen.agenda',compact('agenda'));
     }
 
     /**
@@ -42,10 +42,10 @@ class MahasiswaMengambilController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\MahasiswaMengambil  $mahasiswaMengambil
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(MahasiswaMengambil $mahasiswaMengambil)
+    public function show($id)
     {
         //
     }
@@ -53,10 +53,10 @@ class MahasiswaMengambilController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MahasiswaMengambil  $mahasiswaMengambil
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(MahasiswaMengambil $mahasiswaMengambil)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +65,10 @@ class MahasiswaMengambilController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MahasiswaMengambil  $mahasiswaMengambil
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MahasiswaMengambil $mahasiswaMengambil)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,13 +76,11 @@ class MahasiswaMengambilController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MahasiswaMengambil  $mahasiswaMengambil
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MahasiswaMengambil $mahasiswaMengambil)
+    public function destroy($id)
     {
         //
     }
-
-   
 }

@@ -17,9 +17,9 @@
                         <div class="col">
                             <h3 class="m-0">Users</h3>
                         </div>
-                        <div class="col ">
+                        <!-- <div class="col ">
                             <a class="btn btn-primary float-right" href="{{route('users.create')}}" role="button">Add User</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="card-body">
@@ -38,11 +38,15 @@
                             <tr>
                                 <td align="center">{{ $user->username }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td align="center">{{ $user->role }}</td>
+                                @if ( $user->pics )
+                                <td align="center">Dosen</td>
+                                @else
+                                <td align="center">Mahasiswa</td>
+                                @endif
                                 <td align="center">
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#user-detail-{{ $user->id }}">Detail
                                     </button>
-                                    <a class="btn btn-warning btn-sm" href="{{route('users.edit', $user->id)}}" role="button">Edit</a>
+                                    <!-- <a class="btn btn-warning btn-sm" href="{{route('users.edit', $user->id)}}" role="button">Edit</a> -->
                                 </td>
                             </tr>
                             @endforeach
@@ -80,8 +84,16 @@
                             <td>: {{ $user->name }}</td>
                         </tr>
                         <tr>
+                            <td>E-mail</td>
+                            <td>: {{ $user->email }}</td>
+                        </tr>
+                        <tr>
                             <td>Role</td>
-                            <td>: {{ $user->role }}</td>
+                            @if ( $user->pics )
+                            <td>: Dosen</td>
+                            @else
+                            <td>: Mahasiswa</td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>

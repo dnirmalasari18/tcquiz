@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dosen')
 
 @section('quiz', 'active')
 
@@ -19,7 +19,7 @@
                             <h3 class="m-0">Quizzes</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-primary float-right" href="/admin/create-quiz" role="button">Add Quiz</a>
+                            <a class="btn btn-primary float-right" href="/dosen/create-quiz" role="button">Add Quiz</a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
                                     </button>
                                     <a class="btn btn-warning btn-sm" href="/admin/edit-quiz/1" role="button">Edit</a>
-                                    <a class="btn btn-secondary btn-sm" href="/admin/quiz/1/questions" role="button">Kelola Pertanyaan</a>
+                                    <a class="btn btn-light btn-sm" href="/admin/quiz/1/questions" role="button">Kelola Pertanyaan</a>
                                 </td>
                             </tr>
                             <tr>
@@ -65,7 +65,7 @@
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
                                     </button>
                                     <a class="btn btn-warning btn-sm" href="/admin/edit-quiz/1" role="button">Edit</a>
-                                    <a class="btn btn-secondary btn-sm" href="/admin/quiz/1/questions" role="button">Kelola Pertanyaan</a>
+                                    <a class="btn btn-light btn-sm" href="/admin/quiz/1/questions" role="button">Kelola Pertanyaan</a>
                                 </td>
                             </tr>
                         </tbody>

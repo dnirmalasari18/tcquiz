@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
+use App\Pic;
 
 class LoginController extends Controller
 {
@@ -40,20 +41,18 @@ class LoginController extends Controller
     }
 
     public function login(Request $request) {
-        $credentials = $request->only('username', 'password');
-        if (Auth::attempt($credentials)) {     
-            if(Auth::user()->role == "Admin")       {
-                return redirect('/admin');
-            } elseif(Auth::user()->role == "Dosen") {
+        $credentials = $request->only('email', 'password');     
+        if (Auth::attempt($credentials)) {
+            $dosen = Pic::find(Auth::user()->username);
+            if($dosen) {
                 return redirect('/dosen');
-            }  else{
+            } else {
                 return redirect('/mahasiswa');
             }
         } else{
-            return redirect('auth.login');
+            return redirect('/login');
         }
     }
-    //redirect itu paramter URL
 
     public function loginPage() {
         return view('auth.login');

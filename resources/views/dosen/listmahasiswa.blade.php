@@ -1,10 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.dosen')
 
-@section('users', 'active')
+@section('classes', 'active')
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
-<li class="active">Manage Users</li>
+<li class="active">Classes</li>
 @endsection
 
 @section('content')
@@ -15,10 +15,10 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">Users</h3>
+                            <h3 class="m-0">{{ $class->matakuliah->nama_mata_kuliah }} - {{ $class->kelas }}</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-primary float-right" href="{{route('users.create')}}" role="button">Add User</a>
+                            <a class="btn btn-secondary float-right" href="/dosen/kelas/{{$class->id}}/detail" role="button">Back</a>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,6 @@
                             <tr align="center">
                                 <th>NRP/NIP</th>
                                 <th>Nama</th>
-                                <th>Role</th>
                                 <th>Menu</th>
                             </tr>
                         </thead>
@@ -38,11 +37,8 @@
                             <tr>
                                 <td align="center">{{ $user->username }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td align="center">{{ $user->role }}</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#user-detail-{{ $user->id }}">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="{{route('users.edit', $user->id)}}" role="button">Edit</a>
+                                    <a class="btn btn-warning btn-sm" href="" role="button">Tambah</a>
                                 </td>
                             </tr>
                             @endforeach

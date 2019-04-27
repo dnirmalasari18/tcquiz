@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\MahasiswaMengambil;
 use App\User;
+use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MahasiswaMengambilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('dosen.users',compact('users'));
+        //
     }
 
     /**
@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('dosen.createuser');
+        //
     }
 
     /**
@@ -36,21 +36,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $username_taken = User::where('username', $request->username)->count();
-        if($username_taken) {
-            return redirect()->back()->with('error', 'Username already exists.');
-        }
-        User::create($request->all());
-        return redirect('/dosen/users');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\MahasiswaMengambil  $mahasiswaMengambil
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(MahasiswaMengambil $mahasiswaMengambil)
     {
         //
     }
@@ -58,39 +53,36 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\MahasiswaMengambil  $mahasiswaMengambil
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(MahasiswaMengambil $mahasiswaMengambil)
     {
-        $user = User::findorfail($id);
-        return view('dosen.edituser',compact('user'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\MahasiswaMengambil  $mahasiswaMengambil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, MahasiswaMengambil $mahasiswaMengambil)
     {
-        $user = User::findorfail($id);
-        $user->update($request->all());
-        return redirect()->back()->with(['update_done' => 'Data berhasil diupdate', 'user' => $user]);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\MahasiswaMengambil  $mahasiswaMengambil
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MahasiswaMengambil $mahasiswaMengambil)
     {
-        $user = User::findorfail($id);
-        $user->delete();
-        return redirect('/dosen/users');
+        //
     }
+
+   
 }

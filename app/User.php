@@ -15,8 +15,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+        protected $table = 'users';
+
     protected $fillable = [
-        'username', 'password', 'name', 'role'
+        'username', 'name', 'email', 'password', 
     ];
 
     /**
@@ -34,10 +37,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        // 'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime',
     ];
+
+    public function pics() {
+        return $this->hasOne('App\Pic', 'idPIC', 'username');
+    }
 
     public function mengajars() {
         return $this->hasMany('App\Kelas', 'user_nip', 'username');
+    }
+
+    public function mengambils()
+    {
+        return $this->hasMany('App\MahasiswaMengambil', 'mahasiswa_nrp', 'username');
     }
 }

@@ -6,6 +6,7 @@ use App\Kelas;
 use App\User;
 use App\MataKuliah;
 use App\Ruangan;
+use App\MahasiswaMengambil;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -18,7 +19,7 @@ class KelasController extends Controller
     public function index()
     {
         $classes = Kelas::all();
-        return view('admin.classes',compact('classes'));
+        return view('dosen.classes',compact('classes'));
     }
 
     /**
@@ -31,7 +32,7 @@ class KelasController extends Controller
         $dosen = User::where('role','Dosen')->orderBy('name', 'asc')->get();
         $matakuliah = MataKuliah::orderBy('id', 'asc')->orderBy('nama_mata_kuliah', 'asc')->get();
         $ruang = Ruangan::get();
-        return view ('admin.createclass',compact('dosen', 'matakuliah', 'ruang'));
+        return view ('dosen.createclass',compact('dosen', 'matakuliah', 'ruang'));
     }
 
     /**
@@ -47,7 +48,7 @@ class KelasController extends Controller
             return redirect()->back()->with('error', 'Kelas already exists.');
         }
         Kelas::create($request->all());      
-        return redirect('/admin/kelas');
+        return redirect('/dosen/kelas');
     }
 
     /**
@@ -74,7 +75,7 @@ class KelasController extends Controller
         $dosen = User::where('role','Dosen')->orderBy('name', 'asc')->pluck('name','username');
         $matakuliah = MataKuliah::orderBy('id', 'asc')->orderBy('nama_mata_kuliah', 'asc')->pluck('nama_mata_kuliah','id');
         $ruang = Ruangan::pluck('nama_ruangan','id');
-        return view('admin.editclass',compact('class', 'dosen', 'matakuliah', 'ruang'));
+        return view('dosen.editclass',compact('class', 'dosen', 'matakuliah', 'ruang'));
     }
 
     /**
@@ -101,6 +102,20 @@ class KelasController extends Controller
     {
         $class = Kelas::findorfail($kelas);
         $class->delete();
-        return redirect('/admin/kelas');
+        return redirect('/dosen/kelas');
+    }
+
+    public function detailkelas($kelas)
+    {
+        $mahasiswa = MahasiswaMengambil::where('kelas_id', $kelas)->orderBy('mahasiswa_nrp', 'asc')->get();
+        $namakelas = Kelas::where('id', $kelas)->first();
+        return view ('dosen.classdetail',compact('mahasiswa', 'namakelas'));
+    }
+
+     public function addmahasiswa($kelas)
+    {
+        $class = Kelas::findorfail($kelas);
+        $users = User::where('role', 'Mahasiswa')->get();
+        return view('dosen.listmahasiswa', compact('users', 'class'));
     }
 }

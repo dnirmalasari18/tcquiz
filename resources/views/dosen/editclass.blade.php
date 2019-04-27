@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dosen')
 
 @section('classes', 'active')
 
@@ -15,82 +15,69 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">Add Class</h3>
+                            <h3 class="m-0">Edit Class</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-secondary float-right" href="/admin/kelas" role="button">Back</a>
+                            <a class="btn btn-secondary float-right" href="/dosen/kelas" role="button">Back</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div>
-                        @if (\Session::has('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                              {!! \Session::get('error') !!}
+                        @if (\Session::has('update_done'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                              {!! \Session::get('update_done') !!}
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>                                    
                             </div>
                         @endif
                     </div>
-                   <form action="{{route('kelas.store')}}" method="POST">
+                    <form action="{{route('kelas.update', $class->id)}}" method="POST">
+                        <input name="_method" type="hidden" value="PATCH">
                         {{csrf_field()}}
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Mata Kuliah</label>
-                            <select class="form-control" name="mata_kuliah_id">
-                            @foreach($matakuliah as $m)
-                                <option value="{{$m->id}}"> {{$m->nama_mata_kuliah}} </option>
-                            @endforeach
-                            </select>
+                            {!! Form::select('mata_kuliah_id', $matakuliah, $class->mata_kuliah_id, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Kelas</label>
-                            <input type="text" class="form-control" id="" placeholder="" name="kelas">
+                            <input type="text" class="form-control" id="" placeholder="" value="{{ $class->kelas }}" name="kelas">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Kuota</label>
-                            <input type="number" min="1" class="form-control" id="" placeholder="" name="kuota">
+                            <input type="number" min="1" class="form-control" id="" placeholder="" value="{{ $class->kuota }}" name="kuota">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Dosen Pengajar</label>
-                            <select class="form-control" name="user_nip">
-                            @foreach($dosen as $d)
-                                <option value="{{$d->username}}"> {{$d->name}} </option>
-                            @endforeach
-                        </select>
+                            {!! Form::select('user_nip', $dosen, $class->user_nip, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold" for="">Ruangan</label>
-                            <select class="form-control" name="ruangan_id">
-                            @foreach($ruang as $r)
-                                <option value="{{$r->id}}"> {{$r->nama_ruangan}} </option>
-                            @endforeach
-                            </select>
+                            {!! Form::select('ruangan_id', $ruang, $class->ruangan_id, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold" for="">Hari</label>
-                            <select class="form-control" name="hari">
-                                <option value="Senin">Senin</option>
-                                <option value="Selasa">Selasa</option>
-                                <option value="Rabu">Rabu</option>
-                                <option value="Kamis">Kamis</option>
-                                <option value="Jumat">Jumat</option>
-                            </select>
+                            {!! Form::select('hari', array('Senin' => 'Senin', 'Selasa' => 'Selasa', 'Rabu' => 'Rabu', 'Kamis' => 'Kamis', 'Jumat' => 'Jumat'), $class->hari, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold" for="">Jam</label>
-                            <select class="form-control" name="jam">
-                                <option value="08.30 - 10.00">08.30 - 10.00</option>
-                                <option value="10.00 - 12.30">10.00 - 12.30</option>
-                                <option value="13.00 - 15.30">13.00 - 15.30</option>
-                                <option value="15.30 - 18.00">15.30 - 18.00</option>
-                            </select>
+                            {!! Form::select('jam', array('08.30 - 10.00' => '08.30 - 10.00', '10.00 - 12.30' => '10.00 - 12.30', '13.00 - 15.30' => '13.00 - 15.30', '15.30 - 18.00' => '15.30 - 18.00'), $class->jam, array('class' => 'form-control')) !!}
                         </div>
                         <br>
                         <div class="col-md-12">
                             <button id="" type="submit" class="btn btn-lg btn-info btn-block ">
-                                Add Class
+                                Save
                             </button>
+                        </div>
+                    </form>
+
+                    <form method="POST" action="{{ route('kelas.destroy', $class->id) }}" accept-charset="UTF-8">
+                        <div class="col-md-12">
+                            <br>
+                            <input name="_method" type="hidden" value="Delete">
+                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                            <input type="submit" class="btn btn-lg btn-danger btn-block" onclick="return confirm('Anda yakin akan menghapus data?');" value="Delete">
                         </div>
                     </form>
                 </div>

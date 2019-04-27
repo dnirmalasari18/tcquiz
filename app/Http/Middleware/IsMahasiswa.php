@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App\Pic;
 
 class IsMahasiswa
 {
@@ -16,7 +17,8 @@ class IsMahasiswa
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role == 'Mahasiswa')
+        $dosen = Pic::find(Auth::user()->username);
+        if(!$dosen)
             return $next($request);
         return redirect('/');
     }

@@ -26,4 +26,8 @@ class Kelas extends Model
         return $this->belongsTo('App\Ruangan', 'ruangan_id', 'id');
     }
 
+    public function rencanastudi() {
+        return $this->hasMany('App\MahasiswaMengambil', 'kelas_id', 'id');
+    }
+
 }

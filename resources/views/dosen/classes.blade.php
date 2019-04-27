@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dosen')
 
 @section('classes', 'active')
 
@@ -45,6 +45,7 @@
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#class-detail-{{ $class->id }}"">Detail
                                     </button>
                                     <a class="btn btn-warning btn-sm" href="{{route('kelas.edit', $class->id)}}" role="button">Edit</a>
+                                    <a class="btn btn-light btn-sm" href="kelas/{{ $class->id }}/detail" role="button">Kelola Peserta</a>
                                 </td>
                             </tr>
                             @endforeach

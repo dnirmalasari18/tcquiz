@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.dosen')
 
 @section('users', 'active')
 
@@ -19,7 +19,7 @@
                             <h3 class="m-0">Edit User</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-secondary float-right" href="/admin/users" role="button">Back</a>
+                            <a class="btn btn-secondary float-right" href="/dosen/users" role="button">Back</a>
                         </div>
                     </div>
                 </div>

@@ -54,6 +54,9 @@
                         <a href="/dosen"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">Users</h3><!-- /.menu-title -->
+                    <li class="@yield('users')">
+                        <a href="/dosen/users"> <i class="menu-icon fa fa-users"></i>Manage Users </a>
+                    </li>
                     <li class="@yield('classes')">
                         <a href="/dosen/kelas"> <i class="menu-icon fa fa-book"></i>Classes </a>
                     </li>

@@ -18,4 +18,8 @@ class Quiz extends Model
     public function pertemuanke() {
         return $this->belongsTo('App\AbsenKuliah', 'absenkuliah_id', 'id');
     }
+
+    public function creator() {
+        return $this->belongsTo('App\User', 'dosen_id', 'id');
+    }
 }

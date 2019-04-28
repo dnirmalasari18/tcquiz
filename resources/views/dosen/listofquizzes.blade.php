@@ -24,58 +24,46 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @if(count($quiz))
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
                             <tr>
-                                <th>Kelas</th>
                                 <th>Nama Kuis</th>
+                                <th>Mata Kuliah</th>
                                 <th>Jadwal</th>
                                 <th>Durasi</th>
-                                <th>Status</th>
                                 <th>Menu</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($quiz as $q)
                             <tr>
-                                <td>Pemrograman Berbasis Kerangka Kerja - A</td>
-                                <td align="center">Kuis Migration</td>
-                                <td align="center">23 April 2019</td>
-                                <td align="center">180 menit</td>
+                                <td>{{ $q->nama_kuis }}</td>
+                                <td>{{ $q->pertemuanke->agenda->namaAgenda }}</td>
+                                <td align="center">{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
+                                <td align="center">{{ $q->durasi }} menit</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-success btn-sm">Aktif
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#kuis-detail-{{ $q->id }}"">Detail
                                     </button>
-                                </td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="/admin/edit-quiz/1" role="button">Edit</a>
-                                    <a class="btn btn-light btn-sm" href="/admin/quiz/1/questions" role="button">Kelola Pertanyaan</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('quiz.edit', $q->id)}}" role="button">Edit</a>
+                                    <a class="btn btn-light btn-sm" href="" role="button">Kelola Pertanyaan</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Pemrograman Berbasis Kerangka Kerja - B</td>
-                                <td align="center">Kuis Controller</td>
-                                <td align="center">23 April 2019</td>
-                                <td align="center">180 menit</td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-danger btn-sm">Tidak Aktif
-                                    </button>
-                                </td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="/admin/edit-quiz/1" role="button">Edit</a>
-                                    <a class="btn btn-light btn-sm" href="/admin/quiz/1/questions" role="button">Kelola Pertanyaan</a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    @else
+                    <div class="alert alert-warning">
+                        <i class="fa fa-exclamation-triangle"></i> Data kuis belum ada
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div><!-- .animated -->
-<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+@foreach($quiz as $q)
+<div class="modal fade" id="kuis-detail-{{ $q->id }}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -89,23 +77,27 @@
                     <tbody >
                         <tr>
                             <td>Nama Kuis</td>
-                            <td>: Kuis Migration</td>
+                            <td>: {{ $q->nama_kuis }}</td>
                         </tr>
                         <tr>
-                            <td>Kelas</td>
-                            <td>: Pemrograman Berbasis Kerangka Kerja - A</td>
+                            <td>Mata Kuliah</td>
+                            <td>: {{ $q->pertemuanke->agenda->namaAgenda }}</td>
                         </tr>
                         <tr>
                             <td>Jadwal</td>
-                            <td>: Selasa 23 April 2019</td>
-                        </tr>
+                            <td>: {{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
+                        </tr>                               
                         <tr>
                             <td>Durasi</td>
-                            <td>: 180 menit</td>
+                            <td>: {{ $q->durasi }} menit</td>
                         </tr>
                         <tr>
-                            <td>Jumlah Soal</td>
-                            <td>: 5</td>
+                            <td>Dosen Pembuat</td>
+                            <td>: {{ $q->creator->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Terms and Conditions</td>
+                            <td>: {!! $q->terms_conditions !!}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -113,4 +105,5 @@
         </div>
     </div>
 </div>
+@endforeach
 @endsection

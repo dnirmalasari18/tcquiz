@@ -39,6 +39,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::get('agenda/{id}/detail', 'AgendaController@detailkelas');
         Route::get('agenda/{id}/addmahasiswa', 'AgendaController@addmahasiswa');
         Route::resource('quiz', 'QuizController');
+        Route::get('agenda/{agenda_id}/jadwals', 'AgendaController@getAgendaJadwals');
     });
 });
 
@@ -56,5 +57,4 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
     });
 });
 
-Route::get('agenda/{agenda_id}/jadwals', 'AgendaController@getAgendaJadwals');
 Route::post('upload/image', 'QuizController@uploadImage');

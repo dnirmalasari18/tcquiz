@@ -44,4 +44,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Pic', 'idPIC', 'username');
     }
 
+    public function kuis() {
+        return $this->hasMany('App\Quiz', 'dosen_id', 'id');
+    }
+
 }

@@ -16,7 +16,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return view ('dosen.listofquizzes');
+        $quiz = Quiz::all();
+        return view ('dosen.listofquizzes', compact('quiz'));
     }
 
     /**
@@ -60,9 +61,12 @@ class QuizController extends Controller
      * @param  \App\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quiz $quiz)
+    public function edit($quiz)
     {
-        //
+        $quiz = Quiz::findorfail($quiz);
+        $agenda = Agenda::orderBy('namaAgenda','asc')->get();
+        $absenkuliah = AbsenKuliah::pluck('pertemuanKe','id');
+        return view('dosen.editquiz',compact('quiz', 'agenda', 'absenkuliah'));
     }
 
     /**
@@ -72,9 +76,11 @@ class QuizController extends Controller
      * @param  \App\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quiz $quiz)
+    public function update(Request $request, $quiz)
     {
-        //
+        $kuis = Quiz::findorfail($quiz);
+        $kuis->update($request->all());
+        return redirect()->back()->with(['update_done' => 'Data berhasil diupdate', 'kuis' => $kuis]);
     }
 
     /**
@@ -83,9 +89,11 @@ class QuizController extends Controller
      * @param  \App\Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quiz $quiz)
+    public function destroy($quiz)
     {
-        //
+        $kuis = Quiz::findorfail($quiz);
+        $kuis->delete();
+        return redirect('/dosen/quiz');
     }
 
     public function uploadImage(Request $request) {

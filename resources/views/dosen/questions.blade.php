@@ -25,6 +25,22 @@
                 </div>
                 <div class="card-body">
                     <a class="btn btn-primary btn-sm" href="" role="button">Add Question</a>
+                        <div class="col-md-8 float-left">
+                            <textarea class="tinymce" placeholder="soal"></textarea><br>
+                            <textarea class="tinymce" placeholder="opsi A"></textarea><br>
+                            <textarea class="tinymce" placeholder="opsi B"></textarea><br>
+                            <textarea class="tinymce" placeholder="opsi C"></textarea><br>
+                            <textarea class="tinymce" placeholder="opsi D"></textarea><br>
+                            <textarea class="tinymce" placeholder="opsi E"></textarea><br>
+                            <form action="">
+                                <input type="radio" name="A" value="a"> A<br>
+                                <input type="radio" name="B" value="b"> B<br>
+                                <input type="radio" name="C" value="c"> C<br>
+                                <input type="radio" name="D" value="d"> D<br>
+                                <input type="radio" name="E" value="e"> E<br>  
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
                     <div class="col-md-4 float-right">
                         <div class="card">
                             <div class="card-header text-center">

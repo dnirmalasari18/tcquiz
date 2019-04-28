@@ -62,5 +62,17 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
         Route::get('/quizzes', function () {
             return view('mahasiswa.quizzes');
         });
+
+        Route::get('/test', function () {
+            return view('mahasiswa.test');
+        });
+
+        Route::get('/test2', function () {
+            return view('mahasiswa.test2');
+        });
+
+        Route::get('/test3', function () {
+            return view('mahasiswa.test3');
+        });
     });
 });

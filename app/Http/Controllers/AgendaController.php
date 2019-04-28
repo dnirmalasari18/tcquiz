@@ -83,4 +83,9 @@ class AgendaController extends Controller
     {
         //
     }
+
+    public function getAgendaJadwals($agenda_id) {
+        $jadwals = Agenda::find($agenda_id);
+        return response()->json($jadwals->pertemuan);
+    }
 }

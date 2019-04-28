@@ -17,4 +17,8 @@ class AbsenKuliah extends Model
     public function agenda() {
         return $this->belongsTo('App\Agenda', 'fk_idAgenda', 'idAgenda');
     }
+
+    public function quiz() {
+        return $this->hasMany('App\Quiz', 'absenkuliah_id', 'id');
+    }
 }

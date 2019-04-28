@@ -24,41 +24,37 @@
                     </div>
                 </div>
                 <div class="card-body">
-                	<form action="" method="POST" accept-charset="UTF-8">
-                		<div class="form-group col-md">
+                	<form action="{{route('quiz.store')}}" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="dosen_id" value="{{ Auth::user()->id}}">
+                		<div class="form-group col-md-6">
                 	        <label class="font-weight-bold" for="">Nama Kuis</label>
-                	        <input type="text" class="form-control" id="" placeholder="" name="">
+                	        <input type="text" class="form-control" id="" placeholder="" name="nama_kuis">
                 	    </div>
-                	    <div class="form-group col-md">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-bold" for="">Durasi</label>
+                            <div class="input-group">
+                                <input type="number" id="" name="durasi" placeholder="" class="form-control">
+                                <div class="input-group-addon">Menit</div>
+                            </div>
+                        </div>
+                	    <div class="form-group col-md-6">
                 	        <label class="font-weight-bold" for="">Kelas</label>
-                	        <select class="form-control">
-                	            <option>Manajemen Proyek Perangkat Lunak - A</option>
-                	            <option>Pemrograman Berbasis Kerangka Kerja - F</option>
-                	            <option>Rekayasa Kebutuhan - B</option>
+                	        <select class="form-control kelas-select">
+                                @foreach ($agenda as $a)
+                	            <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
+                                @endforeach
                 	        </select>
                 	    </div>
-                	    <div class="form-group col-md-4">
-                	        <label class="font-weight-bold" for="">Ruangan</label>
-                	        <select class="form-control">
-                	            <option>IF-101</option>
-                	            <option>IF-102</option>
-                	            <option>IF-103</option>
-                	        </select>
-                	    </div>
-                	    <div class="form-group col-md-4">
-                	        <label class="font-weight-bold" for="">Tanggal</label>
-                	        <input type="date" class="form-control" id="" placeholder="" name="">
-                	    </div>
-                	    <div class="form-group col-md-4">
-                	    	<label class="font-weight-bold" for="">Durasi</label>
-                	        <div class="input-group">
-                	            <input type="number" id="" name="" placeholder="" class="form-control">
-                	            <div class="input-group-addon">Menit</div>
-                	        </div>
-                	    </div>
-                	    <div class="form-group col-md">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-bold" for="" >Jadwal</label>
+                            <select class="form-control jadwal-select" name="absenkuliah_id">
+                
+                            </select>
+                        </div>
+                	    <div class="form-group col-md-12">
                 	        <label class="font-weight-bold" for="">Terms & Conditions</label>
-                	        <input type="textarea" class="form-control" id="" placeholder="" name="">
+                	        <input type="textarea" class="form-control" id="terms-conditions" placeholder="" name="terms_conditions">
                 	    </div>
                 	    <br>
                 	    <div class="col-md-12">
@@ -72,4 +68,68 @@
         </div>
     </div>
 </div><!-- .animated -->
+@endsection
+
+@section('script')
+<script type="text/javascript">        
+(function($) {
+   $(".kelas-select").click(async function() {
+    let jadwals;
+    const agenda_id = $(this).val();
+
+    try {
+        jadwals = await $.ajax({
+            url: `{{url('agenda')}}/${agenda_id}/jadwals`,
+            method: 'GET',
+            dataType: 'json'
+        });
+    } catch(err) {
+        alert('error');
+        console.log(err);
+        return;
+    }
+
+    let html = '';
+    
+    jadwals.map((jadwal, idx) => {
+        html += `<option value='${jadwal.id}'>Pertemuan ke-${jadwal.pertemuanKe} | ${jadwal.tglPertemuan}</option>`
+    });
+
+    $(".jadwal-select").html(html);
+
+    console.log(jadwals)
+});         
+})(jQuery);
+     
+   tinymce.init({
+    selector: '#terms-conditions',
+   plugins : 'advlist autolink link image lists charmap print preview',
+    images_upload_handler: function (blobInfo, success, failure) {
+           var xhr, formData;
+           xhr = new XMLHttpRequest();
+           xhr.withCredentials = false;
+           xhr.open('POST', '/upload/image');
+           var token = '{{ csrf_token() }}';
+           xhr.setRequestHeader("X-CSRF-Token", token);
+           xhr.onload = function() {
+               var json;
+               if (xhr.status != 200) {
+                   failure('HTTP Error: ' + xhr.status);
+                   return;
+               }
+               json = JSON.parse(xhr.responseText);
+
+               if (!json || typeof json.location != 'string') {
+                   failure('Invalid JSON: ' + xhr.responseText);
+                   return;
+               }
+               success(json.location);
+           };
+           formData = new FormData();
+           formData.append('file', blobInfo.blob(), blobInfo.filename());
+           xhr.send(formData);
+       }
+
+  });
+</script>
 @endsection

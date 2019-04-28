@@ -19,7 +19,7 @@
                             <h3 class="m-0">Quizzes</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-primary float-right" href="/dosen/create-quiz" role="button">Add Quiz</a>
+                            <a class="btn btn-primary float-right" href="{{route('quiz.create')}}" role="button">Add Quiz</a>
                         </div>
                     </div>
                 </div>

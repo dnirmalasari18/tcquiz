@@ -15,15 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dosen/quiz-list', function () {
-    return view('dosen.listofquizzes');
-});
-
 Route::get('/dosen/edit-quiz/1', function () {
-    return view('dosen.createquiz');
-});
-
-Route::get('/dosen/create-quiz', function () {
     return view('dosen.createquiz');
 });
 
@@ -46,6 +38,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::resource('agenda', 'AgendaController');
         Route::get('agenda/{id}/detail', 'AgendaController@detailkelas');
         Route::get('agenda/{id}/addmahasiswa', 'AgendaController@addmahasiswa');
+        Route::resource('quiz', 'QuizController');
     });
 });
 
@@ -54,13 +47,14 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
         Route::get('/', function () {
             return view('mahasiswa.dashboard');
         });
-
         Route::get('/kelas', function () {
             return view('mahasiswa.classes');
         });
-
         Route::get('/quizzes', function () {
             return view('mahasiswa.quizzes');
         });
     });
 });
+
+Route::get('agenda/{agenda_id}/jadwals', 'AgendaController@getAgendaJadwals');
+Route::post('upload/image', 'QuizController@uploadImage');

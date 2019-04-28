@@ -40,7 +40,7 @@
                                 <td>{{ $a->singkatAgenda }}</td>
                                 <td>{{ $a->dosenpengajar->users['name'] }}</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#agenda-detail-{{ $a->idAgenda }}"">Detail
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#agenda-detail-{{ $a->idAgenda }}">Detail
                                     </button>
                                     <!-- <a class="btn btn-warning btn-sm" href="{{route('agenda.edit', $a->idAgenda)}}" role="button">Edit</a>
                                     <a class="btn btn-light btn-sm" href="agenda/{{ $a->idAgenda }}/detail" role="button">Kelola Peserta</a> -->
@@ -92,6 +92,12 @@
                             <td>Jadwal</td>
                             <td>: {{ $a->hari }} | {{ $a->WaktuMulai }} - {{ $a->WaktuSelesai }}</td>
                         </tr>
+                        @foreach($a->pertemuan as $a)
+                        <tr>
+                            <td>Pertemuan {{ $a->pertemuanKe }}</td>
+                            <td>: {{ date('d M y', strtotime($a->tglPertemuan)) }}</td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

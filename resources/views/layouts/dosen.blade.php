@@ -55,7 +55,7 @@
                     </li>
                     <h3 class="menu-title">Users</h3><!-- /.menu-title -->
                     <li class="@yield('users')">
-                        <a href="/dosen/users"> <i class="menu-icon fa fa-users"></i>Manage Users </a>
+                        <a href="/dosen/users"> <i class="menu-icon fa fa-users"></i>Users </a>
                     </li>
                     <li class="@yield('classes')">
                         <a href="/dosen/agenda"> <i class="menu-icon fa fa-book"></i>Agenda </a>
@@ -66,8 +66,8 @@
                     <li class="menu-item-has-children @yield('quiz') dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Quiz</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-pencil"></i><a href="/dosen/create-quiz">Create a Quiz</a></li>
-                            <li><i class="menu-icon fa fa-list-ul"></i><a href="/dosen/quiz-list">List of Quizzes</a></li>
+                            <li><i class="menu-icon fa fa-pencil"></i><a href="{{route('quiz.create')}}">Create a Quiz</a></li>
+                            <li><i class="menu-icon fa fa-list-ul"></i><a href="{{route('quiz.index')}}">List of Quizzes</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -191,6 +191,8 @@
     <script src="{{asset('dashboard/vendors/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/init-scripts/data-table/datatables-init.js')}}"></script>
 
+    <script src="{{asset('tinymce/js/tinymce/tinymce.js')}}"></script>
+
     <script>
         (function($) {
             "use strict";
@@ -209,6 +211,8 @@
             });
         })(jQuery);
     </script>
+
+    @yield('script')
 
 </body>
 

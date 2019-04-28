@@ -17,4 +17,8 @@ class Agenda extends Model
     public function dosenpengajar() {
         return $this->belongsTo('App\Pic', 'fk_idPIC', 'idPIC');
     }
+
+     public function pertemuan() {
+        return $this->hasMany('App\AbsenKuliah', 'fk_idAgenda', 'idAgenda');
+    }
 }

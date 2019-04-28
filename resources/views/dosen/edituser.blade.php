@@ -1,10 +1,11 @@
 @extends('layouts.dosen')
 
-@section('users', 'active')
+@section('quiz', 'active')
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
-<li class="active">Manage Users</li>
+<li><a href="#">Quiz</a></li>
+<li class="active">List of Quizzes</li>
 @endsection
 
 @section('content')
@@ -16,10 +17,10 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">Edit User</h3>
+                            <h3 class="m-0">Edit Quiz</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-secondary float-right" href="/dosen/users" role="button">Back</a>
+                            <a class="btn btn-secondary float-right" href="/dosen/quiz" role="button">Back</a>
                         </div>
                     </div>
                 </div>

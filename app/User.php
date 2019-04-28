@@ -44,12 +44,4 @@ class User extends Authenticatable
         return $this->hasOne('App\Pic', 'idPIC', 'username');
     }
 
-    public function mengajars() {
-        return $this->hasMany('App\Kelas', 'user_nip', 'username');
-    }
-
-    public function mengambils()
-    {
-        return $this->hasMany('App\MahasiswaMengambil', 'mahasiswa_nrp', 'username');
-    }
 }

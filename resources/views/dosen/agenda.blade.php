@@ -92,6 +92,12 @@
                             <td>Jadwal</td>
                             <td>: {{ $a->hari }} | {{ $a->WaktuMulai }} - {{ $a->WaktuSelesai }}</td>
                         </tr>
+                        @foreach($a->pertemuan as $a)
+                        <tr>
+                            <td>Pertemuan {{ $a->pertemuanKe }}</td>
+                            <td>: {{ date('d M y', strtotime($a->tglPertemuan)) }}</td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

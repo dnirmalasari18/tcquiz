@@ -43,10 +43,10 @@
                                 <td align="center">{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
                                 <td align="center">{{ $q->durasi }} menit</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#kuis-detail-{{ $q->id }}"">Detail
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#kuis-detail-{{ $q->id }}">Detail
                                     </button>
                                     <a class="btn btn-warning btn-sm" href="{{route('quiz.edit', $q->id)}}" role="button">Edit</a>
-                                    <a class="btn btn-light btn-sm" href="" role="button">Kelola Pertanyaan</a>
+                                    <a class="btn btn-light btn-sm" href="{{route('listofquestions', $q->id)}}" role="button">Kelola Pertanyaan</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -67,7 +67,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mediumModalLabel">User Detail</h5>
+                <h5 class="modal-title" id="mediumModalLabel">Quiz Detail</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -29,18 +29,18 @@
                         <input type="hidden" name="dosen_id" value="{{ Auth::user()->id}}">
                 		<div class="form-group col-md-6">
                 	        <label class="font-weight-bold" for="">Nama Kuis</label>
-                	        <input type="text" class="form-control" id="" placeholder="" name="nama_kuis">
+                	        <input type="text" class="form-control" id="" placeholder="" name="nama_kuis" required>
                 	    </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Durasi</label>
                             <div class="input-group">
-                                <input type="number" id="" name="durasi" placeholder="" class="form-control">
+                                <input type="number" id="" name="durasi" placeholder="" class="form-control" required>
                                 <div class="input-group-addon">Menit</div>
                             </div>
                         </div>
                 	    <div class="form-group col-md-6">
                 	        <label class="font-weight-bold" for="">Kelas</label>
-                	        <select class="form-control kelas-select">
+                	        <select class="form-control kelas-select" required>
                                 @foreach ($agenda as $a)
                                 
                 	            <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
@@ -49,7 +49,7 @@
                 	    </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="" >Jadwal</label>
-                            <select class="form-control jadwal-select" name="absenkuliah_id">
+                            <select class="form-control jadwal-select" name="absenkuliah_id" required>
                 
                             </select>
                         </div>

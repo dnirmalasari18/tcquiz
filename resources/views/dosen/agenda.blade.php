@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
-<li class="active">Classes</li>
+<li class="active">Agenda</li>
 @endsection
 
 @section('content')

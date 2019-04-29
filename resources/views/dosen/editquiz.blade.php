@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div>
+                    <div class="col-md-12">
                         @if (\Session::has('update_done'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                               {!! \Session::get('update_done') !!}
@@ -39,18 +39,18 @@
                         {{csrf_field()}}
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Nama Kuis</label>
-                            <input type="text" class="form-control" id="" placeholder="" name="nama_kuis" value="{{ $quiz->nama_kuis }}">
+                            <input type="text" class="form-control" id="" placeholder="" name="nama_kuis" value="{{ $quiz->nama_kuis }}" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Durasi</label>
                             <div class="input-group">
-                                <input type="number" id="" name="durasi" placeholder="" class="form-control" value="{{ $quiz->durasi }}">
+                                <input type="number" id="" name="durasi" placeholder="" class="form-control" value="{{ $quiz->durasi }}" required>
                                 <div class="input-group-addon">Menit</div>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="">Kelas</label>
-                            <select class="form-control kelas-select" value="">                              
+                            <select class="form-control kelas-select" value="" required>                              
                                 @foreach ($agenda as $a)
                                   @if($quiz->pertemuanke->agenda->idAgenda == $a->idAgenda)
                                     <option selected value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>  
@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="" >Jadwal</label>
-                            <select class="form-control jadwal-select" name="absenkuliah_id" value="{{ $quiz->absenkuliah_id }}">
+                            <select class="form-control jadwal-select" name="absenkuliah_id" value="{{ $quiz->absenkuliah_id }}" required>
                               @foreach($jadwals as $j)      
                                 @if($j->id ==  $quiz->absenkuliah_id)
                                   <option selected value="{{$j->id}}">Pertemuan ke-{{$j->pertemuanKe}} | {{$j->tglPertemuan}}</option>

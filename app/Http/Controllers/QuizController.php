@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Quiz;
 use App\AbsenKuliah;
 use App\Agenda;
+use App\Questions;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -65,10 +66,9 @@ class QuizController extends Controller
     {
         $quiz = Quiz::findorfail($quiz);
         $agenda = Agenda::orderBy('namaAgenda','asc')->get();
-        $absenkuliah = AbsenKuliah::pluck('pertemuanKe','id');
         $id_agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
         $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();        
-        return view('dosen.editquiz',compact('quiz', 'agenda', 'absenkuliah', 'jadwals'));
+        return view('dosen.editquiz',compact('quiz', 'agenda', 'jadwals'));
     }
 
     /**
@@ -106,6 +106,8 @@ class QuizController extends Controller
 
     public function questionslist($quiz)
     {
-        return view('dosen.listofquestions');
+        $quiz = Quiz::findorfail($quiz);
+        $questions = Questions::where('quiz_id', $quiz)->get();  
+        return view('dosen.listofquestions', compact('quiz', 'questions'));
     }
 }

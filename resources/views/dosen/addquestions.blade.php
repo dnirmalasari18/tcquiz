@@ -19,12 +19,12 @@
                             <h3 class="m-0">Questions</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-secondary float-right" href="/dosen/quiz/1/questions" role="button">Back</a>
+                            <a class="btn btn-secondary float-right" href="" role="button">Back</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('users.store')}}" method="POST">
+                    <form action="" method="POST">
                         <div class="form-group col-md-8 float-left">
                             <label class="font-weight-bold" for="">Soal</label>
                             <input type="textarea" class="form-control quest" name="soal">

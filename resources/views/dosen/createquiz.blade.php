@@ -19,7 +19,7 @@
                             <h3 class="m-0">Add Quiz</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-secondary float-right" href="/dosen/quiz-list" role="button">Back</a>
+                            <a class="btn btn-secondary float-right" href="/dosen/quiz" role="button">Back</a>
                         </div>
                     </div>
                 </div>
@@ -42,6 +42,7 @@
                 	        <label class="font-weight-bold" for="">Kelas</label>
                 	        <select class="form-control kelas-select">
                                 @foreach ($agenda as $a)
+                                
                 	            <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
                                 @endforeach
                 	        </select>
@@ -101,9 +102,12 @@
 });         
 })(jQuery);
      
-   tinymce.init({
+    tinymce.init({
     selector: '#terms-conditions',
-   plugins : 'advlist autolink link image lists charmap print preview',
+    plugins : 'advlist autolink link image lists charmap print preview',
+    relative_urls : false,
+    remove_script_host : false,
+    convert_urls : true,
     images_upload_handler: function (blobInfo, success, failure) {
            var xhr, formData;
            xhr = new XMLHttpRequest();

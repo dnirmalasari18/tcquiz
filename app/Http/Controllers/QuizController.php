@@ -66,7 +66,9 @@ class QuizController extends Controller
         $quiz = Quiz::findorfail($quiz);
         $agenda = Agenda::orderBy('namaAgenda','asc')->get();
         $absenkuliah = AbsenKuliah::pluck('pertemuanKe','id');
-        return view('dosen.editquiz',compact('quiz', 'agenda', 'absenkuliah'));
+        $id_agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
+        $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();        
+        return view('dosen.editquiz',compact('quiz', 'agenda', 'absenkuliah', 'jadwals'));
     }
 
     /**
@@ -100,5 +102,10 @@ class QuizController extends Controller
         $path = asset('storage') . '/' . $request->file('file')->store('public/gambar-terms');
         $path = str_replace('/public', "", $path);
         return json_encode(['location' => $path]); 
+    }
+
+    public function questionslist($quiz)
+    {
+        return view('dosen.listofquestions');
     }
 }

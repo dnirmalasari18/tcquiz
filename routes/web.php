@@ -44,6 +44,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::get('agenda/{id}/addmahasiswa', 'AgendaController@addmahasiswa');
         Route::resource('quiz', 'QuizController');
         Route::get('agenda/{agenda_id}/jadwals', 'AgendaController@getAgendaJadwals');
+        Route::get('quiz/{id}/questions', 'QuizController@questionslist');
     });
 });
 

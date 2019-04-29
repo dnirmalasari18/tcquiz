@@ -23,6 +23,10 @@ Route::get('/dosen/quiz/1/questions', function () {
     return view('dosen.questions'); 
 });
 
+Route::get('/dosen/quiz/1/questions/addquestions', function () {
+    return view('dosen.addquestions'); 
+});
+
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('login', 'Auth\LoginController@loginPage');
 Auth::routes();

@@ -39,11 +39,15 @@
                             <label class="font-weight-bold" for="">Opsi E</label>
                             <input type="textarea" class="form-control quest" name="opsiE"><br>
                             
-                                <input type="radio" name="A" value="a"> A<br>
-                                <input type="radio" name="B" value="b"> B<br>
-                                <input type="radio" name="C" value="c"> C<br>
-                                <input type="radio" name="D" value="d"> D<br>
-                                <input type="radio" name="E" value="e"> E<br><br>
+                            <select name="opsi" class="browser-default custom-select custom-select-lg mb-3">
+                                <option value="disable">Opsi</option>
+                                <option value="opA">A</option>
+                                <option value="opB">B</option>
+                                <option value="opC">C</option>
+                                <option value="opD">D</option>
+                                <option value="opE">E</option>
+                            </select>
+                            <br>
                             <button id="" type="submit" class="btn btn-lg btn-info btn-block">Sumbit</button>
                         </div>
                     </form>

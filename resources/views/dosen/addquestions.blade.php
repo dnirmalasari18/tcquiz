@@ -24,6 +24,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <form action="{{route('users.store')}}" method="POST">
                         <div class="form-group col-md-8 float-left">
                             <label class="font-weight-bold" for="">Soal</label>
                             <input type="textarea" class="form-control quest" name="soal">
@@ -42,9 +43,10 @@
                                 <input type="radio" name="B" value="b"> B<br>
                                 <input type="radio" name="C" value="c"> C<br>
                                 <input type="radio" name="D" value="d"> D<br>
-                                <input type="radio" name="E" value="e"> E<br>
+                                <input type="radio" name="E" value="e"> E<br><br>
+                            <button id="" type="submit" class="btn btn-lg btn-info btn-block">Sumbit</button>
                         </div>
-                    
+                    </form>
                 </div>
             </div>
         </div>

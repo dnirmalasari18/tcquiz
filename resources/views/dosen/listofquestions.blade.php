@@ -21,10 +21,11 @@
                         <div class="col ">
                             <a class="btn btn-secondary float-right" href="/dosen/quiz-list" role="button">Back</a>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="card-body">
-                    <a class="btn btn-primary btn-sm" href="/dosen/quiz/1/questions/addquestions" role="button">Add Question</a>
+                <a class="btn btn-primary btn-sm" href="/dosen/quiz/1/questions/addquestions" role="button">Add Question</a>
 
                     <div class="col-md-4 float-right">
                         <div class="card">

@@ -11,6 +11,6 @@ class test extends Model
     public $incrementing = true;
 
     protected $fillable = [
-    	'no_soal', 'soal', 'jawaban_soal', 
+    	'jawaban_soal', 
     ];
 }

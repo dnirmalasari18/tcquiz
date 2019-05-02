@@ -318,6 +318,7 @@ button,
 
 .max-w-sm {
     max-width: 30rem;
+    min-width: 480px;
 }
 
 .min-h-screen {

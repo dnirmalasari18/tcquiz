@@ -16,7 +16,7 @@
 <body class="antialiased font-sans bg-blue-dark">
 <div class="md:flex min-h-screen">
     <div class="w-full md:w-1/2 bg-white flex items-center justify-center">
-        <div class="max-w-sm m-8" style="min-width: 480px;">
+        <div class="max-w-sm m-8">
             <div class="text-black text-5xl md:text-15xl font-black">
                 TCQUIZ
             </div>
@@ -25,18 +25,7 @@
             <div>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <link rel="stylesheet" href="{{asset('dashboard/assets/css/login-form.css')}}">
-                <style type="text/css">
-                    .form-control-feedback {
-            position: absolute;
-            top: .5rem;
-            right: 1.5rem;
-            z-index: 2;
-            display: block;
-            text-align: center;
-            pointer-events: none;
-        }
-                </style>
-                <div class="card-body login-card-body" style="padding-left: 0; padding-bottom: 0;">
+                <div class="card-body login-card-body">
                     <form method="POST" action="{{ url('login') }}">
                         @csrf
                         <div class="form-group has-feedback">
@@ -79,7 +68,7 @@
                                 @endif
                             </div>
                         </div>            
-                        <button type="submit" class="bg-transparent text-grey-darkest font-bold uppercase tracking-wide py-3 px-6 border-2 border-grey-light hover:border-grey rounded-lg" style="margin-top: 20px;">
+                        <button type="submit" class="bg-transparent text-grey-darkest font-bold uppercase tracking-wide py-3 px-6 border-2 border-grey-light hover:border-grey rounded-lg">
                             Login
                         </button>            
                     </form>

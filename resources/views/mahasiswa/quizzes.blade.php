@@ -36,17 +36,17 @@
                             <tr >
                                 <td>Interaksi Manusia dan Komputer</td>
                                 <td align="center">A</td>
-                                <td>25 April 2019</td>
+                                <td align="center">25 April 2019</td>
                                 <td align="center"><span class="badge badge-pill badge-dark">Inactive</span></td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
+                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#takeQuiz" disabled style="cursor: not-allowed;">Take Quiz
                                     </button>
                                 </td>
                             </tr>
                             <tr >
                                 <td>Manajemen Proyek Perangkat Lunak</td>
                                 <td align="center">A</td>
-                                <td>25 April 2019</td>
+                                <td align="center">25 April 2019</td>
                                 <td align="center"><span class="badge badge-pill badge-success">Active</span></td>
                                 <td align="center">
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
@@ -56,7 +56,7 @@
                             <tr >
                                 <td>Pemrograman Berbasis Kerangka Kerja</td>
                                 <td align="center">I</td>
-                                <td>24 April 2019</td>
+                                <td align="center">24 April 2019</td>
                                 <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
                                 <td align="center">
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#resultModal">See Result
@@ -92,9 +92,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <div align="center"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#takeQuiz">Enroll Me
-                </button></div>
-                
+                <div align="center">
+                    <a href="/mahasiswa/test">
+                        <button type="button" class="btn btn-primary btn-sm">Enroll Me</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

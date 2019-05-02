@@ -11,16 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dosen/quiz/1/questions/addquestions', function () {
     return view('dosen.addquestions'); 
 });
 
-Route::post('login', 'Auth\LoginController@login')->name('login');
-Route::get('login', 'Auth\LoginController@loginPage');
+Route::post('/', 'Auth\LoginController@login')->name('login');
+Route::get('/', 'Auth\LoginController@loginPage');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -38,10 +34,6 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::get('agenda/{agenda_id}/jadwals', 'AgendaController@getAgendaJadwals');
         Route::get('quiz/{id}/questions', 'QuizController@questionslist')->name('listofquestions');
     });
-});
-
-Route::get('/login2', function () {
-    return view('auth.login_temp');
 });
 
 Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {

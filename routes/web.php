@@ -40,6 +40,10 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
     });
 });
 
+Route::get('/login2', function () {
+    return view('auth.login_temp');
+});
+
 Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
     Route::prefix('mahasiswa')->group(function () {
         Route::get('/', function () {

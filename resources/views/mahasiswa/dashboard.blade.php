@@ -162,8 +162,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <div align="center"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#takeQuiz">Enroll Me
-                </button></div>
+                <div align="center">
+                    <a href="/mahasiswa/test">
+                        <button type="button" class="btn btn-primary btn-sm">Enroll Me</button>
+                    </a>
+                </div>
                 
             </div>
         </div>

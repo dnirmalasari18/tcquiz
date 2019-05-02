@@ -212,6 +212,7 @@
             </div>
         </div>                
     </div>
+    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px; width: 100%;">Submit</button>
 </div>
 
 @endsection

@@ -9,7 +9,7 @@
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
 <li><a href="#">Quizzes</a></li>
-<li class="active">Mbo Kuis Opo</li>
+<li class="active">PBKK</li>
 @endsection
 
 @section('content')
@@ -18,7 +18,7 @@
         <div class="card-header">
             <strong class="card-title">Soal 25</strong>
             <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
-            <label class="switch switch-3d switch-danger mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input" checked="false"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
+            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input" checked="false"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
         </div>
         <div class="card-body">
             Are you on the hunt for a free general knowledge quiz for your pub, party, social or school group? Look no further! The following quiz questions are suitable for all age groups and range from easy to profoundly thought-provoking, covering a wide range of topics so everyone can join in the fun.
@@ -56,7 +56,6 @@
         </div>
         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;">Previous</button>
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px;">Submit</button>
         </div>
     </div>
 </div>
@@ -148,7 +147,7 @@
                 </div>
                 <div class="col">
                     <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #e87c86;">14</div>
+                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #ffc107;">14</div>
                     </section>
                 </div>
                 <div class="col">
@@ -170,7 +169,7 @@
                 </div>
                 <div class="col">
                     <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #e87c86;">18</div>
+                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #ffc107;">18</div>
                     </section>
                 </div>
                 <div class="col">
@@ -213,6 +212,7 @@
             </div>
         </div>                
     </div>
+    <button type="submit" class="btn btn-success btn-block">Submit</button>
 </div>
 
 @endsection

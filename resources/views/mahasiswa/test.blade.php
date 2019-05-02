@@ -9,7 +9,7 @@
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
 <li><a href="#">Quizzes</a></li>
-<li class="active">Mbo Kuis Opo</li>
+<li class="active">PBKK</li>
 @endsection
 
 @section('content')
@@ -147,7 +147,7 @@
                 </div>
                 <div class="col">
                     <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #e87c86;">14</div>
+                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #ffc107;">14</div>
                     </section>
                 </div>
                 <div class="col">
@@ -169,7 +169,7 @@
                 </div>
                 <div class="col">
                     <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #e87c86;">18</div>
+                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #ffc107;">18</div>
                     </section>
                 </div>
                 <div class="col">
@@ -212,7 +212,7 @@
             </div>
         </div>                
     </div>
-    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px; width: 100%;">Submit</button>
+    <button type="submit" class="btn btn-success btn-block">Submit</button>
 </div>
 
 @endsection

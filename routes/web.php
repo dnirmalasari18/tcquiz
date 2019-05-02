@@ -64,6 +64,10 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
         Route::get('/test3', function () {
             return view('mahasiswa.test3');
         });
+
+        Route::get('/coba', function () {
+            return view('mahasiswa.test_coba');
+        });
     });
 });
 

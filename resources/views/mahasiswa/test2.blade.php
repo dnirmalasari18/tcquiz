@@ -18,7 +18,7 @@
         <div class="card-header">
             <strong class="card-title">Soal 14</strong>
             <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
-            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input" checked="true"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
+            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input" checked="false"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
         </div>
         <div class="card-body">
             Are you on the hunt for a free general knowledge quiz for your pub, party, social or school group? Look no further! The following quiz questions are suitable for all age groups and range from easy to profoundly thought-provoking, covering a wide range of topics so everyone can join in the fun.
@@ -60,154 +60,177 @@
         </div>
     </div>
 </div>
-<style type="text/css">
-    .col{
-        -ms-flex-preferred-size: 0;
-        flex-basis: 0;
-        -ms-flex-positive: 1;
-        flex-grow: 1;
-        height: 30px;
-        max-width: 43px;
-    }
-</style>
 <div class="col-md-3">
-    <div class="card">
-        <div class="card-header">
+    <style type="text/css">
+        .card{
+            margin-bottom: 0;
+        }
+        .card-soal{
+            margin-bottom: 20px;
+        }
+        .soal{
+            padding-bottom: 0px;
+        }
+        .row{
+            font-size: 10px;
+            padding-right: 15px;
+            margin-bottom: 15px;
+        }
+        .col{
+            padding-right: 0;
+            max-width: 20%;
+        }
+        .card-body .text-secondary{
+            padding: 6px 6px;
+        }
+        .soal-aktif{
+            background-color: #f2f2f2;
+        }
+        .soal-ragu{
+            background-color: #ffc107;
+        }
+        .soal-ragu-aktif{
+            background-color: #ffc107;
+            color: white !important;
+        }
+    </style>
+    <div class="card card-soal">
+        <div class="card-header" align="center">
             <strong class="card-title">Daftar Soal</strong>
         </div>
-        <div class="card-body">
-            <div class="row" style="font-size: 10px; margin-bottom: 15px;">
+        <div class="card-body soal">
+            <div class="row">
                 <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">1</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">1</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">2</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">2</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">3</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">3</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">4</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">4</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">5</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">5</div>
                     </section>
                 </div>
             </div>
-            <div class="row" style="font-size: 10px; margin-bottom: 15px;">
+            <div class="row">
                 <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">6</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">6</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">7</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">7</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">8</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">8</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">9</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">9</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">10</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">10</div>
                     </section>
                 </div>
             </div>
-            <div class="row" style="font-size: 10px; margin-bottom: 15px;">
+            <div class="row">
                 <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">11</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">11</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">12</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">12</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">13</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">13</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #ffc107; color: white !important;">14</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary soal-ragu-aktif" align="center">14</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">15</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">15</div>
                     </section>
                 </div>
             </div>
-            <div class="row" style="font-size: 10px; margin-bottom: 15px;">
+            <div class="row">
                 <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">16</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">16</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">17</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">17</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center; background-color: #ffc107;">18</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary soal-ragu" align="center">18</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">19</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">19</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">20</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">20</div>
                     </section>
                 </div>
             </div>
-            <div class="row" style="font-size: 10px; margin-bottom: 15px;">
+            <div class="row">
                 <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">21</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">21</div>
                     </section>
                 </div>
                  <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">22</div>
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">22</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">23</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">23</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">24</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">24</div>
                     </section>
                 </div>
-                <div class="col">
-                    <section class="card" style="width: 30px; height: 30px; line-height: 28px;">
-                        <div class="card-body text-secondary" style="padding:0;text-align: center;">25</div>
+                 <div class="col">
+                    <section class="card">
+                        <div class="card-body text-secondary" align="center">25</div>
                     </section>
                 </div>
             </div>

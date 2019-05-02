@@ -18,7 +18,7 @@
         <div class="card-header">
             <strong class="card-title">Soal 1</strong>
             <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
-            <label class="switch switch-3d switch-danger mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input" checked="false"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
+            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input" checked="false"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
         </div>
         <div class="card-body">
             Are you on the hunt for a free general knowledge quiz for your pub, party, social or school group? Look no further! The following quiz questions are suitable for all age groups and range from easy to profoundly thought-provoking, covering a wide range of topics so everyone can join in the fun.

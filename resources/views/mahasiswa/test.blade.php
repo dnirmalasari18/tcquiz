@@ -21,7 +21,8 @@
             <label class="switch switch-3d switch-danger mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input" checked="false"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
         </div>
         <div class="card-body">
-            Are you on the hunt for a free general knowledge quiz for your pub, party, social or school group? Look no further! The following quiz questions are suitable for all age groups and range from easy to profoundly thought-provoking, covering a wide range of topics so everyone can join in the fun.
+            <input type="textarea" class="form-control" id="questmhs" name="soalMhs">
+            ini soal
         </div>
         <div class="card-body">
             <div style="margin-bottom: 10px;"><strong>Jawaban</strong></div>
@@ -214,4 +215,39 @@
     </div>
 </div>
 
+@endsection
+
+@section('script')
+<script type="text/javascript">
+tinymce.init({
+    selector: '#questmhs',
+   plugins : 'advlist autolink link image lists charmap print preview',
+    images_upload_handler: function (blobInfo, success, failure) {
+           var xhr, formData;
+           xhr = new XMLHttpRequest();
+           xhr.withCredentials = false;
+           xhr.open('POST', '/upload/image');
+           var token = '{{ csrf_token() }}';
+           xhr.setRequestHeader("X-CSRF-Token", token);
+           xhr.onload = function() {
+               var json;
+               if (xhr.status != 200) {
+                   failure('HTTP Error: ' + xhr.status);
+                   return;
+               }
+               json = JSON.parse(xhr.responseText);
+
+               if (!json || typeof json.location != 'string') {
+                   failure('Invalid JSON: ' + xhr.responseText);
+                   return;
+               }
+               success(json.location);
+           };
+           formData = new FormData();
+           formData.append('file', blobInfo.blob(), blobInfo.filename());
+           xhr.send(formData);
+       }
+
+  });
+</script>
 @endsection

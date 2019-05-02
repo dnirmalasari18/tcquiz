@@ -180,6 +180,7 @@
     <script src="{{asset('dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('dashboard/vendors/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/init-scripts/data-table/datatables-init.js')}}"></script>
+    <script src="{{asset('tinymce/js/tinymce/tinymce.js')}}"></script>
 
     <script>
         (function($) {

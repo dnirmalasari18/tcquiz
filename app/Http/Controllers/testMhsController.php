@@ -12,7 +12,7 @@ class testMhsController extends Controller
     }
     public function store(){
         $jawaban= new User();
-            $jawaban->jawaban_soal= $request['jawaban_soal'];
+        $jawaban->jawaban_soal= $request['jawaban_soal'];
         
         $jawaban->save();
 

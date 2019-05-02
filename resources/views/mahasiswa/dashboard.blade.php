@@ -22,7 +22,8 @@
 <style type="text/css">
 	.nuzha{
 		height: 110px;
-		font-size: 20px; background-color: #3b5998;
+		font-size: 40px; 
+        background-color: #3b5998;
 		background-position-x: 0%;
 		background-position-y: 0%;
 		background-repeat: repeat;
@@ -31,11 +32,14 @@
 		background-size: auto;
 		background-origin: padding-box;
 		background-clip: border-box;
+        line-height: 110px;
+        color: white;
 	}
 </style>
 <div class="col-lg-3 col-md-6">
     <div class="social-box">
     	<div class="nuzha">
+            PBKK
 	    </div>
         <ul>
         	<li>
@@ -52,6 +56,7 @@
 <div class="col-lg-3 col-md-6">
     <div class="social-box">
     	<div class="nuzha">
+            MPPL
 	    </div>
         <ul>
         	<li>
@@ -68,6 +73,7 @@
 <div class="col-lg-3 col-md-6">
     <div class="social-box">
     	<div class="nuzha">
+            IMK
 	    </div>
         <ul>
         	<li>
@@ -84,6 +90,7 @@
 <div class="col-lg-3 col-md-6">
     <div class="social-box">
     	<div class="nuzha">
+            RK
 	    </div>
         <ul>
         	<li>

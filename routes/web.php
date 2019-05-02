@@ -17,7 +17,12 @@ Route::get('/dosen/quiz/1/questions/addquestions', function () {
 
 Route::post('/', 'Auth\LoginController@login')->name('login');
 Route::get('/', 'Auth\LoginController@loginPage');
+
 Auth::routes();
+
+Route::get('/login', function () {
+    return redirect('/');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 

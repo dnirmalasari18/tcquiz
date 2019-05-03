@@ -1,6 +1,6 @@
 @extends('layouts.dosen')
 
-@section('quiz', 'active')
+@section('quiz-list', 'active')
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
@@ -46,7 +46,8 @@
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#kuis-detail-{{ $q->id }}">Detail
                                     </button>
                                     <a class="btn btn-warning btn-sm" href="{{route('quiz.edit', $q->id)}}" role="button">Edit</a>
-                                    <a class="btn btn-light btn-sm" href="{{route('listofquestions', $q->id)}}" role="button">Kelola Pertanyaan</a>
+                                    <a class="btn btn-secondary btn-sm" href="{{route('listofquestions', $q->id)}}" role="button">Kelola Pertanyaan</a>
+                                    <a class="btn btn-light btn-sm" href="" role="button">Lihat Nilai</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -85,7 +86,7 @@
                         </tr>
                         <tr>
                             <td>Jadwal</td>
-                            <td>: {{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
+                            <td>: {{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}, {{ $q->pertemuanke->waktuMulai}} - {{ $q->pertemuanke->waktuSelesai}} WIB</td>
                         </tr>                               
                         <tr>
                             <td>Durasi</td>

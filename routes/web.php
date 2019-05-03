@@ -13,25 +13,20 @@
 
 
 Route::get('/', function () {
-    // return redirect('login');
-    return view('welcome');
+    return redirect('login');
+    //return view('welcome');
 });
-
-Route::get('/dosen/quiz/1/questions/addquestions', function () {
-    return view('dosen.addquestions'); 
-});
-
-Auth::routes();
 
 // Route::middleware(['redirect_home'])->group(function() {
     Route::post('login', 'Auth\LoginController@login')->name('login');
     Route::get('login', 'Auth\LoginController@loginPage');
 // });
 
+Auth::routes();
 
-Route::get('/login', function () {
-    return redirect('/');
-});
+// Route::get('/login', function () {
+//     return redirect('/');
+// });
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -46,6 +41,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::get('agenda/{id}/addmahasiswa', 'AgendaController@addmahasiswa');
         Route::resource('quiz', 'QuizController');
         Route::get('agenda/{agenda_id}/jadwals', 'AgendaController@getAgendaJadwals');
+        Route::get('agenda/{jadwal_id}/waktus', 'AgendaController@getAgendaWaktu');
         Route::get('quiz/{id}/questions', 'QuestionsController@questionslist')->name('listofquestions');
         Route::resource('questions', 'QuestionsController');
     });

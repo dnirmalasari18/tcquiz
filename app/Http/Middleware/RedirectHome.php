@@ -17,8 +17,8 @@ class RedirectHome
     public function handle($request, Closure $next)
     {
         if ( Auth::user()->pics)
-            return redirect('dosen');
+            return redirect('/dosen');
 
-        return redirect('mahasiswa');
+        return redirect('/mahasiswa');
     }
 }

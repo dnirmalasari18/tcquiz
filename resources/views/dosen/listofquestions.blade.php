@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div align="left">
-                                            <p>{{$questions[$i]->question_description}}</p>
+                                            {!!$questions[$i]->question_description!!}
                                             A{!! $questions[$i]->option_a!!}
                                             B{!! $questions[$i]->option_b!!} 
                                             @if($questions[$i]->option_c!=null)    
@@ -122,7 +122,7 @@
                                         <label class="font-weight-bold" for="">Question</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="textarea" class="form-control" id="x" placeholder="" name="question_description" required>
+                                        <input class="form-control question-desc" name="question_description">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -133,37 +133,37 @@
                                         <div class="form-check">
                                             <div class="radio">
                                                 <label for="a" class="form-check-label ">
-                                                    <input type="radio" id="a" name="correct_answer" value="a" class="form-check-input">
+                                                    <input type="radio" name="correct_answer" value="a" class="form-check-input">
                                                     <p class="font-weight-bold">A</p>
-                                                    <input type="textarea" class="form-control x" id="" placeholder="" name="option_a">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_a">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
                                                 <label for="b" class="form-check-label ">
-                                                    <input type="radio" id="b" name="correct_answer" value="b" class="form-check-input">
+                                                    <input type="radio" name="correct_answer" value="b" class="form-check-input">
                                                     <p class="font-weight-bold">B</p>
-                                                    <input type="textarea" class="form-control x" id="" placeholder="" name="option_b">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_b">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
                                                 <label for="c" class="form-check-label ">
-                                                    <input type="radio" id="c" name="correct_answer" value="c" class="form-check-input">
+                                                    <input type="radio" name="correct_answer" value="c" class="form-check-input">
                                                     <p class="font-weight-bold">C</p>
-                                                    <input type="textarea" class="form-control x" id="" placeholder="" name="option_c">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_c">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
                                                 <label for="d" class="form-check-label ">
-                                                    <input type="radio" id="d" name="correct_answer" value="d" class="form-check-input">
+                                                    <input type="radio" name="correct_answer" value="d" class="form-check-input">
                                                     <p class="font-weight-bold">D</p>
-                                                    <input type="textarea" class="form-control x" id="" placeholder="" name="option_d">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_d">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
                                                 <label for="e" class="form-check-label ">
-                                                    <input type="radio" id="e" name="correct_answer" value="e" class="form-check-input">
+                                                    <input type="radio" name="correct_answer" value="e" class="form-check-input">
                                                     <p class="font-weight-bold">E</p>
-                                                    <input type="textarea" class="form-control x" id="" placeholder="" name="option_e">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_e">
                                                 </label>
                                             </div>
                                         </div>
@@ -174,13 +174,12 @@
                                         <label class="font-weight-bold" for="">Question Score</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="number" min="0" class="form-control" id="" placeholder="" name="question_score" required>
+                                        <input type="number" min="0" class="form-control" id="" placeholder="" name="question_score">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
-                                    <button id="" type="submit" class="btn btn-lg btn-info btn-block ">
-                                        Save
+                                    <button type="submit" class="btn btn-lg btn-info btn-block ">Save
                                     </button>
                                 </div>
                             </form>
@@ -195,7 +194,7 @@
 @section('script')
 <script type="text/javascript">             
     tinymce.init({
-    selector: '.x',
+    selector: '.x, .question-desc',
     plugins : 'advlist autolink link image lists charmap print preview',
     relative_urls : false,
     remove_script_host : false,

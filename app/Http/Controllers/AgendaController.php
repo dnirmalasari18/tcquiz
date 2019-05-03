@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Agenda;
+use App\AbsenKuliah;
 
 class AgendaController extends Controller
 {
@@ -87,5 +88,10 @@ class AgendaController extends Controller
     public function getAgendaJadwals($agenda_id) {
         $jadwals = Agenda::find($agenda_id);
         return response()->json($jadwals->pertemuan);
+    }
+
+    public function getAgendaWaktu($jadwal_id) {
+        $waktu = AbsenKuliah::find($jadwal_id);
+        return response()->json($waktu);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Questions;
+use App\Quiz;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
@@ -35,7 +36,8 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Questions::create($request->all());
+        return redirect()->back()->with(['create_done' => 'Data berhasil ditambahkan']);
     }
 
     /**
@@ -81,5 +83,18 @@ class QuestionsController extends Controller
     public function destroy(Questions $questions)
     {
         //
+    }
+
+    public function questionslist($idquiz)
+    {
+        $quiz = Quiz::findorfail($idquiz);
+        $questions = Questions::where('quiz_id', $idquiz)->get();  
+        return view('dosen.listofquestions', compact('quiz', 'questions'));
+    }
+
+    public function uploadImage(Request $request) {
+        $path = asset('storage') . '/' . $request->file('file')->store('public/gambar-soal');
+        $path = str_replace('/public', "", $path);
+        return json_encode(['location' => $path]); 
     }
 }

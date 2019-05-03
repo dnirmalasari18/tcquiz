@@ -55,6 +55,11 @@ class LoginController extends Controller
     }
 
     public function loginPage() {
+        //  if (Auth::check() && Auth::user()->pics)
+        //     return redirect('dosen');
+        // else if(Auth::user())
+        //     return redirect('mahasiswa');
+        // return Auth::user();
         return view('auth.login');
     }
 }

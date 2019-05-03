@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
-<li><a href="#">Quiz</a></li>
+<li><a href="{{route('quiz.index')}}">Quiz</a></li>
 <li class="active">Create a Quiz</li>
 @endsection
 
@@ -25,27 +25,42 @@
                 </div>
                 <div class="card-body">
                 	<form action="{{route('quiz.store')}}" method="POST">
-                        {{csrf_field()}}
-                        <input type="hidden" name="dosen_id" value="{{ Auth::user()->id}}">
+                    {{csrf_field()}}
+                    <input type="hidden" name="dosen_id" value="{{ Auth::user()->id}}">
                 		<div class="form-group col-md-6">
                 	        <label class="font-weight-bold" for="">Nama Kuis</label>
                 	        <input type="text" class="form-control" id="" placeholder="" name="nama_kuis" required>
-                	    </div>
-                        <div class="form-group col-md-6">
-                            <label class="font-weight-bold" for="">Durasi</label>
-                            <div class="input-group">
-                                <input type="number" id="" name="durasi" placeholder="" class="form-control" required>
-                                <div class="input-group-addon">Menit</div>
-                            </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label class="font-weight-bold" for="">Durasi</label>
+                        <div class="input-group">
+                          <input type="number" id="" name="durasi" placeholder="" class="form-control" required>
+                          <div class="input-group-addon">Menit</div>
                         </div>
-                	    <div class="form-group col-md-6">
-                	        <label class="font-weight-bold" for="">Kelas</label>
-                	        <select class="form-control kelas-select" required>
-                                @foreach ($agenda as $a)
-                                
-                	            <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
-                                @endforeach
-                	        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                          <label class="font-weight-bold" for="">Tanggal Mulai</label>
+                          <input type="date" class="form-control" id="" placeholder="" name="" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                          <label class="font-weight-bold" for="">Jam Mulai</label>
+                          <input type="time" class="form-control" id="" placeholder="" name="" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                          <label class="font-weight-bold" for="">Tanggal Selesai</label>
+                          <input type="date" class="form-control" id="" placeholder="" name="" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                          <label class="font-weight-bold" for="">Jam Selesai</label>
+                          <input type="time" class="form-control" id="" placeholder="" name="" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label class="font-weight-bold" for="">Kelas</label>
+                      <select class="form-control kelas-select" required>
+                        @foreach ($agenda as $a)        
+                	       <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
+                        @endforeach
+                      </select>
                 	    </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="" >Jadwal</label>

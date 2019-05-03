@@ -4,8 +4,8 @@
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
-<li><a href="#">Quiz</a></li>
-<li class="active">Create a Quiz</li>
+<li><a href="{{route('quiz.index')}}">Quiz</a></li>
+<li class="active">Edit {{$quiz->nama_kuis}}</li>
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">Add Quiz</h3>
+                            <h3 class="m-0">Edit Quiz</h3>
                         </div>
                         <div class="col ">
                             <a class="btn btn-secondary float-right" href="/dosen/quiz" role="button">Back</a>

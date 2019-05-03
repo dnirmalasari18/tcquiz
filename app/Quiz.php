@@ -22,4 +22,8 @@ class Quiz extends Model
     public function creator() {
         return $this->belongsTo('App\User', 'dosen_id', 'id');
     }
+
+    public function quiz() {
+        return $this->hasMany('App\Questions', 'quiz_id', 'id');
+    }
 }

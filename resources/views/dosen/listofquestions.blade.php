@@ -1,6 +1,6 @@
 @extends('layouts.dosen')
 
-@section('quiz', 'active')
+@section('quiz-list', 'active')
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
@@ -34,6 +34,16 @@
                             </div>
                         @endif
                     </div>
+                    <div class="col-md-12">
+                        @if (\Session::has('delete_done'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              {!! \Session::get('delete_done') !!}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>                                    
+                            </div>
+                        @endif
+                    </div>
                     @if(count($questions))
                         <div class="">
                             <div class="col-md-4 float-right">
@@ -43,15 +53,20 @@
                                     </div>
                                     <div class="card-body">
                                         <div align="left">
-                                            @for ($i = 1; $i <= count($questions); $i++)
-                                                <button type="button" class="mt-2 btn2 btn-light btn-sm" style="height: 30px; width: 40px;">{{$i}}</button>
+                                            @for ($i = 1; $i <= $questions->total(); $i++)
+                                                @if($questions->currentPage()==$i)
+                                                    <a href="?page={{$i}}" class="mt-2 btn2 btn-info btn-sm" style="height: 30px; width: 40px;">{{$i}}</a>
+                                                @else
+                                                    <a href="?page={{$i}}" class="mt-2 btn2 btn-light btn-sm" style="height: 30px; width: 40px;">{{$i}}</a>
+                                                @endif
+                                                
                                             @endfor
                                         </div>
                                         <hr>
                                         <div class="card-text">
                                             <div class="row">
                                                 <div class="col text-center">
-                                                    <button href="#form_add" class="btn btn-primary" data-toggle="collapse">Add Question</button>
+                                                    <a href="{{route('createquestion', $quiz->id)}}" class="btn btn-primary">Add Question</a>
                                                 </div>
                                             </div>  
                                         </div>
@@ -64,32 +79,68 @@
                             <div class="col-md-8 float-left">
                                 <div class="card">
                                     <div class="card-header text-center">
-                                        <strong class="card-title mb-3">SOAL {{$i+1}}</strong>
+                                        <strong class="card-title mb-3">SOAL {{$questions->currentPage()}}</strong>
+                                        <form method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8" class="float-right">
+                                            <input name="_method" type="hidden" value="Delete">
+                                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                            <input type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin akan menghapus data?');" value="Delete">
+                                        </form>
+                                        <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$quiz->id, $questions[$i]->id])}}" role="button">Edit</a>
                                     </div>
                                     <div class="card-body">
                                         <div align="left">
                                             {!!$questions[$i]->question_description!!}
-                                            A{!! $questions[$i]->option_a!!}
-                                            B{!! $questions[$i]->option_b!!} 
+                                            @if($questions[$i]->correct_answer=='a')
+                                                <mark style="background-color: green; color: white;">A</mark>
+                                            @else
+                                                A
+                                            @endif
+                                            {!! $questions[$i]->option_a!!}
+
+                                            @if($questions[$i]->correct_answer=='b')
+                                                <mark style="background-color: green; color: white;">B</mark>
+                                            @else
+                                                B
+                                            @endif
+                                            {!! $questions[$i]->option_b!!} 
+
                                             @if($questions[$i]->option_c!=null)    
-                                                C{!! $questions[$i]->option_c!!}
+                                                @if($questions[$i]->correct_answer=='c')
+                                                    <mark style="background-color: green; color: white;">C</mark>
+                                                @else
+                                                C
+                                                @endif
+                                                {!! $questions[$i]->option_c!!}
                                             @endif
-                                            @if($questions[$i]->option_d!=null)
-                                                D{!! $questions[$i]->option_d!!} 
+                                            @if($questions[$i]->option_d!=null)    
+                                                @if($questions[$i]->correct_answer=='d')
+                                                    <mark style="background-color: green; color: white;">D</mark>
+                                                @else
+                                                D
+                                                @endif
+                                                {!! $questions[$i]->option_d!!}
                                             @endif
-                                            @if($questions[$i]->option_e!=null)
-                                                E{!! $questions[$i]->option_e!!} 
+                                            @if($questions[$i]->option_e!=null)    
+                                                @if($questions[$i]->correct_answer=='e')
+                                                    <mark style="background-color: green; color: white;">E</mark>
+                                                @else
+                                                E
+                                                @endif
+                                                {!! $questions[$i]->option_c!!}
                                             @endif
-                                            
                                         </div>
                                         <hr>
                                         <div class="card-text">
                                             <div class="row">
-                                                <div class="col-md-3">
-                                                    <button href="" class="btn btn-outline-info"><i class="fa fa-chevron-left"></i></button>
+                                                <div class="col-md">
+                                                    @if($questions->currentPage()!=1)
+                                                        <a href="{{$questions->previousPageUrl()}}" class="btn btn-outline-info"><i class="fa fa-chevron-left"></i></a>
+                                                    @endif
                                                 </div>
-                                                <div class="col-md-3 ml-auto pull-right">
-                                                    <button href="" class="btn btn-outline-info" ><i class="fa fa-chevron-right"></i></button>
+                                                <div class="col-md-10" align="right">
+                                                    @if($questions->currentPage()!=$questions->total())
+                                                        <a href="{{$questions->nextPageurl()}}" class="btn btn-outline-info" ><i class="fa fa-chevron-right"></i></a>
+                                                    @endif
                                                 </div>
                                             </div>  
                                         </div>
@@ -98,133 +149,20 @@
                                 </div>
                             </div>
                         </div>
-                        @endfor                 
+                        @endfor
                     @else
                     <div class="alert alert-warning">
                         <i class="fa fa-exclamation-triangle"></i> Data pertanyaan belum ada
                     </div>
                     <div class="row">
                             <div class="col text-center">
-                                <button href="#form_add" class="btn btn-primary" data-toggle="collapse">Add Question</button>
+                                <a href="{{route('createquestion', $quiz->id)}}" class="btn btn-primary">Add Question</a>
                             </div>
                         </div> 
                     @endif
-
-                    <div class="container">
-                                        
-                        <div id="form_add" class="collapse">
-                            <form action="{{route('questions.store')}}" method="POST" >
-                                {{csrf_field()}}
-                                <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
-                                <br><br>
-                                <div class="form-group col-md-12">
-                                    <div class="col col-md-3">
-                                        <label class="font-weight-bold" for="">Question</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input class="form-control question-desc" name="question_description">
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <div class="col col-md-3">
-                                        <label class="font-weight-bold" for="">Choices</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <div class="form-check">
-                                            <div class="radio">
-                                                <label for="a" class="form-check-label ">
-                                                    <input type="radio" name="correct_answer" value="a" class="form-check-input">
-                                                    <p class="font-weight-bold">A</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_a">
-                                                </label>
-                                            </div><br>
-                                            <div class="radio">
-                                                <label for="b" class="form-check-label ">
-                                                    <input type="radio" name="correct_answer" value="b" class="form-check-input">
-                                                    <p class="font-weight-bold">B</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_b">
-                                                </label>
-                                            </div><br>
-                                            <div class="radio">
-                                                <label for="c" class="form-check-label ">
-                                                    <input type="radio" name="correct_answer" value="c" class="form-check-input">
-                                                    <p class="font-weight-bold">C</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_c">
-                                                </label>
-                                            </div><br>
-                                            <div class="radio">
-                                                <label for="d" class="form-check-label ">
-                                                    <input type="radio" name="correct_answer" value="d" class="form-check-input">
-                                                    <p class="font-weight-bold">D</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_d">
-                                                </label>
-                                            </div><br>
-                                            <div class="radio">
-                                                <label for="e" class="form-check-label ">
-                                                    <input type="radio" name="correct_answer" value="e" class="form-check-input">
-                                                    <p class="font-weight-bold">E</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_e">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <div class="col col-md-3">
-                                        <label class="font-weight-bold" for="">Question Score</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="number" min="0" class="form-control" id="" placeholder="" name="question_score">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-lg btn-info btn-block ">Save
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div><!-- .animated -->
-@endsection
-@section('script')
-<script type="text/javascript">             
-    tinymce.init({
-    selector: '.x, .question-desc',
-    plugins : 'advlist autolink link image lists charmap print preview',
-    relative_urls : false,
-    remove_script_host : false,
-    convert_urls : true,
-    images_upload_handler: function (blobInfo, success, failure) {
-           var xhr, formData;
-           xhr = new XMLHttpRequest();
-           xhr.withCredentials = false;
-           xhr.open('POST', '/upload/image/question');
-           var token = '{{ csrf_token() }}';
-           xhr.setRequestHeader("X-CSRF-Token", token);
-           xhr.onload = function() {
-               var json;
-               if (xhr.status != 200) {
-                   failure('HTTP Error: ' + xhr.status);
-                   return;
-               }
-               json = JSON.parse(xhr.responseText);
-
-               if (!json || typeof json.location != 'string') {
-                   failure('Invalid JSON: ' + xhr.responseText);
-                   return;
-               }
-               success(json.location);
-           };
-           formData = new FormData();
-           formData.append('file', blobInfo.blob(), blobInfo.filename());
-           xhr.send(formData);
-       }
-
-  });
-</script>
 @endsection

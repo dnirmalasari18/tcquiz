@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Quiz;
 use App\AbsenKuliah;
 use App\Agenda;
-use App\Questions;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -41,7 +40,7 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        Quiz::create($request->all());      
+        Quiz::create($request->all());
         return redirect('/dosen/quiz');
     }
 
@@ -102,12 +101,5 @@ class QuizController extends Controller
         $path = asset('storage') . '/' . $request->file('file')->store('public/gambar-terms');
         $path = str_replace('/public', "", $path);
         return json_encode(['location' => $path]); 
-    }
-
-    public function questionslist($quiz)
-    {
-        $quiz = Quiz::findorfail($quiz);
-        $questions = Questions::where('quiz_id', $quiz)->get();  
-        return view('dosen.listofquestions', compact('quiz', 'questions'));
     }
 }

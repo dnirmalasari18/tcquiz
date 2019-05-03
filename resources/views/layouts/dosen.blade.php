@@ -62,13 +62,11 @@
                     </li>
 
                     <h3 class="menu-title">Quizzes</h3><!-- /.menu-title -->
-
-                    <li class="menu-item-has-children @yield('quiz') dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Quiz</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-pencil"></i><a href="{{route('quiz.create')}}">Create a Quiz</a></li>
-                            <li><i class="menu-icon fa fa-list-ul"></i><a href="{{route('quiz.index')}}">List of Quizzes</a></li>
-                        </ul>
+                    <li class="@yield('create-quiz')">
+                        <a href="{{route('quiz.create')}}"> <i class="menu-icon fa fa-pencil"></i>Create a Quiz </a>
+                    </li>
+                    <li class="@yield('quiz-list')">
+                        <a href="{{route('quiz.index')}}"> <i class="menu-icon fa fa-list-ul"></i>List of Quizzes </a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

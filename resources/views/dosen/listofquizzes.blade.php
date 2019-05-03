@@ -1,6 +1,6 @@
 @extends('layouts.dosen')
 
-@section('quiz', 'active')
+@section('quiz-list', 'active')
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
@@ -17,9 +17,6 @@
                     <div class="row">
                         <div class="col">
                             <h3 class="m-0">Quizzes</h3>
-                        </div>
-                        <div class="col ">
-                            <a class="btn btn-primary float-right" href="{{route('quiz.create')}}" role="button">Add Quiz</a>
                         </div>
                     </div>
                 </div>
@@ -43,10 +40,9 @@
                                 <td align="center">{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
                                 <td align="center">{{ $q->durasi }} menit</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#kuis-detail-{{ $q->id }}">Detail
-                                    </button>
-                                    <a class="btn btn-warning btn-sm" href="{{route('quiz.edit', $q->id)}}" role="button">Edit</a>
-                                    <a class="btn btn-light btn-sm" href="{{route('listofquestions', $q->id)}}" role="button">Kelola Pertanyaan</a>
+                                    <a class="btn btn-info btn-sm" href="{{route('quiz.edit', $q->id)}}" role="button">Info</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('listofquestions', $q->id)}}" role="button">Kelola Pertanyaan</a>
+                                    <a class="btn btn-light btn-sm" href="" role="button">Lihat Nilai</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -85,7 +81,7 @@
                         </tr>
                         <tr>
                             <td>Jadwal</td>
-                            <td>: {{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
+                            <td>: {{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}, {{ $q->pertemuanke->waktuMulai}} - {{ $q->pertemuanke->waktuSelesai}} WIB</td>
                         </tr>                               
                         <tr>
                             <td>Durasi</td>

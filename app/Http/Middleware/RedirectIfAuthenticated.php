@@ -18,7 +18,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            if ( Auth::user()->pics)
+                return redirect('/dosen');
+            return redirect('/mahasiswa');
         }
 
         return $next($request);

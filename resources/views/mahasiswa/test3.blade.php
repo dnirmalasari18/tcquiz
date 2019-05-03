@@ -56,6 +56,7 @@
         </div>
         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;">Previous</button>
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px;">Submit</button>
         </div>
     </div>
 </div>
@@ -235,7 +236,6 @@
             </div>
         </div>                
     </div>
-    <button type="submit" class="btn btn-success btn-block">Submit</button>
 </div>
 
 @endsection

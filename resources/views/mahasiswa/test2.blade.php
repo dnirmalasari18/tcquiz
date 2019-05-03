@@ -236,7 +236,6 @@
             </div>
         </div>                
     </div>
-    <button type="submit" class="btn btn-success btn-block">Submit</button>
 </div>
 
 @endsection

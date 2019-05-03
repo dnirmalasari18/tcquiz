@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     // return redirect('login');
     return view('welcome');
@@ -19,6 +20,7 @@ Route::get('/', function () {
 Route::get('/dosen/quiz/1/questions/addquestions', function () {
     return view('dosen.addquestions'); 
 });
+
 Auth::routes();
 
 // Route::middleware(['redirect_home'])->group(function() {
@@ -26,6 +28,10 @@ Auth::routes();
     Route::get('login', 'Auth\LoginController@loginPage');
 // });
 
+
+Route::get('/login', function () {
+    return redirect('/');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -67,6 +73,10 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
 
         Route::get('/test3', function () {
             return view('mahasiswa.test3');
+        });
+
+        Route::get('/coba', function () {
+            return view('mahasiswa.test_coba');
         });
     });
 });

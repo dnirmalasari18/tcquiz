@@ -47,6 +47,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::get('quiz/{quiz_id}/questions/{question_id}/edit', 'QuestionsController@edit')->name('editquestion');
         ;
         Route::resource('questions', 'QuestionsController');
+        Route::get('quiz/{id}/participants', 'QuizController@participantsList')->name('participantslist');
     });
 });
 

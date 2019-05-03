@@ -90,14 +90,14 @@
                                     <div class="card-body">
                                         <div align="left">
                                             {!!$questions[$i]->question_description!!}
-                                            @if($questions[$i]->correct_answer=='a')
+                                            @if($questions[$i]->correct_answer==1)
                                                 <mark style="background-color: green; color: white;">A</mark>
                                             @else
                                                 A
                                             @endif
                                             {!! $questions[$i]->option_a!!}
 
-                                            @if($questions[$i]->correct_answer=='b')
+                                            @if($questions[$i]->correct_answer==2)
                                                 <mark style="background-color: green; color: white;">B</mark>
                                             @else
                                                 B
@@ -105,7 +105,7 @@
                                             {!! $questions[$i]->option_b!!} 
 
                                             @if($questions[$i]->option_c!=null)    
-                                                @if($questions[$i]->correct_answer=='c')
+                                                @if($questions[$i]->correct_answer==3)
                                                     <mark style="background-color: green; color: white;">C</mark>
                                                 @else
                                                 C
@@ -113,7 +113,7 @@
                                                 {!! $questions[$i]->option_c!!}
                                             @endif
                                             @if($questions[$i]->option_d!=null)    
-                                                @if($questions[$i]->correct_answer=='d')
+                                                @if($questions[$i]->correct_answer==4)
                                                     <mark style="background-color: green; color: white;">D</mark>
                                                 @else
                                                 D
@@ -121,7 +121,7 @@
                                                 {!! $questions[$i]->option_d!!}
                                             @endif
                                             @if($questions[$i]->option_e!=null)    
-                                                @if($questions[$i]->correct_answer=='e')
+                                                @if($questions[$i]->correct_answer==5)
                                                     <mark style="background-color: green; color: white;">E</mark>
                                                 @else
                                                 E

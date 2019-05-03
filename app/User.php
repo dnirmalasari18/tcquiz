@@ -48,4 +48,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Quiz', 'dosen_id', 'id');
     }
 
+    public function kehadiran() {
+        return $this->hasMany('App\Kehadiran', 'idUser', 'username');
+    }
+
 }

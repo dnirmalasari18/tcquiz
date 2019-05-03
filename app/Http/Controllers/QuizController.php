@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Quiz;
 use App\AbsenKuliah;
 use App\Agenda;
+use App\Kehadiran;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -101,5 +102,14 @@ class QuizController extends Controller
         $path = asset('storage') . '/' . $request->file('file')->store('public/gambar-terms');
         $path = str_replace('/public', "", $path);
         return json_encode(['location' => $path]); 
+    }
+
+    public function participantsList($quiz)
+    {
+        $quiz = Quiz::findorfail($quiz);
+        $agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
+        $participants = Kehadiran::where('idAgenda', $agenda)->get();
+        //return $participants;  
+        return view('dosen.listofparticipants',compact('quiz','participants'));
     }
 }

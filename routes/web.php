@@ -54,9 +54,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
 
 Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
     Route::prefix('mahasiswa')->group(function () {
-        Route::get('/', function () {
-            return view('mahasiswa.dashboard');
-        });
+        Route::get('/', 'MahasiswaController@dashboard');
         Route::get('kelas/', 'MahasiswaController@myClass');
         Route::get('/quizzes', 'MahasiswaController@myQuizzes');
 

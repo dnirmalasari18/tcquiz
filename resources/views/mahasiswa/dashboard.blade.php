@@ -10,7 +10,30 @@
 <li class="active">Dashboard</li>
 @endsection
 
+<?php
+    $count = 0;
+?>
+
 @section('content')
+@if(count($classes))
+@foreach($classes as $c)
+@foreach($c->agenda->pertemuan as $p)
+@if(count($p->quiz))
+@foreach($p->quiz as $q)
+@if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan))
+@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke-waktuSelesai))
+<?php
+    $count += 1;
+?>
+@endif
+@endif
+@endforeach
+@endif    
+@endforeach
+@endforeach
+@endif
+
+@if($count>0)
 <div class="col-sm-12">
     <div class="alert  alert-success alert-dismissible fade show" role="alert">
       <span class="badge badge-pill badge-success">Reminder</span> You have upcoming quizzes!
@@ -19,6 +42,17 @@
         </button>
     </div>
 </div>
+@else
+<div class="col-sm-12">
+    <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+      <span class="badge badge-pill badge-danger">Note</span> You have no upcoming quizzes!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+@endif
+
 <style type="text/css">
 	.nuzha{
 		height: 110px;
@@ -36,77 +70,58 @@
         color: white;
 	}
 </style>
+
+@if($count>0)
+@if(count($classes))
+@foreach($classes as $c)
+@foreach($c->agenda->pertemuan as $p)
+@if(count($p->quiz))
+@foreach($p->quiz as $q)
+@if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan))
+@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke-waktuSelesai))
 <div class="col-lg-3 col-md-6">
     <div class="social-box">
     	<div class="nuzha">
-            PBKK
+            {{$q->pertemuanke->agenda->singkatAgenda}}
 	    </div>
         <ul>
             <li>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail{{$q->id}}">Detail
                 </button>
             </li>
+            @if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai))
             <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}" disabled style="cursor: not-allowed;>Take Quiz
                 </button>
             </li>
-</ul>
-    </div>
-</div>
-<div class="col-lg-3 col-md-6">
-    <div class="social-box">
-    	<div class="nuzha">
-            MPPL
-	    </div>
-        <ul>
+            @else
             <li>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}">Take Quiz
                 </button>
             </li>
-            <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
-                </button>
-            </li>
+            @endif
         </ul>
     </div>
 </div>
-<div class="col-lg-3 col-md-6">
-    <div class="social-box">
-    	<div class="nuzha">
-            IMK
-	    </div>
-        <ul>
-            <li>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
-                </button>
-            </li>
-            <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
-                </button>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="col-lg-3 col-md-6">
-    <div class="social-box">
-    	<div class="nuzha">
-            RK
-	    </div>
-        <ul>
-            <li>
-                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
-                </button>
-            </li>
-            <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
-                </button>
-            </li>
-        </ul>
-    </div>
-</div>
+@endif
+@endif
+@endforeach
+@endif    
+@endforeach
+@endforeach
+@endif
+@endif
 
 <!-- .animated -->
-<div class="modal fade" id="quizDetail" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+@if($count>0)
+@if(count($classes))
+@foreach($classes as $c)
+@foreach($c->agenda->pertemuan as $p)
+@if(count($p->quiz))
+@foreach($p->quiz as $q)
+@if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan))
+@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke-waktuSelesai))
+<div class="modal fade" id="quizDetail{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -119,24 +134,36 @@
                 <table class="table">
                     <tbody >
                         <tr style="border-top-style: hidden;">
-                            <td>Mata Kuliah</td>
-                            <td>: Manajemen Proyek Perangkat Lunak</td>
+                            <td>Kuis</td>
+                            <td>: {{$q->nama_kuis}}</td>
                         </tr>
                         <tr>
-                            <td>Kelas</td>
-                            <td>: A</td>
+                            <td>Mata Kuliah</td>
+                            <td>: {{$q->pertemuanke->agenda->namaAgenda}}</td>
                         </tr>
                         <tr>
                             <td>Tanggal</td>
-                            <td>: 25 April 2019</td>
+                            <td>: {{$q->pertemuanke->tglPertemuan}}</td>
+                        </tr>
+                        <tr>
+                            <td>Mulai</td>
+                            <td>: {{$q->pertemuanke->waktuMulai}}</td>
+                        </tr>
+                        <tr>
+                            <td>Selesai</td>
+                            <td>: {{$q->pertemuanke->waktuSelesai}}</td>
                         </tr>
                         <tr>
                             <td>Waktu</td>
-                            <td>: 02:00:00</td>
+                            <td>: {{$q->durasi}}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
+                            @if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai))
+                            <td>: <span class="badge badge-pill badge-dark">Inactive</span></td>
+                            @else
                             <td>: <span class="badge badge-pill badge-success">Active</span></td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>
@@ -144,12 +171,30 @@
         </div>
     </div>
 </div>
+@endif
+@endif
+@endforeach
+@endif    
+@endforeach
+@endforeach
+@endif
+@endif
+
 <style type="text/css">
     .nuzha3{
         max-width: 500px;
     }
 </style>
-<div class="modal fade" id="takeQuiz" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+
+@if($count>0)
+@if(count($classes))
+@foreach($classes as $c)
+@foreach($c->agenda->pertemuan as $p)
+@if(count($p->quiz))
+@foreach($p->quiz as $q)
+@if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan))
+@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke-waktuSelesai))
+<div class="modal fade" id="takeQuiz{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg nuzha3" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -180,4 +225,13 @@
         </div>
     </div>
 </div>
+@endif
+@endif
+@endforeach
+@endif    
+@endforeach
+@endforeach
+@endif
+@endif
+
 @endsection

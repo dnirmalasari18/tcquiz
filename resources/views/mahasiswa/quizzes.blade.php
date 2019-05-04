@@ -49,13 +49,13 @@
                                 <td align="center">{{$q->pertemuanke->waktuSelesai}}</td>
                                 <td align="center">{{$q->durasi}}</td>
 
-                                @if(strtotime(date("Y-m-d")) > strtotime($q->pertemuanke->tglPertemuan))
+                                @if(strtotime(date("Y-m-d", strtotime('7 hour'))) > strtotime($q->pertemuanke->tglPertemuan))
                                 <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
                                 <td align="center">
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#resultModal{{$q->id}}">See Result
                                     </button>
                                 </td>
-                                @elseif(strtotime(date("Y-m-d")) < strtotime($q->pertemuanke->tglPertemuan))
+                                @elseif(strtotime(date("Y-m-d", strtotime('7 hour'))) < strtotime($q->pertemuanke->tglPertemuan))
                                 <td align="center"><span class="badge badge-pill badge-dark">Inactive</span></td>
                                 <td align="center">
                                     <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}" disabled style="cursor: not-allowed;">Take Quiz

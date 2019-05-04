@@ -55,35 +55,35 @@
                                     <div class="form-check">
                                         <div class="radio">
                                             <label for="a" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="a" class="form-check-input">
+                                                <input type="radio" name="correct_answer" value="1" class="form-check-input">
                                                 <p class="font-weight-bold">A</p>
                                                 <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_a">
                                             </label>
                                         </div><br>
                                         <div class="radio">
                                             <label for="b" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="b" class="form-check-input">
+                                                <input type="radio" name="correct_answer" value="2" class="form-check-input">
                                                 <p class="font-weight-bold">B</p>
                                                 <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_b">
                                             </label>
                                         </div><br>
                                         <div class="radio">
                                             <label for="c" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="c" class="form-check-input">
+                                                <input type="radio" name="correct_answer" value="3" class="form-check-input">
                                                 <p class="font-weight-bold">C</p>
                                                 <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_c">
                                             </label>
                                         </div><br>
                                         <div class="radio">
                                             <label for="d" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="d" class="form-check-input">
+                                                <input type="radio" name="correct_answer" value="4" class="form-check-input">
                                                 <p class="font-weight-bold">D</p>
                                                 <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_d">
                                             </label>
                                         </div><br>
                                         <div class="radio">
                                             <label for="e" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="e" class="form-check-input">
+                                                <input type="radio" name="correct_answer" value="5" class="form-check-input">
                                                 <p class="font-weight-bold">E</p>
                                                 <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_e">
                                             </label>

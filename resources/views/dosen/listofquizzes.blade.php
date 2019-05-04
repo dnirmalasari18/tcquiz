@@ -41,8 +41,8 @@
                                 <td align="center">{{ $q->durasi }} menit</td>
                                 <td align="center">
                                     <a class="btn btn-info btn-sm" href="{{route('quiz.edit', $q->id)}}" role="button">Info</a>
-                                    <a class="btn btn-warning btn-sm" href="{{route('listofquestions', $q->id)}}" role="button">Kelola Pertanyaan</a>
-                                    <a class="btn btn-light btn-sm" href="" role="button">Lihat Nilai</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('listofquestions', $q->id)}}" role="button">Soal</a>
+                                    <a class="btn btn-light btn-sm" href="{{route('participantslist', $q->id)}}" role="button">Peserta</a>
                                 </td>
                             </tr>
                             @endforeach

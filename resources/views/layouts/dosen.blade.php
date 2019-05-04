@@ -91,7 +91,7 @@
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                             <div style="padding: 10px;">
-                                {{ Auth::user()->name}} {{ Auth::user()->username}}
+                                {{ Auth::user()->name}} {{ Auth::user()->username}} <i class="fa fa-sort-desc"></i>
                             </div>
                         </a>
                        

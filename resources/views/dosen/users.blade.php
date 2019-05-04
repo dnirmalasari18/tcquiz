@@ -44,7 +44,7 @@
                                 <td align="center">Mahasiswa</td>
                                 @endif
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#user-detail-{{ $user->id }}">Detail
+                                    <button type="button" class="btn btn-info btn-sm mt-2" data-toggle="modal" data-target="#user-detail-{{ $user->id }}">Detail
                                     </button>
                                 </td>
                             </tr>

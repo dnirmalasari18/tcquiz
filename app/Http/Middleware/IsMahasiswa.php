@@ -20,6 +20,7 @@ class IsMahasiswa
         $dosen = Pic::find(Auth::user()->username);
         if(!$dosen)
             return $next($request);
+        
         return redirect('/');
     }
 }

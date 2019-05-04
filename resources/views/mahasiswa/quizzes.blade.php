@@ -15,7 +15,7 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">{{date("Y-m-d")}}</h3>
+                            <h3 class="m-0">Quizzes</h3>
                         </div>
                         <div class="col ">
                         </div>
@@ -48,15 +48,41 @@
                                 <td align="center">{{$q->pertemuanke->waktuMulai}}</td>
                                 <td align="center">{{$q->pertemuanke->waktuSelesai}}</td>
                                 <td align="center">{{$q->durasi}}</td>
+
                                 @if(strtotime(date("Y-m-d")) > strtotime($q->pertemuanke->tglPertemuan))
                                 <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
-                                @else
-                                <td align="center"><span class="badge badge-pill badge-dark">Inactive</span></td>
-                                @endif
                                 <td align="center">
-                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#takeQuiz" disabled style="cursor: not-allowed;">Take Quiz
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#resultModal{{$q->id}}">See Result
                                     </button>
                                 </td>
+                                @elseif(strtotime(date("Y-m-d")) < strtotime($q->pertemuanke->tglPertemuan))
+                                <td align="center"><span class="badge badge-pill badge-dark">Inactive</span></td>
+                                <td align="center">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}" disabled style="cursor: not-allowed;">Take Quiz
+                                    </button>
+                                </td>
+                                @else
+                                @if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai))
+                                <td align="center"><span class="badge badge-pill badge-dark">Inactive</span></td>
+                                <td align="center">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}" disabled style="cursor: not-allowed;">Take Quiz
+                                    </button>
+                                </td>
+                                @elseif(strtotime(date("H:i:s", strtotime('7 hour'))) > strtotime($q->pertemuanke->waktuSelesai))
+                                <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
+                                <td align="center">
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#resultModal{{$q->id}}">See Result
+                                    </button>
+                                </td>
+                                @else
+                                <td align="center"><span class="badge badge-pill badge-success">Active</span></td>
+                                <td align="center">
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}">Take Quiz
+                                    </button>
+                                </td>
+                                @endif
+                                @endif
+
                             </tr>
                             @endforeach
                             @endif    
@@ -70,12 +96,19 @@
         </div>
     </div>
 </div><!-- .animated -->
+
 <style type="text/css">
     .nuzha3{
         max-width: 500px;
     }
 </style>
-<div class="modal fade" id="takeQuiz" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+
+@if(count($classes))
+@foreach($classes as $c)
+@foreach($c->agenda->pertemuan as $p)
+@if(count($p->quiz))
+@foreach($p->quiz as $q)
+<div class="modal fade" id="takeQuiz{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg nuzha3" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -106,7 +139,18 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+@endforeach
+@endif    
+@endforeach
+@endforeach
+@endif
+
+@if(count($classes))
+@foreach($classes as $c)
+@foreach($c->agenda->pertemuan as $p)
+@if(count($p->quiz))
+@foreach($p->quiz as $q)
+<div class="modal fade" id="resultModal{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -120,11 +164,11 @@
                     <tbody>
                         <tr style="border-top-style: hidden;">
                             <td>Waktu Mulai</td>
-                            <td>: 24 April 2019, 13:02:11</td>
+                            <td>: 13:02:11</td>
                         </tr>
                         <tr>
                             <td>Waktu Selesai</td>
-                            <td>: 24 April 2019, 14:26:08</td>
+                            <td>: 14:26:08</td>
                         </tr>
                         <tr>
                             <td>Poin</td>
@@ -144,4 +188,9 @@
         </div>
     </div>
 </div>
+@endforeach
+@endif    
+@endforeach
+@endforeach
+@endif
 @endsection

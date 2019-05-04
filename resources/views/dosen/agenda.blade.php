@@ -36,14 +36,12 @@
                         <tbody>
                             @foreach($agenda as $a)
                             <tr>
-                                <td align="center">{{ $a->idAgenda }}</td>
+                                <td>{{ $a->idAgenda }}</td>
                                 <td>{{ $a->singkatAgenda }}</td>
                                 <td>{{ $a->dosenpengajar->users['name'] }}</td>
                                 <td align="center">
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#agenda-detail-{{ $a->idAgenda }}">Detail
                                     </button>
-                                    <!-- <a class="btn btn-warning btn-sm" href="{{route('agenda.edit', $a->idAgenda)}}" role="button">Edit</a>
-                                    <a class="btn btn-light btn-sm" href="agenda/{{ $a->idAgenda }}/detail" role="button">Kelola Peserta</a> -->
                                 </td>
                             </tr>
                             @endforeach

@@ -25,8 +25,19 @@
                             <a class="btn btn-primary float-right" href="{{route('generatepacket', $kuis->id)}}" role="button">Generate Packet</a>
                         </div>
                     </div>
-                </div>
+                </div><br>
+                <div class="col-md-12">
+                        @if (\Session::has('empty_question'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              {!! \Session::get('empty_question') !!}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>                                    
+                            </div>
+                        @endif
+                    </div>
                 <div class="card-body">
+                    
                     @if(count($participants))
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
@@ -45,6 +56,32 @@
                                 <td align="center">{{ $p->user->name }}</td>
                                 <td align="center">{{ $p->paketkuis->id }}</td>
                                 <td align="center">{{ $p->quiz_score }}</td>
+                                <td align="center">
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#participant-detail-{{ $p->id }}">Detail
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @elseif(count($participant))
+                    <table id="bootstrap-data-table" class="table table-bordered">
+                        <thead class="thead-light" align="center">
+                            <tr align="center">
+                                <th>NRP</th>
+                                <th>Nama</th>
+                                <th>Paket Soal</th>
+                                <th>Nilai</th>
+                                <th>Menu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($participant as $p)
+                            <tr>
+                                <td align="center">{{ $p->user->username }}</td>
+                                <td align="center">{{ $p->user->name }}</td>
+                                <td align="center"></td>
+                                <td align="center"></td>
                                 <td align="center">
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#participant-detail-{{ $p->id }}">Detail
                                     </button>

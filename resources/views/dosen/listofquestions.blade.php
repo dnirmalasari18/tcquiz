@@ -59,7 +59,6 @@
                                                 @else
                                                     <a href="?page={{$i}}" class="mt-2 btn2 btn-light btn-sm" style="height: 30px; width: 40px;">{{$i}}</a>
                                                 @endif
-                                                
                                             @endfor
                                         </div>
                                         <hr>

@@ -110,17 +110,11 @@ class QuizController extends Controller
     public function participantsList($quiz)
     {
         $kuis = Quiz::findorfail($quiz);
-        // $agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
-        // $participants = Kehadiran::where('idAgenda', $agenda)->get();
-        // $quiz_paket = QuizPacket::where('quiz_id', $quiz->id)->get();
-        // $p_id = 2;
+        $agenda = AbsenKuliah::find($kuis->absenkuliah_id)->fk_idAgenda;
+        $participant = Kehadiran::where('idAgenda', $agenda)->get();
         $participants = MahasiswaPacket::whereHas('paketkuis', function($q) use ($quiz) {
  $q->where('quiz_id', $quiz);})->with('paketkuis')->get();
-        
-
-//        return $participants;
-
-        return view('dosen.listofparticipants',compact('kuis', 'participants'));
+        return view('dosen.listofparticipants',compact('kuis', 'participants', 'participant'));
     }
 
     public function generatePacket($quiz1)
@@ -129,6 +123,10 @@ class QuizController extends Controller
         $agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
         $participants = Kehadiran::where('idAgenda', $agenda)->get();
         $questions = Questions::where('quiz_id', $quiz1)->get();
+
+        if ($questions->count()==0) {
+            return redirect()->back()->with(['empty_question' => 'Data pertanyaan pada kuis kosong! Tambahkan pertanyaan terlebih dahulu']);
+        }
 
         foreach ($participants as $participant) { 
             //randomize question orders

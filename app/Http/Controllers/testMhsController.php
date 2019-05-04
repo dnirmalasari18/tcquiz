@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\test;
+use DB;
 
 class testMhsController extends Controller
 {
     public function index(){
-        $test = Test::all();
+        $test = DB::table('test')->paginate(1);
         return view('mahasiswa.test',compact('test'));
     }
     public function store(){

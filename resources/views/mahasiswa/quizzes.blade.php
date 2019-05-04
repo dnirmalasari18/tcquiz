@@ -15,7 +15,7 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">Quizzes</h3>
+                            <h3 class="m-0">{{date("Y-m-d")}}</h3>
                         </div>
                         <div class="col ">
                         </div>
@@ -48,7 +48,11 @@
                                 <td align="center">{{$q->pertemuanke->waktuMulai}}</td>
                                 <td align="center">{{$q->pertemuanke->waktuSelesai}}</td>
                                 <td align="center">{{$q->durasi}}</td>
+                                @if(strtotime(date("Y-m-d")) > strtotime($q->pertemuanke->tglPertemuan))
+                                <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
+                                @else
                                 <td align="center"><span class="badge badge-pill badge-dark">Inactive</span></td>
+                                @endif
                                 <td align="center">
                                     <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#takeQuiz" disabled style="cursor: not-allowed;">Take Quiz
                                     </button>

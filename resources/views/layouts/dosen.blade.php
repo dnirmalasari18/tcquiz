@@ -93,7 +93,6 @@
                             <div style="padding: 10px;">
                                 {{ Auth::user()->name}} {{ Auth::user()->username}}
                             </div>
-                            
                         </a>
                        
                         <div class="user-menu dropdown-menu">

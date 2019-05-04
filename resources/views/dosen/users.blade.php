@@ -46,7 +46,6 @@
                                 <td align="center">
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#user-detail-{{ $user->id }}">Detail
                                     </button>
-                                    <!-- <a class="btn btn-warning btn-sm" href="{{route('users.edit', $user->id)}}" role="button">Edit</a> -->
                                 </td>
                             </tr>
                             @endforeach
@@ -74,8 +73,8 @@
             </div>
             <div class="modal-body">
                 <table class="table">
-                    <tbody >
-                        <tr>
+                    <tbody>
+                        <tr style="border-top-style: hidden;">
                             <td>NRP/NIP</td>
                             <td>: {{ $user->username }}</td>
                         </tr>

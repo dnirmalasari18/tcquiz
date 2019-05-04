@@ -57,9 +57,10 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
         Route::get('/', function () {
             return view('mahasiswa.dashboard');
         });
-        Route::get('/kelas', function () {
-            return view('mahasiswa.classes');
-        });
+        // Route::get('/kelas', function () {
+        //     return view('mahasiswa.classes');
+        // });
+        Route::get('kelas/', 'MahasiswaController@myClass');
         Route::get('/quizzes', function () {
             return view('mahasiswa.quizzes');
         });

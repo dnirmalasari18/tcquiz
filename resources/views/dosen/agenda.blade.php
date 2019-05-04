@@ -69,8 +69,8 @@
             </div>
             <div class="modal-body">
                 <table class="table">
-                    <tbody >
-                        <tr>
+                    <tbody>
+                        <tr style="border-top-style: hidden;">
                             <td>ID Agenda</td>
                             <td>: {{ $a->idAgenda }}</td>
                         </tr>

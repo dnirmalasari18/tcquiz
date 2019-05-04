@@ -9,6 +9,8 @@ use App\Kehadiran;
 use App\Questions;
 use App\QuizPacket;
 use App\MahasiswaPacket;
+use Auth;
+
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -20,7 +22,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quiz = Quiz::where('fk_idAgenda', $id_agenda)->get();;
+        $quiz = Quiz::where('dosen_id', Auth::user()->id)->get();
         return view ('dosen.listofquizzes', compact('quiz'));
     }
 

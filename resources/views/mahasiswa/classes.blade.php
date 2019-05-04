@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
-<li class="active">Classes</li>
+<li class="active">My Classes</li>
 @endsection
 
 @section('content')
@@ -15,42 +15,51 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">Classes</h3>
+                            <h3 class="m-0">My Classes</h3>
                         </div>
                         <div class="col ">
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
+                    @if(count($classes))
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
                             <tr>
-                                <th>Mata Kuliah</th>
                                 <th>Kelas</th>
                                 <th>Dosen Pengajar</th>
-                                <th>Jumlah Mahasiswa</th>
+                                <th>Ruangan</th>
+                                <th>Jadwal</th>
                                 <th>Menu</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($classes as $c)
                             <tr >
-                                <td>Manajemen Proyek Perangkat Lunak</td>
-                                <td align="center">A</td>
-                                <td>Dwi Sunaryono, S. Kom., M. Kom</td>
-                                <td align="center">34</td>
+                                <td>{{ $c->agenda->namaAgenda }}</td>
+                                <td>{{ $c->agenda->dosenpengajar->users->name }}</td>
+                                <td align="center">{{ $c->agenda->fk_idRuang }}</td>
+                                <td align="center">{{ $c->agenda->hari }}, {{ $c->agenda->WaktuMulai }} - {{ $c->agenda->WaktuSelesai}}</td>
                                 <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">Detail
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#class-detail-{{ $c->id }}">Detail
                                     </button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    @else
+                    <div class="alert alert-warning">
+                        <i class="fa fa-exclamation-triangle"></i> Data kelas belum ada
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div><!-- .animated -->
-<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+@foreach($classes as $c)
+<div class="modal fade" id="class-detail-{{ $c->id }}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -63,36 +72,20 @@
                 <table class="table">
                     <tbody >
                         <tr style="border-top-style: hidden;">
-                            <td>Mata Kuliah</td>
-                            <td>: Manajemen Proyek Perangkat Lunak</td>
-                        </tr>
-                        <tr>
                             <td>Kelas</td>
-                            <td>: A</td>
-                        </tr>
-                        <tr>
-                            <td>SKS</td>
-                            <td>: 3</td>
-                        </tr>
-                        <tr>
-                            <td>Semester</td>
-                            <td>: 6</td>
+                            <td>: {{ $c->agenda->namaAgenda }}</td>
                         </tr>
                         <tr>
                             <td>Dosen Pengajar</td>
-                            <td>: Dwi Sunaryono, S. Kom., M. Kom</td>
-                        </tr>
-                        <tr>
-                            <td>Jumlah Mahasiswa</td>
-                            <td>: 34</td>
+                            <td>: {{ $c->agenda->dosenpengajar->users->name }}</td>
                         </tr>
                         <tr>
                             <td>Ruangan</td>
-                            <td>: IF-105A</td>
+                            <td>: {{ $c->agenda->fk_idRuang }}</td>
                         </tr>
                         <tr>
                             <td>Jadwal</td>
-                            <td>: Senin | 13.00 - 15.30</td>
+                            <td>: {{ $c->agenda->hari }}, {{ $c->agenda->WaktuMulai }} - {{ $c->agenda->WaktuSelesai}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -100,4 +93,5 @@
         </div>
     </div>
 </div>
+@endforeach
 @endsection

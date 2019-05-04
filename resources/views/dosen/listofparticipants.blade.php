@@ -21,8 +21,6 @@
                         </div>
                         <div class="col ">
                             <a class="btn btn-secondary float-right" href="/dosen/quiz" role="button">Back</a>
-
-                            <a class="btn btn-primary float-right" href="{{route('generatepacket', $kuis->id)}}" role="button">Generate Packet</a>
                         </div>
                     </div>
                 </div><br>
@@ -37,6 +35,9 @@
                         @endif
                     </div>
                 <div class="card-body">
+                    <div align="center">
+                        <a class="btn btn-primary" href="{{route('generatepacket', $kuis->id)}}" role="button" >Generate Packet</a><br><br>    
+                    </div>
                     
                     @if(count($participants))
                     <table id="bootstrap-data-table" class="table table-bordered">

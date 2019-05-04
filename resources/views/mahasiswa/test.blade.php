@@ -48,7 +48,7 @@
             <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
                 <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;">Next</button>
             </div>
-            {{ $test->links() }}
+            <!-- {{ $test->links() }} -->
     </div>
 </div>
 <div class="col-md-3">

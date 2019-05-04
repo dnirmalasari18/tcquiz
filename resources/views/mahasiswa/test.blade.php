@@ -25,29 +25,30 @@
         </div>
         <div class="card-body">
             <div style="margin-bottom: 10px;"><strong>Jawaban</strong></div>
-            <div class="form-check">
-                <?php
+                <div class="form-check">
+                    <?php
 
-                    $x = 5;
-                    $opt = array();
-                    for ($i=0; $i <$x ; $i++) { 
-                        $opt[$i] = $i + 1;
-                    }
+                        $x = 5;
+                        $opt = array();
+                        for ($i=0; $i <$x ; $i++) { 
+                            $opt[$i] = $i + 1;
+                        }
 
-                ?>
-                @foreach($opt as $o)
-                <div class="radio">
-                  <label for="radio1" class="form-check-label ">
-                    <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">
-                    Option {{$o}}
-                  </label>
+                    ?>
+                    @foreach($opt as $o)
+                    <div class="radio">
+                    <label for="radio1" class="form-check-label ">
+                        <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">
+                        Option {{$o}}
+                    </label>
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-        </div>
-        <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
-            <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;">Next</button>
-        </div>
+            <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
+                <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;">Next</button>
+            </div>
+            <!-- {{ $test->links() }} -->
     </div>
 </div>
 <div class="col-md-3">

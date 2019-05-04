@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
-
     protected $table = 'quizzes';
     protected $primaryKey = 'id';
     public $incrementing = true;
@@ -25,5 +24,9 @@ class Quiz extends Model
 
     public function quiz() {
         return $this->hasMany('App\Questions', 'quiz_id', 'id');
+    }
+
+    public function pakets() {
+        return $this->hasMany('App\QuizPacket', 'id', 'id');
     }
 }

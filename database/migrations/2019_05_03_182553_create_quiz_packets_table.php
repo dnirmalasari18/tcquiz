@@ -16,7 +16,7 @@ class CreateQuizPacketsTable extends Migration
         Schema::create('quiz_packets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('quiz_id')->unsigned();
-            $table->bigInteger('question_id_list');
+            $table->longText('question_id_list');
             $table->longText('packet_answer_list');
             $table->timestamps();
         });

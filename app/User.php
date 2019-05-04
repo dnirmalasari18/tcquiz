@@ -52,4 +52,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Kehadiran', 'idUser', 'username');
     }
 
+    public function paketujian() {
+        return $this->hasMany('App\MahasiswaPacket', 'user_id', 'id');
+    }
 }

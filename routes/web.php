@@ -48,6 +48,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         ;
         Route::resource('questions', 'QuestionsController');
         Route::get('quiz/{id}/participants', 'QuizController@participantsList')->name('participantslist');
+        Route::get('quiz/{id}/generate', 'QuizController@generatePacket')->name('generatepacket');
     });
 });
 

@@ -6,6 +6,9 @@ use App\Quiz;
 use App\AbsenKuliah;
 use App\Agenda;
 use App\Kehadiran;
+use App\Questions;
+use App\QuizPacket;
+use App\MahasiswaPacket;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -106,10 +109,55 @@ class QuizController extends Controller
 
     public function participantsList($quiz)
     {
-        $quiz = Quiz::findorfail($quiz);
+        $kuis = Quiz::findorfail($quiz);
+        // $agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
+        // $participants = Kehadiran::where('idAgenda', $agenda)->get();
+        // $quiz_paket = QuizPacket::where('quiz_id', $quiz->id)->get();
+        // $p_id = 2;
+        $participants = MahasiswaPacket::whereHas('paketkuis', function($q) use ($quiz) {
+ $q->where('quiz_id', $quiz);})->with('paketkuis')->get();
+        
+
+//        return $participants;
+
+        return view('dosen.listofparticipants',compact('kuis', 'participants'));
+    }
+
+    public function generatePacket($quiz1)
+    {
+        $quiz = Quiz::findorfail($quiz1);
         $agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
         $participants = Kehadiran::where('idAgenda', $agenda)->get();
-        //return $participants;  
-        return view('dosen.listofparticipants',compact('quiz','participants'));
+        $questions = Questions::where('quiz_id', $quiz1)->get();
+
+        foreach ($participants as $participant) { 
+            //randomize question orders
+            $randomized_questions = $questions->shuffle();
+            
+            $questions_ids = '';
+            $questions_right_ans = '';
+            $questions_flag = '';
+            $user_ans_list = "";
+
+            foreach ($randomized_questions as $rq) {
+                $questions_ids .= $rq->id . ',';
+                $questions_right_ans .= $rq->correct_answer . ',';
+                $questions_flag .= '0,';
+                $user_ans_list .= ",";
+            }
+            $q = QuizPacket::create([
+                'quiz_id' => $quiz1,
+                'question_id_list' => $questions_ids,
+                'packet_answer_list' => $questions_right_ans,
+            ]);
+
+            MahasiswaPacket::create([
+                'user_id' => $participant->user->id, 
+                'quizpacket_id' => $q->id, 
+                'question_flag_list' => $questions_flag, 
+                'user_answer_list' => $user_ans_list
+            ]);
+        }
+        return redirect()->back();
     }
 }

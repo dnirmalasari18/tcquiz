@@ -5,7 +5,7 @@
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
 <li><a href="#">Quiz</a></li>
-<li><a href="#">{{$quiz->nama_kuis}}</a></li>
+<li><a href="#">{{$kuis->nama_kuis}}</a></li>
 <li class="active">Participants</li>
 @endsection
 
@@ -17,10 +17,12 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">Partisipan {{$quiz->nama_kuis}}</h3>
+                            <h3 class="m-0">Partisipan {{$kuis->nama_kuis}}</h3>
                         </div>
                         <div class="col ">
                             <a class="btn btn-secondary float-right" href="/dosen/quiz" role="button">Back</a>
+
+                            <a class="btn btn-primary float-right" href="{{route('generatepacket', $kuis->id)}}" role="button">Generate Packet</a>
                         </div>
                     </div>
                 </div>
@@ -41,8 +43,8 @@
                             <tr>
                                 <td align="center">{{ $p->user->username }}</td>
                                 <td align="center">{{ $p->user->name }}</td>
-                                <td align="center">ID Paket</td>
-                                <td align="center">Nilainya</td>
+                                <td align="center">{{ $p->paketkuis->id }}</td>
+                                <td align="center">{{ $p->quiz_score }}</td>
                                 <td align="center">
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#participant-detail-{{ $p->id }}">Detail
                                     </button>
@@ -81,6 +83,22 @@
                         <tr>
                             <td>Nama</td>
                             <td>: {{ $p->user->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>ID Paket Kuis</td>
+                            <td>: {{ $p->paketkuis->id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Detail Paket Kuis</td>
+                            <td>: {{ $p->paketkuis->question_id_list }}</td>
+                        </tr>
+                        <tr>
+                            <td>Nilai Kuis</td>
+                            <td>: {{ $p->quiz_score }}</td>
+                        </tr>
+                        <tr>
+                            <td>Tanggal Ambil Kuis</td>
+                            <td>: {{ $p->end_time }}</td>
                         </tr>
                     </tbody>
                 </table>

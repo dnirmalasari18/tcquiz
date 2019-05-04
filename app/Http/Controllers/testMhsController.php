@@ -12,6 +12,8 @@ class testMhsController extends Controller
         return view('mahasiswa.test',compact('test'));
     }
     public function store(){
+     
+
         $jawaban= new Test();
         $jawaban->jawaban_soal= $request['jawaban_soal'];
         

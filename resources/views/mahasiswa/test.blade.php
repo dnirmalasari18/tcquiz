@@ -26,36 +26,27 @@
         <div class="card-body">
             <div style="margin-bottom: 10px;"><strong>Jawaban</strong></div>
             <div class="form-check">
+                <?php
+
+                    $x = 5;
+                    $opt = array();
+                    for ($i=0; $i <$x ; $i++) { 
+                        $opt[$i] = $i + 1;
+                    }
+
+                ?>
+                @foreach($opt as $o)
                 <div class="radio">
                   <label for="radio1" class="form-check-label ">
                     <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">
-                    Option 1
+                    Option {{$o}}
                   </label>
                 </div>
-                <div class="radio">
-                  <label for="radio2" class="form-check-label ">
-                    <input type="radio" id="radio2" name="radios" value="option2" class="form-check-input">Option 2
-                  </label>
-                </div>
-                <div class="radio">
-                  <label for="radio3" class="form-check-label ">
-                    <input type="radio" id="radio3" name="radios" value="option3" class="form-check-input">Option 3
-                  </label>
-                </div>
-                <div class="radio">
-                  <label for="radio3" class="form-check-label ">
-                    <input type="radio" id="radio3" name="radios" value="option3" class="form-check-input">Option 4
-                  </label>
-                </div>
-                <div class="radio">
-                  <label for="radio3" class="form-check-label ">
-                    <input type="radio" id="radio3" name="radios" value="option3" class="form-check-input">Option 5
-                  </label>
-                </div>
-              </div>
+                @endforeach
+            </div>
         </div>
         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="float: right; width: 70px;">Next</button>
+            <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;">Next</button>
         </div>
     </div>
 </div>
@@ -81,6 +72,7 @@
         }
         .card-body .text-secondary{
             padding: 6px 6px;
+            cursor: pointer;
         }
         .soal-aktif{
             background-color: #f2f2f2;
@@ -98,141 +90,34 @@
             <strong class="card-title">Daftar Soal</strong>
         </div>
         <div class="card-body soal">
+            <?php
+
+                $n = 24;
+                $soal = array();
+                for ($i=0; $i <$n ; $i++) { 
+                    $soal[$i] = $i + 1;
+                }
+
+            ?>
+            @foreach($soal as $m)
+            @if($m%5==1)
             <div class="row">
                 <div class="col">
                     <section class="card">
-                        <div class="card-body text-secondary soal-aktif" align="center">1</div>
+                        <div class="card-body text-secondary soal-aktif" align="center">{{$m}}</div>
                     </section>
                 </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">2</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">3</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">4</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">5</div>
-                    </section>
-                </div>
-            </div>
-            <div class="row">
+            @else
                 <div class="col">
                     <section class="card">
-                        <div class="card-body text-secondary" align="center">6</div>
+                        <div class="card-body text-secondary soal-aktif" align="center">{{$m}}</div>
                     </section>
                 </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">7</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">8</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">9</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">10</div>
-                    </section>
-                </div>
+            @endif
+            @if($m%5==0 || $m==count($soal))
             </div>
-            <div class="row">
-                <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">11</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">12</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">13</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary soal-ragu" align="center">14</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">15</div>
-                    </section>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">16</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">17</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary soal-ragu" align="center">18</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">19</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">20</div>
-                    </section>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">21</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">22</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">23</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">24</div>
-                    </section>
-                </div>
-                 <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" align="center">25</div>
-                    </section>
-                </div>
-            </div>
+            @endif
+            @endforeach
         </div>                
     </div>
 </div>

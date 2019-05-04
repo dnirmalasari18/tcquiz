@@ -1,4 +1,10 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
+Vue.use(VueRouter)
+import Test from views/mahasiswa/test
+import Test1 from views/mahasiswa/test2
+import Test2 from views/mahasiswa/test3
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -27,7 +33,24 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/test/{id}',
+            name: 'test',
+            component: Test
+        },
+        {
+            path: '/hello',
+            name: 'hello',
+            component: Hello,
+        },
+    ],
+});
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: { App },
+    router,
 });

@@ -17,7 +17,7 @@ class testMhsController extends Controller
         
         $jawaban->save();
 
-            );
+            
         return redirect('/mahasiswa/test');
     }
 }

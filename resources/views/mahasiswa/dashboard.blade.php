@@ -42,7 +42,7 @@
             PBKK
 	    </div>
         <ul>
-        	<li>
+            <li>
                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
                 </button>
             </li>
@@ -50,7 +50,7 @@
                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
                 </button>
             </li>
-        </ul>
+</ul>
     </div>
 </div>
 <div class="col-lg-3 col-md-6">
@@ -59,7 +59,7 @@
             MPPL
 	    </div>
         <ul>
-        	<li>
+            <li>
                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
                 </button>
             </li>
@@ -76,7 +76,7 @@
             IMK
 	    </div>
         <ul>
-        	<li>
+            <li>
                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
                 </button>
             </li>
@@ -93,7 +93,7 @@
             RK
 	    </div>
         <ul>
-        	<li>
+            <li>
                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail">Detail
                 </button>
             </li>
@@ -131,6 +131,10 @@
                             <td>: 25 April 2019</td>
                         </tr>
                         <tr>
+                            <td>Waktu</td>
+                            <td>: 02:00:00</td>
+                        </tr>
+                        <tr>
                             <td>Status</td>
                             <td>: <span class="badge badge-pill badge-success">Active</span></td>
                         </tr>
@@ -140,8 +144,13 @@
         </div>
     </div>
 </div>
+<style type="text/css">
+    .nuzha3{
+        max-width: 500px;
+    }
+</style>
 <div class="modal fade" id="takeQuiz" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg nuzha3" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="mediumModalLabel">Quiz Confirmation</h5>
@@ -150,24 +159,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table">
-                    <tbody>
-                        <tr style="border-top-style: hidden;">
-                            <td>Waktu</td>
-                            <td>: 02:00:00</td>
-                        </tr>
-                        <tr>
-                            <td>Total Soal</td>
-                            <td>: 25</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <style type="text/css">
+                    .nuzha4{
+                        margin-bottom: 20px;
+                    }
+                    .nuzha2{
+                        width: 75px;
+                    }
+                </style>
+                <div class="nuzha4" align="center">
+                    Are you sure you want to take this quiz?
+                </div>
                 <div align="center">
+                    <button type="button" class="btn btn-danger btn-sm nuzha2" data-dismiss="modal">Cancel</button>
                     <a href="/mahasiswa/test">
-                        <button type="button" class="btn btn-primary btn-sm">Enroll Me</button>
+                        <button type="button" class="btn btn-success btn-sm nuzha2">Continue</button>
                     </a>
                 </div>
-                
             </div>
         </div>
     </div>

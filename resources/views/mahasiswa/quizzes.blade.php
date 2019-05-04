@@ -25,48 +25,40 @@
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
                             <tr>
+                                <th>Kuis</th>
                                 <th>Mata Kuliah</th>
-                                <th>Kelas</th>
                                 <th>Tanggal</th>
+                                <th>Mulai</th>
+                                <th>Selesai</th>
                                 <th>Waktu</th>
                                 <th>Status</th>
                                 <th>Menu</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @if(count($classes))
+                            @foreach($classes as $c)
+                            @foreach($c->agenda->pertemuan as $p)
+                            @if(count($p->quiz))
+                            @foreach($p->quiz as $q)
                             <tr >
-                                <td>Interaksi Manusia dan Komputer</td>
-                                <td align="center">A</td>
-                                <td align="center">25 April 2019</td>
-                                <td align="center">02:00:00</td>
+                                <td>{{$q->nama_kuis}}</td>
+                                <td>{{$q->pertemuanke->agenda->namaAgenda}}</td>
+                                <td align="center">{{$q->pertemuanke->tglPertemuan}}</td>
+                                <td align="center">{{$q->pertemuanke->waktuMulai}}</td>
+                                <td align="center">{{$q->pertemuanke->waktuSelesai}}</td>
+                                <td align="center">{{$q->durasi}}</td>
                                 <td align="center"><span class="badge badge-pill badge-dark">Inactive</span></td>
                                 <td align="center">
                                     <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#takeQuiz" disabled style="cursor: not-allowed;">Take Quiz
                                     </button>
                                 </td>
                             </tr>
-                            <tr >
-                                <td>Manajemen Proyek Perangkat Lunak</td>
-                                <td align="center">A</td>
-                                <td align="center">25 April 2019</td>
-                                <td align="center">02:00:00</td>
-                                <td align="center"><span class="badge badge-pill badge-success">Active</span></td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz">Take Quiz
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr >
-                                <td>Pemrograman Berbasis Kerangka Kerja</td>
-                                <td align="center">I</td>
-                                <td align="center">24 April 2019</td>
-                                <td align="center">02:00:00</td>
-                                <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#resultModal">See Result
-                                    </button>
-                                </td>
-                            </tr>
+                            @endforeach
+                            @endif    
+                            @endforeach
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

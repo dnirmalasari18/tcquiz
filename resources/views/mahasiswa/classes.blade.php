@@ -30,7 +30,6 @@
                                 <th>Dosen Pengajar</th>
                                 <th>Ruangan</th>
                                 <th>Jadwal</th>
-                                <th>Menu</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,10 +39,6 @@
                                 <td>{{ $c->agenda->dosenpengajar->users->name }}</td>
                                 <td align="center">{{ $c->agenda->fk_idRuang }}</td>
                                 <td align="center">{{ $c->agenda->hari }}, {{ $c->agenda->WaktuMulai }} - {{ $c->agenda->WaktuSelesai}}</td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#class-detail-{{ $c->id }}">Detail
-                                    </button>
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>

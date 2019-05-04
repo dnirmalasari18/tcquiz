@@ -19,6 +19,12 @@ class MahasiswaController extends Controller
         return view('mahasiswa.classes', compact('classes'));
     }
 
+    public function myQuizzes()
+    {
+        $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
+        return view('mahasiswa.quizzes', compact('classes'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -20,7 +20,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quiz = Quiz::all();
+        $quiz = Quiz::where('fk_idAgenda', $id_agenda)->get();;
         return view ('dosen.listofquizzes', compact('quiz'));
     }
 

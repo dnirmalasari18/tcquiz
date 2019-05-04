@@ -53,7 +53,7 @@
                             @foreach($participants as $p)
                             <tr>
                                 <td align="center">{{ $p->user->username }}</td>
-                                <td align="center">{{ $p->user->name }}</td>
+                                <td>{{ $p->user->name }}</td>
                                 <td align="center">{{ $p->paketkuis->id }}</td>
                                 <td align="center">{{ $p->quiz_score }}</td>
                                 <td align="center">
@@ -79,7 +79,7 @@
                             @foreach($participant as $p)
                             <tr>
                                 <td align="center">{{ $p->user->username }}</td>
-                                <td align="center">{{ $p->user->name }}</td>
+                                <td>{{ $p->user->name }}</td>
                                 <td align="center"></td>
                                 <td align="center"></td>
                                 <td align="center">

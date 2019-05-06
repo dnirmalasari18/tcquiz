@@ -46,9 +46,12 @@
                 </div>
             </div>
             <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
-                <button  type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;">Next</button>
+            <div class="card-text">                          
+                 <div class="col-md-12" align="right">                             
+                        <a href="/mahasiswa/test2" class="btn btn-outline-info" ><i class="fa fa-chevron-right"></i></a>                          
+                    </div>
+                </div>  
             </div>
-
     </div>
 </div>
 <div class="col-md-3">

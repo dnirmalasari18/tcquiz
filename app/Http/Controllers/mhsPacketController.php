@@ -21,5 +21,9 @@ class mhsPacketController extends Controller
 
             
         return redirect('/mahasiswa/test');
+    
+    }
+    public function show($id){
+        return view('mahasiswa.test',['mhsPack' => MahasiswaPacket::findOrFail($id)]);
     }
 }

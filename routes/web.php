@@ -57,6 +57,7 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
         Route::get('/', 'MahasiswaController@dashboard');
         Route::get('kelas/', 'MahasiswaController@myClass');
         Route::get('/quizzes', 'MahasiswaController@myQuizzes');
+        Route::get('/quiz/{id}/questions', 'MahasiswaController@myQuestions');
 
         Route::get('/test', function () {
             return view('mahasiswa.test');
@@ -70,9 +71,9 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
             return view('mahasiswa.test3');
         });
 
-        Route::get('/coba', function () {
-            return view('mahasiswa.test_coba');
-        });
+        // Route::get('/coba', function () {
+        //     return view('mahasiswa.test_coba');
+        // });
     });
 });
 

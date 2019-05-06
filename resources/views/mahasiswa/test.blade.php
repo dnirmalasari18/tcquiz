@@ -9,7 +9,7 @@
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
 <li><a href="#">Quizzes</a></li>
-<li class="active">PBKK</li>
+<li class="active">{{$kuis->nama_kuis}}</li>
 @endsection
 
 @section('content')
@@ -22,8 +22,8 @@
 
 <div class="col-md-9">
     <?php
-
-        $n = 24;
+        $arr = array_map('intval', explode(",", $paket->question_id_list));
+        $n = count($arr)-1;
         $quiz = array();
         for ($i=0; $i <$n ; $i++) { 
             $quiz[$i] = $i + 1;
@@ -31,6 +31,8 @@
 
     ?>
     @foreach($quiz as $q)
+    @foreach($test as $t)
+    @if($t->id == $arr[$q-1])
     <div class="card nuzha" id="soal{{$q}}">
         <div class="card-header">
             <strong class="card-title">Soal {{$q}}</strong>
@@ -38,28 +40,51 @@
             <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input id="flag{{$q}}" onclick="flagSoal(event, '{{$q}}')" type="checkbox" class="switch-input"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
         </div>
         <div class="card-body">
-            {{$q}}
+            {!!$t->question_description!!}
         </div>
         <div class="card-body">
             <div style="margin-bottom: 10px;"><strong>Jawaban</strong></div>
             <div class="form-check">
-                <?php
-
-                    $x = 5;
-                    $opt = array();
-                    for ($i=0; $i <$x ; $i++) { 
-                        $opt[$i] = $i + 1;
-                    }
-
-                ?>
-                @foreach($opt as $o)
+                @if($t->option_a)
                 <div class="radio">
                   <label for="radio1" class="form-check-label ">
-                    <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">
-                    Option {{$o}}
+                    <input type="radio" id="radio1" name="radios" value="1" class="form-check-input">
+                    {!!$t->option_a!!}
                   </label>
                 </div>
-                @endforeach
+                @endif
+                @if($t->option_b)
+                <div class="radio">
+                  <label for="radio1" class="form-check-label ">
+                    <input type="radio" id="radio1" name="radios" value="2" class="form-check-input">
+                    {!!$t->option_b!!}
+                  </label>
+                </div>
+                @endif
+                @if($t->option_c)
+                <div class="radio">
+                  <label for="radio1" class="form-check-label ">
+                    <input type="radio" id="radio1" name="radios" value="3" class="form-check-input">
+                    {!!$t->option_c!!}
+                  </label>
+                </div>
+                @endif
+                @if($t->option_d)
+                <div class="radio">
+                  <label for="radio1" class="form-check-label ">
+                    <input type="radio" id="radio1" name="radios" value="4" class="form-check-input">
+                    {!!$t->option_d!!}
+                  </label>
+                </div>
+                @endif
+                @if($t->option_e)
+                <div class="radio">
+                  <label for="radio1" class="form-check-label ">
+                    <input type="radio" id="radio1" name="radios" value="5" class="form-check-input">
+                    {!!$t->option_e!!}
+                  </label>
+                </div>
+                @endif
             </div>
         </div>
         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
@@ -76,6 +101,11 @@
             @endif
         </div>
     </div>
+    <?php
+    break;
+    ?>
+    @endif
+    @endforeach
     @endforeach
 </div>
 <div class="col-md-3">
@@ -120,7 +150,6 @@
         <div class="card-body soal">
             <?php
 
-                $n = 24;
                 $soal = array();
                 for ($i=0; $i <$n ; $i++) { 
                     $soal[$i] = $i + 1;
@@ -172,14 +201,14 @@
         }
         var id = "soal" + num;
         document.getElementById(id).style.display = "flex";
-        idFlag2 = evt.currentTarget.id;
+        idFlag2 = "nomer" + num;
         idFlag2 = idFlag2.replace("nomer", "flag");
         var y = document.getElementById(idFlag2).checked;
         if (y) {
-            evt.currentTarget.className = "card-body text-secondary soal-ragu-aktif";
+            document.getElementById("nomer"+num).className = "card-body text-secondary soal-ragu-aktif";
         }
         else{
-            evt.currentTarget.className = "card-body text-secondary soal-aktif";
+            document.getElementById("nomer"+num).className = "card-body text-secondary soal-aktif";
         }
     }
 

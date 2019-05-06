@@ -54,7 +54,7 @@
                             </div>
                         @endif
                     </div>
-                    
+
                     @if(count($questions))
                         <div class="">
                             <div class="col-md-4 float-right">
@@ -104,7 +104,7 @@
                                 <div class="card">
                                     <div class="card-header text-center">
                                         <strong class="card-title mb-3">SOAL {{$questions->currentPage()}}</strong>
-                                        @if($quiz->finalized_status=='0')
+                                        @if($quiz->finalize_status=='0')
                                         <form method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8" class="float-right">
                                             <input name="_method" type="hidden" value="Delete">
                                             <input name="_token" type="hidden" value="{{ csrf_token() }}">

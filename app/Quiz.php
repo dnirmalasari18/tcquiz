@@ -27,6 +27,6 @@ class Quiz extends Model
     }
 
     public function pakets() {
-        return $this->hasMany('App\QuizPacket', 'id', 'id');
+        return $this->hasMany('App\QuizPacket', 'quiz_id', 'id');
     }
 }

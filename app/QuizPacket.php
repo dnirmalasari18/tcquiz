@@ -15,7 +15,7 @@ class QuizPacket extends Model
     ];
 
     public function kuis() {
-        return $this->belongsTo('App\Quiz', 'id', 'quiz_id');
+        return $this->belongsTo('App\Quiz', 'quiz_id', 'id');
     }
 
     public function user() {

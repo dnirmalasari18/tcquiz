@@ -35,7 +35,7 @@
         <div class="card-header">
             <strong class="card-title">Soal {{$q}}</strong>
             <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
-            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
+            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input id="flag{{$q}}" onclick="flagSoal(event, '{{$q}}')" type="checkbox" class="switch-input"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
         </div>
         <div class="card-body">
             Are you on the hunt for a free general knowledge quiz for your pub, party, social or school group? Look no further! The following quiz questions are suitable for all age groups and range from easy to profoundly thought-provoking, covering a wide range of topics so everyone can join in the fun.
@@ -132,13 +132,13 @@
             <div class="row">
                 <div class="col">
                     <section class="card">
-                        <div class="card-body text-secondary" onclick="openSoal(event, '{{$m}}')" @if($m==1) id="defaultSoal" @endif align="center">{{$m}}</div>
+                        <div class="card-body text-secondary" onclick="openSoal(event, '{{$m}}')" id="nomer{{$m}}" align="center">{{$m}}</div>
                     </section>
                 </div>
             @else
                 <div class="col">
                     <section class="card">
-                        <div class="card-body text-secondary" onclick="openSoal(event, '{{$m}}')" align="center">{{$m}}</div>
+                        <div class="card-body text-secondary" onclick="openSoal(event, '{{$m}}')" id="nomer{{$m}}" align="center">{{$m}}</div>
                     </section>
                 </div>
             @endif
@@ -151,22 +151,52 @@
 </div>
 
 <script>
+
     function openSoal(evt, num) {
         var i, card, soal;
         card = document.getElementsByClassName("card nuzha");
         for (i = 0; i < card.length; i++) {
             card[i].style.display = "none";
         }
-        soal = document.getElementsByClassName("card-body text-secondary soal-aktif");
+        soal = document.getElementsByClassName("card-body text-secondary");
             for (i = 0; i < soal.length; i++) {
-            soal[i].className = soal[i].className.replace(" soal-aktif", "");
+                idFlag = soal[i].id;
+                idFlag = idFlag.replace("nomer", "flag");
+                var x = document.getElementById(idFlag).checked;
+                if (x) {
+                    soal[i].className = "card-body text-secondary soal-ragu";
+                }
+                else{
+                    soal[i].className = soal[i].className.replace(" soal-aktif", "");
+                }
         }
         var id = "soal" + num;
         document.getElementById(id).style.display = "flex";
-        evt.currentTarget.className += " soal-aktif";
+        idFlag2 = evt.currentTarget.id;
+        idFlag2 = idFlag2.replace("nomer", "flag");
+        var y = document.getElementById(idFlag2).checked;
+        if (y) {
+            evt.currentTarget.className = "card-body text-secondary soal-ragu-aktif";
+        }
+        else{
+            evt.currentTarget.className = "card-body text-secondary soal-aktif";
+        }
     }
 
-    document.getElementById("defaultSoal").click();
+    function flagSoal(evt, num) {
+        var idFlag = "flag" + num;
+        var x = document.getElementById(idFlag).checked;
+        if (x) {
+            var id = "nomer" + num;
+            document.getElementById(id).className = "card-body text-secondary soal-ragu-aktif";
+        }
+        else {
+            var id = "nomer" + num;
+            document.getElementById(id).className = "card-body text-secondary soal-aktif";
+        }
+    }
+
+    document.getElementById("nomer1").click();
 
 </script>
 

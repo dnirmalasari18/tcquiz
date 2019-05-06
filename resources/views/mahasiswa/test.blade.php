@@ -13,10 +13,27 @@
 @endsection
 
 @section('content')
+
+<style type="text/css">
+    .nuzha{
+        display: none;
+    }
+</style>
+
 <div class="col-md-9">
-    <div class="card">
+    <?php
+
+        $n = 24;
+        $quiz = array();
+        for ($i=0; $i <$n ; $i++) { 
+            $quiz[$i] = $i + 1;
+        }
+
+    ?>
+    @foreach($quiz as $q)
+    <div class="card nuzha" id="soal{{$q}}">
         <div class="card-header">
-            <strong class="card-title">Soal 1</strong>
+            <strong class="card-title">Soal {{$q}}</strong>
             <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
             <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input type="checkbox" class="switch-input" checked="false"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
         </div>
@@ -25,34 +42,31 @@
         </div>
         <div class="card-body">
             <div style="margin-bottom: 10px;"><strong>Jawaban</strong></div>
-                <div class="form-check">
-                    <?php
+            <div class="form-check">
+                <?php
 
-                        $x = 5;
-                        $opt = array();
-                        for ($i=0; $i <$x ; $i++) { 
-                            $opt[$i] = $i + 1;
-                        }
+                    $x = 5;
+                    $opt = array();
+                    for ($i=0; $i <$x ; $i++) { 
+                        $opt[$i] = $i + 1;
+                    }
 
-                    ?>
-                    @foreach($opt as $o)
-                    <div class="radio">
-                    <label for="radio1" class="form-check-label ">
-                        <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">
-                        Option {{$o}}
-                    </label>
-                    </div>
-                    @endforeach
+                ?>
+                @foreach($opt as $o)
+                <div class="radio">
+                  <label for="radio1" class="form-check-label ">
+                    <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">
+                    Option {{$o}}
+                  </label>
                 </div>
+                @endforeach
             </div>
-            <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
-            <div class="card-text">                          
-                 <div class="col-md-12" align="right">                             
-                        <a href="/mahasiswa/test2" class="btn btn-outline-info" ><i class="fa fa-chevron-right"></i></a>                          
-                    </div>
-                </div>  
-            </div>
+        </div>
+        <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
+            <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;" onclick="openSoal(event, '{{$q+1}}')">Next</button>
+        </div>
     </div>
+    @endforeach
 </div>
 <div class="col-md-3">
     <style type="text/css">
@@ -108,13 +122,13 @@
             <div class="row">
                 <div class="col">
                     <section class="card">
-                        <div class="card-body text-secondary soal-aktif" align="center">{{$m}}</div>
+                        <div class="card-body text-secondary soal-aktif" onclick="openSoal(event, '{{$m}}')" @if($m==1) id="defaultSoal" @endif align="center">{{$m}}</div>
                     </section>
                 </div>
             @else
                 <div class="col">
                     <section class="card">
-                        <div class="card-body text-secondary soal-aktif" align="center">{{$m}}</div>
+                        <div class="card-body text-secondary soal-aktif" onclick="openSoal(event, '{{$m}}')" align="center">{{$m}}</div>
                     </section>
                 </div>
             @endif
@@ -125,5 +139,20 @@
         </div>                
     </div>
 </div>
+
+<script>
+    function openSoal(evt, num) {
+        var i, card;
+        card = document.getElementsByClassName("card nuzha");
+        for (i = 0; i < card.length; i++) {
+            card[i].style.display = "none";
+        }
+        var id = "soal" + num;
+        document.getElementById(id).style.display = "flex";
+    }
+
+    document.getElementById("defaultSoal").click();
+
+</script>
 
 @endsection

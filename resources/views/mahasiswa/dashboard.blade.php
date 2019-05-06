@@ -21,7 +21,7 @@
 @if(count($p->quiz))
 @foreach($p->quiz as $q)
 @if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan))
-@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke-waktuSelesai))
+@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke->waktuSelesai))
 <?php
     $count += 1;
 ?>
@@ -78,7 +78,7 @@
 @if(count($p->quiz))
 @foreach($p->quiz as $q)
 @if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan))
-@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke-waktuSelesai))
+@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke->waktuSelesai))
 <div class="col-lg-3 col-md-6">
     <div class="social-box">
     	<div class="nuzha">
@@ -91,7 +91,7 @@
             </li>
             @if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai))
             <li>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}" disabled style="cursor: not-allowed;>Take Quiz
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}" disabled style="cursor: not-allowed;">Take Quiz
                 </button>
             </li>
             @else
@@ -120,7 +120,7 @@
 @if(count($p->quiz))
 @foreach($p->quiz as $q)
 @if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan))
-@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke-waktuSelesai))
+@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke->waktuSelesai))
 <div class="modal fade" id="quizDetail{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -193,7 +193,7 @@
 @if(count($p->quiz))
 @foreach($p->quiz as $q)
 @if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan))
-@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke-waktuSelesai))
+@if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke->waktuSelesai))
 <div class="modal fade" id="takeQuiz{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg nuzha3" role="document">
         <div class="modal-content">

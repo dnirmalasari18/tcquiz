@@ -44,6 +44,17 @@
                             </div>
                         @endif
                     </div>
+                    <div class="col-md-12">
+                        @if (\Session::has('finalized'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              {!! \Session::get('finalized') !!}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>                                    
+                            </div>
+                        @endif
+                    </div>
+
                     @if(count($questions))
                         <div class="">
                             <div class="col-md-4 float-right">
@@ -62,12 +73,26 @@
                                             @endfor
                                         </div>
                                         <hr>
-                                        <div class="card-text">
+                                        <div class="card-text" >
+                                            @if ($quiz->finalize_status=='0')
                                             <div class="row">
                                                 <div class="col text-center">
-                                                    <a href="{{route('createquestion', $quiz->id)}}" class="btn btn-primary">Add Question</a>
+                                                    <a href="{{route('createquestion', $quiz->id)}}" class="btn btn-primary" style="width: 150px;">Add Question</a>
                                                 </div>
-                                            </div>  
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col text-center">
+                                                    <a href="{{route('generatepacket', $quiz->id)}}" class="btn btn-danger" style="width: 150px;">Finalize Questions</a>
+                                                </div>
+                                            </div>
+                                            @else
+                                            <div class="row">
+                                                <div class="col text-center">
+                                                    <a class="btn btn-light " disabled="disabled" style="width: 150px;">Already Finalized</a>
+                                                </div>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -79,12 +104,15 @@
                                 <div class="card">
                                     <div class="card-header text-center">
                                         <strong class="card-title mb-3">SOAL {{$questions->currentPage()}}</strong>
+                                        @if($quiz->finalize_status=='0')
                                         <form method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8" class="float-right">
                                             <input name="_method" type="hidden" value="Delete">
                                             <input name="_token" type="hidden" value="{{ csrf_token() }}">
                                             <input type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin akan menghapus data?');" value="Delete">
                                         </form>
                                         <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$quiz->id, $questions[$i]->id])}}" role="button">Edit</a>
+                                        @endif
+                                        
                                     </div>
                                     <div class="card-body">
                                         <div align="left">

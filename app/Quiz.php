@@ -11,7 +11,7 @@ class Quiz extends Model
     public $incrementing = true;
 
     protected $fillable = [
-        'nama_kuis', 'durasi', 'terms_conditions', 'absenkuliah_id', 'dosen_id', 
+        'nama_kuis', 'durasi', 'terms_conditions', 'absenkuliah_id', 'dosen_id', 'finalize_status'
     ];
 
     public function pertemuanke() {

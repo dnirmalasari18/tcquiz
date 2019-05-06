@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Questions;
 use App\Quiz;
 use Illuminate\Http\Request;
+use Validator;
+use App\Http\Requests\CreateQuestion;
 
 class QuestionsController extends Controller
 {
@@ -26,6 +28,9 @@ class QuestionsController extends Controller
     public function create($idquiz)
     {
         $quiz = Quiz::findorfail($idquiz);
+        if ($quiz->finalize_status=='1') {
+            return redirect('/dosen/quiz/'. $idquiz.'/questions')->with(['finalized' => 'Tidak dapat menambah soal! Kuis sudah difinalisasi']);
+        }
         return view('dosen.createquestion', compact('quiz'));
     }
 
@@ -35,8 +40,10 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateQuestion $request)
     {
+
+        $validated = $request->validated();
         Questions::create($request->all());
         return redirect('/dosen/quiz/'. $request->quiz_id.'/questions')->with(['create_done' => 'Data berhasil ditambahkan']);
     }

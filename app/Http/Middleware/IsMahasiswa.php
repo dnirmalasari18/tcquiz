@@ -21,6 +21,6 @@ class IsMahasiswa
         if(!$dosen)
             return $next($request);
         
-        return redirect('/');
+        return response()->view('errors.401', [], 401);
     }
 }

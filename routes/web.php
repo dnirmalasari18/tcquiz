@@ -28,7 +28,7 @@ Auth::routes();
 //     return redirect('/');
 // });
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
     Route::prefix('dosen')->group(function () {

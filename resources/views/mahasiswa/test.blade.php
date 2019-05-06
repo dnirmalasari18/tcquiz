@@ -63,7 +63,17 @@
             </div>
         </div>
         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
+            @if($q==count($quiz))
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px;">Submit</button>
+            @if($q-1>0)
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+            @endif
+            @else
             <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;" onclick="openSoal(event, '{{$q+1}}')">Next</button>
+            @if($q-1>0)
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+            @endif
+            @endif
         </div>
     </div>
     @endforeach

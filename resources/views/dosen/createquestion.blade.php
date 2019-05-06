@@ -11,6 +11,7 @@
 @section('content')
 <div class="animated fadeIn">
     <div class="row">
+      
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-white">
@@ -25,6 +26,18 @@
                 </div>
                 <div class="card-body">
                     <div class="col-md-12">
+                        @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button> 
+                        </div>
+                        @endif
                         @if (\Session::has('create_done'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                               {!! \Session::get('create_done') !!}
@@ -35,7 +48,7 @@
                         @endif
                     </div>
                     <div class="container">  
-                        <form action="{{route('questions.store')}}" method="POST" >
+                        <form action="{{route('questions.store')}}" method="POST" id="question_form">
                             {{csrf_field()}}
                             <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                             <br><br>
@@ -44,7 +57,7 @@
                                     <label class="font-weight-bold" for="">Question</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input class="form-control question-desc" name="question_description">
+                                    <input class="form-control question-desc" name="question_description" type="text" id="qd">
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
@@ -147,5 +160,19 @@
        }
 
   });
+
+    // (function($) {
+    //   $("#question_form").submit(function(e) {   
+    //   const val = tinyMCE.get('qd').getContent();
+    //   if(val == "") {
+    //     alert("Question cannot be empty!");
+    //     return false;
+    //   }
+    //   console.log(val)
+    //   //return false;
+    // });
+    // })(jQuery);
+
+    
 </script>
 @endsection

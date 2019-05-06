@@ -130,6 +130,10 @@ class QuizController extends Controller
             return redirect()->back()->with(['empty_question' => 'Data pertanyaan pada kuis kosong! Tambahkan pertanyaan terlebih dahulu']);
         }
 
+        if ($quiz->finalize_status=='1') {
+            return redirect('/dosen/quiz/'. $quiz1.'/questions')->with(['finalized' => 'Kuis sudah difinalisasi']);
+        }
+
         foreach ($participants as $participant) { 
             //randomize question orders
             $randomized_questions = $questions->shuffle();
@@ -158,6 +162,8 @@ class QuizController extends Controller
                 'user_answer_list' => $user_ans_list
             ]);
         }
+        $quiz->finalize_status = '1';
+        $quiz->update();
         return redirect()->back();
     }
 }

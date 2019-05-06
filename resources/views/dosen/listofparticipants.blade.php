@@ -24,21 +24,7 @@
                         </div>
                     </div>
                 </div><br>
-                <div class="col-md-12">
-                        @if (\Session::has('empty_question'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                              {!! \Session::get('empty_question') !!}
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                                    
-                            </div>
-                        @endif
-                    </div>
-                <div class="card-body">
-                    <div align="center">
-                        <a class="btn btn-primary" href="{{route('generatepacket', $kuis->id)}}" role="button" >Generate Packet</a><br><br>    
-                    </div>
-                    
+                <div class="card-body">                   
                     @if(count($participants))
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">

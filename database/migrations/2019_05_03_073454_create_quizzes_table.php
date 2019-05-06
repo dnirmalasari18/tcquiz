@@ -20,7 +20,7 @@ class CreateQuizzesTable extends Migration
             $table->longText('terms_conditions')->nullable();
             $table->integer('absenkuliah_id')->unsigned();
             $table->integer('dosen_id')->unsigned();
-            //$table->string('status')->default('0');
+            $table->string('finalize_status',1)->default('0');
             $table->timestamps();
         });
 

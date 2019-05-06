@@ -38,7 +38,7 @@
             <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input id="flag{{$q}}" onclick="flagSoal(event, '{{$q}}')" type="checkbox" class="switch-input"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
         </div>
         <div class="card-body">
-            Are you on the hunt for a free general knowledge quiz for your pub, party, social or school group? Look no further! The following quiz questions are suitable for all age groups and range from easy to profoundly thought-provoking, covering a wide range of topics so everyone can join in the fun.
+            {{$q}}
         </div>
         <div class="card-body">
             <div style="margin-bottom: 10px;"><strong>Jawaban</strong></div>

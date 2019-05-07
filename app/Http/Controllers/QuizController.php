@@ -127,11 +127,11 @@ class QuizController extends Controller
         $questions = Questions::where('quiz_id', $quiz1)->get();
 
         if ($questions->count()==0) {
-            return redirect()->back()->with(['empty_question' => 'Data pertanyaan pada kuis kosong! Tambahkan pertanyaan terlebih dahulu']);
+            return redirect()->back()->with(['error' => 'Data pertanyaan pada kuis kosong! Tambahkan pertanyaan terlebih dahulu']);
         }
 
         if ($quiz->finalize_status=='1') {
-            return redirect('/dosen/quiz/'. $quiz1.'/questions')->with(['finalized' => 'Kuis sudah difinalisasi']);
+            return redirect('/dosen/quiz/'. $quiz1.'/questions')->with(['error' => 'Kuis sudah difinalisasi']);
         }
 
         foreach ($participants as $participant) { 
@@ -141,13 +141,13 @@ class QuizController extends Controller
             $questions_ids = '';
             $questions_right_ans = '';
             $questions_flag = '';
-            $user_ans_list = "";
+            $user_ans_list = '';
 
             foreach ($randomized_questions as $rq) {
                 $questions_ids .= $rq->id . ',';
                 $questions_right_ans .= $rq->correct_answer . ',';
                 $questions_flag .= '0,';
-                $user_ans_list .= ",";
+                $user_ans_list .= ',';
             }
             $q = QuizPacket::create([
                 'quiz_id' => $quiz1,

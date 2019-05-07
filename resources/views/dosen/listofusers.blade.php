@@ -17,9 +17,6 @@
                         <div class="col">
                             <h3 class="m-0">Users</h3>
                         </div>
-                        <!-- <div class="col ">
-                            <a class="btn btn-primary float-right" href="{{route('users.create')}}" role="button">Add User</a>
-                        </div> -->
                     </div>
                 </div>
                 <div class="card-body">

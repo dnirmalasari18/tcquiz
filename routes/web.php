@@ -35,7 +35,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::get('/', function () {
             return view('dosen.dashboard');
         });
-        Route::resource('users', 'UserController');
+        Route::get('/users', 'DosenController@listOfUsers');
         Route::resource('agenda', 'AgendaController');
         Route::get('agenda/{id}/detail', 'AgendaController@detailkelas');
         Route::get('agenda/{id}/addmahasiswa', 'AgendaController@addmahasiswa');

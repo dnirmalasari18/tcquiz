@@ -29,7 +29,7 @@ class QuestionsController extends Controller
     {
         $quiz = Quiz::findorfail($idquiz);
         if ($quiz->finalize_status=='1') {
-            return redirect('/dosen/quiz/'. $idquiz.'/questions')->with(['finalized' => 'Tidak dapat menambah soal! Kuis sudah difinalisasi']);
+            return redirect('/dosen/quiz/'. $idquiz.'/questions')->with(['error' => 'Tidak dapat menambah soal! Kuis sudah difinalisasi']);
         }
         return view('dosen.createquestion', compact('quiz'));
     }
@@ -45,7 +45,7 @@ class QuestionsController extends Controller
 
         $validated = $request->validated();
         Questions::create($request->all());
-        return redirect('/dosen/quiz/'. $request->quiz_id.'/questions')->with(['create_done' => 'Data berhasil ditambahkan']);
+        return redirect('/dosen/quiz/'. $request->quiz_id.'/questions')->with(['success' => 'Data berhasil ditambahkan']);
     }
 
     /**
@@ -83,7 +83,7 @@ class QuestionsController extends Controller
     {
         $question = Questions::findorfail($questions);
         $question->update($request->all());
-        return redirect()->back()->with(['update_done' => 'Data berhasil diupdate', 'question' => $question]);
+        return redirect()->back()->with(['success' => 'Data berhasil diupdate', 'question' => $question]);
     }
 
     /**
@@ -96,7 +96,7 @@ class QuestionsController extends Controller
     {
         $soal = Questions::findorfail($questions);
         $soal->delete();
-        return redirect('/dosen/quiz/'.$soal->quiz_id.'/questions')->with(['delete_done' => 'Data berhasil dihapus']);;
+        return redirect('/dosen/quiz/'.$soal->quiz_id.'/questions')->with(['error' => 'Data berhasil dihapus']);;
     }
 
     public function questionslist($idquiz)

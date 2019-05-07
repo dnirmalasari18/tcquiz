@@ -17,9 +17,6 @@
                         <div class="col">
                             <h3 class="m-0">Agenda</h3>
                         </div>
-                        <!-- <div class="col ">
-                            <a class="btn btn-primary float-right" href="{{route('agenda.create')}}" role="button">Add Class</a>
-                        </div> -->
                     </div>
                 </div>
                 <div class="card-body">

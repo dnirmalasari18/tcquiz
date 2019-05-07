@@ -61,7 +61,28 @@ class MahasiswaController extends Controller
             ])
             ->first();
         $data['test'] = Questions::where('quiz_id', $idquiz)->get();
+        
+        // $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
+        
+        // $q = $data['kuis'];
+
+        // if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan)){
+        //     if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai)){
+        //         return abort(404);
+        //     }
+        //     elseif(strtotime(date("H:i:s", strtotime('7 hour'))) > strtotime($q->pertemuanke->waktuSelesai)){
+        //         return abort(404);
+        //     }
+        //     else{
+        //         return view('mahasiswa.test', $data);
+        //     }
+        // }
+        // else{
+        //     return abort(404);
+        // }
+
         return view('mahasiswa.test', $data);
+        
     }
 
     /**

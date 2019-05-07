@@ -24,9 +24,9 @@
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
                             <tr>
-                                <th>ID Agenda</th>
-                                <th>Nama Agenda</th>
-                                <th>Dosen Pengajar</th>
+                                <th>Agenda ID</th>
+                                <th>Agenda Name</th>
+                                <th>Lecturer</th>
                                 <th>Menu</th>
                             </tr>
                         </thead>
@@ -68,28 +68,28 @@
                 <table class="table">
                     <tbody>
                         <tr style="border-top-style: hidden;">
-                            <td>ID Agenda</td>
+                            <td>Agenda ID</td>
                             <td>: {{ $a->idAgenda }}</td>
                         </tr>
                         <tr>
-                            <td>Nama Agenda</td>
+                            <td>Agenda Name</td>
                             <td>: {{ $a->namaAgenda }}</td>
                         </tr>
                         <tr>
-                            <td>Dosen Pengajar</td>
+                            <td>Lecturer</td>
                             <td>: {{ $a->dosenpengajar->users['name'] }}</td>
                         </tr>
                         <tr>
-                            <td>Ruangan</td>
+                            <td>Class Room</td>
                             <td>: {{ $a->fk_idRuang }}</td>
                         </tr>
                         <tr>
-                            <td>Jadwal</td>
+                            <td>Schedule</td>
                             <td>: {{ $a->hari }} | {{ $a->WaktuMulai }} - {{ $a->WaktuSelesai }}</td>
                         </tr>
                         @foreach($a->pertemuan as $a)
                         <tr>
-                            <td>Pertemuan {{ $a->pertemuanKe }}</td>
+                            <td>Meeting time {{ $a->pertemuanKe }}</td>
                             <td>: {{ date('d M y', strtotime($a->tglPertemuan)) }}</td>
                         </tr>
                         @endforeach

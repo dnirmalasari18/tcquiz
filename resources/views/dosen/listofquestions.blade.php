@@ -94,11 +94,13 @@
                                     <div class="card-header text-center">
                                         <strong class="card-title mb-3">SOAL {{$questions->currentPage()}}</strong>
                                         @if($quiz->finalize_status=='0')
-                                        <form method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8" class="float-right">
+                                        
+                                        <form class="delete-form" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                                             <input name="_method" type="hidden" value="Delete">
                                             <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                            <input type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin akan menghapus data?');" value="Delete">
+                                            <input type="button" class="btn btn-sm btn-danger delete-btn float-right" value="Delete">
                                         </form>
+
                                         <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$quiz->id, $questions[$i]->id])}}" role="button">Edit</a>
                                         @endif
                                         
@@ -183,4 +185,35 @@
         </div>
     </div>
 </div><!-- .animated -->
+
+@endsection
+
+@section('script')
+<script>
+(function($) {
+
+function deleteQuestion() {
+  swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this question!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    $(".delete-form").submit();
+     swal("Question has been deleted!", {
+      icon: "success",
+    });
+  }
+});
+}
+    $(".delete-btn").click(function() {
+      deleteQuestion();
+});
+
+    
+})(jQuery);
+</script>
 @endsection

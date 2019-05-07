@@ -30,6 +30,8 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
+    @yield('style')
+
 </head>
 
 <body>
@@ -166,6 +168,7 @@
     <script src="{{asset('dashboard/assets/js/init-scripts/data-table/datatables-init.js')}}"></script>
 
     <script src="{{asset('tinymce/js/tinymce/tinymce.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         (function($) {

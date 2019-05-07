@@ -84,15 +84,31 @@ class MahasiswaController extends Controller
     public function submitQuiz(Request $request)
     {
         $mp = MahasiswaPacket::findorfail($request->mp_id);
+
         $arr = array_map('intval', explode(",", $mp->user_answer_list));
+        $fl = array_map('intval', explode(",", $mp->question_flag_list));
 
         echo $mp;
-        for ($i=1; $i <= $request->jumlah ; $i++) { 
-            $arr[$i-1] = $request->ans[$i];
+
+        for ($i=1; $i <= $request->jumlah ; $i++) {
+            if($request->ans[$i]){
+                $arr[$i-1] = $request->ans[$i];
+            }
+
+            if (isset($request->fl[$i])) {
+                $fl[$i-1] = $request->fl[$i];
+            }
+            else{
+                $fl[$i-1] = 0;
+            }
+            
         }
+
         $arr = implode(', ', $arr);
-        $mp->update(array('user_answer_list' => $arr));
+        $fl = implode(', ', $fl);
+        $mp->update(array('user_answer_list' => $arr, 'question_flag_list' => $fl));
+
         echo $mp;
-        // return $mp;
+
     }
 }

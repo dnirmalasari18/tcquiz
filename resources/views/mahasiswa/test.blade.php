@@ -44,7 +44,13 @@
         <div class="card-header">
             <strong class="card-title">Soal {{$q}}</strong>
             <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
-            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;"><input id="flag{{$q}}" onclick="flagSoal(event, '{{$q}}')" type="checkbox" class="switch-input"> <span class="switch-label"></span> <span class="switch-handle"></span></label>
+            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;">
+                <input id="flag{{$q}}" onclick="flagSoal(event, '{{$q}}')" type="checkbox" class="switch-input" name="fl[{{$q}}]" value="1"
+                @if(array_map('intval', explode(",", $paket->question_flag_list))[$q-1]==1)
+                    checked
+                @endif
+                > <span class="switch-label"></span> <span class="switch-handle"></span>
+            </label>
         </div>
         <div class="card-body">
             {!!$t->question_description!!}

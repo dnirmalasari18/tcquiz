@@ -111,38 +111,38 @@
                                             @else
                                                 A
                                             @endif
-                                            {!! $questions[$i]->option_a!!}
+                                            {!! $questions[$i]->option_1!!}
 
                                             @if($questions[$i]->correct_answer==2)
                                                 <mark style="background-color: green; color: white;">B</mark>
                                             @else
                                                 B
                                             @endif
-                                            {!! $questions[$i]->option_b!!} 
-
-                                            @if($questions[$i]->option_c!=null)    
+                                            {!! $questions[$i]->option_2!!} 
+                                           
+                                            @if($questions[$i]->option_3!=null)    
                                                 @if($questions[$i]->correct_answer==3)
                                                     <mark style="background-color: green; color: white;">C</mark>
                                                 @else
                                                 C
                                                 @endif
-                                                {!! $questions[$i]->option_c!!}
+                                                {!! $questions[$i]->option_3!!}
                                             @endif
-                                            @if($questions[$i]->option_d!=null)    
+                                            @if($questions[$i]->option_4!=null)    
                                                 @if($questions[$i]->correct_answer==4)
                                                     <mark style="background-color: green; color: white;">D</mark>
                                                 @else
                                                 D
                                                 @endif
-                                                {!! $questions[$i]->option_d!!}
+                                                {!! $questions[$i]->option_4!!}
                                             @endif
-                                            @if($questions[$i]->option_e!=null)    
+                                            @if($questions[$i]->option_5!=null)    
                                                 @if($questions[$i]->correct_answer==5)
                                                     <mark style="background-color: green; color: white;">E</mark>
                                                 @else
                                                 E
                                                 @endif
-                                                {!! $questions[$i]->option_c!!}
+                                                {!! $questions[$i]->option_5!!}
                                             @endif
                                         </div>
                                         <hr>
@@ -169,7 +169,7 @@
                     @else
                     <div class="col-md-12">
                         <div class="alert alert-warning">
-                            <i class="fa fa-exclamation-triangle"></i> Data pertanyaan belum ada
+                            <i class="fa fa-exclamation-triangle"></i> There is no question(s).
                         </div>
                     </div>
                     <div class="col-md-12">

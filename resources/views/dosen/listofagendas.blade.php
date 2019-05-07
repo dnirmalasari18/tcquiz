@@ -46,7 +46,7 @@
                     </table>
                     @else
                     <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle"></i> Data agenda belum ada
+                        <i class="fa fa-exclamation-triangle"></i> There is no agenda(s).
                     </div>
                     @endif
                 </div>

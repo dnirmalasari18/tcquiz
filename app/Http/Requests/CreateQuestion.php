@@ -24,9 +24,9 @@ class CreateQuestion extends FormRequest
     public function rules()
     {
         return [
-           'question_description' => 'required',
-            'option_a' => 'required',
-            'option_b' => 'required',
+            'question_description' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
             'correct_answer' => 'required',
             'question_score' => 'required',
         ];
@@ -35,11 +35,11 @@ class CreateQuestion extends FormRequest
     public function messages()
     {
         return [
-          'question_description.required' => 'Question tidak boleh kosong',
-            'option_a.required' => 'Pilihan A tidak boleh kosong',
-            'option_b.required' => 'Pilihan B tidak boleh kosong',
-            'correct_answer.required' => 'Jawaban tidak boleh kosong',
-            'question_score.required' => 'Bobot tidak boleh kosong',
+            'question_description.required' => 'Question description cannot be empty',
+            'option_1.required' => 'Pilihan A tidak boleh kosong',
+            'option_2.required' => 'Pilihan B tidak boleh kosong',
+            'correct_answer.required' => 'Choose one correct answer',
+            'question_score.required' => 'Question score cannot be empty',
         ];
     }
 }

@@ -17,9 +17,6 @@
                         <div class="col">
                             <h3 class="m-0">Agenda</h3>
                         </div>
-                        <!-- <div class="col ">
-                            <a class="btn btn-primary float-right" href="{{route('agenda.create')}}" role="button">Add Class</a>
-                        </div> -->
                     </div>
                 </div>
                 <div class="card-body">
@@ -49,7 +46,7 @@
                     </table>
                     @else
                     <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle"></i> Data agenda belum ada
+                        <i class="fa fa-exclamation-triangle"></i> There is no agenda(s).
                     </div>
                     @endif
                 </div>

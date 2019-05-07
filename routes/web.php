@@ -14,34 +14,22 @@
 
 Route::get('/', function () {
     return redirect('login');
-    //return view('welcome');
 });
 
-// Route::middleware(['redirect_home'])->group(function() {
-    Route::post('login', 'Auth\LoginController@login')->name('login');
-    Route::get('login', 'Auth\LoginController@loginPage');
-// });
-
+Route::post('login', 'Auth\LoginController@login')->name('login');
+Route::get('login', 'Auth\LoginController@loginPage');
 Auth::routes();
 
-// Route::get('/login', function () {
-//     return redirect('/');
-// });
-
-// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
     Route::prefix('dosen')->group(function () {
-        Route::get('/', function () {
-            return view('dosen.dashboard');
-        });
-        Route::resource('users', 'UserController');
-        Route::resource('agenda', 'AgendaController');
-        Route::get('agenda/{id}/detail', 'AgendaController@detailkelas');
-        Route::get('agenda/{id}/addmahasiswa', 'AgendaController@addmahasiswa');
+        Route::get('/', 'DosenController@index');
+        Route::get('/users', 'DosenController@listOfUsers');
+        Route::get('/agenda', 'DosenController@listOfAgenda');
+        Route::get('agenda/{agenda_id}/jadwals', 'DosenController@getAgendaJadwals');
+        Route::get('agenda/{jadwal_id}/waktus', 'DosenController@getAgendaWaktu');
+
         Route::resource('quiz', 'QuizController');
-        Route::get('agenda/{agenda_id}/jadwals', 'AgendaController@getAgendaJadwals');
-        Route::get('agenda/{jadwal_id}/waktus', 'AgendaController@getAgendaWaktu');
         Route::get('quiz/{id}/questions', 'QuestionsController@questionslist')->name('listofquestions');
         Route::get('quiz/{id}/questions/create', 'QuestionsController@create')->name('createquestion');
         Route::get('quiz/{quiz_id}/questions/{question_id}/edit', 'QuestionsController@edit')->name('editquestion');
@@ -79,3 +67,10 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
 
 Route::post('upload/image', 'QuizController@uploadImage');
 Route::post('upload/image/question', 'QuestionsController@uploadImage');
+
+
+// Route::get('/login', function () {
+//     return redirect('/');
+// });
+
+// Route::get('/home', 'HomeController@index')->name('home');

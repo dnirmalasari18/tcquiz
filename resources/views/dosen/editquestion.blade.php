@@ -61,7 +61,7 @@
                                                     <input type="radio" name="correct_answer" value="1" class="form-check-input" >
                                                     @endif
                                                     <p class="font-weight-bold">A</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_a" value="{{ $questions->option_a }}">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_1" value="{{ $questions->option_1 }}">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -72,7 +72,7 @@
                                                     <input type="radio" name="correct_answer" value="2" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">B</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_b" value="{{ $questions->option_b }}">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_2" value="{{ $questions->option_2 }}">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -83,7 +83,7 @@
                                                     <input type="radio" name="correct_answer" value="3" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">C</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_c" value="{{ $questions->option_c }}">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_3" value="{{ $questions->option_3 }}">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -94,7 +94,7 @@
                                                     <input type="radio" name="correct_answer" value="4" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">D</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_d" value="{{ $questions->option_d }}">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4" value="{{ $questions->option_4 }}">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -105,7 +105,7 @@
                                                     <input type="radio" name="correct_answer" value="5" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">E</p>
-                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_e" value="{{ $questions->option_e }}">
+                                                    <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_5" value="{{ $questions->option_5 }}">
                                                 </label>
                                             </div>
                                         </div>

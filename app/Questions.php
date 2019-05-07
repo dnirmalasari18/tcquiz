@@ -11,7 +11,7 @@ class Questions extends Model
     public $incrementing = true;
 
     protected $fillable = [
-    	'quiz_id', 'question_description', 'option_a', 'option_b', 'option_c', 'option_d', 'option_e', 'correct_answer', 'question_score'
+    	'quiz_id', 'question_description', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'question_score'
     ];
 
     public function quiz() {

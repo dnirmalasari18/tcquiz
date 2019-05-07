@@ -50,7 +50,7 @@
                     </table>
                     @else
                     <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle"></i> Data kuis belum ada
+                        <i class="fa fa-exclamation-triangle"></i> There is no quiz(zes).
                     </div>
                     @endif
                 </div>

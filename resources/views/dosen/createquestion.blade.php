@@ -51,13 +51,14 @@
                         <form action="{{route('questions.store')}}" method="POST" id="question_form">
                             {{csrf_field()}}
                             <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
-                            <br><br>
                             <div class="form-group col-md-12">
                                 <div class="col col-md-3">
                                     <label class="font-weight-bold" for="">Question</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input class="form-control question-desc" name="question_description" type="text" id="qd">
+                                  <div class="form-check">
+                                    <input type="textarea" class="form-control question-desc" name="question_description" id="qd">
+                                  </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
@@ -66,41 +67,25 @@
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <div class="form-check">
-                                        <div class="radio">
-                                            <label for="a" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="1" class="form-check-input">
-                                                <p class="font-weight-bold">A</p>
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_a">
-                                            </label>
-                                        </div><br>
-                                        <div class="radio">
-                                            <label for="b" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="2" class="form-check-input">
-                                                <p class="font-weight-bold">B</p>
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_b">
-                                            </label>
-                                        </div><br>
-                                        <div class="radio">
-                                            <label for="c" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="3" class="form-check-input">
-                                                <p class="font-weight-bold">C</p>
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_c">
-                                            </label>
-                                        </div><br>
-                                        <div class="radio">
-                                            <label for="d" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="4" class="form-check-input">
-                                                <p class="font-weight-bold">D</p>
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_d">
-                                            </label>
-                                        </div><br>
-                                        <div class="radio">
-                                            <label for="e" class="form-check-label ">
-                                                <input type="radio" name="correct_answer" value="5" class="form-check-input">
-                                                <p class="font-weight-bold">E</p>
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_e">
-                                            </label>
-                                        </div>
+                                      <input type="radio" name="correct_answer" value="1" class="form-check-input">
+                                      <p class="font-weight-bold">A</p>
+                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_1">
+
+                                      <input type="radio" name="correct_answer" value="2" class="form-check-input">
+                                      <p class="font-weight-bold">B</p>
+                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_2">
+
+                                      <input type="radio" name="correct_answer" value="3" class="form-check-input">
+                                      <p class="font-weight-bold">C</p>
+                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_3">
+
+                                      <input type="radio" name="correct_answer" value="4" class="form-check-input">
+                                      <p class="font-weight-bold">D</p>
+                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4">
+
+                                      <input type="radio" name="correct_answer" value="5" class="form-check-input">
+                                      <p class="font-weight-bold">E</p>
+                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_5">
                                     </div>
                                 </div>
                             </div>

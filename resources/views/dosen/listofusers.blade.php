@@ -17,9 +17,6 @@
                         <div class="col">
                             <h3 class="m-0">Users</h3>
                         </div>
-                        <!-- <div class="col ">
-                            <a class="btn btn-primary float-right" href="{{route('users.create')}}" role="button">Add User</a>
-                        </div> -->
                     </div>
                 </div>
                 <div class="card-body">
@@ -53,7 +50,7 @@
                     </table>
                     @else
                     <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle"></i> Data user belum ada
+                        <i class="fa fa-exclamation-triangle"></i> There is no user(s).
                     </div>
                     @endif
                 </div>

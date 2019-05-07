@@ -17,11 +17,11 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('quiz_id')->unsigned();
             $table->longText('question_description');
-            $table->longText('option_a');
-            $table->longText('option_b');
-            $table->longText('option_c')->nullable();
-            $table->longText('option_d')->nullable();
-            $table->longText('option_e')->nullable();
+            $table->longText('option_1');
+            $table->longText('option_2');
+            $table->longText('option_3')->nullable();
+            $table->longText('option_4')->nullable();
+            $table->longText('option_5')->nullable();
             $table->string('correct_answer',1);
             $table->integer('question_score');
             $table->timestamps();

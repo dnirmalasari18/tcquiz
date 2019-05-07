@@ -6,6 +6,7 @@ use App\Kehadiran;
 use App\Quiz;
 use App\User;
 use App\QuizPacket;
+use App\MahasiswaPacket;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -78,5 +79,20 @@ class MahasiswaController extends Controller
 
         return view('mahasiswa.test', $data);
         
+    }
+
+    public function submitQuiz(Request $request)
+    {
+        $mp = MahasiswaPacket::findorfail($request->mp_id);
+        $arr = array_map('intval', explode(",", $mp->user_answer_list));
+
+        echo $mp;
+        for ($i=1; $i <= $request->jumlah ; $i++) { 
+            $arr[$i-1] = $request->ans[$i];
+        }
+        $arr = implode(', ', $arr);
+        $mp->update(array('user_answer_list' => $arr));
+        echo $mp;
+        // return $mp;
     }
 }

@@ -25,11 +25,18 @@
         $arr = array_map('intval', explode(",", $paket->question_id_list));
         $n = count($arr)-1;
         $quiz = array();
+        // $ans = array();
         for ($i=0; $i <$n ; $i++) { 
             $quiz[$i] = $i + 1;
+            // $ans[$i] = 0;
         }
 
     ?>
+<form action="{{route('submit.quiz')}}" method="POST">
+{{ csrf_field() }}
+{{ method_field('PATCH') }}
+<input type="hidden" name="mp_id" value="{{$paket->id}}">
+<input type="hidden" name="jumlah" value="{{count($quiz)}}">
     @foreach($quiz as $q)
     @foreach($test as $t)
     @if($t->id == $arr[$q-1])
@@ -45,43 +52,59 @@
         <div class="card-body">
             <div style="margin-bottom: 10px;"><strong>Jawaban</strong></div>
             <div class="form-check">
-                @if($t->option_a)
+                @if($t->option_1)
                 <div class="radio">
-                  <label for="radio1" class="form-check-label ">
-                    <input type="radio" id="radio1" name="radios" value="1" class="form-check-input">
-                    {!!$t->option_a!!}
+                  <label for="" class="form-check-label ">
+                    <input type="radio" id="" name="ans[{{$q}}]" value="1" class="form-check-input"
+                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==1)
+                        checked
+                    @endif
+                    >
+                    {!!$t->option_1!!}
                   </label>
                 </div>
                 @endif
-                @if($t->option_b)
+                @if($t->option_2)
                 <div class="radio">
-                  <label for="radio1" class="form-check-label ">
-                    <input type="radio" id="radio1" name="radios" value="2" class="form-check-input">
-                    {!!$t->option_b!!}
+                  <label for="" class="form-check-label ">
+                    <input type="radio" id="" name="ans[{{$q}}]" value="2" class="form-check-input"
+                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==2)
+                        checked
+                    @endif>
+                    {!!$t->option_2!!}
                   </label>
                 </div>
                 @endif
-                @if($t->option_c)
+                @if($t->option_3)
                 <div class="radio">
-                  <label for="radio1" class="form-check-label ">
-                    <input type="radio" id="radio1" name="radios" value="3" class="form-check-input">
-                    {!!$t->option_c!!}
+                  <label for="" class="form-check-label ">
+                    <input type="radio" id="" name="ans[{{$q}}]" value="3" class="form-check-input"
+                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==3)
+                        checked
+                    @endif>
+                    {!!$t->option_3!!}
                   </label>
                 </div>
                 @endif
-                @if($t->option_d)
+                @if($t->option_4)
                 <div class="radio">
-                  <label for="radio1" class="form-check-label ">
-                    <input type="radio" id="radio1" name="radios" value="4" class="form-check-input">
-                    {!!$t->option_d!!}
+                  <label for="" class="form-check-label ">
+                    <input type="radio" id="" name="ans[{{$q}}]" value="4" class="form-check-input"
+                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==4)
+                        checked
+                    @endif>
+                    {!!$t->option_4!!}
                   </label>
                 </div>
                 @endif
-                @if($t->option_e)
+                @if($t->option_5)
                 <div class="radio">
-                  <label for="radio1" class="form-check-label ">
-                    <input type="radio" id="radio1" name="radios" value="5" class="form-check-input">
-                    {!!$t->option_e!!}
+                  <label for="" class="form-check-label ">
+                    <input type="radio" id="" name="ans[{{$q}}]" value="5" class="form-check-input"
+                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==5)
+                        checked
+                    @endif>
+                    {!!$t->option_5!!}
                   </label>
                 </div>
                 @endif
@@ -89,7 +112,7 @@
         </div>
         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
             @if($q==count($quiz))
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px;">Submit</button>
+            <button type="submit" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px;">Submit</button>
             @if($q-1>0)
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
             @endif
@@ -107,6 +130,7 @@
     @endif
     @endforeach
     @endforeach
+</form>
 </div>
 <div class="col-md-3">
     <style type="text/css">

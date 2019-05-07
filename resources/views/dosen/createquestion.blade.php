@@ -8,10 +8,20 @@
 <li class="active">{{ $quiz->nama_kuis }} Questions</li>
 @endsection
 
+@section('style')
+<style type="text/css">
+    .content-body {
+      display: none;
+    }
+
+
+</style>
+@endsection
+
 @section('content')
+
 <div class="animated fadeIn">
     <div class="row">
-      
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-white">
@@ -56,8 +66,13 @@
                                     <label class="font-weight-bold" for="">Question</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                  <div class="form-check">
-                                    <input type="textarea" class="form-control question-desc" name="question_description" id="qd">
+                                  <div class="loading">
+                                    <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                  </div>
+                                  <div class="content-body" style="display: none">
+                                    <div class="form-check">
+                                      <input type="textarea" class="form-control question-desc" name="question_description" id="question-desc">
+                                    </div>
                                   </div>
                                 </div>
                             </div>
@@ -69,23 +84,59 @@
                                     <div class="form-check">
                                       <input type="radio" name="correct_answer" value="1" class="form-check-input">
                                       <p class="font-weight-bold">A</p>
-                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_1">
+                                       <div class="loading">
+                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                        </div>
+                                        <div class="content-body">
+                                          <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_1">    
+                                        </div>
+                                      
 
                                       <input type="radio" name="correct_answer" value="2" class="form-check-input">
                                       <p class="font-weight-bold">B</p>
-                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_2">
+                                       <div class="loading">
+                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                        </div>
+
+                                        <div class="content-body">
+                                          <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_2">    
+
+                                        </div>
+                                      
 
                                       <input type="radio" name="correct_answer" value="3" class="form-check-input">
                                       <p class="font-weight-bold">C</p>
-                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_3">
 
-                                      <input type="radio" name="correct_answer" value="4" class="form-check-input">
+                                        <div class="loading">
+                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                        </div>
+                                        <div class="content-body">
+                                          <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_3">    
+                                        </div>
+                                      
+
+                                      <input type="radio" name="correct_answer" value="4" class="form-check-input content-body">
                                       <p class="font-weight-bold">D</p>
-                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4">
+                                      
+                                      <div class="loading">
+                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                      </div>
+
+                                      <div class="content-body">
+                                          <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4">
+                                      </div>
+                                    
 
                                       <input type="radio" name="correct_answer" value="5" class="form-check-input">
                                       <p class="font-weight-bold">E</p>
-                                      <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_5">
+                                    
+                                     <div class="loading">
+                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                      </div>
+
+                                      <div class="content-body">
+                                        <input type="textarea" class="form-control multiple-choice content-body" placeholder="" name="option_5">
+                                      </div>                                      
                                     </div>
                                 </div>
                             </div>
@@ -146,18 +197,22 @@
 
   });
 
-    // (function($) {
-    //   $("#question_form").submit(function(e) {   
-    //   const val = tinyMCE.get('qd').getContent();
-    //   if(val == "") {
-    //     alert("Question cannot be empty!");
-    //     return false;
-    //   }
-    //   console.log(val)
-    //   //return false;
-    // });
-    // })(jQuery);
+  (function($) {
+      $("#question_form").submit(function(e) {   
+      const val = tinyMCE.get('question-desc').getContent();
+      if(val == "") {
+        swal("Question description cannot be empty!");
+        return false;
+      }
+      console.log(val)
+    });
 
+    setTimeout(function () {
+      $(".loading").html("");
+      $(".content-body").fadeIn(1000);
+    }, 900);
+
+  })(jQuery);
     
 </script>
 @endsection

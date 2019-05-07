@@ -28,18 +28,18 @@
                     {{csrf_field()}}
                     <input type="hidden" name="dosen_id" value="{{ Auth::user()->id}}">
                 		<div class="form-group col-md-6">
-                	        <label class="font-weight-bold" for="">Nama Kuis</label>
+                	        <label class="font-weight-bold" for="">Quiz Name</label>
                 	        <input type="text" class="form-control" id="" placeholder="" name="nama_kuis" required>
                     </div>
                     <div class="form-group col-md-6">
-                      <label class="font-weight-bold" for="">Durasi</label>
+                      <label class="font-weight-bold" for="">Duration</label>
                         <div class="input-group">
                           <input type="number" id="" name="durasi" placeholder="" class="form-control" value="60" required>
-                          <div class="input-group-addon">Menit</div>
+                          <div class="input-group-addon">Minute(s)</div>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                      <label class="font-weight-bold" for="">Kelas</label>
+                      <label class="font-weight-bold" for="">Class</label>
                       <select class="form-control kelas-select" required>
                         @foreach ($agenda as $a)        
                           <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
@@ -47,15 +47,15 @@
                       </select>
                 	    </div>
                     <div class="form-group col-md-6">
-                      <label class="font-weight-bold" for="" >Jadwal</label>
+                      <label class="font-weight-bold" for="" >Schedule</label>
                       <select class="form-control jadwal-select" name="absenkuliah_id" required></select>
                     </div>
                     <div class="form-group col-md-6">
-                      <label class="font-weight-bold">Waktu Mulai</label>
+                      <label class="font-weight-bold">Start Time</label>
                       <fieldset class="form-control waktumulai-select" disabled></fieldset>
                     </div>
                     <div class="form-group col-md-6">
-                      <label class="font-weight-bold ">Waktu Selesai</label>
+                      <label class="font-weight-bold ">End Time</label>
                       <fieldset class="form-control waktuselesai-select" disabled></fieldset>
                     </div>
                     <div class="form-group col-md-12">

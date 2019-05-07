@@ -25,7 +25,7 @@
                         <thead class="thead-light" align="center">
                             <tr align="center">
                                 <th>NRP/NIP</th>
-                                <th>Nama</th>
+                                <th>Name</th>
                                 <th>Role</th>
                                 <th>Menu</th>
                             </tr>
@@ -76,7 +76,7 @@
                             <td>: {{ $user->username }}</td>
                         </tr>
                         <tr>
-                            <td>Nama</td>
+                            <td>Name</td>
                             <td>: {{ $user->name }}</td>
                         </tr>
                         <tr>

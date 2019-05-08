@@ -16,7 +16,7 @@
                 <div class="card-header bg-white">
                     <div class="row">
                         <div class="col">
-                            <h3 class="m-0">Info Quiz</h3>
+                            <h3 class="m-0">Quiz Info</h3>
                         </div>
                         <div class="col ">
                             <a class="btn btn-secondary float-right" href="/dosen/quiz" role="button">Back</a>
@@ -24,16 +24,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="col-md-12">
-                        @if (\Session::has('update_done'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                              {!! \Session::get('update_done') !!}
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                                    
-                            </div>
-                        @endif
-                    </div>
                     <form action="{{route('quiz.update', $quiz->id)}}" method="POST">
                         <input name="_method" type="hidden" value="PATCH">
                         {{csrf_field()}}
@@ -173,8 +163,12 @@ function deleteQuiz() {
 .then((willDelete) => {
   if (willDelete) {
     $(".delete-form").submit();
-     swal("Quiz has been deleted!", {
+      swal({
+      title: "Quiz has been deleted!",
+      text:" ",
       icon: "success",
+      button: false,
+      timer: 1500,
     });
   }
 });
@@ -184,6 +178,15 @@ $(".delete-btn").click(function() {
   deleteQuiz();
 });
 
+@if(Session::has('update_done'))
+swal({
+  title: "Quiz has been updated!",
+  text:" ",
+  icon: "success",
+  button: false,
+  timer: 1500,
+}); 
+@endif
 
 tinymce.init({
     selector: '#terms-conditions',
@@ -219,8 +222,7 @@ tinymce.init({
   });
   
     const tac_content = $("[name='_tac_content']").val();
-    $("#terms-conditions").html(tac_content)
-    
+    $("#terms-conditions").html(tac_content);
 
 })(jQuery);
 </script>

@@ -47,7 +47,7 @@ class QuizController extends Controller
     {
         $kuis = Quiz::findorfail($quiz);
         $kuis->update($request->all());
-        return redirect()->back()->with(['update_done' => 'Data berhasil diupdate', 'kuis' => $kuis]);
+        return redirect()->back()->with(['update_done' => 'Quiz has been updated']);
     }
 
     public function destroy($quiz)

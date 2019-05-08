@@ -56,7 +56,7 @@
         </div>
         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;">Previous</button>
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px;">Submit</button>
+            <a class="btn btn-success btn-sm" href="/mahasiswa/result" data-toggle="confirmation" style="float: right; width: 70px;">Submit</a>
         </div>
     </div>
 </div>
@@ -239,3 +239,11 @@
 </div>
 
 @endsection
+
+
+<script>
+$('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+});
+</script>

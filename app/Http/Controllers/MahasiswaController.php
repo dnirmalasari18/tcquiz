@@ -113,7 +113,8 @@ class MahasiswaController extends Controller
         $mp->update(array('user_answer_list' => $arr, 'question_flag_list' => $fl));
 
         // echo $mp;
-        return Response::json($mp);
+        //return Response::json($mp);
+        return redirect('/mahasiswa/result');
 
     }
 }

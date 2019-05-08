@@ -84,6 +84,8 @@ class MahasiswaController extends Controller
 
     public function submitQuiz(Request $request)
     {
+        echo $request;
+
         $mp = MahasiswaPacket::findorfail($request->mp_id);
 
         $arr = array_map('intval', explode(",", $mp->user_answer_list));
@@ -94,6 +96,7 @@ class MahasiswaController extends Controller
         for ($i=1; $i <= $request->jumlah ; $i++) {
             if (isset($request->ans[$i])) {
                 $arr[$i-1] = $request->ans[$i];
+                // $arr[$i-1] = 0;
             }
             else{
                 $arr[$i-1] = 0;

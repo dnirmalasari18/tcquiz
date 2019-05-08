@@ -26,10 +26,10 @@
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
                             <tr>
-                                <th>Kelas</th>
-                                <th>Dosen Pengajar</th>
-                                <th>Ruangan</th>
-                                <th>Jadwal</th>
+                                <th>Class</th>
+                                <th>Lecturer</th>
+                                <th>Room</th>
+                                <th>Schedule</th>
                             </tr>
                         </thead>
                         <tbody>

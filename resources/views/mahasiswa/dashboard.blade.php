@@ -134,27 +134,27 @@
                 <table class="table">
                     <tbody >
                         <tr style="border-top-style: hidden;">
-                            <td>Kuis</td>
+                            <td>Name</td>
                             <td>: {{$q->nama_kuis}}</td>
                         </tr>
                         <tr>
-                            <td>Mata Kuliah</td>
+                            <td>Class</td>
                             <td>: {{$q->pertemuanke->agenda->namaAgenda}}</td>
                         </tr>
                         <tr>
-                            <td>Tanggal</td>
+                            <td>Date</td>
                             <td>: {{$q->pertemuanke->tglPertemuan}}</td>
                         </tr>
                         <tr>
-                            <td>Mulai</td>
+                            <td>Begin Time</td>
                             <td>: {{$q->pertemuanke->waktuMulai}}</td>
                         </tr>
                         <tr>
-                            <td>Selesai</td>
+                            <td>End Time</td>
                             <td>: {{$q->pertemuanke->waktuSelesai}}</td>
                         </tr>
                         <tr>
-                            <td>Waktu</td>
+                            <td>Duration</td>
                             <td>: {{$q->durasi}}</td>
                         </tr>
                         <tr>

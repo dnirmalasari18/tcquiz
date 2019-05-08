@@ -25,12 +25,12 @@
                     <table id="bootstrap-data-table" class="table table-bordered">
                         <thead class="thead-light" align="center">
                             <tr>
-                                <th>Kuis</th>
-                                <th>Mata Kuliah</th>
-                                <th>Tanggal</th>
-                                <th>Mulai</th>
-                                <th>Selesai</th>
-                                <th>Waktu</th>
+                                <th>Name</th>
+                                <th>Class</th>
+                                <th>Date</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Duration</th>
                                 <th>Status</th>
                                 <th>Menu</th>
                             </tr>

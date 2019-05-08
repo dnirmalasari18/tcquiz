@@ -42,7 +42,7 @@
     @if($t->id == $arr[$q-1])
     <div class="card nuzha" id="soal{{$q}}">
         <div class="card-header">
-            <strong class="card-title">Soal {{$q}}</strong>
+            <strong class="card-title">Question {{$q}}</strong>
             <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
             <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;">
                 <input id="flag{{$q}}" onclick="flagSoal(event, '{{$q}}')" type="checkbox" class="switch-input" name="fl[{{$q}}]" value="1"
@@ -56,7 +56,7 @@
             {!!$t->question_description!!}
         </div>
         <div class="card-body">
-            <div style="margin-bottom: 10px;"><strong>Jawaban</strong></div>
+            <div style="margin-bottom: 10px;"><strong>Answers</strong></div>
             <div class="form-check">
                 @if($t->option_1)
                 <div class="radio">
@@ -118,7 +118,7 @@
         </div>
         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
             @if($q==count($quiz))
-            <button type="submit" class="btn btn-success btn-sm" data-toggle="modal" style="float: right; width: 70px;">Submit</button>
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#submitQuiz" style="float: right; width: 70px;">Submit</button>
             @if($q-1>0)
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
             @endif
@@ -136,8 +136,45 @@
     @endif
     @endforeach
     @endforeach
+
+    <div class="modal fade" id="submitQuiz" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg nuzha3" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mediumModalLabel">Quiz Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <style type="text/css">
+                        .nuzha4{
+                            margin-bottom: 20px;
+                        }
+                        .nuzha2{
+                            width: 75px;
+                        }
+                    </style>
+                    <div class="nuzha4" align="center">
+                        Are you sure you want finish this quiz?
+                    </div>
+                    <div align="center">
+                        <button type="button" class="btn btn-danger btn-sm nuzha2" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success btn-sm nuzha2">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 </div>
+
+<style type="text/css">
+    .nuzha3{
+        max-width: 500px;
+    }
+</style>
+
 <div class="col-md-3">
     <style type="text/css">
         .card{
@@ -175,7 +212,7 @@
     </style>
     <div class="card card-soal">
         <div class="card-header" align="center">
-            <strong class="card-title">Daftar Soal</strong>
+            <strong class="card-title">Questions List</strong>
         </div>
         <div class="card-body soal">
             <?php
@@ -258,48 +295,42 @@
     document.getElementById("nomer1").click();
 
 </script>
+@endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+@section('script')
 
 <script>
 
     $(document).ready(function(){
 
         $(".form-check-input").click(function() {
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            var data = $("#myForm").serialize();
+            $.ajax({
+                type: "put",
+                url: "{{route('submit.quiz')}}",
+                data: data,
+                dataType: "json",
+                success: function(data) {
+                    console.log('success');
+                },
+                error: function(error) {
+                    console.log('error');
                 }
             });
+        });
 
-            var mp_id = $('input[name=mp_id]', '#myForm').val();
-            var jumlah = $('input[name=jumlah]', '#myForm').val();
-            var formData = new FormData;
-            formData.append('mp_id', mp_id);
-            formData.append('jumlah', jumlah);
-
-            for (var i = 1; i <= jumlah; i++) {
-                formData.append('ans[]', $("input[name='ans["+i+"]']:checked").val());
-            }
-
-            for (var pair of formData.entries()) {
-                console.log(pair[0]+ ', ' + pair[1]); 
-            }
-
+        $(".switch-input").click(function() {
+            var data = $("#myForm").serialize();
             $.ajax({
-                type:"PUT",
+                type: "put",
                 url: "{{route('submit.quiz')}}",
-                data: formData,
+                data: data,
                 dataType: "json",
-                success: function (data) {
-                    alert('Record updated successfully');
+                success: function(data) {
+                    console.log('success');
                 },
-                error: function (data) {
-                    alert('No');
+                error: function(error) {
+                    console.log('error');
                 }
             });
         });

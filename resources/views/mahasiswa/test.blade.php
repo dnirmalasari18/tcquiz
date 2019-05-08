@@ -323,7 +323,7 @@
             var data = $("#myForm").serialize();
             $.ajax({
                 type: "put",
-                url: "{{route('submit.quiz')}}",
+                url: "{{route('submit.quiz.ajax')}}",
                 data: data,
                 dataType: "json",
                 success: function(data) {

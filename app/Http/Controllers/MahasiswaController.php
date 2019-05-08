@@ -82,6 +82,44 @@ class MahasiswaController extends Controller
         
     }
 
+    public function submitQuizAjax(Request $request)
+    {
+        echo $request;
+
+        $mp = MahasiswaPacket::findorfail($request->mp_id);
+
+        $arr = array_map('intval', explode(",", $mp->user_answer_list));
+        $fl = array_map('intval', explode(",", $mp->question_flag_list));
+
+        // echo $mp;
+
+        for ($i=1; $i <= $request->jumlah ; $i++) {
+            if (isset($request->ans[$i])) {
+                $arr[$i-1] = $request->ans[$i];
+                // $arr[$i-1] = 0;
+            }
+            else{
+                $arr[$i-1] = 0;
+            }
+
+            if (isset($request->fl[$i])) {
+                $fl[$i-1] = $request->fl[$i];
+            }
+            else{
+                $fl[$i-1] = 0;
+            }
+            
+        }
+
+        $arr = implode(', ', $arr);
+        $fl = implode(', ', $fl);
+        $mp->update(array('user_answer_list' => $arr, 'question_flag_list' => $fl));
+
+        // echo $mp;
+        return Response::json($mp);
+
+    }
+
     public function submitQuiz(Request $request)
     {
         echo $request;

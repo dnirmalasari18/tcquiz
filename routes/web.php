@@ -64,6 +64,7 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
         });
 
         Route::match(['put', 'patch'], '/quiz/submit', 'MahasiswaController@submitQuiz')->name('submit.quiz');
+        Route::match(['put', 'patch'], '/quiz/submit/ajax', 'MahasiswaController@submitQuizAjax')->name('submit.quiz.ajax');
 
         // Route::get('/coba', function () {
         //     return view('mahasiswa.test_coba');

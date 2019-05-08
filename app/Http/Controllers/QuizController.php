@@ -31,7 +31,7 @@ class QuizController extends Controller
     public function store(Request $request)
     {
         Quiz::create($request->all());
-        return redirect('/dosen/quiz');
+        return redirect('/dosen/quiz')->with(['create_done' => 'Quiz has been created']);
     }
 
     public function edit($quiz)
@@ -40,7 +40,7 @@ class QuizController extends Controller
         $agenda = Agenda::orderBy('namaAgenda','asc')->get();
         $id_agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
         $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();        
-        return view('dosen.editquiz',compact('quiz', 'agenda', 'jadwals'));
+        return view('dosen.editquiz', compact('quiz', 'agenda', 'jadwals'));
     }
 
     public function update(Request $request, $quiz)
@@ -81,11 +81,11 @@ class QuizController extends Controller
         $questions = Questions::where('quiz_id', $quiz1)->get();
 
         if ($questions->count()==0) {
-            return redirect()->back()->with(['error' => 'Data pertanyaan pada kuis kosong! Tambahkan pertanyaan terlebih dahulu']);
+            return redirect()->back()->with(['error' => 'There is no question! Add question first']);
         }
 
         if ($quiz->finalize_status=='1') {
-            return redirect('/dosen/quiz/'. $quiz1.'/questions')->with(['error' => 'Kuis sudah difinalisasi']);
+            return redirect('/dosen/quiz/'. $quiz1.'/questions')->with(['error' => 'Quiz has been finalized']);
         }
 
         foreach ($participants as $participant) { 

@@ -103,3 +103,18 @@
 </div>
 @endforeach
 @endsection
+@section('script')
+<script type="text/javascript">        
+(function($) {
+    @if(Session::has('create_done'))
+      swal({
+          title: "Quiz has been created!",
+          text:" ",
+          icon: "success",
+          button: false,
+          timer: 1500,
+      }); 
+    @endif
+})(jQuery);
+</script>
+@endsection

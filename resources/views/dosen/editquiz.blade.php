@@ -42,40 +42,38 @@
                             <label class="font-weight-bold" for="">Class</label>
                             <select class="form-control kelas-select" value="" required>  
                                 @foreach ($agenda as $a)
-                                  @if($quiz->pertemuanke->agenda->idAgenda == $a->idAgenda)
-                                    <option selected value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>  
-                                  @else
-                                  <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
-                                  @endif
+                                    @if($quiz->pertemuanke->agenda->idAgenda == $a->idAgenda)
+                                        <option selected value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>  
+                                    @else
+                                        <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="font-weight-bold" for="" >Schedule</label>
                             <select class="form-control jadwal-select" name="absenkuliah_id" value="{{ $quiz->absenkuliah_id }}" required>
-                              @foreach($jadwals as $j)      
-                                @if($j->id ==  $quiz->absenkuliah_id)
-                                  <option selected value="{{$j->id}}">Pertemuan ke-{{$j->pertemuanKe}} | {{$j->tglPertemuan}}</option>
-                                @else 
-                                  <option value="{{$j->id}}">Pertemuan ke-{{$j->pertemuanKe}} | {{$j->tglPertemuan}}</option>
-                                @endif                                
-                              @endforeach
-                              <option></option>
+                                @foreach($jadwals as $j)      
+                                    @if($j->id ==  $quiz->absenkuliah_id)
+                                        <option selected value="{{$j->id}}">Pertemuan ke-{{$j->pertemuanKe}} | {{$j->tglPertemuan}}</option>
+                                    @else 
+                                        <option value="{{$j->id}}">Pertemuan ke-{{$j->pertemuanKe}} | {{$j->tglPertemuan}}</option>
+                                    @endif                                
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                          <label class="font-weight-bold">Start Time</label>
-                          <fieldset class="form-control waktumulai-select" disabled>{{ $quiz->pertemuanke->waktuMulai }}</fieldset>
+                            <label class="font-weight-bold">Start Time</label>
+                            <fieldset class="form-control waktumulai-select" disabled>{{ $quiz->pertemuanke->waktuMulai }}</fieldset>
                         </div>
                         <div class="form-group col-md-6">
-                          <label class="font-weight-bold">End Time</label>
-                          <fieldset class="form-control waktuselesai-select" disabled>{{ $quiz->pertemuanke->waktuSelesai }}</fieldset>
+                            <label class="font-weight-bold">End Time</label>
+                            <fieldset class="form-control waktuselesai-select" disabled>{{ $quiz->pertemuanke->waktuSelesai }}</fieldset>
                         </div>
                         <div class="form-group col-md-12">
                             <label class="font-weight-bold" for="">Terms & Conditions</label>
                             <textarea class="form-control" id="terms-conditions" placeholder="" name="terms_conditions" value="{{ $quiz->terms_conditions }}"></textarea>
-                        </div>
-                        <br>
+                        </div><br>
                         <div class="col-md-12">
                             <button id="" type="submit" class="btn btn-lg btn-info btn-block ">
                                 Save
@@ -96,134 +94,127 @@
     </div>
 </div><!-- .animated -->
 @endsection
-
 @section('script')
 <script type="text/javascript">        
 (function($) {
-   $(".kelas-select").change(async function() {
-    let jadwals;
-    const agenda_id = $(this).val();
-
-    try {
-        jadwals = await $.ajax({
-            url: `{{url('dosen/agenda')}}/${agenda_id}/jadwals`,
-            method: 'GET',
-            dataType: 'json'
-        });
-    } catch(err) {
-        alert('error');
-        console.log(err);
-        return;
-    }
-
-    let html = '';
+    $(".kelas-select").change(async function(){
+        let jadwals;
+        const agenda_id = $(this).val();
+        try {
+            jadwals = await $.ajax({
+                url: `{{url('dosen/agenda')}}/${agenda_id}/jadwals`,
+                method: 'GET',
+                dataType: 'json'
+            });
+        } catch(err) {
+            alert('error');
+            console.log(err);
+            return;
+        }
+        let html = '';
     
-    jadwals.map((jadwal, idx) => {
-        html += `<option value='${jadwal.id}'>Pertemuan ke-${jadwal.pertemuanKe} | ${jadwal.tglPertemuan}</option>`
-    });
-
-    $(".jadwal-select").html(html);
-
-    console.log(jadwals)
-});
-
-$(".jadwal-select").change(async function() {
-    let waktus;
-    const jadwal_id = $(this).val();
-    try {
-        waktus = await $.ajax({
-            url: `{{url('dosen/agenda')}}/${jadwal_id}/waktus`,
-            method: 'GET',
-            dataType: 'json'
+        jadwals.map((jadwal, idx) => {
+            html += `<option value='${jadwal.id}'>Pertemuan ke-${jadwal.pertemuanKe} | ${jadwal.tglPertemuan}</option>`
         });
-    } catch(err) {
-        alert('error');
-        console.log(err);
-        return;
-    }
-    let html_start = '';
-    html_start += `${waktus.waktuMulai}`
-    $(".waktumulai-select").html(html_start);
 
-    let html_end = '';
-    html_end += `${waktus.waktuSelesai}`
-    $(".waktuselesai-select").html(html_end);
-
-    console.log(waktus)
-}); 
-
-function deleteQuiz() {
-  swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this quiz and its questions!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    $(".delete-form").submit();
-      swal({
-      title: "Quiz has been deleted!",
-      text:" ",
-      icon: "success",
-      button: false,
-      timer: 1500,
+        $(".jadwal-select").html(html);
+        console.log(jadwals)
     });
-  }
-});
-}
 
-$(".delete-btn").click(function() {
-  deleteQuiz();
-});
+    $(".jadwal-select").change(async function() {
+        let waktus;
+        const jadwal_id = $(this).val();
+        try {
+            waktus = await $.ajax({
+                url: `{{url('dosen/agenda')}}/${jadwal_id}/waktus`,
+                method: 'GET',
+                dataType: 'json'
+            });
+        } catch(err) {
+            alert('error');
+            console.log(err);
+            return;
+        }
+        let html_start = '';
+        html_start += `${waktus.waktuMulai}`
+        $(".waktumulai-select").html(html_start);
 
-@if(Session::has('update_done'))
-swal({
-  title: "Quiz has been updated!",
-  text:" ",
-  icon: "success",
-  button: false,
-  timer: 1500,
-}); 
-@endif
+        let html_end = '';
+        html_end += `${waktus.waktuSelesai}`
+        $(".waktuselesai-select").html(html_end);
 
-tinymce.init({
-    selector: '#terms-conditions',
-    relative_urls : false,
-    remove_script_host : false,
-    convert_urls : true,
-    plugins : 'advlist autolink link image lists charmap print preview',
-    images_upload_handler: function (blobInfo, success, failure) {
-           var xhr, formData;
-           xhr = new XMLHttpRequest();
-           xhr.withCredentials = false;
-           xhr.open('POST', '/upload/image');
-           var token = '{{ csrf_token() }}';
-           xhr.setRequestHeader("X-CSRF-Token", token);
-           xhr.onload = function() {
-               var json;
-               if (xhr.status != 200) {
-                   failure('HTTP Error: ' + xhr.status);
-                   return;
-               }
-               json = JSON.parse(xhr.responseText);
+        console.log(waktus)
+    }); 
 
-               if (!json || typeof json.location != 'string') {
-                   failure('Invalid JSON: ' + xhr.responseText);
-                   return;
-               }
-               success(json.location);
-           };
-           formData = new FormData();
-           formData.append('file', blobInfo.blob(), blobInfo.filename());
-           xhr.send(formData);
-       }
-  });
-  
+    function deleteQuiz() {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this quiz and its questions!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $(".delete-form").submit();
+                swal({
+                    title: "Quiz has been deleted!",
+                    text:" ",
+                    icon: "success",
+                    button: false,
+                    timer: 1500,
+                });
+            }
+        });
+    }
+
+    $(".delete-btn").click(function() {
+        deleteQuiz();
+    });
+
+    @if(Session::has('update_done'))
+      swal({
+          title: "Quiz has been updated!",
+          text:" ",
+          icon: "success",
+          button: false,
+          timer: 1500,
+      }); 
+    @endif
+
+    tinymce.init({
+        selector: '#terms-conditions',
+        relative_urls : false,
+        remove_script_host : false,
+        convert_urls : true,
+        plugins : 'advlist autolink link image lists charmap print preview',
+        images_upload_handler: function (blobInfo, success, failure) {
+            var xhr, formData;
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', '/upload/image');
+            var token = '{{ csrf_token() }}';
+            xhr.setRequestHeader("X-CSRF-Token", token);
+            xhr.onload = function() {
+                var json;
+                if (xhr.status != 200) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
+                json = JSON.parse(xhr.responseText);
+                if (!json || typeof json.location != 'string') {
+                    failure('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
+                success(json.location);
+            };
+            formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+            xhr.send(formData);
+        }
+    });  
     const tac_content = $("[name='_tac_content']").val();
     $("#terms-conditions").html(tac_content);
-
 })(jQuery);
 </script>
 @endsection

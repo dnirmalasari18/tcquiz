@@ -21,15 +21,17 @@ class QuestionsController extends Controller
 
     public function store(CreateQuestion $request)
     {
-
         $validated = $request->validated();
         Questions::create($request->all());
-        return redirect('/dosen/quiz/'. $request->quiz_id.'/questions')->with(['success' => 'Data berhasil ditambahkan']);
+        return redirect('/dosen/quiz/'. $request->quiz_id.'/questions')->with(['create_done' => 'Question has been created']);
     }
 
     public function edit($idquiz, $idquestions)
     {
         $quiz = Quiz::findorfail($idquiz);
+        if ($quiz->finalize_status=='1') {
+            return redirect('/dosen/quiz/'. $idquiz.'/questions')->with(['error' => 'Tidak dapat edit soal! Kuis sudah difinalisasi']);
+        }
         $questions = Questions::findorfail($idquestions);
         return view('dosen.editquestion', compact('quiz', 'questions'));
     }
@@ -38,21 +40,20 @@ class QuestionsController extends Controller
     {
         $question = Questions::findorfail($questions);
         $question->update($request->all());
-        return redirect()->back()->with(['success' => 'Data berhasil diupdate', 'question' => $question]);
+        return redirect('/dosen/quiz/'. $question->quiz_id.'/questions')->with(['update_done' => 'Question has been updated']);
     }
 
     public function destroy($questions)
     {
         $soal = Questions::findorfail($questions);
         $soal->delete();
-        return redirect('/dosen/quiz/'.$soal->quiz_id.'/questions')->with(['error' => 'Data berhasil dihapus']);;
+        return redirect('/dosen/quiz/'.$soal->quiz_id.'/questions');
     }
 
     public function questionslist($idquiz)
     {
         $quiz = Quiz::findorfail($idquiz);
         $questions = Questions::where('quiz_id', $idquiz)->paginate(1);  
-        
         return view('dosen.listofquestions', compact('quiz', 'questions'));
     }
 

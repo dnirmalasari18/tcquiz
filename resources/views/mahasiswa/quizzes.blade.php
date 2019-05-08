@@ -163,24 +163,16 @@
                 <table class="table">
                     <tbody>
                         <tr style="border-top-style: hidden;">
-                            <td>Waktu Mulai</td>
+                            <td>Start Time</td>
                             <td>: 13:02:11</td>
                         </tr>
                         <tr>
-                            <td>Waktu Selesai</td>
+                            <td>End Time</td>
                             <td>: 14:26:08</td>
                         </tr>
                         <tr>
-                            <td>Poin</td>
-                            <td>: 80.000 / 100.000 (80%)</td>
-                        </tr>
-                        <tr>
-                            <td>Jawaban Benar</td>
-                            <td>: 16 / 20</td>
-                        </tr>
-                        <tr>
-                            <td>Komentar</td>
-                            <td>: -</td>
+                            <td>Score</td>
+                            <td>: 80 / 100</td>
                         </tr>
                     </tbody>
                 </table>

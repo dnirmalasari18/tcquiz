@@ -58,6 +58,15 @@ class MahasiswaController extends Controller
             ])
             ->first();
         $data['test'] = Questions::where('quiz_id', $idquiz)->get();
+
+        $mp_id = $data['paket']->id;
+        $mp = MahasiswaPacket::findorfail($mp_id);
+
+        if(!$mp->end_time){
+            $now = date("Y-m-d H:i:s", strtotime('7 hour'));
+            $mp->end_time = $now;
+            $mp->save();
+        }
         
         // $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
         
@@ -84,8 +93,6 @@ class MahasiswaController extends Controller
 
     public function submitQuizAjax(Request $request)
     {
-        echo $request;
-
         $mp = MahasiswaPacket::findorfail($request->mp_id);
 
         $arr = array_map('intval', explode(",", $mp->user_answer_list));
@@ -122,8 +129,6 @@ class MahasiswaController extends Controller
 
     public function submitQuiz(Request $request)
     {
-        echo $request;
-
         $mp = MahasiswaPacket::findorfail($request->mp_id);
 
         $arr = array_map('intval', explode(",", $mp->user_answer_list));
@@ -155,7 +160,52 @@ class MahasiswaController extends Controller
 
         // echo $mp;
         //return Response::json($mp);
-        return redirect('/mahasiswa/result');
+        return redirect('/mahasiswa/quiz/' .$request->quiz_id. '/result');
 
+    }
+
+    public function quizResult($idquiz){
+        $user = User::where('username', Auth::user()->username)->first();
+        $quiz = Quiz::findorfail($idquiz);
+        // $soal = Questions::where('quiz_id', $idquiz)->get();
+
+        $paket = DB::table('quizzes')
+            ->join('quiz_packets', 'quizzes.id', '=', 'quiz_packets.quiz_id')
+            ->join('mahasiswa_packets', 'quiz_packets.id', '=', 'mahasiswa_packets.quizpacket_id')
+            ->select('mahasiswa_packets.id', 'quizpacket_id')
+            ->where([
+                ['mahasiswa_packets.user_id', '=', $user->id],
+                ['quizzes.id', '=', $idquiz],
+            ])
+            ->first();
+
+        $qp = QuizPacket::findorfail($paket->quizpacket_id);
+        $mp = MahasiswaPacket::findorfail($paket->id);
+
+        $qp_key = array_map('intval', explode(",", $qp->packet_answer_list));
+        $mp_key = array_map('intval', explode(",", $mp->user_answer_list));
+        $seq = array_map('intval', explode(",", $qp->question_id_list));
+
+        $quiz_score = 0;
+        $total_score = 0;
+
+        for ($i=0; $i < count($qp_key)-1; $i++) { 
+
+            $score = Questions::findorfail($seq[$i])->question_score;
+            $total_score = $total_score + $score;
+
+            if ($qp_key[$i] == $mp_key[$i]) {
+                $score = Questions::findorfail($seq[$i])->question_score;
+                $quiz_score = $quiz_score + $score;
+            }
+        }
+
+        $quiz_score = $quiz_score / $total_score * 100;
+        $mp->quiz_score = round($quiz_score);
+        $mp->save();
+
+        $data['mp'] = $mp;
+
+        return view('mahasiswa.result', $data);
     }
 }

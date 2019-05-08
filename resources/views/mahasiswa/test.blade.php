@@ -35,6 +35,8 @@
 <form action="{{route('submit.quiz')}}" method="POST" id="myForm">
 {{ csrf_field() }}
 {{ method_field('PATCH') }}
+<input type="hidden" name="quiz_id" value="{{$kuis->id}}">
+<input type="hidden" name="end_time" value="{{$paket->id}}">
 <input type="hidden" name="mp_id" value="{{$paket->id}}">
 <input type="hidden" name="jumlah" value="{{count($quiz)}}">
     @foreach($quiz as $q)

@@ -59,9 +59,7 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
             return view('mahasiswa.test3');
         });
 
-        Route::get('/result', function () {
-            return view('mahasiswa.result');
-        });
+        Route::get('quiz/{id}/result', 'MahasiswaController@quizResult');
 
         Route::match(['put', 'patch'], '/quiz/submit', 'MahasiswaController@submitQuiz')->name('submit.quiz');
         Route::match(['put', 'patch'], '/quiz/submit/ajax', 'MahasiswaController@submitQuizAjax')->name('submit.quiz.ajax');

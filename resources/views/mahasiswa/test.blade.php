@@ -32,7 +32,7 @@
         }
 
     ?>
-<form action="{{route('submit.quiz')}}" method="POST">
+<form action="{{route('submit.quiz')}}" method="POST" id="myForm">
 {{ csrf_field() }}
 {{ method_field('PATCH') }}
 <input type="hidden" name="mp_id" value="{{$paket->id}}">
@@ -257,6 +257,55 @@
 
     document.getElementById("nomer1").click();
 
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script>
+
+    $(document).ready(function(){
+
+        $(".form-check-input").click(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            });
+
+            var mp_id = $('input[name=mp_id]', '#myForm').val();
+            var jumlah = $('input[name=jumlah]', '#myForm').val();
+            var formData = new FormData;
+            formData.append('mp_id', mp_id);
+            formData.append('jumlah', jumlah);
+
+            for (var i = 1; i <= jumlah; i++) {
+                formData.append('ans[]', $("input[name='ans["+i+"]']:checked").val());
+            }
+
+            for (var pair of formData.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]); 
+            }
+
+            $.ajax({
+                type:"PUT",
+                url: "{{route('submit.quiz')}}",
+                data: formData,
+                dataType: "json",
+                success: function (data) {
+                    alert('Record updated successfully');
+                },
+                error: function (data) {
+                    alert('No');
+                }
+            });
+        });
+
+    });
+    
 </script>
 
 @endsection

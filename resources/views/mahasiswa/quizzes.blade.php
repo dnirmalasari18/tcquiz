@@ -131,7 +131,7 @@
                 </div>
                 <div align="center">
                     <button type="button" class="btn btn-danger btn-sm nuzha2" data-dismiss="modal">Cancel</button>
-                    <a href="/mahasiswa/test">
+                    <a href="/mahasiswa/quiz/{{$q->id}}/questions"">
                         <button type="button" class="btn btn-success btn-sm nuzha2">Continue</button>
                     </a>
                 </div>

@@ -11,6 +11,7 @@ use Auth;
 use DB;
 use Illuminate\Http\Request;
 Use App\Questions;
+Use Response;
 
 class MahasiswaController extends Controller
 {
@@ -88,7 +89,7 @@ class MahasiswaController extends Controller
         $arr = array_map('intval', explode(",", $mp->user_answer_list));
         $fl = array_map('intval', explode(",", $mp->question_flag_list));
 
-        echo $mp;
+        // echo $mp;
 
         for ($i=1; $i <= $request->jumlah ; $i++) {
             if (isset($request->ans[$i])) {
@@ -111,7 +112,8 @@ class MahasiswaController extends Controller
         $fl = implode(', ', $fl);
         $mp->update(array('user_answer_list' => $arr, 'question_flag_list' => $fl));
 
-        echo $mp;
+        // echo $mp;
+        return Response::json($mp);
 
     }
 }

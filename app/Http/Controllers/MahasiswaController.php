@@ -91,8 +91,11 @@ class MahasiswaController extends Controller
         echo $mp;
 
         for ($i=1; $i <= $request->jumlah ; $i++) {
-            if($request->ans[$i]){
+            if (isset($request->ans[$i])) {
                 $arr[$i-1] = $request->ans[$i];
+            }
+            else{
+                $arr[$i-1] = 0;
             }
 
             if (isset($request->fl[$i])) {

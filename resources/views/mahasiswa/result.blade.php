@@ -18,8 +18,16 @@
                 <table class="table">
                     <tbody>
                         <tr style="border-top-style: hidden;">
-                            <td>Start Time</td>
-                            <td>: 13:02:11</td>
+                            <td>Quiz Name</td>
+                            <td>: Kuis-10</td>
+                        </tr>
+                        <tr>
+                            <td>Class</td>
+                            <td>: Human Computer Interaction</td>
+                        </tr>
+                        <tr>
+                            <td>Begin Time</td>
+                            <td>: 13:00:00</td>
                         </tr>
                         <tr>
                             <td>End Time</td>

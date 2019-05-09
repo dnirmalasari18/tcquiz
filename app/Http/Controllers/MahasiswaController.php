@@ -23,14 +23,46 @@ class MahasiswaController extends Controller
 
     public function myQuizzes()
     {
+        $user_id = Auth::user()->id;
         $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
-        return view('mahasiswa.quizzes', compact('classes'));
+        $quiz = array();
+        $i = 0;
+
+        if(count($classes)){
+            foreach($classes as $c){
+                foreach($c->agenda->pertemuan as $p){
+                    if(count($p->quiz)){
+                        foreach($p->quiz as $q){
+                            $quiz[$i] = $q;
+                            $i = $i+1;
+                        }
+                    }
+                }
+            }
+        }
+
+        return view('mahasiswa.quizzes', compact('quiz', 'user_id'));
     }
 
     public function dashboard()
     {
         $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
-        return view('mahasiswa.dashboard', compact('classes'));
+        $quiz = array();
+        $i = 0;
+        if(count($classes)){
+            foreach($classes as $c){
+                foreach($c->agenda->pertemuan as $p){
+                    if(count($p->quiz)){
+                        foreach($p->quiz as $q){
+                            $quiz[$i] = $q;
+                            $i = $i+1;
+                        }
+                    }
+                }
+            }
+        }
+
+        return view('mahasiswa.dashboard', compact('quiz'));
     }
 
     public function myQuestions($idquiz)
@@ -59,8 +91,17 @@ class MahasiswaController extends Controller
             ->first();
         $data['test'] = Questions::where('quiz_id', $idquiz)->get();
 
-        $mp_id = $data['paket']->id;
-        $mp = MahasiswaPacket::findorfail($mp_id);
+        if($data['paket']){
+            $mp_id = $data['paket']->id;
+            $mp = MahasiswaPacket::findorfail($mp_id);
+            if ($mp->quiz_score) {
+                return abort(404);
+            }
+        }
+        else{
+            return abort(404);
+        }
+        
 
         if(!$mp->end_time){
             $now = date("Y-m-d H:i:s", strtotime('7 hour'));

@@ -21,6 +21,7 @@ class CreateMahasiswaPacketsTable extends Migration
             $table->longText('user_answer_list')->nullable();
             $table->integer('quiz_score')->nullable();
             $table->datetime('end_time')->nullable();
+            $table->integer('status_ambil')->nullable();
             $table->timestamps();
         });
 

@@ -1,5 +1,5 @@
 <style type="text/css">
-    .aku{
+    .panel{
         display: none;
     }
 </style>
@@ -13,11 +13,8 @@
                 <div class="card-body">
                     <div align="left">
                         @for ($i = 0; $i < count($questions); $i++)
-                        <a onclick="openSoal(event, '{{$i}}')" id="nomor{{$i}}" class="card-body text-secondary mt-2 btn2 btn-info btn-sm" style="height: 30px; width: 40px;">{{$i+1}}</a>
+                            <a onclick="openSoal(event, '{{$i}}')" id="nomor{{$i}}" class="panelsoal btn btn-info">{{$i+1}}</a>
                         @endfor
-                     
-                        
-                           
                     </div>
                     <hr>
                     <div class="card-text" >
@@ -50,9 +47,9 @@
     @for ($i = 0; $i < count($questions); $i++)
     <div>
         <div class="col-md-8 float-left">
-            <div class="card aku" id="soal{{$i}}">
+            <div class="card panel" id="soal{{$i}}">
                 <div class="card-header">
-                    <strong class="card-title mb-3">SOAL {{$i+1}}</strong>
+                    <strong class="card-title mb-3 float-left" >SOAL {{$i+1}}</strong>
                     @if($kuis->finalize_status=='0')
                         <form class="delete-form" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">
@@ -106,17 +103,23 @@
                     </div>
                     <hr>
                     <div class="card-text">
-                        <div class="row">
-                            <div class="col-md">
-                                
-                                    <a  class="btn btn-outline-info"><i class="fa fa-chevron-left"></i></a>
-                                
-                            </div>
-                            <div class="col-md-10" align="right">
-                                
-                                    <a class="btn btn-outline-info" ><i class="fa fa-chevron-right"></i></a>
-                                
-                            </div>
+                        <div class="row" style="cursor: pointer;">
+                            @if($i==0)
+                                <div class="col-md-12" align="right">
+                                    <div onclick="openSoal(event, '{{$i+1}}')"><i class="fa fa-chevron-right"></i></div>
+                                </div>
+                            @elseif($i==count($questions)-1)
+                                <div class="col-md-12">
+                                    <div onclick="openSoal(event, '{{$i-1}}')"><i class="fa fa-chevron-left"></i></div>
+                                </div>
+                            @else
+                                <div class="col-md">
+                                    <div onclick="openSoal(event, '{{$i-1}}')"><i class="fa fa-chevron-left"></i></div>
+                                </div>
+                                <div class="col-md-10" align="right">
+                                    <div onclick="openSoal(event, '{{$i+1}}')"><i class="fa fa-chevron-right"></i></div>
+                                </div>
+                            @endif
                         </div>  
                     </div>
                 </div>

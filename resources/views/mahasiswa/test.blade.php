@@ -3,7 +3,7 @@
 @section('dashboard', 'active')
 
 @section('title')
-<h1>Test</h1>
+<h1>{{$kuis->nama_kuis}}</h1>
 @endsection
 
 @section('breadcrumbs')
@@ -118,14 +118,14 @@
                         </div>
                         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
                             @if($q==count($quiz))
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#submitQuiz" style="float: right; width: 70px;">Submit</button>
+                                <button class="btn btn-md btn-danger float-right" data-toggle="modal" data-target="#submitQuiz" >Submit</button>
                                 @if($q-1>0)
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+                                    <div data-toggle="modal" onclick="openSoal(event, '{{$q-1}}')"><i class="fa fa-chevron-left"></i></div>
                                 @endif
                             @else
-                                <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;" onclick="openSoal(event, '{{$q+1}}')">Next</button>
+                                <div onclick="openSoal(event, '{{$q+1}}')" class="float-right"><i class="fa fa-chevron-right"></i></div>
                                 @if($q-1>0)
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+                                    <div data-toggle="modal"  onclick="openSoal(event, '{{$q-1}}')"><i class="fa fa-chevron-left"></i></div>
                                 @endif
                             @endif
                         </div>

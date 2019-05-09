@@ -254,13 +254,13 @@
             </div>
         </div>                
     </div>
-    Registration closes in <span id="time">{{ $durasi }}</span> minutes!
+    Quiz ends in <span id="time">60</span> minutes!
 
 </div>
 
 @endsection
 
-
+@section('js')
 <script>
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -287,10 +287,10 @@ jQuery(function ($) {
     start_sec = start_sec + now.getMinutes() * 60;
     start_sec = start_sec + now.getSeconds();
 
-    var end = new Date('16');
+    var end = new Date('00');
     var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
     var end_sec = 0;
-    end_sec = end_sec + 17 * 3600;
+    end_sec = end_sec + 01 * 3600;
     end_sec = end_sec + 0 * 60;
     end_sec = end_sec + 0;
     durations = end_sec - start_sec;
@@ -299,3 +299,4 @@ jQuery(function ($) {
     startTimer(durations, display);
 });
 </script>
+@endsection

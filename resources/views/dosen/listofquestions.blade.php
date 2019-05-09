@@ -50,8 +50,11 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col text-center">
-                                                    <a href="{{route('generatepacket', $quiz->id)}}" class="btn btn-danger" style="width: 150px;">Finalize Questions</a>
+                                                <div class="col text-center finalize">
+                                                    <br><form class="finalize" method="POST" action="{{route('generatepacket', $quiz->id)}}" accept-charset="UTF-8">
+                                                        <input type="hidden" name="_method" value="GET">
+                                                        <input type="button" class="btn btn-danger" value="Finalize Questions" style="width: 150px;">
+                                                    </form>
                                                 </div>
                                             </div>
                                             @else
@@ -207,6 +210,42 @@
           timer: 1500,
       }); 
     @endif
+
+    function finalizeQuiz() {
+        swal({
+            title: "Kuis 3",
+            text: "PBBK I\n10 Mei 2019, 14.00 - 15.30\n40 questions",
+            icon: "info",
+            buttons: ["Cancel", "Next"],
+            dangerMode: true,
+        })
+        .then((nextConfirmation) => {
+            if (nextConfirmation) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Once finalized, you will not be able to edit/delete the quiz info and questions!",
+                    icon: "warning",
+                    buttons: ["Cancel", "Finalize"],
+                    dangerMode: true,
+                })
+                .then((willFinalize)=>{
+                    if(willFinalize){
+                        $(".finalize").submit();
+                        swal({
+                        title:"Question has been finalized!",
+                        text:" ",
+                        icon: "success",
+                        button: false,
+                        timer: 1500,
+                    });
+                }
+            });
+            }
+        });
+    }
+    $(".finalize").click(function() {
+        finalizeQuiz();
+    });
 })(jQuery);
 </script>
 @endsection

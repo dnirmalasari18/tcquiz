@@ -191,6 +191,7 @@
         const question_score = document.getElementById("score").value;
         const option_a = tinyMCE.get('option_a').getContent();
         const option_b = tinyMCE.get('option_b').getContent();
+        // const answer = document.getElementsByClassName("choices").value;
         if(val == "") {
             swal("Question description cannot be empty!");
             return false;
@@ -203,6 +204,10 @@
             swal("Choice B cannot be empty!");
             return false;
         }
+        // if(answer == "") {
+        //     swal("Choose 1 correct answer!");
+        //     return false;
+        // }
         if(question_score == "") {
             swal("Question score cannot be empty!");
             return false;

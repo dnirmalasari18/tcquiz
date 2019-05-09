@@ -254,36 +254,48 @@
             </div>
         </div>                
     </div>
+    Registration closes in <span id="time">{{ $durasi }}</span> minutes!
+
 </div>
 
 @endsection
 
 
 <script>
-var modalConfirm = function(callback){
-  
-  $("#btn-confirm").on("click", function(){
-    $("#mi-modal").modal('show');
-  });
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
 
-  $("#modal-btn-si").on("click", function(){
-    callback(true);
-    $("#mi-modal").modal('hide');
-  });
-  
-  $("#modal-btn-no").on("click", function(){
-    callback(false);
-    $("#mi-modal").modal('hide');
-  });
-};
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-modalConfirm(function(confirm){
-  if(confirm){
-    //Acciones si el usuario confirma
-    $("#result").html("CONFIRMADO");
-  }else{
-    //Acciones si el usuario no confirma
-    $("#result").html("NO CONFIRMADO");
-  }
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+jQuery(function ($) {
+    var now = new Date();
+    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    var start_sec = 0;
+    start_sec = start_sec + now.getHours() * 3600;
+    start_sec = start_sec + now.getMinutes() * 60;
+    start_sec = start_sec + now.getSeconds();
+
+    var end = new Date('16');
+    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    var end_sec = 0;
+    end_sec = end_sec + 17 * 3600;
+    end_sec = end_sec + 0 * 60;
+    end_sec = end_sec + 0;
+    durations = end_sec - start_sec;
+    var fiveMinutes = 60 * 5,
+        display = $('#time');
+    startTimer(durations, display);
 });
 </script>

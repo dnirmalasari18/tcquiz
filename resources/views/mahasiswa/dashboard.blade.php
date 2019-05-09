@@ -95,7 +95,7 @@
                                                 </li>
                                                 @if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai))
                                                     <li>
-                                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}" disabled style="cursor: not-allowed;">
+                                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}" disabled style="cursor: not-allowed;">
                                                             Take Quiz
                                                         </button>
                                                     </li>

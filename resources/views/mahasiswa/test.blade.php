@@ -3,7 +3,7 @@
 @section('dashboard', 'active')
 
 @section('title')
-<h1>Test</h1>
+<h1>{{$kuis->nama_kuis}}</h1>
 @endsection
 
 @section('breadcrumbs')
@@ -118,14 +118,14 @@
                         </div>
                         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
                             @if($q==count($quiz))
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#submitQuiz" style="float: right; width: 70px;">Submit</button>
+                                <button class="btn btn-md btn-danger float-right" data-toggle="modal" data-target="#submitQuiz" >Submit</button>
                                 @if($q-1>0)
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+                                    <div data-toggle="modal" onclick="openSoal(event, '{{$q-1}}')"><i class="fa fa-chevron-left"></i></div>
                                 @endif
                             @else
-                                <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;" onclick="openSoal(event, '{{$q+1}}')">Next</button>
+                                <div onclick="openSoal(event, '{{$q+1}}')" class="float-right"><i class="fa fa-chevron-right"></i></div>
                                 @if($q-1>0)
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+                                    <div data-toggle="modal"  onclick="openSoal(event, '{{$q-1}}')"><i class="fa fa-chevron-left"></i></div>
                                 @endif
                             @endif
                         </div>
@@ -249,7 +249,6 @@
 </div>
 
 <script>
-
     function openSoal(evt, num) {
         var i, card, soal;
         card = document.getElementsByClassName("card nuzha");
@@ -280,7 +279,6 @@
             document.getElementById("nomer"+num).className = "card-body text-secondary soal-aktif";
         }
     }
-
     function flagSoal(evt, num) {
         var idFlag = "flag" + num;
         var x = document.getElementById(idFlag).checked;
@@ -293,9 +291,7 @@
             document.getElementById(id).className = "card-body text-secondary soal-aktif";
         }
     }
-
     document.getElementById("nomer1").click();
-
 </script>
 
 @endsection
@@ -308,9 +304,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <script>
-
     $(document).ready(function(){
-
         $(".form-check-input").click(function() {
             var data = $("#myForm").serialize();
             $.ajax({
@@ -326,7 +320,6 @@
                 }
             });
         });
-
         $(".switch-input").click(function() {
             var data = $("#myForm").serialize();
             $.ajax({

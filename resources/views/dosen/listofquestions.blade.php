@@ -24,26 +24,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="col-md-12">
-                        @if (\Session::has('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                              {!! \Session::get('success') !!}
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                                    
-                            </div>
-                        @endif
-                    </div>
-                    <div class="col-md-12">
-                        @if (\Session::has('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                              {!! \Session::get('error') !!}
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                                    
-                            </div>
-                        @endif
-                    </div>
                     @if(count($questions))
                         <div class="">
                             <div class="col-md-4 float-right">
@@ -69,10 +49,12 @@
                                                     <a href="{{route('createquestion', $quiz->id)}}" class="btn btn-primary" style="width: 150px;">Add Question</a>
                                                 </div>
                                             </div>
-                                            
                                             <div class="row">
-                                                <div class="col text-center">
-                                                    <a href="{{route('generatepacket', $quiz->id)}}" class="btn btn-danger" style="width: 150px;">Finalize Questions</a>
+                                                <div class="col text-center finalize">
+                                                    <br><form class="finalize" method="POST" action="{{route('generatepacket', $quiz->id)}}" accept-charset="UTF-8">
+                                                        <input type="hidden" name="_method" value="GET">
+                                                        <input type="button" class="btn btn-danger" value="Finalize Questions" style="width: 150px;">
+                                                    </form>
                                                 </div>
                                             </div>
                                             @else
@@ -88,22 +70,19 @@
                             </div>
                         </div>
                         @for ($i = 0; $i < count($questions); $i++)
-                        <div class="">
+                        <div>
                             <div class="col-md-8 float-left">
                                 <div class="card">
-                                    <div class="card-header text-center">
+                                    <div class="card-header">
                                         <strong class="card-title mb-3">SOAL {{$questions->currentPage()}}</strong>
                                         @if($quiz->finalize_status=='0')
-                                        
-                                        <form class="delete-form" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
-                                            <input name="_method" type="hidden" value="Delete">
-                                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                                            <input type="button" class="btn btn-sm btn-danger delete-btn float-right" value="Delete">
-                                        </form>
-
-                                        <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$quiz->id, $questions[$i]->id])}}" role="button">Edit</a>
+                                            <form class="delete-form" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
+                                                <input name="_method" type="hidden" value="Delete">
+                                                <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                                <input type="button" class="btn btn-sm btn-danger delete-btn float-right" value="Delete">
+                                            </form>
+                                            <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$quiz->id, $questions[$i]->id])}}" role="button">Edit</a>
                                         @endif
-                                        
                                     </div>
                                     <div class="card-body">
                                         <div align="left">
@@ -163,7 +142,6 @@
                                             </div>  
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -185,35 +163,89 @@
         </div>
     </div>
 </div><!-- .animated -->
-
 @endsection
-
 @section('script')
 <script>
 (function($) {
-
-function deleteQuestion() {
-  swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this question!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    $(".delete-form").submit();
-     swal("Question has been deleted!", {
-      icon: "success",
-    });
-  }
-});
-}
+    function deleteQuestion() {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this question!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $(".delete-form").submit();
+                swal({
+                    title:"Question has been deleted!",
+                    text:" ",
+                    icon: "success",
+                    button: false,
+                    timer: 1500,
+                });
+            }
+        });
+    }
     $(".delete-btn").click(function() {
-      deleteQuestion();
-});
+        deleteQuestion();
+    });
 
-    
+    @if(Session::has('create_done'))
+      swal({
+          title: "Question has been created!",
+          text:" ",
+          icon: "success",
+          button: false,
+          timer: 1500,
+      }); 
+    @endif
+    @if(Session::has('update_done'))
+      swal({
+          title: "Question has been updated!",
+          text:" ",
+          icon: "success",
+          button: false,
+          timer: 1500,
+      }); 
+    @endif
+
+    function finalizeQuiz() {
+        swal({
+            title: "Kuis 3",
+            text: "PBBK I\n10 Mei 2019, 14.00 - 15.30\n40 questions",
+            icon: "info",
+            buttons: ["Cancel", "Next"],
+            dangerMode: true,
+        })
+        .then((nextConfirmation) => {
+            if (nextConfirmation) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Once finalized, you will not be able to edit/delete the quiz info and questions!",
+                    icon: "warning",
+                    buttons: ["Cancel", "Finalize"],
+                    dangerMode: true,
+                })
+                .then((willFinalize)=>{
+                    if(willFinalize){
+                        $(".finalize").submit();
+                        swal({
+                        title:"Question has been finalized!",
+                        text:" ",
+                        icon: "success",
+                        button: false,
+                        timer: 1500,
+                    });
+                }
+            });
+            }
+        });
+    }
+    $(".finalize").click(function() {
+        finalizeQuiz();
+    });
 })(jQuery);
 </script>
 @endsection

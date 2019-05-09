@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Agenda;
 use App\AbsenKuliah;
+use App\Quiz;
+use App\Questions;
+use Auth;
 
 class DosenController extends Controller
 {
 	public function index()
     {
-        return view('dosen.dashboard');
+        $quiz = Quiz::where('dosen_id', Auth::user()->id)->get();
+        return view('dosen.dashboard', compact('quiz'));
     }
 
     public function listOfUsers()

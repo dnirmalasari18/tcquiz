@@ -37,14 +37,6 @@
                             <td>Point</td>
                             <td>: 100.000 / 100.000 (100%)</td>
                         </tr>
-                        <tr>
-                            <td>Correct Answers</td>
-                            <td>: 3 / 3</td>
-                        </tr>
-                        <tr>
-                            <td>Comment</td>
-                            <td>: -</td>
-                        </tr>
                     </tbody>
                     
                 </table>

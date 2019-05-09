@@ -38,7 +38,7 @@
                                 <td>{{ $q->nama_kuis }}</td>
                                 <td>{{ $q->pertemuanke->agenda->namaAgenda }}</td>
                                 <td align="center">{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
-                                <td align="center">{{ $q->durasi }} menit</td>
+                                <td align="center">{{ $q->durasi }} minute(s)</td>
                                 <td align="center">
                                     <a class="btn btn-info btn-sm" href="{{route('quiz.show', $q->id)}}" role="button">Detail</a>
 

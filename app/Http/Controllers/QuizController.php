@@ -25,7 +25,7 @@ class QuizController extends Controller
     {
         $agenda = Agenda::orderBy('namaAgenda','asc')->get();
         $absenkuliah = AbsenKuliah::get();
-        return view ('dosen.createquiz', compact('absenkuliah', 'agenda'));
+        return view('dosen.createquiz', compact('absenkuliah', 'agenda'));
     }
 
     public function store(Request $request)
@@ -47,7 +47,7 @@ class QuizController extends Controller
     {
         $kuis = Quiz::findorfail($quiz);
         $kuis->update($request->all());
-        return redirect()->back()->with(['update_done' => 'Quiz has been updated']);
+        return redirect()->back()->with(['updatequiz_done' => 'Quiz has been updated']);
     }
 
     public function destroy($quiz)
@@ -81,11 +81,11 @@ class QuizController extends Controller
         $questions = Questions::where('quiz_id', $quiz1)->get();
 
         if ($questions->count()==0) {
-            return redirect()->back()->with(['error' => 'There is no question! Add question first']);
+            return redirect()->back()->with(['no_question' => 'There is no question! Add question first']);
         }
 
         if ($quiz->finalize_status=='1') {
-            return redirect('/dosen/quiz/'. $quiz1.'/questions')->with(['error' => 'Quiz has been finalized']);
+            return redirect('/dosen/quiz/'. $quiz1)->with(['finalized' => 'Quiz has been finalized']);
         }
 
         foreach ($participants as $participant) { 
@@ -119,5 +119,20 @@ class QuizController extends Controller
         $quiz->finalize_status = '1';
         $quiz->update();
         return redirect()->back();
+    }
+
+    public function show($quiz)
+    {
+        $kuis = Quiz::findorfail($quiz);
+        $id_agenda = AbsenKuliah::find($kuis->absenkuliah_id)->fk_idAgenda;
+        $participant = Kehadiran::where('idAgenda', $id_agenda)->get();
+        $participants = MahasiswaPacket::whereHas('paketkuis', function($q) use ($quiz) {
+        $q->where('quiz_id', $quiz);})->with('paketkuis')->get();
+
+        $agenda = Agenda::orderBy('namaAgenda','asc')->get();
+        $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();
+
+        $questions = Questions::where('quiz_id', $quiz)->get();
+        return view('dosen.quizinfo',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions'));
     }
 }

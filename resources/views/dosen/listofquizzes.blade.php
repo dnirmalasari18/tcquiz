@@ -40,9 +40,8 @@
                                 <td align="center">{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
                                 <td align="center">{{ $q->durasi }} menit</td>
                                 <td align="center">
-                                    <a class="btn btn-info btn-sm" href="{{route('quiz.edit', $q->id)}}" role="button">Info</a>
-                                    <a class="btn btn-warning btn-sm" href="{{route('listofquestions', $q->id)}}" role="button">Questions</a>
-                                    <a class="btn btn-light btn-sm" href="{{route('participantslist', $q->id)}}" role="button">Summary</a>
+                                    <a class="btn btn-info btn-sm" href="{{route('quiz.show', $q->id)}}" role="button">Detail</a>
+
                                 </td>
                             </tr>
                             @endforeach

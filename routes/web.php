@@ -30,16 +30,11 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::get('agenda/{jadwal_id}/waktus', 'DosenController@getAgendaWaktu');
 
         Route::resource('questions', 'QuestionsController');
-        Route::get('quiz/{id}/questions', 'QuestionsController@questionslist')->name('listofquestions');
         Route::get('quiz/{id}/questions/create', 'QuestionsController@create')->name('createquestion');
         Route::get('quiz/{quiz_id}/questions/{question_id}/edit', 'QuestionsController@edit')->name('editquestion');
         
         Route::resource('quiz', 'QuizController');
-        Route::get('quiz/{id}/participants', 'QuizController@participantsList')->name('participantslist');
         Route::get('quiz/{id}/generate', 'QuizController@generatePacket')->name('generatepacket');
-
-       
-        
     });
 });
 

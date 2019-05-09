@@ -3,7 +3,7 @@
 @section('dashboard', 'active')
 
 @section('title')
-<h1>Test</h1>
+<h1>{{$kuis->nama_kuis}}</h1>
 @endsection
 
 @section('breadcrumbs')

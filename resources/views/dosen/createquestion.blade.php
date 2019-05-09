@@ -86,7 +86,7 @@
                                             <img src="{{asset('img/spinner.gif')}}" width="60px">
                                         </div>
                                         <div class="content-body">
-                                            <input type="textarea" class="form-control multiple-choice" name="option_1">    
+                                            <input type="textarea" id="option_a" class="form-control multiple-choice" name="option_1">    
                                         </div>
                                       
                                         <input type="radio" name="correct_answer" value="2" class="form-check-input">
@@ -95,7 +95,7 @@
                                             <img src="{{asset('img/spinner.gif')}}" width="60px">
                                         </div>
                                         <div class="content-body">
-                                            <input type="textarea" class="form-control multiple-choice" name="option_2">    
+                                            <input type="textarea" id="option_b" class="form-control multiple-choice" name="option_2">    
                                         </div>
                                         
                                         <div class="pil_3" style="display: none">
@@ -136,7 +136,7 @@
                                     <label class="font-weight-bold" for="">Question Score</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" min="0" class="form-control"name="question_score">
+                                    <input type="number" min="0" id="score" class="form-control" name="question_score">
                                 </div>
                             </div>
                             <br>
@@ -188,11 +188,26 @@
 (function($) {
     $("#question_form").submit(function(e) {   
         const val = tinyMCE.get('question-desc').getContent();
+        const question_score = document.getElementById("score").value;
+        const option_a = tinyMCE.get('option_a').getContent();
+        const option_b = tinyMCE.get('option_b').getContent();
         if(val == "") {
             swal("Question description cannot be empty!");
             return false;
         }
-        console.log(val)
+        if(option_a == "") {
+            swal("Choice A cannot be empty!");
+            return false;
+        }
+        if(option_b == "") {
+            swal("Choice B cannot be empty!");
+            return false;
+        }
+        if(question_score == "") {
+            swal("Question score cannot be empty!");
+            return false;
+        }
+        //console.log(val)
     });
     setTimeout(function () {
         $(".loading").html("");
@@ -220,7 +235,6 @@
             $(`.pil_${level}`).fadeOut(100);
             level--;
         }
-        
         console.log(level);
     });
 })(jQuery);    

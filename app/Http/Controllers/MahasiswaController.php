@@ -104,16 +104,29 @@ class MahasiswaController extends Controller
             return abort(404);
         }
         
-
         if(!$mp->end_time){
             $now = date("Y-m-d H:i:s", strtotime('7 hour'));
             $mp->end_time = $now;
             $mp->save();
         }
+
+        $q = $data['kuis'];
+
+        $dead = date("Y-m-d H:i:s", strtotime($mp->end_time) + 60*$q->durasi);
+        $now = date("Y-m-d H:i:s", strtotime('7 hour'));
+
+        if (strtotime(date("H:i:s",strtotime($mp->end_time) + 60*$q->durasi)) > strtotime($q->pertemuanke->waktuSelesai)) {
+            $selisih = strtotime(date("H:i:s",strtotime($mp->end_time) + 60*$q->durasi)) - strtotime($q->pertemuanke->waktuSelesai);
+            $dead = date("Y-m-d H:i:s",strtotime($mp->end_time) + 60*$q->durasi + $selisih);
+        }
+
+        if (strtotime($now) > strtotime($dead)) {
+            // echo $now, $dead;
+            return redirect('/mahasiswa/quiz/' .$idquiz. '/result');
+        }
         
         $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
         
-        $q = $data['kuis'];
 
         if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan)){
             if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai)){

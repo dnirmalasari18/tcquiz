@@ -202,7 +202,10 @@
     let level = 2;
 
     $("#add-more").click(function() {
-        if (level <= 5) {
+        if ((level) == 5){
+            swal("The maximum number of choices is 5!");
+        }
+        if (level < 5) {
             level++;
             $(`.pil_${level}`).fadeIn(500);       
         }
@@ -210,10 +213,14 @@
     });
 
     $("#delete-option").click(function() {
-        if ((level) >= 2) {
-          $(`.pil_${level}`).fadeOut(100);
-          level--;
-        }   
+        if ((level) == 2){
+            swal("The minimum number of choices is 2!");
+        }
+        if ((level) > 2) {
+            $(`.pil_${level}`).fadeOut(100);
+            level--;
+        }
+        
         console.log(level);
     });
 })(jQuery);    

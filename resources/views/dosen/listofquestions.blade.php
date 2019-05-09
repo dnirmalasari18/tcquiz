@@ -1,4 +1,8 @@
-
+<style type="text/css">
+    .aku{
+        display: none;
+    }
+</style>
 @if(count($questions))
     <div class="">
         <div class="col-md-4 float-right">
@@ -8,10 +12,11 @@
                 </div>
                 <div class="card-body">
                     <div align="left">
+                        @for ($i = 0; $i < count($questions); $i++)
+                        <a onclick="openSoal(event, '{{$i}}')" id="nomor{{$i}}" class="card-body text-secondary mt-2 btn2 btn-info btn-sm" style="height: 30px; width: 40px;">{{$i+1}}</a>
+                        @endfor
+                     
                         
-                                <a href="" class="mt-2 btn2 btn-info btn-sm" style="height: 30px; width: 40px;"></a>
-                           
-                                <a href="" class="mt-2 btn2 btn-light btn-sm" style="height: 30px; width: 40px;"></a>
                            
                     </div>
                     <hr>
@@ -45,7 +50,7 @@
     @for ($i = 0; $i < count($questions); $i++)
     <div>
         <div class="col-md-8 float-left">
-            <div class="card">
+            <div class="card aku" id="soal{{$i}}">
                 <div class="card-header">
                     <strong class="card-title mb-3">SOAL {{$i+1}}</strong>
                     @if($kuis->finalize_status=='0')

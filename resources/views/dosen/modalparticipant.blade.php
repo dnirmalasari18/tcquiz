@@ -10,8 +10,8 @@
             </div>
             <div class="modal-body">
                 <table class="table">
-                    <tbody >
-                        <tr>
+                    <tbody>
+                        <tr style="border-top-style: hidden;">
                             <td>NRP</td>
                             <td>: {{ $p->user->username }}</td>
                         </tr>

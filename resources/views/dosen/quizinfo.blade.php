@@ -58,7 +58,21 @@
 @endsection
 
 @section('script')
-<script>        
+<script>
+    
+
+    function openSoal(evt, num) {
+        var i, card, soal;
+        card = document.getElementsByClassName("card aku");
+        for (i = 0; i < card.length; i++) {
+            card[i].style.display = "none";
+        }
+        var id = "soal" + num;
+        document.getElementById(id).style.display = "flex";
+
+    }
+
+    document.getElementById("nomor0").click();
 (function($) {
     $(".kelas-select").change(async function(){
         let jadwals;
@@ -282,10 +296,13 @@
                 });
             }
         });
+
     }
     $(".finalize").click(function() {
         finalizeQuiz();
     });
+
 })(jQuery);
+
 </script>
 @endsection

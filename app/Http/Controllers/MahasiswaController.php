@@ -46,9 +46,11 @@ class MahasiswaController extends Controller
 
     public function dashboard()
     {
+        $user_id = Auth::user()->id;
         $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
         $quiz = array();
         $i = 0;
+
         if(count($classes)){
             foreach($classes as $c){
                 foreach($c->agenda->pertemuan as $p){
@@ -62,7 +64,7 @@ class MahasiswaController extends Controller
             }
         }
 
-        return view('mahasiswa.dashboard', compact('quiz'));
+        return view('mahasiswa.dashboard', compact('quiz', 'userid'));
     }
 
     public function myQuestions($idquiz)
@@ -94,7 +96,7 @@ class MahasiswaController extends Controller
         if($data['paket']){
             $mp_id = $data['paket']->id;
             $mp = MahasiswaPacket::findorfail($mp_id);
-            if ($mp->quiz_score) {
+            if ($mp->status_ambil) {
                 return abort(404);
             }
         }
@@ -109,26 +111,24 @@ class MahasiswaController extends Controller
             $mp->save();
         }
         
-        // $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
+        $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
         
-        // $q = $data['kuis'];
+        $q = $data['kuis'];
 
-        // if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan)){
-        //     if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai)){
-        //         return abort(404);
-        //     }
-        //     elseif(strtotime(date("H:i:s", strtotime('7 hour'))) > strtotime($q->pertemuanke->waktuSelesai)){
-        //         return abort(404);
-        //     }
-        //     else{
-        //         return view('mahasiswa.test', $data);
-        //     }
-        // }
-        // else{
-        //     return abort(404);
-        // }
-
-        return view('mahasiswa.test', $data);
+        if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan)){
+            if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai)){
+                return abort(404);
+            }
+            elseif(strtotime(date("H:i:s", strtotime('7 hour'))) > strtotime($q->pertemuanke->waktuSelesai)){
+                return abort(404);
+            }
+            else{
+                return view('mahasiswa.test', $data);
+            }
+        }
+        else{
+            return abort(404);
+        }
         
     }
 
@@ -162,6 +162,33 @@ class MahasiswaController extends Controller
         $arr = implode(', ', $arr);
         $fl = implode(', ', $fl);
         $mp->update(array('user_answer_list' => $arr, 'question_flag_list' => $fl));
+
+        $user = User::where('username', Auth::user()->username)->first();
+        $quiz = Quiz::findorfail($request->quiz_id);
+        // $soal = Questions::where('quiz_id', $idquiz)->get();
+
+        $qp = QuizPacket::findorfail($mp->paketkuis->id);
+
+        $qp_key = array_map('intval', explode(",", $qp->packet_answer_list));
+        $mp_key = array_map('intval', explode(",", $mp->user_answer_list));
+        $seq = array_map('intval', explode(",", $qp->question_id_list));
+
+        $quiz_score = 0;
+        $total_score = 0;
+
+        for ($i=0; $i < count($qp_key)-1; $i++) { 
+
+            $score = Questions::findorfail($seq[$i])->question_score;
+            $total_score = $total_score + $score;
+
+            if ($qp_key[$i] == $mp_key[$i]) {
+                $score = Questions::findorfail($seq[$i])->question_score;
+                $quiz_score = $quiz_score + $score;
+            }
+        }
+
+        $quiz_score = $quiz_score / $total_score * 100;
+        $mp->update(array('quiz_score' => $round($quiz_score)));
 
         // echo $mp;
         return Response::json($mp);
@@ -243,6 +270,7 @@ class MahasiswaController extends Controller
 
         $quiz_score = $quiz_score / $total_score * 100;
         $mp->quiz_score = round($quiz_score);
+        $mp->status_ambil = 1;
         $mp->save();
 
         $data['mp'] = $mp;

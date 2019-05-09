@@ -72,11 +72,28 @@
                                     </button>
                                 </td>
                                 @else
-                                <td align="center"><span class="badge badge-pill badge-success">Active</span></td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}">Take Quiz
-                                    </button>
-                                </td>
+                                @if(count($q->pakets))
+                                    @foreach($q->pakets as $qp)
+                                        @if($qp->user->user_id == $user_id)
+                                            @if($qp->user->status_ambil)
+                                                <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
+                                                <td align="center">
+                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#resultModal{{$q->id}}">See Result
+                                                    </button>
+                                                </td>
+                                                <?php
+                                                    break;
+                                                ?>
+                                            @else
+                                            <td align="center"><span class="badge badge-pill badge-success">Active</span></td>
+                                            <td align="center">
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}">Take Quiz
+                                                </button>
+                                            </td>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
                                 @endif
                                 @endif
 

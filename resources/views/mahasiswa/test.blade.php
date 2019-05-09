@@ -249,6 +249,7 @@
 </div>
 
 <script>
+
     function openSoal(evt, num) {
         var i, card, soal;
         card = document.getElementsByClassName("card nuzha");
@@ -279,6 +280,7 @@
             document.getElementById("nomer"+num).className = "card-body text-secondary soal-aktif";
         }
     }
+
     function flagSoal(evt, num) {
         var idFlag = "flag" + num;
         var x = document.getElementById(idFlag).checked;
@@ -291,7 +293,9 @@
             document.getElementById(id).className = "card-body text-secondary soal-aktif";
         }
     }
+
     document.getElementById("nomer1").click();
+
 </script>
 
 @endsection
@@ -304,7 +308,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <script>
+
     $(document).ready(function(){
+
         $(".form-check-input").click(function() {
             var data = $("#myForm").serialize();
             $.ajax({
@@ -320,6 +326,7 @@
                 }
             });
         });
+
         $(".switch-input").click(function() {
             var data = $("#myForm").serialize();
             $.ajax({

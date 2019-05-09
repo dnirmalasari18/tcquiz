@@ -25,150 +25,149 @@
         $arr = array_map('intval', explode(",", $paket->question_id_list));
         $n = count($arr)-1;
         $quiz = array();
-        // $ans = array();
         for ($i=0; $i <$n ; $i++) { 
             $quiz[$i] = $i + 1;
-            // $ans[$i] = 0;
         }
-
     ?>
-<form action="{{route('submit.quiz')}}" method="POST" id="myForm">
-{{ csrf_field() }}
-{{ method_field('PATCH') }}
-<input type="hidden" name="quiz_id" value="{{$kuis->id}}">
-<input type="hidden" name="end_time" value="{{$paket->id}}">
-<input type="hidden" name="mp_id" value="{{$paket->id}}">
-<input type="hidden" name="jumlah" value="{{count($quiz)}}">
-    @foreach($quiz as $q)
-    @foreach($test as $t)
-    @if($t->id == $arr[$q-1])
-    <div class="card nuzha" id="soal{{$q}}">
-        <div class="card-header">
-            <strong class="card-title">Question {{$q}}</strong>
-            <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
-            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;">
-                <input id="flag{{$q}}" onclick="flagSoal(event, '{{$q}}')" type="checkbox" class="switch-input" name="fl[{{$q}}]" value="1"
-                @if(array_map('intval', explode(",", $paket->question_flag_list))[$q-1]==1)
-                    checked
+    <form action="{{route('submit.quiz')}}" method="POST" id="myForm">
+
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
+        <input type="hidden" name="quiz_id" value="{{$kuis->id}}">
+        <input type="hidden" name="end_time" value="{{$paket->id}}">
+        <input type="hidden" name="mp_id" value="{{$paket->id}}">
+        <input type="hidden" name="jumlah" value="{{count($quiz)}}">
+        @foreach($quiz as $q)
+            @foreach($test as $t)
+                @if($t->id == $arr[$q-1])
+                    <div class="card nuzha" id="soal{{$q}}">
+                        <div class="card-header">
+                            <strong class="card-title">Question {{$q}}</strong>
+                            <strong class="card-title" style="float: right; margin-bottom: 0;">Flag</strong>
+                            <label class="switch switch-3d switch-warning mr-3" style="float: right; margin-bottom: 0;">
+                                <input id="flag{{$q}}" onclick="flagSoal(event, '{{$q}}')" type="checkbox" class="switch-input" name="fl[{{$q}}]" value="1"
+                                @if(array_map('intval', explode(",", $paket->question_flag_list))[$q-1]==1)
+                                    checked
+                                @endif
+                                > <span class="switch-label"></span> <span class="switch-handle"></span>
+                            </label>
+                        </div>
+                        <div class="card-body">
+                            {!!$t->question_description!!}
+                        </div>
+                        <div class="card-body">
+                            <div style="margin-bottom: 10px;"><strong>Answers</strong></div>
+                            <div class="form-check">
+                                @if($t->option_1)
+                                    <div class="radio">
+                                      <label for="" class="form-check-label ">
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="1" class="form-check-input"
+                                        @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==1)
+                                            checked
+                                        @endif
+                                        >
+                                        {!!$t->option_1!!}
+                                      </label>
+                                    </div>
+                                @endif
+                                @if($t->option_2)
+                                    <div class="radio">
+                                      <label for="" class="form-check-label ">
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="2" class="form-check-input"
+                                        @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==2)
+                                            checked
+                                        @endif>
+                                        {!!$t->option_2!!}
+                                      </label>
+                                    </div>
+                                @endif
+                                @if($t->option_3)
+                                    <div class="radio">
+                                      <label for="" class="form-check-label ">
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="3" class="form-check-input"
+                                        @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==3)
+                                            checked
+                                        @endif>
+                                        {!!$t->option_3!!}
+                                      </label>
+                                    </div>
+                                @endif
+                                @if($t->option_4)
+                                    <div class="radio">
+                                      <label for="" class="form-check-label ">
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="4" class="form-check-input"
+                                        @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==4)
+                                            checked
+                                        @endif>
+                                        {!!$t->option_4!!}
+                                      </label>
+                                    </div>
+                                @endif
+                                @if($t->option_5)
+                                    <div class="radio">
+                                      <label for="" class="form-check-label ">
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="5" class="form-check-input"
+                                        @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==5)
+                                            checked
+                                        @endif>
+                                        {!!$t->option_5!!}
+                                      </label>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
+                            @if($q==count($quiz))
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#submitQuiz" style="float: right; width: 70px;">Submit</button>
+                                @if($q-1>0)
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+                                @endif
+                            @else
+                                <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;" onclick="openSoal(event, '{{$q+1}}')">Next</button>
+                                @if($q-1>0)
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+                                @endif
+                            @endif
+                        </div>
+                    </div>
+                    <?php
+                        break;
+                    ?>
                 @endif
-                > <span class="switch-label"></span> <span class="switch-handle"></span>
-            </label>
-        </div>
-        <div class="card-body">
-            {!!$t->question_description!!}
-        </div>
-        <div class="card-body">
-            <div style="margin-bottom: 10px;"><strong>Answers</strong></div>
-            <div class="form-check">
-                @if($t->option_1)
-                <div class="radio">
-                  <label for="" class="form-check-label ">
-                    <input type="radio" id="" name="ans[{{$q}}]" value="1" class="form-check-input"
-                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==1)
-                        checked
-                    @endif
-                    >
-                    {!!$t->option_1!!}
-                  </label>
+            @endforeach
+        @endforeach
+
+        <div class="modal fade" id="submitQuiz" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg nuzha3" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mediumModalLabel">Quiz Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <style type="text/css">
+                            .nuzha4{
+                                margin-bottom: 20px;
+                            }
+                            .nuzha2{
+                                width: 75px;
+                            }
+                        </style>
+                        <div class="nuzha4" align="center">
+                            Are you sure you want to finish this quiz?
+                        </div>
+                        <div align="center">
+                            <button type="button" class="btn btn-danger btn-sm nuzha2" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success btn-sm nuzha2">Continue</button>
+                        </div>
+                    </div>
                 </div>
-                @endif
-                @if($t->option_2)
-                <div class="radio">
-                  <label for="" class="form-check-label ">
-                    <input type="radio" id="" name="ans[{{$q}}]" value="2" class="form-check-input"
-                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==2)
-                        checked
-                    @endif>
-                    {!!$t->option_2!!}
-                  </label>
-                </div>
-                @endif
-                @if($t->option_3)
-                <div class="radio">
-                  <label for="" class="form-check-label ">
-                    <input type="radio" id="" name="ans[{{$q}}]" value="3" class="form-check-input"
-                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==3)
-                        checked
-                    @endif>
-                    {!!$t->option_3!!}
-                  </label>
-                </div>
-                @endif
-                @if($t->option_4)
-                <div class="radio">
-                  <label for="" class="form-check-label ">
-                    <input type="radio" id="" name="ans[{{$q}}]" value="4" class="form-check-input"
-                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==4)
-                        checked
-                    @endif>
-                    {!!$t->option_4!!}
-                  </label>
-                </div>
-                @endif
-                @if($t->option_5)
-                <div class="radio">
-                  <label for="" class="form-check-label ">
-                    <input type="radio" id="" name="ans[{{$q}}]" value="5" class="form-check-input"
-                    @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==5)
-                        checked
-                    @endif>
-                    {!!$t->option_5!!}
-                  </label>
-                </div>
-                @endif
             </div>
         </div>
-        <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
-            @if($q==count($quiz))
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#submitQuiz" style="float: right; width: 70px;">Submit</button>
-            @if($q-1>0)
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
-            @endif
-            @else
-            <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;" onclick="openSoal(event, '{{$q+1}}')">Next</button>
-            @if($q-1>0)
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
-            @endif
-            @endif
-        </div>
-    </div>
-    <?php
-    break;
-    ?>
-    @endif
-    @endforeach
-    @endforeach
 
-    <div class="modal fade" id="submitQuiz" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg nuzha3" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="mediumModalLabel">Quiz Confirmation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <style type="text/css">
-                        .nuzha4{
-                            margin-bottom: 20px;
-                        }
-                        .nuzha2{
-                            width: 75px;
-                        }
-                    </style>
-                    <div class="nuzha4" align="center">
-                        Are you sure you want to finish this quiz?
-                    </div>
-                    <div align="center">
-                        <button type="button" class="btn btn-danger btn-sm nuzha2" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success btn-sm nuzha2">Continue</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
+    </form>
 </div>
 
 <style type="text/css">
@@ -178,6 +177,7 @@
 </style>
 
 <div class="col-md-3">
+
     <style type="text/css">
         .card{
             margin-bottom: 0;
@@ -212,40 +212,40 @@
             color: white !important;
         }
     </style>
+
     <div class="card card-soal">
         <div class="card-header" align="center">
             <strong class="card-title">Questions List</strong>
         </div>
         <div class="card-body soal">
             <?php
-
                 $soal = array();
                 for ($i=0; $i <$n ; $i++) { 
                     $soal[$i] = $i + 1;
                 }
-
             ?>
             @foreach($soal as $m)
-            @if($m%5==1)
-            <div class="row">
-                <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" onclick="openSoal(event, '{{$m}}')" id="nomer{{$m}}" align="center">{{$m}}</div>
-                    </section>
-                </div>
-            @else
-                <div class="col">
-                    <section class="card">
-                        <div class="card-body text-secondary" onclick="openSoal(event, '{{$m}}')" id="nomer{{$m}}" align="center">{{$m}}</div>
-                    </section>
-                </div>
-            @endif
-            @if($m%5==0 || $m==count($soal))
-            </div>
-            @endif
+                @if($m%5==1)
+                    <div class="row">
+                        <div class="col">
+                            <section class="card">
+                                <div class="card-body text-secondary" onclick="openSoal(event, '{{$m}}')" id="nomer{{$m}}" align="center">{{$m}}</div>
+                            </section>
+                        </div>
+                @else
+                        <div class="col">
+                            <section class="card">
+                                <div class="card-body text-secondary" onclick="openSoal(event, '{{$m}}')" id="nomer{{$m}}" align="center">{{$m}}</div>
+                            </section>
+                        </div>
+                @endif
+                @if($m%5==0 || $m==count($soal))
+                    </div>
+                @endif
             @endforeach
         </div>                
     </div>
+
 </div>
 
 <script>
@@ -297,6 +297,7 @@
     document.getElementById("nomer1").click();
 
 </script>
+
 @endsection
 
 @section('script')
@@ -341,7 +342,6 @@
                 }
             });
         });
-
     });
     
 </script>

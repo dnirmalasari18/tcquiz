@@ -13,8 +13,6 @@
     .content-body {
       display: none;
     }
-
-
 </style>
 @endsection
 
@@ -44,16 +42,16 @@
                               @endforeach
                           </ul>
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                              <span aria-hidden="true">&times;</span>
                           </button> 
                         </div>
                         @endif
                         @if (\Session::has('create_done'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                              {!! \Session::get('create_done') !!}
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>                                    
+                                {!! \Session::get('create_done') !!}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>                                    
                             </div>
                         @endif
                     </div>
@@ -66,14 +64,14 @@
                                     <label class="font-weight-bold" for="">Question</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                  <div class="loading">
-                                    <img src="{{asset('img/spinner.gif')}}" width="60px">
-                                  </div>
-                                  <div class="content-body" style="display: none">
-                                    <div class="form-check">
-                                      <input type="textarea" class="form-control question-desc" name="question_description" id="question-desc">
+                                    <div class="loading">
+                                        <img src="{{asset('img/spinner.gif')}}" width="60px">
                                     </div>
-                                  </div>
+                                    <div class="content-body" style="display: none">
+                                        <div class="form-check">
+                                            <input type="textarea" class="form-control question-desc" name="question_description" id="question-desc">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
@@ -81,62 +79,55 @@
                                     <label class="font-weight-bold" for="">Choices</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <div class="form-check">
-                                      <input type="radio" name="correct_answer" value="1" class="form-check-input">
-                                      <p class="font-weight-bold">A</p>
-                                       <div class="loading">
-                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
-                                        </div>
-                                        <div class="content-body">
-                                          <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_1">    
-                                        </div>
-                                      
-
-                                      <input type="radio" name="correct_answer" value="2" class="form-check-input">
-                                      <p class="font-weight-bold">B</p>
-                                       <div class="loading">
-                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
-                                        </div>
-
-                                        <div class="content-body">
-                                          <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_2">    
-
-                                        </div>
-                                      
-
-                                      <input type="radio" name="correct_answer" value="3" class="form-check-input">
-                                      <p class="font-weight-bold">C</p>
-
+                                    <div class="form-check choices">
+                                        <input type="radio" name="correct_answer" value="1" class="form-check-input">
+                                        <p class="font-weight-bold">A</p>
                                         <div class="loading">
-                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                            <img src="{{asset('img/spinner.gif')}}" width="60px">
                                         </div>
                                         <div class="content-body">
-                                          <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_3">    
+                                            <input type="textarea" class="form-control multiple-choice" name="option_1">    
                                         </div>
                                       
+                                        <input type="radio" name="correct_answer" value="2" class="form-check-input">
+                                        <p class="font-weight-bold">B</p>
+                                        <div class="loading">
+                                            <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                        </div>
+                                        <div class="content-body">
+                                            <input type="textarea" class="form-control multiple-choice" name="option_2">    
+                                        </div>
+                                        
+                                        <div class="pil_3" style="display: none">
+                                            <input type="radio" name="correct_answer" value="3" class="form-check-input">
+                                            <p class="font-weight-bold">C</p>
+                                            <div class="content-body">
+                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_3">
+                                            </div>
+                                        </div> 
 
-                                      <input type="radio" name="correct_answer" value="4" class="form-check-input content-body">
-                                      <p class="font-weight-bold">D</p>
-                                      
-                                      <div class="loading">
-                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
-                                      </div>
+                                        <div class="pil_4" style="display: none">
+                                            <input type="radio" name="correct_answer" value="4" class="form-check-input">
+                                            <p class="font-weight-bold">D</p>
+                                            <div class="loading">
+                                                <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                            </div>
+                                            <div class="content-body">
+                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4">
+                                            </div>
+                                        </div>     
 
-                                      <div class="content-body">
-                                          <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4">
-                                      </div>
-                                    
-
-                                      <input type="radio" name="correct_answer" value="5" class="form-check-input">
-                                      <p class="font-weight-bold">E</p>
-                                    
-                                     <div class="loading">
-                                          <img src="{{asset('img/spinner.gif')}}" width="60px">
-                                      </div>
-
-                                      <div class="content-body">
-                                        <input type="textarea" class="form-control multiple-choice content-body" placeholder="" name="option_5">
-                                      </div>                                      
+                                        <div class="pil_5" style="display: none">
+                                            <input type="radio" name="correct_answer" value="5" class="form-check-input">
+                                            <p class="font-weight-bold">E</p>
+                                            <div class="content-body">
+                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_5">
+                                            </div>                             
+                                        </div>
+                                    </div><br>
+                                    <div class="text-right">
+                                        <button class="btn btn-sm btn-primary" type="button" id="add-more">Add More Option</button>
+                                        <button class="btn btn-sm btn-danger" type="button" id="delete-option">Delete Option</button>
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +136,7 @@
                                     <label class="font-weight-bold" for="">Question Score</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="number" min="0" class="form-control" id="" placeholder="" name="question_score">
+                                    <input type="number" min="0" class="form-control"name="question_score">
                                 </div>
                             </div>
                             <br>
@@ -170,49 +161,61 @@
     remove_script_host : false,
     convert_urls : true,
     images_upload_handler: function (blobInfo, success, failure) {
-           var xhr, formData;
-           xhr = new XMLHttpRequest();
-           xhr.withCredentials = false;
-           xhr.open('POST', '/upload/image/question');
-           var token = '{{ csrf_token() }}';
-           xhr.setRequestHeader("X-CSRF-Token", token);
-           xhr.onload = function() {
-               var json;
-               if (xhr.status != 200) {
-                   failure('HTTP Error: ' + xhr.status);
-                   return;
-               }
-               json = JSON.parse(xhr.responseText);
-
-               if (!json || typeof json.location != 'string') {
-                   failure('Invalid JSON: ' + xhr.responseText);
-                   return;
-               }
-               success(json.location);
-           };
-           formData = new FormData();
-           formData.append('file', blobInfo.blob(), blobInfo.filename());
-           xhr.send(formData);
-       }
-
-  });
-
-  (function($) {
-      $("#question_form").submit(function(e) {   
-      const val = tinyMCE.get('question-desc').getContent();
-      if(val == "") {
-        swal("Question description cannot be empty!");
-        return false;
-      }
-      console.log(val)
+        var xhr, formData;
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open('POST', '/upload/image/question');
+        var token = '{{ csrf_token() }}';
+        xhr.setRequestHeader("X-CSRF-Token", token);
+        xhr.onload = function() {
+            var json;
+            if (xhr.status != 200) {
+                failure('HTTP Error: ' + xhr.status);
+                    return;
+            }
+            json = JSON.parse(xhr.responseText);
+            if (!json || typeof json.location != 'string') {
+                failure('Invalid JSON: ' + xhr.responseText);
+                return;
+            }
+            success(json.location);
+        };
+        formData = new FormData();
+        formData.append('file', blobInfo.blob(), blobInfo.filename());
+        xhr.send(formData);
+    }
+});
+(function($) {
+    $("#question_form").submit(function(e) {   
+        const val = tinyMCE.get('question-desc').getContent();
+        if(val == "") {
+            swal("Question description cannot be empty!");
+            return false;
+        }
+        console.log(val)
     });
-
     setTimeout(function () {
-      $(".loading").html("");
-      $(".content-body").fadeIn(1000);
+        $(".loading").html("");
+        $(".content-body").fadeIn(1000);
     }, 900);
 
-  })(jQuery);
-    
+    let level = 2;
+
+    $("#add-more").click(function() {
+        if (level <= 5) {
+            level++;
+            $(`.pil_${level}`).fadeIn(500);       
+        }
+        console.log(level);
+    });
+
+    $("#delete-option").click(function() {
+        if ((level) >= 2) {
+          $(`.pil_${level}`).fadeOut(100);
+          level--;
+        }   
+        console.log(level);
+    });
+})(jQuery);    
 </script>
 @endsection

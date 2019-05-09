@@ -11,7 +11,7 @@
 <div class="col-md-9">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">Test Result</strong>
+        <h3 class="m-0">Test Result</h3>
         </div>
         <div class="card-body">
         <div class="modal-body">

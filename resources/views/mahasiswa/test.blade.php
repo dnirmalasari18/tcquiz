@@ -35,6 +35,8 @@
 <form action="{{route('submit.quiz')}}" method="POST" id="myForm">
 {{ csrf_field() }}
 {{ method_field('PATCH') }}
+<input type="hidden" name="quiz_id" value="{{$kuis->id}}">
+<input type="hidden" name="end_time" value="{{$paket->id}}">
 <input type="hidden" name="mp_id" value="{{$paket->id}}">
 <input type="hidden" name="jumlah" value="{{count($quiz)}}">
     @foreach($quiz as $q)
@@ -156,7 +158,7 @@
                         }
                     </style>
                     <div class="nuzha4" align="center">
-                        Are you sure you want finish this quiz?
+                        Are you sure you want to finish this quiz?
                     </div>
                     <div align="center">
                         <button type="button" class="btn btn-danger btn-sm nuzha2" data-dismiss="modal">Cancel</button>
@@ -299,6 +301,11 @@
 
 @section('script')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 <script>
 
     $(document).ready(function(){
@@ -307,7 +314,7 @@
             var data = $("#myForm").serialize();
             $.ajax({
                 type: "put",
-                url: "{{route('submit.quiz')}}",
+                url: "{{route('submit.quiz.ajax')}}",
                 data: data,
                 dataType: "json",
                 success: function(data) {

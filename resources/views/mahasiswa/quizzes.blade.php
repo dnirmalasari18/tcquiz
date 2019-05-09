@@ -36,11 +36,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(count($classes))
-                            @foreach($classes as $c)
-                            @foreach($c->agenda->pertemuan as $p)
-                            @if(count($p->quiz))
-                            @foreach($p->quiz as $q)
+                            @if(count($quiz))
+                            @foreach($quiz as $q)
                             <tr >
                                 <td>{{$q->nama_kuis}}</td>
                                 <td>{{$q->pertemuanke->agenda->namaAgenda}}</td>
@@ -75,18 +72,32 @@
                                     </button>
                                 </td>
                                 @else
-                                <td align="center"><span class="badge badge-pill badge-success">Active</span></td>
-                                <td align="center">
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}">Take Quiz
-                                    </button>
-                                </td>
+                                @if(count($q->pakets))
+                                    @foreach($q->pakets as $qp)
+                                        @if($qp->user->user_id == $user_id)
+                                            @if($qp->user->status_ambil)
+                                                <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
+                                                <td align="center">
+                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#resultModal{{$q->id}}">See Result
+                                                    </button>
+                                                </td>
+                                                <?php
+                                                    break;
+                                                ?>
+                                            @else
+                                            <td align="center"><span class="badge badge-pill badge-success">Active</span></td>
+                                            <td align="center">
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#takeQuiz{{$q->id}}">Take Quiz
+                                                </button>
+                                            </td>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
                                 @endif
                                 @endif
 
                             </tr>
-                            @endforeach
-                            @endif    
-                            @endforeach
                             @endforeach
                             @endif
                         </tbody>
@@ -103,11 +114,8 @@
     }
 </style>
 
-@if(count($classes))
-@foreach($classes as $c)
-@foreach($c->agenda->pertemuan as $p)
-@if(count($p->quiz))
-@foreach($p->quiz as $q)
+@if(count($quiz))
+@foreach($quiz as $q)
 <div class="modal fade" id="takeQuiz{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg nuzha3" role="document">
         <div class="modal-content">
@@ -140,16 +148,10 @@
     </div>
 </div>
 @endforeach
-@endif    
-@endforeach
-@endforeach
 @endif
 
-@if(count($classes))
-@foreach($classes as $c)
-@foreach($c->agenda->pertemuan as $p)
-@if(count($p->quiz))
-@foreach($p->quiz as $q)
+@if(count($quiz))
+@foreach($quiz as $q)
 <div class="modal fade" id="resultModal{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -162,26 +164,42 @@
             <div class="modal-body">
                 <table class="table">
                     <tbody>
-                        <tr style="border-top-style: hidden;">
-                            <td>Waktu Mulai</td>
-                            <td>: 13:02:11</td>
-                        </tr>
-                        <tr>
-                            <td>Waktu Selesai</td>
-                            <td>: 14:26:08</td>
-                        </tr>
-                        <tr>
-                            <td>Poin</td>
-                            <td>: 80.000 / 100.000 (80%)</td>
-                        </tr>
-                        <tr>
-                            <td>Jawaban Benar</td>
-                            <td>: 16 / 20</td>
-                        </tr>
-                        <tr>
-                            <td>Komentar</td>
-                            <td>: -</td>
-                        </tr>
+                        @if(count($q->pakets))
+                            @foreach($q->pakets as $qp)
+                                @if($qp->user->user_id == $user_id)
+                                    @if($qp->user->end_time)
+                                        <tr style="border-top-style: hidden;">
+                                            <td>Start Time</td>
+                                            <td>: {{date("H:i:s",strtotime($qp->user->end_time))}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>End Time</td>
+                                            <td>: {{date("H:i:s",strtotime($qp->user->updated_at.'+7 hour'))}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Score</td>
+                                            <td>: {{$qp->user->quiz_score}} / 100</td>
+                                        </tr>
+                                        <?php
+                                            break;
+                                        ?>
+                                    @else
+                                        <tr style="border-top-style: hidden;">
+                                            <td>Start Time</td>
+                                            <td>: -</td>
+                                        </tr>
+                                        <tr>
+                                            <td>End Time</td>
+                                            <td>: -</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Score</td>
+                                            <td>: 0</td>
+                                        </tr>
+                                    @endif
+                                @endif
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -190,7 +208,5 @@
 </div>
 @endforeach
 @endif    
-@endforeach
-@endforeach
-@endif
+
 @endsection

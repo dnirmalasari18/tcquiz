@@ -166,7 +166,7 @@
                 </div>
             </div>
         </div>
-        Quiz ends in <span id="time">{{$durasi}}</span> minutes!
+        
     </form>
 </div>
 
@@ -243,6 +243,11 @@
                     </div>
                 @endif
             @endforeach
+        </div>
+        <div class="card-body timer">
+                
+                            <td><h8 class="card-title">Time remaining : <span id="time" style="color:red;">{{$durasi}}</span></h8> minutes</td>
+                      
         </div>                
     </div>
 
@@ -334,10 +339,11 @@ jQuery(function ($) {
     start_sec = start_sec + now.getMinutes() * 60;
     start_sec = start_sec + now.getSeconds();
 
-    var end = new Date('00');
+    var end = new Date('01');
     var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    
     var end_sec = 0;
-    end_sec = end_sec + 01 * 3600;
+    end_sec = end_sec + 03 * 3600;
     end_sec = end_sec + 0 * 60;
     end_sec = end_sec + 0;
     durations = end_sec - start_sec;

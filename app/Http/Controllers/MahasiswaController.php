@@ -64,7 +64,7 @@ class MahasiswaController extends Controller
             }
         }
 
-        return view('mahasiswa.dashboard', compact('quiz', 'userid'));
+        return view('mahasiswa.dashboard', compact('quiz', 'user_id'));
     }
 
     public function myQuestions($idquiz)
@@ -97,7 +97,7 @@ class MahasiswaController extends Controller
             $mp_id = $data['paket']->id;
             $mp = MahasiswaPacket::findorfail($mp_id);
             if ($mp->status_ambil) {
-                return abort(404);
+                return redirect('/mahasiswa/quiz/' .$idquiz. '/result');
             }
         }
         else{
@@ -188,7 +188,8 @@ class MahasiswaController extends Controller
         }
 
         $quiz_score = $quiz_score / $total_score * 100;
-        $mp->update(array('quiz_score' => $round($quiz_score)));
+        $mp->quiz_score = round($quiz_score);
+        $mp->save();
 
         // echo $mp;
         return Response::json($mp);

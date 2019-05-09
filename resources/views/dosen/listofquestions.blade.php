@@ -194,7 +194,7 @@
 
     @if(Session::has('create_done'))
       swal({
-          title: "Quiz has been created!",
+          title: "Question has been created!",
           text:" ",
           icon: "success",
           button: false,
@@ -203,7 +203,7 @@
     @endif
     @if(Session::has('update_done'))
       swal({
-          title: "Quiz has been updated!",
+          title: "Question has been updated!",
           text:" ",
           icon: "success",
           button: false,

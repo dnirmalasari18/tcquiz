@@ -264,6 +264,12 @@ class MahasiswaController extends Controller
         $qp = QuizPacket::findorfail($paket->quizpacket_id);
         $mp = MahasiswaPacket::findorfail($paket->id);
 
+        if($mp->status_ambil){
+            $data['mp'] = $mp;
+
+            return view('mahasiswa.result', $data);
+        }
+
         $qp_key = array_map('intval', explode(",", $qp->packet_answer_list));
         $mp_key = array_map('intval', explode(",", $mp->user_answer_list));
         $seq = array_map('intval', explode(",", $qp->question_id_list));
@@ -284,9 +290,10 @@ class MahasiswaController extends Controller
 
         $quiz_score = $quiz_score / $total_score * 100;
         $mp->quiz_score = round($quiz_score);
+        
         $mp->status_ambil = 1;
         $mp->save();
-
+        
         $data['mp'] = $mp;
 
         return view('mahasiswa.result', $data);

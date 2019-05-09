@@ -339,8 +339,10 @@ jQuery(function ($) {
     start_sec = start_sec + now.getMinutes() * 60;
     start_sec = start_sec + now.getSeconds();
 
-    var end = new Date('01');
+    var end = new Date();
     var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    
+    console.log('{{$paket->end_time}}');
     
     var end_sec = 0;
     end_sec = end_sec + 03 * 3600;

@@ -16,19 +16,19 @@
 			            <h5>{{$q->nama_kuis}}</h5>
 			            <h6>{{$q->pertemuanke->agenda->singkatAgenda}}</h6>
 			        </div>
-			        <div class="card-body">
+			        <div class="card-body" align="center">
 			            <div class="mx-auto d-block">
-			            	<p>{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}, {{$q->durasi}} minute(s) </p>
+			            	<h6>{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}, {{$q->durasi}} minute(s) </h6>
 			                <p>{{ count( $q->quiz )}} question(s)</p>
 			            </div>
 			            <hr>
 			            @if ($q->finalize_status=='0')
 			            	<div class="card-text text-sm-center">
-			            	    <a href="" role="button" class="btn btn-sm btn-danger">Finalize Now</a>
+			            	    <a href="{{route('quiz.show',$q->id)}}" role="button" class="btn btn-sm btn-danger">Finalize Now</a>
 			            	</div>
 			            @else
 			            	<div class="card-text text-sm-center">
-			            	    <a href="" role="button" class="btn btn-sm btn-info">Summary</a>
+			            	    <a href="{{route('quiz.show',$q->id)}}" role="button" class="btn btn-sm btn-info">Summary</a>
 			            	</div>
 			            @endif
 			            

@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div align="left">
                         @for ($i = 0; $i < count($questions); $i++)
-                            <a onclick="openSoal(event, '{{$i}}')" id="nomor{{$i}}" class="panelsoal btn btn-info">{{$i+1}}</a>
+                            <a onclick="openSoal(event, '{{$i}}')" id="nomor{{$i}}" class="panelsoal btn btn-light">{{$i+1}}</a>
                         @endfor
                     </div>
                     <hr>

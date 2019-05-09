@@ -166,7 +166,7 @@
                 </div>
             </div>
         </div>
-
+        Quiz ends in <span id="time">{{$durasi}}</span> minutes!
     </form>
 </div>
 
@@ -309,6 +309,43 @@
 
 <script>
 
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+jQuery(function ($) {
+    var now = new Date();
+    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    var start_sec = 0;
+    start_sec = start_sec + now.getHours() * 3600;
+    start_sec = start_sec + now.getMinutes() * 60;
+    start_sec = start_sec + now.getSeconds();
+
+    var end = new Date('00');
+    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    var end_sec = 0;
+    end_sec = end_sec + 01 * 3600;
+    end_sec = end_sec + 0 * 60;
+    end_sec = end_sec + 0;
+    durations = end_sec - start_sec;
+    var fiveMinutes = 60 * 5,
+        display = $('#time');
+    startTimer(durations, display);
+});
+
     $(document).ready(function(){
 
         $(".form-check-input").click(function() {
@@ -343,6 +380,8 @@
             });
         });
     });
+    
+
     
 </script>
 

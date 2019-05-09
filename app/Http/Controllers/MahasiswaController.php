@@ -92,6 +92,7 @@ class MahasiswaController extends Controller
             ])
             ->first();
         $data['test'] = Questions::where('quiz_id', $idquiz)->get();
+        $data['durasi']=Quiz::where('id', $idquiz)->first()->durasi;
 
         if($data['paket']){
             $mp_id = $data['paket']->id;

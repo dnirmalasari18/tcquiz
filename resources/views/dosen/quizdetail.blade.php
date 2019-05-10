@@ -325,7 +325,37 @@
         finalizeQuiz();
     });
 
+    $(document).ready(function() {
+        $('#participant_score').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 3]
+                    }
+                },
+                {
+                    extend: 'csvHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 3]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 3]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 3]
+                    }
+                },
+            ]
+        } );
+    } );
 })(jQuery);
-
 </script>
 @endsection

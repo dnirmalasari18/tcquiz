@@ -1,5 +1,5 @@
 @if(count($participants))
-<table id="bootstrap-data-table" class="table table-bordered">
+<table id="participant_score" class="table table-bordered">
     <thead class="thead-light" align="center">
         <tr align="center">
             <th>NRP</th>
@@ -25,7 +25,7 @@
     </tbody>
 </table>
 @elseif(count($participant))
-<table id="bootstrap-data-table" class="table table-bordered">
+<table id="participant_score" class="table table-bordered">
     <thead class="thead-light" align="center">
         <tr align="center">
             <th>NRP</th>

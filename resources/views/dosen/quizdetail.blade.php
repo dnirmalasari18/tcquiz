@@ -285,8 +285,8 @@
 
     function finalizeQuiz() {
         swal({
-            title: "Kuis 3",
-            text: "PBBK I\n10 Mei 2019, 14.00 - 15.30\n40 questions",
+            title: "{{$kuis->nama_kuis}}",
+            text: "{{$kuis->pertemuanke->agenda->singkatAgenda}}\n{{ date('d M y', strtotime($kuis->pertemuanke->tglPertemuan)) }}, {{$kuis->pertemuanKe->waktuMulai}} - {{$kuis->pertemuanKe->waktuSelesai}}\n{{count($kuis->quiz)}} question(s)",
             icon: "info",
             buttons: ["Cancel", "Next"],
             dangerMode: true,

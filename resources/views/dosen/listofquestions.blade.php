@@ -49,12 +49,12 @@
         <div class="col-md-8 float-left">
             <div class="card panel" id="soal{{$i}}">
                 <div class="card-header">
-                    <strong class="card-title mb-3 float-left" >SOAL {{$i+1}}</strong>
+                    <strong class="card-title mb-3" >SOAL {{$i+1}}</strong>
                     @if($kuis->finalize_status=='0')
-                        <form class="delete-form" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
+                        <form class="delete-form float-right" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">
                             <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                            <input type="button" class="btn btn-sm btn-danger delete-btn float-right" value="Delete">
+                            <input type="button" class="btn btn-sm btn-danger delete-btn " value="Delete">
                         </form>
                         <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$kuis->id, $questions[$i]->id])}}" role="button">Edit</a>
                     @endif
@@ -104,21 +104,23 @@
                     <hr>
                     <div class="card-text">
                         <div class="row" style="cursor: pointer;">
-                            @if($i==0)
+                            @if($i==0 && count($questions)!=1)
                                 <div class="col-md-12" align="right">
                                     <div onclick="openSoal(event, '{{$i+1}}')"><i class="fa fa-chevron-right"></i></div>
                                 </div>
-                            @elseif($i==count($questions)-1)
+                            @elseif($i==count($questions)-1 && count($questions)!=1)
                                 <div class="col-md-12">
                                     <div onclick="openSoal(event, '{{$i-1}}')"><i class="fa fa-chevron-left"></i></div>
                                 </div>
                             @else
-                                <div class="col-md">
-                                    <div onclick="openSoal(event, '{{$i-1}}')"><i class="fa fa-chevron-left"></i></div>
-                                </div>
-                                <div class="col-md-10" align="right">
-                                    <div onclick="openSoal(event, '{{$i+1}}')"><i class="fa fa-chevron-right"></i></div>
-                                </div>
+                                @if(count($questions)!=1)
+                                    <div class="col-md">
+                                        <div onclick="openSoal(event, '{{$i-1}}')"><i class="fa fa-chevron-left"></i></div>
+                                    </div>
+                                    <div class="col-md-10" align="right">
+                                        <div onclick="openSoal(event, '{{$i+1}}')"><i class="fa fa-chevron-right"></i></div>
+                                    </div>
+                                @endif
                             @endif
                         </div>  
                     </div>

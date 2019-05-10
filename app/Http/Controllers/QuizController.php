@@ -183,9 +183,9 @@ class QuizController extends Controller
             $participant_details [] = ['participant_id' => $p->id, 'wrong' => $wrong, 'right' => $right, 'correct_ans' =>implode(",",$questions_arr)];
         }
 
-        return $soal_details;
+        //return $soal_details;
 
-    //    return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions'));
+        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions'));
     }
 
 

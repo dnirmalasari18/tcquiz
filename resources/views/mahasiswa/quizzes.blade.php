@@ -45,7 +45,7 @@
                                         <td align="center">{{$q->pertemuanke->tglPertemuan}}</td>
                                         <td align="center">{{$q->pertemuanke->waktuMulai}}</td>
                                         <td align="center">{{$q->pertemuanke->waktuSelesai}}</td>
-                                        <td align="center">{{$q->durasi}}</td>
+                                        <td align="center">{{$q->durasi}} minute(s)</td>
 
                                         @if(strtotime(date("Y-m-d", strtotime('7 hour'))) > strtotime($q->pertemuanke->tglPertemuan))
                                             <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>

@@ -72,16 +72,6 @@ class MahasiswaController extends Controller
     {
         $user = User::where('username', Auth::user()->username)->first();
         $data['kuis'] = Quiz::findorfail($idquiz);
-        // $data['paket'] = DB::table('quizzes')
-        //     ->join('quiz_packets', 'quizzes.id', '=', 'quiz_packets.quiz_id')
-        //     ->join('mahasiswa_packets', 'quiz_packets.id', '=', 'mahasiswa_packets.quizpacket_id')
-        //     ->select('mahasiswa_packets.id','question_id_list', 'packet_answer_list', 'quizpacket_id', 'user_id',
-        //         'question_flag_list', 'user_answer_list', 'quiz_score', 'end_time')
-        //     ->where([
-        //         ['mahasiswa_packets.user_id', '=', $user->id],
-        //         ['quizzes.id', '=', $idquiz],
-        //     ])
-        //     ->get();
         $data['paket'] = DB::table('quizzes')
             ->join('quiz_packets', 'quizzes.id', '=', 'quiz_packets.quiz_id')
             ->join('mahasiswa_packets', 'quiz_packets.id', '=', 'mahasiswa_packets.quizpacket_id')
@@ -92,7 +82,7 @@ class MahasiswaController extends Controller
                 ['quizzes.id', '=', $idquiz],
             ])
             ->first();
-        $data['paket']->end_time = DateTime::createFromFormat('H:i:s', $data['paket']->end_time);
+
         $data['test'] = Questions::where('quiz_id', $idquiz)->get();
         $data['durasi']=Quiz::where('id', $idquiz)->first()->durasi;
 
@@ -111,7 +101,6 @@ class MahasiswaController extends Controller
         
         $classes = Kehadiran::where('idUser', Auth::user()->username)->get();
         
-
         if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan)){
             if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai)){
                 return abort(404);
@@ -141,7 +130,6 @@ class MahasiswaController extends Controller
                 }
 
                 if (strtotime($now) > strtotime($dead)) {
-                    // echo $now, $dead;
                     return redirect('/mahasiswa/quiz/' .$idquiz. '/result');
                 }
 
@@ -167,12 +155,9 @@ class MahasiswaController extends Controller
         $arr = array_map('intval', explode(",", $mp->user_answer_list));
         $fl = array_map('intval', explode(",", $mp->question_flag_list));
 
-        // echo $mp;
-
         for ($i=1; $i <= $request->jumlah ; $i++) {
             if (isset($request->ans[$i])) {
                 $arr[$i-1] = $request->ans[$i];
-                // $arr[$i-1] = 0;
             }
             else{
                 $arr[$i-1] = 0;
@@ -193,7 +178,6 @@ class MahasiswaController extends Controller
 
         $user = User::where('username', Auth::user()->username)->first();
         $quiz = Quiz::findorfail($request->quiz_id);
-        // $soal = Questions::where('quiz_id', $idquiz)->get();
 
         $qp = QuizPacket::findorfail($mp->paketkuis->id);
 
@@ -219,7 +203,6 @@ class MahasiswaController extends Controller
         $mp->quiz_score = round($quiz_score);
         $mp->save();
 
-        // echo $mp;
         return Response::json($mp);
 
     }
@@ -231,12 +214,10 @@ class MahasiswaController extends Controller
         $arr = array_map('intval', explode(",", $mp->user_answer_list));
         $fl = array_map('intval', explode(",", $mp->question_flag_list));
 
-        // echo $mp;
-
         for ($i=1; $i <= $request->jumlah ; $i++) {
+
             if (isset($request->ans[$i])) {
                 $arr[$i-1] = $request->ans[$i];
-                // $arr[$i-1] = 0;
             }
             else{
                 $arr[$i-1] = 0;
@@ -255,8 +236,6 @@ class MahasiswaController extends Controller
         $fl = implode(', ', $fl);
         $mp->update(array('user_answer_list' => $arr, 'question_flag_list' => $fl));
 
-        // echo $mp;
-        //return Response::json($mp);
         return redirect('/mahasiswa/quiz/' .$request->quiz_id. '/result');
 
     }
@@ -264,7 +243,6 @@ class MahasiswaController extends Controller
     public function quizResult($idquiz){
         $user = User::where('username', Auth::user()->username)->first();
         $quiz = Quiz::findorfail($idquiz);
-        // $soal = Questions::where('quiz_id', $idquiz)->get();
 
         $paket = DB::table('quizzes')
             ->join('quiz_packets', 'quizzes.id', '=', 'quiz_packets.quiz_id')
@@ -281,6 +259,7 @@ class MahasiswaController extends Controller
 
         if($mp->status_ambil){
             $data['mp'] = $mp;
+            $data['q'] = $quiz;
 
             return view('mahasiswa.result', $data);
         }
@@ -310,6 +289,7 @@ class MahasiswaController extends Controller
         $mp->save();
         
         $data['mp'] = $mp;
+        $data['q'] = $quiz;
 
         return view('mahasiswa.result', $data);
     }

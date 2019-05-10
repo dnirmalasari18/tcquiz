@@ -1,6 +1,6 @@
 @extends('layouts.mahasiswa')
 
-@section('dashboard', 'active')
+@section('quiz', 'active')
 
 @section('title')
 <h1>{{$kuis->nama_kuis}}</h1>

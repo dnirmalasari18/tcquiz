@@ -157,7 +157,7 @@ class MahasiswaController extends Controller
 
         for ($i=1; $i <= $request->jumlah ; $i++) {
             if (isset($request->ans[$i])) {
-                $arr[$i-1] = $request->ans[$i]
+                $arr[$i-1] = $request->ans[$i];
             }
             else{
                 $arr[$i-1] = 0;
@@ -259,6 +259,7 @@ class MahasiswaController extends Controller
 
         if($mp->status_ambil){
             $data['mp'] = $mp;
+            $data['q'] = $quiz;
 
             return view('mahasiswa.result', $data);
         }
@@ -288,6 +289,7 @@ class MahasiswaController extends Controller
         $mp->save();
         
         $data['mp'] = $mp;
+        $data['q'] = $quiz;
 
         return view('mahasiswa.result', $data);
     }

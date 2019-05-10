@@ -60,12 +60,14 @@
     function openSoal(evt, num) {
         var i, card, soal;
         card = document.getElementsByClassName("card panel");
+        button = document.getElementsByClassName("btn panelsoal");
         for (i = 0; i < card.length; i++) {
             card[i].style.display = "none";
+            button[i].style.backgroundColor  = "#17a2b8";
         }
         var id = "soal" + num;
         document.getElementById(id).style.display = "flex";
-        //document.getElementById("nomor"+num).className = "btn btn-light";
+        document.getElementById("nomor"+num).style.backgroundColor  = "white";
     }
     document.getElementById("nomor0").click();
 

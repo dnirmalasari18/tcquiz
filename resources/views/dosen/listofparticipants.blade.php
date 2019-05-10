@@ -3,9 +3,9 @@
     <thead class="thead-light" align="center">
         <tr align="center">
             <th>NRP</th>
-            <th>Nama</th>
-            <th>Paket Soal</th>
-            <th>Nilai</th>
+            <th>Name</th>
+            <th>Quiz Packet</th>
+            <th>Score</th>
             <th>Menu</th>
         </tr>
     </thead>

@@ -10,10 +10,10 @@
                 <div class="card-header text-center">
                     <strong class="card-title mb-3">PANEL SOAL</strong>
                 </div>
-                <div class="card-body">
-                    <div align="left">
+                <div class="card-body text-center">
+                    <div class="text-center">
                         @for ($i = 0; $i < count($questions); $i++)
-                            <a onclick="openSoal(event, '{{$i}}')" id="nomor{{$i}}" class="panelsoal btn btn-light" style="width: 55px;">{{$i+1}}</a>
+                            <a onclick="openSoal(event, '{{$i}}')" class="btn btn-info panelsoal" id="nomor{{$i}}" style="width: 50px; margin-top: 3px;">{{$i+1}}</a>
                         @endfor
                     </div>
                     <hr>

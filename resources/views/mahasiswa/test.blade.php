@@ -118,19 +118,21 @@
                         </div>
                         <div class="card-header" style="border-top: 1px solid rgba(0,0,0,.125);">
                             @if($q==count($quiz))
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#submitQuiz" style="float: right; width: 70px;">Submit</button>
-                                @if($q-1>0)
-                                <div class="col-md-2">
-                                    <div onclick="openSoal(event, '{{$q-1}}')"><i class="fa fa-chevron-left"></i></div>
+                                <div>
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#submitQuiz" style="float: right; width: 70px;display: inline-block;vertical-align: middle;">Submit</button>
                                 </div>
+                                @if($q-1>0)
+                                    <div class="col-md-2" style="padding: 0 0;display: inline-block;vertical-align: middle;">
+                                        <div onclick="openSoal(event, '{{$q-1}}')" style="display: inline-block;vertical-align: middle; cursor: pointer;"><i class="fa fa-chevron-left"></i></div>
+                                    </div>
                                 @endif
                             @else
-                                <div class="col-md-10" style="float:right;" align="right">
-                                    <div onclick="openSoal(event, '{{$q+1}}')"><i class="fa fa-chevron-right"></i></div>
+                                <div class="col-md-2" style="float:right; padding: 0 0; display: inline-block;vertical-align: middle;" align="right">
+                                    <div onclick="openSoal(event, '{{$q+1}}')" style="cursor: pointer;"><i class="fa fa-chevron-right"></i></div>
                                 </div>
                                 @if($q-1>0)
-                                    <div class="col-md-2">
-                                        <div onclick="openSoal(event, '{{$q-1}}')"><i class="fa fa-chevron-left"></i></div>
+                                    <div class="col-md-2" style="padding: 0 0;display: inline-block;vertical-align: middle;">
+                                        <div onclick="openSoal(event, '{{$q-1}}')" style="cursor: pointer;"><i class="fa fa-chevron-left"></i></div>
                                     </div>
                                 @endif
                             @endif

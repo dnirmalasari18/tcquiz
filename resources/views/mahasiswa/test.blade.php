@@ -213,7 +213,7 @@
         }
     </style>
  <div class="card card-timer">
-        <div class="card-header">
+        <div class="card-header" align="center">
             <h7 class="strong">Time Remaining: </h7>
             <h7><span id="time" style="color:red;"></span></h7>
         </div>
@@ -331,22 +331,21 @@
       var min = duration.minutes();
       var sec = duration.seconds();
 
-      sec -= 1;
-      if (min < 0) return clearInterval(timer);
-      if (hour < 10 && hour.length != 2) hour = '0' + hour;
-      if (min < 10 && min.length != 2) min = '0' + min;
-      if (sec < 10 && sec.length != 2) sec = '0' + sec;
       if (sec < 0 && min != 0) {
         min -= 1;
         sec = 59;
       }
-      if (min < 0 && hour != 0) {
+      if (min < 0 && hour > 0) {
         hour -= 1;
         min = 59;
       }
 
+      if (hour < 10 && hour.length != 2) hour = '0' + hour;
+      if (min < 10 && min.length != 2) min = '0' + min;
+      if (sec < 10 && sec.length != 2) sec = '0' + sec;
+
       $('#time').text(hour + ':' + min + ':' + sec);
-      if (hoour == 0 && min == 0 && sec == 0)
+      if (hour == 0 && min == 0 && sec == 0)
         clearInterval(timer);
     }, 1000);
 

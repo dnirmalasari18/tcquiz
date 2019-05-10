@@ -214,8 +214,8 @@
     </style>
  <div class="card card-timer">
         <div class="card-header">
-            <h7 class="strong">Time Remaining :</h7>
-            <h7><span id="time" style="color:red;"></span> minutes</h7>
+            <h7 class="strong">Time Remaining: </h7>
+            <h7><span id="time" style="color:red;"></span></h7>
         </div>
         
     </div>
@@ -317,8 +317,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
 
 <script>
-var start = moment();
-    var end = moment('{{ $paket->end_time }}').add({{ $kuis->durasi }}, 'minutes');
+    var start = moment();
+    var end = moment('{{ $mp->end_time }}').add({{ $kuis->durasi }}, 'minutes');
     var diff = end.diff(start);
 
     var duration = moment.duration(diff);

@@ -133,6 +133,7 @@ class MahasiswaController extends Controller
                     return redirect('/mahasiswa/quiz/' .$idquiz. '/result');
                 }
 
+                $data['mp'] = $mp;
                 return view('mahasiswa.test', $data);
             }
         }

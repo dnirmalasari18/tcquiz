@@ -63,14 +63,14 @@
                     <div align="left">
                         {!!$questions[$i]->question_description!!}
                         @if($questions[$i]->correct_answer==1)
-                            <mark style="background-color: green; color: white;">A</mark>
+                            <i class="fa fa-check" style="color: green;"></i>A
                         @else
                             A
                         @endif
                         {!! $questions[$i]->option_1!!}
 
                         @if($questions[$i]->correct_answer==2)
-                            <mark style="background-color: green; color: white;">B</mark>
+                            <i class="fa fa-check" style="color: green;"></i>B
                         @else
                             B
                         @endif
@@ -78,7 +78,7 @@
                        
                         @if($questions[$i]->option_3!=null)    
                             @if($questions[$i]->correct_answer==3)
-                                <mark style="background-color: green; color: white;">C</mark>
+                                <i class="fa fa-check" style="color: green;"></i>C
                             @else
                             C
                             @endif
@@ -86,7 +86,7 @@
                         @endif
                         @if($questions[$i]->option_4!=null)    
                             @if($questions[$i]->correct_answer==4)
-                                <mark style="background-color: green; color: white;">D</mark>
+                                <i class="fa fa-check" style="color: green;"></i>D
                             @else
                             D
                             @endif
@@ -94,7 +94,7 @@
                         @endif
                         @if($questions[$i]->option_5!=null)    
                             @if($questions[$i]->correct_answer==5)
-                                <mark style="background-color: green; color: white;">E</mark>
+                                <i class="fa fa-check" style="color: green;"></i>E
                             @else
                             E
                             @endif

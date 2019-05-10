@@ -29,7 +29,7 @@
             $quiz[$i] = $i + 1;
         }
     ?>
-    <form action="{{route('submit.quiz')}}" method="POST" id="myForm">
+    <form action="{{route('submit.quiz')}}" method="POST" id="myForm" name="myForm">
 
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
@@ -345,8 +345,10 @@
       if (sec < 10 && sec.length != 2) sec = '0' + sec;
 
       $('#time').text(hour + ':' + min + ':' + sec);
-      if (hour == 0 && min == 0 && sec == 0)
+      if (hour == 0 && min == 0 && sec == 0){
         clearInterval(timer);
+        document.myForm.submit();
+      }
     }, 1000);
 
     $(document).ready(function(){

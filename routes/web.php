@@ -59,10 +59,3 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
 
 Route::post('upload/image', 'QuizController@uploadImage');
 Route::post('upload/image/question', 'QuestionsController@uploadImage');
-
-
-// Route::get('/login', function () {
-//     return redirect('/');
-// });
-
-// Route::get('/home', 'HomeController@index')->name('home');

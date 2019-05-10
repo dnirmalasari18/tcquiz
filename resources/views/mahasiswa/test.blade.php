@@ -212,12 +212,14 @@
             color: white !important;
         }
     </style>
- <div class="card card-timer">
+
+     <div class="card card-timer">
         <div class="card-header" align="center">
             <h7 class="strong">Time Remaining: </h7>
-            <h7><span id="time" style="color:red;"></span></h7>
+            <h7>
+                <span id="time" style="color:red;"></span>
+            </h7>
         </div>
-        
     </div>
     <br>
     <div class="card card-soal">
@@ -250,12 +252,7 @@
                     </div>
                 @endif
             @endforeach
-        </div>
-       <!--  <div class="card-body timer">
-                
-                            <td><h8 class="card-title">Time remaining : <span id="time" style="color:red;">{{$durasi}}</span></h8> minutes</td>
-                      
-        </div>     -->            
+        </div>   
     </div>
 
 </div>

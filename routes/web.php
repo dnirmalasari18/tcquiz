@@ -49,26 +49,11 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
             return view('mahasiswa.test');
         });
 
-        Route::get('/test2', function () {
-            return view('mahasiswa.test2');
-        });
-
-        Route::get('/test3', function () {
-            return view('mahasiswa.test3');
-        });
-
-        Route::get('/result', function () {
-            return view('mahasiswa.test');
-        });
-
         Route::get('quiz/{id}/result', 'MahasiswaController@quizResult');
 
         Route::match(['put', 'patch'], '/quiz/submit', 'MahasiswaController@submitQuiz')->name('submit.quiz');
         Route::match(['put', 'patch'], '/quiz/submit/ajax', 'MahasiswaController@submitQuizAjax')->name('submit.quiz.ajax');
 
-        // Route::get('/coba', function () {
-        //     return view('mahasiswa.test_coba');
-        // });
     });
 });
 

@@ -258,6 +258,10 @@ class MahasiswaController extends Controller
         $qp = QuizPacket::findorfail($paket->quizpacket_id);
         $mp = MahasiswaPacket::findorfail($paket->id);
 
+        if(!$mp->end_time){
+            return abort(404);
+        }
+
         if($mp->status_ambil){
             $data['mp'] = $mp;
             $data['q'] = $quiz;

@@ -17,7 +17,7 @@ class DosenController extends Controller
     {
         $quiz = Quiz::whereHas('pertemuanke', function($q) {
                 $q->whereBetween('tglPertemuan', [
-                Carbon::parse('last monday')->startOfDay(),
+                Carbon::parse('yesterday')->startOfDay(),
                 Carbon::parse('next friday')->endOfDay(),]);})->with('pertemuanke')->get();
 
         return view('dosen.dashboard', compact('quiz'));

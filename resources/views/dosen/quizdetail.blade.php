@@ -69,7 +69,10 @@
         document.getElementById(id).style.display = "flex";
         document.getElementById("nomor"+num).style.backgroundColor  = "white";
     }
-    document.getElementById("nomor0").click();
+    if ('{{count($kuis->quiz)>0}}') {
+        document.getElementById("nomor0").click();
+    }
+    
 
 (function($) {
 

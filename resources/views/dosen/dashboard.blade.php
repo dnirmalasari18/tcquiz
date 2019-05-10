@@ -5,7 +5,9 @@
 @section('breadcrumbs')
 <li><a href="#">Dashboard</a></li>
 @endsection
-
+<?php 
+	$currentTime = Carbon\Carbon::today();
+?>
 @section('content')
 <div class="row">
 	@if(count($quiz))
@@ -20,6 +22,15 @@
 			            <div class="mx-auto d-block">
 			            	<h6>{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}, {{$q->durasi}} minute(s) </h6>
 			                <p>{{ count( $q->quiz )}} question(s)</p>
+			                @if($q->pertemuanke->tglPertemuan == $currentTime->toDateString())
+			                	<p>{{$q->pertemuanke->waktuMulai}} - {{$q->pertemuanke->waktuSelesai}}</p>
+			                @elseif($q->pertemuanke->tglPertemuan < $currentTime)
+			                	<p>{{ $currentTime->diffInDays($q->pertemuanke->tglPertemuan) }} day(s) ago </p>
+			                
+			                @else
+			                	<p>{{ $currentTime->diffInDays($q->pertemuanke->tglPertemuan) }} day(s) left until quiz</p>
+			                @endif
+			                
 			            </div>
 			            <hr>
 			            @if ($q->finalize_status=='0')

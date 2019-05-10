@@ -25,14 +25,13 @@
                     </div>
                 </div>
                 <div class="card-body">
-
                     <div class="default-tab">
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Info</a>
                                 <a class="nav-item nav-link" id="nav-question-tab" data-toggle="tab" href="#nav-question" role="tab" aria-controls="nav-question" aria-selected="false">Questions List</a>
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Participants</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Quiz Summary</a>
+                                <a class="nav-item nav-link" id="nav-participant-tab" data-toggle="tab" href="#nav-participant" role="tab" aria-controls="nav-participant" aria-selected="false">Participants</a>
+                                <a class="nav-item nav-link" id="nav-summary-tab" data-toggle="tab" href="#nav-summary" role="tab" aria-controls="nav-summary" aria-selected="false">Quiz Summary</a>
                             </div>
                         </nav>
                         <div class="tab-content pl-3 pt-2" id="nav-tabContent">
@@ -42,12 +41,11 @@
                             <div class="tab-pane fade" id="nav-question" role="tabpanel" aria-labelledby="nav-question-tab">
                                 @include('dosen.listofquestions')
                             </div>
-                            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="tab-pane fade" id="nav-participant" role="tabpanel" aria-labelledby="nav-participant-tab">
                                 @include('dosen.listofparticipants')
                             </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-                                    butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, irure terry richardson ex sd. Alip placeat salvia cillum iphone. Seitan alip s cardigan american apparel, butcher voluptate nisi .</p>
+                            <div class="tab-pane fade" id="nav-summary" role="tabpanel" aria-labelledby="nav-summary-tab">
+                                @include('dosen.quizsummary')
                             </div>
                         </div>
                 </div>
@@ -59,6 +57,7 @@
 
 @section('script')
 <script>
+
     function openSoal(evt, num) {
         var i, card, soal;
         card = document.getElementsByClassName("card panel");
@@ -72,6 +71,10 @@
     document.getElementById("nomor0").click();
 
 (function($) {
+    // $(document).ready(function () {
+    //     $('#nav-tabContent a[href="#{{ old('tab') }}"]').tab('show')
+    //  });
+
     $(".kelas-select").change(async function(){
         let jadwals;
         const agenda_id = $(this).val();

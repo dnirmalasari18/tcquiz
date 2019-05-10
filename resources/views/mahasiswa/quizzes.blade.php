@@ -75,7 +75,7 @@
                                             @else
                                                 @if(count($q->pakets))
                                                     @foreach($q->pakets as $qp)
-                                                        @if($qp->user->user_id == $user_id)
+                                                        @if($qp->user['user_id'] == $user_id)
                                                             @if($qp->user->status_ambil)
                                                                 <td align="center"><span class="badge badge-pill badge-danger">Closed</span></td>
                                                                 <td align="center">
@@ -166,7 +166,7 @@
                             <tbody>
                                 @if(count($q->pakets))
                                     @foreach($q->pakets as $qp)
-                                        @if($qp->user->user_id == $user_id)
+                                        @if($qp->user['user_id'] == $user_id)
                                             @if($qp->user->end_time)
                                                 <tr style="border-top-style: hidden;">
                                                     <td>Start Time</td>

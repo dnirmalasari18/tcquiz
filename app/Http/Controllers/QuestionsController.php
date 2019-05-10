@@ -26,6 +26,7 @@ class QuestionsController extends Controller
         Questions::create($request->all());
         // return redirect('/dosen/quiz/'. $request->quiz_id.'/questions')->with(['create_done' => 'Question has been created']);
         return redirect('/dosen/quiz/'. $request->quiz_id)->with(['create_done' => 'Question has been created']);
+        // ->withInput(['tab'=>'nav-question'])
     }
 
     public function edit($idquiz, $idquestions)

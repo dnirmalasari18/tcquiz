@@ -166,7 +166,7 @@
                 </div>
             </div>
         </div>
-
+        
     </form>
 </div>
 
@@ -243,6 +243,11 @@
                     </div>
                 @endif
             @endforeach
+        </div>
+        <div class="card-body timer">
+                
+                            <td><h8 class="card-title">Time remaining : <span id="time" style="color:red;">{{$durasi}}</span></h8> minutes</td>
+                      
         </div>                
     </div>
 
@@ -309,6 +314,46 @@
 
 <script>
 
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+jQuery(function ($) {
+    var now = new Date();
+    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    var start_sec = 0;
+    start_sec = start_sec + now.getHours() * 3600;
+    start_sec = start_sec + now.getMinutes() * 60;
+    start_sec = start_sec + now.getSeconds();
+
+    var end = new Date();
+    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    
+    console.log('{{$paket->end_time}}');
+    
+    var end_sec = 0;
+    end_sec = end_sec + 03 * 3600;
+    end_sec = end_sec + 0 * 60;
+    end_sec = end_sec + 0;
+    durations = end_sec - start_sec;
+    var fiveMinutes = 60 * 5,
+        display = $('#time');
+    startTimer(durations, display);
+});
+
     $(document).ready(function(){
 
         $(".form-check-input").click(function() {
@@ -343,6 +388,8 @@
             });
         });
     });
+    
+
     
 </script>
 

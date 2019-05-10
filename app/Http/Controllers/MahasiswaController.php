@@ -12,6 +12,7 @@ use DB;
 use Illuminate\Http\Request;
 Use App\Questions;
 Use Response;
+Use DateTime;
 
 class MahasiswaController extends Controller
 {
@@ -91,7 +92,9 @@ class MahasiswaController extends Controller
                 ['quizzes.id', '=', $idquiz],
             ])
             ->first();
+        $data['paket']->end_time = DateTime::createFromFormat('H:i:s', $data['paket']->end_time);
         $data['test'] = Questions::where('quiz_id', $idquiz)->get();
+        $data['durasi']=Quiz::where('id', $idquiz)->first()->durasi;
 
         if($data['paket']){
             $mp_id = $data['paket']->id;

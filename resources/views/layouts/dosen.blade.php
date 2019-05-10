@@ -149,6 +149,7 @@
 
 
     <script src="{{asset('dashboard/vendors/chart.js/dist/Chart.bundle.min.js')}}"></script>
+
     <script src="{{asset('dashboard/assets/js/dashboard.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/widgets.js')}}"></script>
     <script src="{{asset('dashboard/vendors/jqvmap/dist/jquery.vmap.min.js')}}"></script>
@@ -168,6 +169,13 @@
 
     <script src="{{asset('tinymce/js/tinymce/tinymce.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
     @yield('script')
 

@@ -120,12 +120,18 @@
                             @if($q==count($quiz))
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#submitQuiz" style="float: right; width: 70px;">Submit</button>
                                 @if($q-1>0)
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+                                <div class="col-md-2">
+                                    <div onclick="openSoal(event, '{{$q-1}}')"><i class="fa fa-chevron-left"></i></div>
+                                </div>
                                 @endif
                             @else
-                                <button type="button" class="btn btn-info btn-sm" style="float: right; width: 70px;" onclick="openSoal(event, '{{$q+1}}')">Next</button>
+                                <div class="col-md-10" style="float:right;" align="right">
+                                    <div onclick="openSoal(event, '{{$q+1}}')"><i class="fa fa-chevron-right"></i></div>
+                                </div>
                                 @if($q-1>0)
-                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" style="width: 70px;" onclick="openSoal(event, '{{$q-1}}')">Previous</button>
+                                    <div class="col-md-2">
+                                        <div onclick="openSoal(event, '{{$q-1}}')"><i class="fa fa-chevron-left"></i></div>
+                                    </div>
                                 @endif
                             @endif
                         </div>

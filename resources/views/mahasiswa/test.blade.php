@@ -1,6 +1,6 @@
 @extends('layouts.mahasiswa')
 
-@section('dashboard', 'active')
+@section('quiz', 'active')
 
 @section('title')
 <h1>{{$kuis->nama_kuis}}</h1>
@@ -244,17 +244,16 @@
                 @endif
             @endforeach
         </div>
-        <div class="card-body timer">
+       <!--  <div class="card-body timer">
                 
                             <td><h8 class="card-title">Time remaining : <span id="time" style="color:red;">{{$durasi}}</span></h8> minutes</td>
                       
-        </div>                
+        </div>     -->            
     </div>
 
 </div>
 
 <script>
-
     function openSoal(evt, num) {
         var i, card, soal;
         card = document.getElementsByClassName("card nuzha");
@@ -285,7 +284,6 @@
             document.getElementById("nomer"+num).className = "card-body text-secondary soal-aktif";
         }
     }
-
     function flagSoal(evt, num) {
         var idFlag = "flag" + num;
         var x = document.getElementById(idFlag).checked;
@@ -298,9 +296,7 @@
             document.getElementById(id).className = "card-body text-secondary soal-aktif";
         }
     }
-
     document.getElementById("nomer1").click();
-
 </script>
 
 @endsection
@@ -313,24 +309,19 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <script>
-
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
-
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-
         display.text(minutes + ":" + seconds);
-
         if (--timer < 0) {
             timer = duration;
         }
     }, 1000);
 }
-
 jQuery(function ($) {
     var now = new Date();
     var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
@@ -338,7 +329,6 @@ jQuery(function ($) {
     start_sec = start_sec + now.getHours() * 3600;
     start_sec = start_sec + now.getMinutes() * 60;
     start_sec = start_sec + now.getSeconds();
-
     var end = new Date();
     var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
     
@@ -353,9 +343,7 @@ jQuery(function ($) {
         display = $('#time');
     startTimer(durations, display);
 });
-
     $(document).ready(function(){
-
         $(".form-check-input").click(function() {
             var data = $("#myForm").serialize();
             $.ajax({
@@ -371,7 +359,6 @@ jQuery(function ($) {
                 }
             });
         });
-
         $(".switch-input").click(function() {
             var data = $("#myForm").serialize();
             $.ajax({
@@ -389,7 +376,6 @@ jQuery(function ($) {
         });
     });
     
-
     
 </script>
 

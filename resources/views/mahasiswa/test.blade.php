@@ -331,6 +331,17 @@
       var min = duration.minutes();
       var sec = duration.seconds();
 
+<<<<<<< HEAD
+=======
+      sec -= 1;
+      if (hr < 0 && min != 0){
+          hr -= 1;
+          min = 59;
+      }
+      if (hr < 0) return clearInterval(timer);
+      if (min < 10 && min.length != 2) min = '0' + min;
+      if (sec < 10 && sec.length != 2) sec = '0' + sec;
+>>>>>>> cc0573fe2d89012ac3beedefdba435abd5440c38
       if (sec < 0 && min != 0) {
         min -= 1;
         sec = 59;

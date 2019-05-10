@@ -244,11 +244,11 @@
                 @endif
             @endforeach
         </div>
-        <div class="card-body timer">
+       <!--  <div class="card-body timer">
                 
                             <td><h8 class="card-title">Time remaining : <span id="time" style="color:red;">{{$durasi}}</span></h8> minutes</td>
                       
-        </div>                
+        </div>     -->            
     </div>
 
 </div>

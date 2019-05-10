@@ -49,7 +49,7 @@
         <div class="col-md-8 float-left">
             <div class="card panel" id="soal{{$i}}">
                 <div class="card-header">
-                    <strong class="card-title mb-3" >SOAL {{$i+1}}</strong>
+                    <strong class="card-title mb-3" >Question {{$i+1}}</strong>
                     @if($kuis->finalize_status=='0')
                         <form class="delete-form float-right" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">

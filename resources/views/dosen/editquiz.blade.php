@@ -60,7 +60,7 @@
         <form class="deletequiz-form" method="POST" action="{{ route('quiz.destroy', $kuis->id) }}" accept-charset="UTF-8">
             <input name="_method" type="hidden" value="Delete">
             <input name="_token" type="hidden" value="{{ csrf_token() }}">
-            <input type="button" class="btn btn-lg btn-danger btn-block delete-btn" value="Delete">
+            <input type="button" class="btn btn-lg btn-danger btn-block delete-btnq" value="Delete">
         </form>
     </div>
 @else

@@ -127,11 +127,11 @@
                                     </div>
                                 @endif
                             @else
-                                <div class="col-md-2" style="float:right; padding: 0 0; display: inline-block;vertical-align: middle;" align="right">
-                                    <div onclick="openSoal(event, '{{$q+1}}')" style="cursor: pointer;"><i class="fa fa-chevron-right"></i></div>
+                                <div class="col-md-2" style="float:right; padding: 0 0;" align="right">
+                                    <div onclick="openSoal(event, '{{$q+1}}')" style="cursor: pointer; width: fit-content;"><i class="fa fa-chevron-right"></i></div>
                                 </div>
                                 @if($q-1>0)
-                                    <div class="col-md-2" style="padding: 0 0;display: inline-block;vertical-align: middle;">
+                                    <div class="col-md-2" style="padding: 0 0;">
                                         <div onclick="openSoal(event, '{{$q-1}}')" style="cursor: pointer;"><i class="fa fa-chevron-left"></i></div>
                                     </div>
                                 @endif

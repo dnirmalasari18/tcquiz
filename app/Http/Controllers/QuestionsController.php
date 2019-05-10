@@ -25,7 +25,7 @@ class QuestionsController extends Controller
         $validated = $request->validated();
         Questions::create($request->all());
         // return redirect('/dosen/quiz/'. $request->quiz_id.'/questions')->with(['create_done' => 'Question has been created']);
-        return redirect('/dosen/quiz/'. $request->quiz_id)->with(['create_done' => 'Question has been created']);
+        return redirect('/dosen/quiz/'. $request->quiz_id.'/#tab_question')->with(['create_done' => 'Question has been created']);
     }
 
     public function edit($idquiz, $idquestions)
@@ -44,7 +44,7 @@ class QuestionsController extends Controller
         $question = Questions::findorfail($questions);
         $question->update($request->all());
         // return redirect('/dosen/quiz/'. $question->quiz_id.'/questions')->with(['update_done' => 'Question has been updated']);
-        return redirect('/dosen/quiz/'. $question->quiz_id)->with(['update_done' => 'Question has been updated']);
+        return redirect('/dosen/quiz/'. $question->quiz_id.'/#tab_question')->with(['update_done' => 'Question has been updated']);
     }
 
     public function destroy($questions)
@@ -52,7 +52,7 @@ class QuestionsController extends Controller
         $soal = Questions::findorfail($questions);
         $soal->delete();
         // return redirect('/dosen/quiz/'.$soal->quiz_id.'/questions');
-        return redirect('/dosen/quiz/'.$soal->quiz_id);
+        return redirect('/dosen/quiz/'.$soal->quiz_id.'/#tab_question');
     }
 
     public function questionslist($idquiz)

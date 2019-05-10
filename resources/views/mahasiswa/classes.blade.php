@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-</div><!-- .animated -->
+</div>
 @foreach($classes as $c)
     <div class="modal fade" id="class-detail-{{ $c->id }}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">

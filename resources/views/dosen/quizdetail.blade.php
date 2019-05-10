@@ -25,29 +25,27 @@
                     </div>
                 </div>
                 <div class="card-body">
-
                     <div class="default-tab">
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Info</a>
-                                <a class="nav-item nav-link" id="nav-question-tab" data-toggle="tab" href="#nav-question" role="tab" aria-controls="nav-question" aria-selected="false">Questions List</a>
-                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Participants</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Quiz Summary</a>
+                                <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="nav-info" aria-selected="true">Info</a>
+                                <a class="nav-item nav-link" id="nav-question-tab" data-toggle="tab" href="#question" role="tab" aria-controls="nav-question" aria-selected="false">Questions List</a>
+                                <a class="nav-item nav-link" id="nav-participant-tab" data-toggle="tab" href="#participant" role="tab" aria-controls="nav-participant" aria-selected="false">Participants</a>
+                                <a class="nav-item nav-link" id="nav-summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="nav-summary" aria-selected="false">Quiz Summary</a>
                             </div>
                         </nav>
                         <div class="tab-content pl-3 pt-2" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+                            <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="nav-info-tab">
                                 @include('dosen.editquiz')
                             </div>
-                            <div class="tab-pane fade" id="nav-question" role="tabpanel" aria-labelledby="nav-question-tab">
+                            <div class="tab-pane fade" id="question" role="tabpanel" aria-labelledby="nav-question-tab">
                                 @include('dosen.listofquestions')
                             </div>
-                            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="tab-pane fade" id="participant" role="tabpanel" aria-labelledby="nav-participant-tab">
                                 @include('dosen.listofparticipants')
                             </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-                                    butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, irure terry richardson ex sd. Alip placeat salvia cillum iphone. Seitan alip s cardigan american apparel, butcher voluptate nisi .</p>
+                            <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="nav-summary-tab">
+                                @include('dosen.quizsummary')
                             </div>
                         </div>
                 </div>
@@ -62,16 +60,33 @@
     function openSoal(evt, num) {
         var i, card, soal;
         card = document.getElementsByClassName("card panel");
+        button = document.getElementsByClassName("btn panelsoal");
         for (i = 0; i < card.length; i++) {
             card[i].style.display = "none";
+            button[i].style.backgroundColor  = "#17a2b8";
         }
         var id = "soal" + num;
         document.getElementById(id).style.display = "flex";
-        //document.getElementById("nomor"+num).className = "btn btn-light";
+        document.getElementById("nomor"+num).style.backgroundColor  = "white";
     }
-    document.getElementById("nomor0").click();
+    if ('{{count($kuis->quiz)>0}}') {
+        document.getElementById("nomor0").click();
+    }
+    
 
 (function($) {
+
+    var hash = document.location.hash;
+    var prefix = "tab_";
+    if (hash)
+    {
+        $('.nav-tabs a[href="'+hash.replace(prefix,"")+'"]').tab('show');
+    }
+    $('.nav-tabs a').on('shown', function (e)
+    {
+        window.location.hash = e.target.hash.replace("#", "#" + prefix);
+    });
+
     $(".kelas-select").change(async function(){
         let jadwals;
         const agenda_id = $(this).val();
@@ -142,7 +157,7 @@
         });
     }
 
-    $(".delete-btn").click(function() {
+    $(".delete-btnq").click(function() {
         deleteQuiz();
     });
 
@@ -205,6 +220,16 @@
         deleteQuestion();
     });
 
+    @if(Session::has('updatequiz_done'))
+      swal({
+            title: "Quiz has been updated!",
+            text:" ",
+            icon: "success",
+            button: false,
+            timer: 1500,
+      }); 
+    @endif
+
     @if(Session::has('create_done'))
       swal({
             title: "Question has been created!",
@@ -265,8 +290,8 @@
 
     function finalizeQuiz() {
         swal({
-            title: "Kuis 3",
-            text: "PBBK I\n10 Mei 2019, 14.00 - 15.30\n40 questions",
+            title: "{{$kuis->nama_kuis}}",
+            text: "{{$kuis->pertemuanke->agenda->singkatAgenda}}\n{{ date('d M y', strtotime($kuis->pertemuanke->tglPertemuan)) }}, {{$kuis->pertemuanKe->waktuMulai}} - {{$kuis->pertemuanKe->waktuSelesai}}\n{{count($kuis->quiz)}} question(s)",
             icon: "info",
             buttons: ["Cancel", "Next"],
             dangerMode: true,
@@ -300,7 +325,37 @@
         finalizeQuiz();
     });
 
+    $(document).ready(function() {
+        $('#participant_score').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 3]
+                    }
+                },
+                {
+                    extend: 'csvHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 3]
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 3]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [ 0, 1, 3]
+                    }
+                },
+            ]
+        } );
+    } );
 })(jQuery);
-
 </script>
 @endsection

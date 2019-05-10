@@ -178,6 +178,7 @@ class MahasiswaController extends Controller
         $arr = array_map('intval', explode(",", $mp->user_answer_list));
         $fl = array_map('intval', explode(",", $mp->question_flag_list));
         for ($i=1; $i <= $request->jumlah ; $i++) {
+
             if (isset($request->ans[$i])) {
                 $arr[$i-1] = $request->ans[$i];
             }

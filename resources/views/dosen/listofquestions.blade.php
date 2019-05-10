@@ -10,10 +10,10 @@
                 <div class="card-header text-center">
                     <strong class="card-title mb-3">PANEL SOAL</strong>
                 </div>
-                <div class="card-body">
-                    <div align="left">
+                <div class="card-body text-center">
+                    <div class="text-center">
                         @for ($i = 0; $i < count($questions); $i++)
-                            <a onclick="openSoal(event, '{{$i}}')" id="nomor{{$i}}" class="panelsoal btn btn-light">{{$i+1}}</a>
+                            <a onclick="openSoal(event, '{{$i}}')" class="btn btn-info panelsoal" id="nomor{{$i}}" style="width: 50px; margin-top: 3px;">{{$i+1}}</a>
                         @endfor
                     </div>
                     <hr>
@@ -49,12 +49,12 @@
         <div class="col-md-8 float-left">
             <div class="card panel" id="soal{{$i}}">
                 <div class="card-header">
-                    <strong class="card-title mb-3 float-left" >SOAL {{$i+1}}</strong>
+                    <strong class="card-title mb-3" >Question {{$i+1}}</strong>
                     @if($kuis->finalize_status=='0')
-                        <form class="delete-form" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
+                        <form class="delete-form float-right" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">
                             <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                            <input type="button" class="btn btn-sm btn-danger delete-btn float-right" value="Delete">
+                            <input type="button" class="btn btn-sm btn-danger delete-btn " value="Delete">
                         </form>
                         <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$kuis->id, $questions[$i]->id])}}" role="button">Edit</a>
                     @endif
@@ -63,14 +63,14 @@
                     <div align="left">
                         {!!$questions[$i]->question_description!!}
                         @if($questions[$i]->correct_answer==1)
-                            <mark style="background-color: green; color: white;">A</mark>
+                            <i class="fa fa-check" style="color: green;"></i>A
                         @else
                             A
                         @endif
                         {!! $questions[$i]->option_1!!}
 
                         @if($questions[$i]->correct_answer==2)
-                            <mark style="background-color: green; color: white;">B</mark>
+                            <i class="fa fa-check" style="color: green;"></i>B
                         @else
                             B
                         @endif
@@ -78,7 +78,7 @@
                        
                         @if($questions[$i]->option_3!=null)    
                             @if($questions[$i]->correct_answer==3)
-                                <mark style="background-color: green; color: white;">C</mark>
+                                <i class="fa fa-check" style="color: green;"></i>C
                             @else
                             C
                             @endif
@@ -86,7 +86,7 @@
                         @endif
                         @if($questions[$i]->option_4!=null)    
                             @if($questions[$i]->correct_answer==4)
-                                <mark style="background-color: green; color: white;">D</mark>
+                                <i class="fa fa-check" style="color: green;"></i>D
                             @else
                             D
                             @endif
@@ -94,7 +94,7 @@
                         @endif
                         @if($questions[$i]->option_5!=null)    
                             @if($questions[$i]->correct_answer==5)
-                                <mark style="background-color: green; color: white;">E</mark>
+                                <i class="fa fa-check" style="color: green;"></i>E
                             @else
                             E
                             @endif
@@ -104,21 +104,23 @@
                     <hr>
                     <div class="card-text">
                         <div class="row" style="cursor: pointer;">
-                            @if($i==0)
+                            @if($i==0 && count($questions)!=1)
                                 <div class="col-md-12" align="right">
                                     <div onclick="openSoal(event, '{{$i+1}}')"><i class="fa fa-chevron-right"></i></div>
                                 </div>
-                            @elseif($i==count($questions)-1)
+                            @elseif($i==count($questions)-1 && count($questions)!=1)
                                 <div class="col-md-12">
                                     <div onclick="openSoal(event, '{{$i-1}}')"><i class="fa fa-chevron-left"></i></div>
                                 </div>
                             @else
-                                <div class="col-md">
-                                    <div onclick="openSoal(event, '{{$i-1}}')"><i class="fa fa-chevron-left"></i></div>
-                                </div>
-                                <div class="col-md-10" align="right">
-                                    <div onclick="openSoal(event, '{{$i+1}}')"><i class="fa fa-chevron-right"></i></div>
-                                </div>
+                                @if(count($questions)!=1)
+                                    <div class="col-md">
+                                        <div onclick="openSoal(event, '{{$i-1}}')"><i class="fa fa-chevron-left"></i></div>
+                                    </div>
+                                    <div class="col-md-10" align="right">
+                                        <div onclick="openSoal(event, '{{$i+1}}')"><i class="fa fa-chevron-right"></i></div>
+                                    </div>
+                                @endif
                             @endif
                         </div>  
                     </div>

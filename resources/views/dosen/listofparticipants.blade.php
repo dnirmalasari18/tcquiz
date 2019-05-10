@@ -1,11 +1,11 @@
 @if(count($participants))
-<table id="bootstrap-data-table" class="table table-bordered">
+<table id="participant_score" class="table table-bordered">
     <thead class="thead-light" align="center">
         <tr align="center">
             <th>NRP</th>
-            <th>Nama</th>
-            <th>Paket Soal</th>
-            <th>Nilai</th>
+            <th>Name</th>
+            <th>Quiz Packet</th>
+            <th>Score</th>
             <th>Menu</th>
         </tr>
     </thead>
@@ -25,7 +25,7 @@
     </tbody>
 </table>
 @elseif(count($participant))
-<table id="bootstrap-data-table" class="table table-bordered">
+<table id="participant_score" class="table table-bordered">
     <thead class="thead-light" align="center">
         <tr align="center">
             <th>NRP</th>

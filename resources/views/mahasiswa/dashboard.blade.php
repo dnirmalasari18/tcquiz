@@ -22,7 +22,7 @@
             @if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke->waktuSelesai))
                 @if(count($q->pakets))
                     @foreach($q->pakets as $qp)
-                        @if($qp->user->user_id == $user_id)
+                        @if($qp->user['user_id'] == $user_id)
                             @if(!$qp->user->status_ambil)
                                 <?php
                                     $count += 1;
@@ -57,21 +57,21 @@
 @endif
 
 <style type="text/css">
-	.nuzha{
-		height: 110px;
-		font-size: 40px; 
+    .nuzha{
+        height: 110px;
+        font-size: 40px; 
         background-color: #3b5998;
-		background-position-x: 0%;
-		background-position-y: 0%;
-		background-repeat: repeat;
-		background-attachment: scroll;
-		background-image: none;
-		background-size: auto;
-		background-origin: padding-box;
-		background-clip: border-box;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-image: none;
+        background-size: auto;
+        background-origin: padding-box;
+        background-clip: border-box;
         line-height: 110px;
         color: white;
-	}
+    }
 </style>
 
 @if($count>0)
@@ -81,13 +81,13 @@
                 @if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke->waktuSelesai))
                     @if(count($q->pakets))
                         @foreach($q->pakets as $qp)
-                            @if($qp->user->user_id == $user_id)
+                            @if($qp->user['user_id'] == $user_id)
                                 @if(!$qp->user->status_ambil)
                                     <div class="col-lg-3 col-md-6">
                                         <div class="social-box">
-                                        	<div class="nuzha">
+                                            <div class="nuzha">
                                                 {{$q->pertemuanke->agenda->singkatAgenda}}
-                                    	    </div>
+                                            </div>
                                             <ul>
                                                 <li>
                                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#quizDetail{{$q->id}}">Detail
@@ -127,7 +127,7 @@
                 @if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke->waktuSelesai))
                     @if(count($q->pakets))
                         @foreach($q->pakets as $qp)
-                            @if($qp->user->user_id == $user_id)
+                            @if($qp->user['user_id'] == $user_id)
                                 @if(!$qp->user->status_ambil)
                                     <div class="modal fade" id="quizDetail{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
@@ -202,7 +202,7 @@
                 @if(strtotime(date("H:i:s", strtotime('7 hour'))) <= strtotime($q->pertemuanke->waktuSelesai))
                     @if(count($q->pakets))
                         @foreach($q->pakets as $qp)
-                            @if($qp->user->user_id == $user_id)
+                            @if($qp->user['user_id'] == $user_id)
                                 @if(!$qp->user->status_ambil)
                                     <div class="modal fade" id="takeQuiz{{$q->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg nuzha3" role="document">

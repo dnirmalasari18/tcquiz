@@ -327,6 +327,7 @@
     var timer = setInterval(function() {
 
       duration = moment.duration(duration.asSeconds() - interval, 'seconds');
+      var hr = duration.hours();
       var min = duration.minutes();
       var sec = duration.seconds();
 
@@ -338,8 +339,8 @@
         sec = 59;
       } else if (sec < 10 && sec.length != 2) sec = '0' + sec;
 
-      $('#time').text(min + ':' + sec);
-      if (min == 0 && sec == 0)
+      $('#time').text(hr + ':' + min + ':' + sec);
+      if (hr ==0 && min == 0 && sec == 0)
         clearInterval(timer);
     }, 1000);
 

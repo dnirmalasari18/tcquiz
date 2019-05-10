@@ -212,7 +212,14 @@
             color: white !important;
         }
     </style>
-
+ <div class="card card-timer">
+        <div class="card-header">
+            <h7 class="strong">Time Remaining :</h7>
+            <h7><span id="time" style="color:red;"></span> minutes</h7>
+        </div>
+        
+    </div>
+    <br>
     <div class="card card-soal">
         <div class="card-header" align="center">
             <strong class="card-title">Questions List</strong>
@@ -307,42 +314,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
 
 <script>
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
-        seconds = parseInt(timer % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        display.text(minutes + ":" + seconds);
-        if (--timer < 0) {
-            timer = duration;
-        }
+var start = moment();
+    var end = moment('{{ $paket->end_time }}').add({{ $kuis->durasi }}, 'minutes');
+    var diff = end.diff(start);
+
+    var duration = moment.duration(diff);
+
+    var interval = 1;
+    var timer = setInterval(function() {
+
+      duration = moment.duration(duration.asSeconds() - interval, 'seconds');
+      var min = duration.minutes();
+      var sec = duration.seconds();
+
+      sec -= 1;
+      if (min < 0) return clearInterval(timer);
+      if (min < 10 && min.length != 2) min = '0' + min;
+      if (sec < 0 && min != 0) {
+        min -= 1;
+        sec = 59;
+      } else if (sec < 10 && sec.length != 2) sec = '0' + sec;
+
+      $('#time').text(min + ':' + sec);
+      if (min == 0 && sec == 0)
+        clearInterval(timer);
     }, 1000);
-}
-jQuery(function ($) {
-    var now = new Date();
-    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-    var start_sec = 0;
-    start_sec = start_sec + now.getHours() * 3600;
-    start_sec = start_sec + now.getMinutes() * 60;
-    start_sec = start_sec + now.getSeconds();
-    var end = new Date();
-    var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-    
-    console.log('{{$paket->end_time}}');
-    
-    var end_sec = 0;
-    end_sec = end_sec + 03 * 3600;
-    end_sec = end_sec + 0 * 60;
-    end_sec = end_sec + 0;
-    durations = end_sec - start_sec;
-    var fiveMinutes = 60 * 5,
-        display = $('#time');
-    startTimer(durations, display);
-});
+
     $(document).ready(function(){
         $(".form-check-input").click(function() {
             var data = $("#myForm").serialize();

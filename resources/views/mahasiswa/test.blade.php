@@ -323,7 +323,11 @@
 
 <script>
     var start = moment();
+    var nuzha_time = moment('{{date("Y-m-d", strtotime("7 hour"))}} {{$kuis->pertemuanke->waktuSelesai}}');
     var end = moment('{{ $mp->end_time }}').add({{ $kuis->durasi }}, 'minutes');
+    if (end > nuzha_time) {
+        end = nuzha_time;
+    }
     var diff = end.diff(start);
 
     var duration = moment.duration(diff);

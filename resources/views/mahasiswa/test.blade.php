@@ -327,19 +327,26 @@
     var timer = setInterval(function() {
 
       duration = moment.duration(duration.asSeconds() - interval, 'seconds');
+      var hour = duration.hours();
       var min = duration.minutes();
       var sec = duration.seconds();
 
       sec -= 1;
       if (min < 0) return clearInterval(timer);
+      if (hour < 10 && hour.length != 2) hour = '0' + hour;
       if (min < 10 && min.length != 2) min = '0' + min;
+      if (sec < 10 && sec.length != 2) sec = '0' + sec;
       if (sec < 0 && min != 0) {
         min -= 1;
         sec = 59;
-      } else if (sec < 10 && sec.length != 2) sec = '0' + sec;
+      }
+      if (min < 0 && hour != 0) {
+        hour -= 1;
+        min = 59;
+      }
 
-      $('#time').text(min + ':' + sec);
-      if (min == 0 && sec == 0)
+      $('#time').text(hour + ':' + min + ':' + sec);
+      if (hoour == 0 && min == 0 && sec == 0)
         clearInterval(timer);
     }, 1000);
 

@@ -114,6 +114,10 @@ class MahasiswaController extends Controller
 
             }
             else{
+                if(!absen ){
+                    //ambildataabsen
+                return abort(404);
+                } 
 
                 if(!$mp->end_time){
                     $now = date("Y-m-d H:i:s", strtotime('7 hour'));

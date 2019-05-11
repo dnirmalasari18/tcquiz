@@ -54,7 +54,7 @@
                         <form class="delete-form-{{$questions[$i]->id}} float-right" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">
                             <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                            <input type="button" class="btn btn-sm btn-danger delete-btn " value="Delete {{$questions[$i]->id}}" question-id='{{$questions[$i]->id}}'>
+                            <input type="button" class="btn btn-sm btn-danger delete-btn " value="Delete" question-id='{{$questions[$i]->id}}'>
                         </form>
                         <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$kuis->id, $questions[$i]->id])}}" role="button">Edit</a>
                     @endif
@@ -129,6 +129,25 @@
         </div>
     </div>
     @endfor
+    @if ($kuis->finalize_status=='0')
+        <form action="{{route('import.question', $kuis->id)}}" method="POST">
+            {{csrf_field()}}
+            <input type="hidden" name="quiz_id" value="{{ $kuis->id }}">
+            <div class="form-group col-md-6">
+                <select class="form-control" name="import_id">
+                    @foreach ($allquiz as $a)        
+                        <option value="{{ $a->id }}">{{ $a->nama_kuis }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <br>
+            <div class="col-md-2">
+                <button id="" type="submit" class="btn btn-warning">
+                    Import
+                </button>
+            </div>
+        </form>
+    @endif
 @else
 <div class="col-md-12">
     <div class="alert alert-warning">

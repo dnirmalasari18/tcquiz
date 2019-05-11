@@ -138,7 +138,7 @@ class QuizController extends Controller
         $min_score = $participants->min('quiz_score');
         $max_score = $participants->max('quiz_score');
 
-        $allquiz = Quiz::get();
+        $allquiz = Quiz::where('id', '!=',$quiz)->get();
 
         $participant_details = [];
         $soal_details = [];

@@ -135,9 +135,33 @@
         <i class="fa fa-exclamation-triangle"></i> There is no question(s).
     </div>
 </div>
-<div class="col-md-12">
-    <div class="col text-center">
-        <a href="{{route('createquestion', $kuis->id)}}" class="btn btn-primary">Add Question</a>
+<div>
+    <div>
+        <form action="" method="POST">
+            {{csrf_field()}}
+            <input type="hidden" name="quiz_id" value="{{ $kuis->id }}">
+            <div class="form-group col-md-6">
+                <select class="form-control">
+                    @foreach ($allquiz as $a)        
+                        <option value="{{ $a->id }}">{{ $a->nama_kuis }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <br>
+
+            <div class="col-md-2">
+                <button id="" type="submit" class="btn btn-warning">
+                    Import
+                </button>
+            </div>
+        </form>
     </div>
-    </div> 
+    <div>
+         <a class="btn float-left">Or</a>
+    </div>
+    <div class="col text-center">
+         <a href="{{route('createquestion', $kuis->id)}}" class="btn btn-primary float-right">Add Question</a>
+    </div>
+</div>
+
 @endif

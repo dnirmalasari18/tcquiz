@@ -138,6 +138,8 @@ class QuizController extends Controller
         $min_score = $participants->min('quiz_score');
         $max_score = $participants->max('quiz_score');
 
+        $allquiz = Quiz::get();
+
         $participant_details = [];
         $soal_details = [];
 
@@ -185,7 +187,7 @@ class QuizController extends Controller
 
         //return $soal_details;
 
-        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions'));
+        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz'));
     }
 
 

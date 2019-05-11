@@ -51,10 +51,10 @@
                 <div class="card-header">
                     <strong class="card-title mb-3" >Question {{$i+1}}</strong>
                     @if($kuis->finalize_status=='0')
-                        <form class="delete-form float-right" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
+                        <form class="delete-form-{{$questions[$i]->id}} float-right" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">
                             <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                            <input type="button" class="btn btn-sm btn-danger delete-btn " value="Delete">
+                            <input type="button" class="btn btn-sm btn-danger delete-btn " value="Delete {{$questions[$i]->id}}" question-id='{{$questions[$i]->id}}'>
                         </form>
                         <a class="btn btn-sm btn-warning float-right" href="{{route('editquestion', [$kuis->id, $questions[$i]->id])}}" role="button">Edit</a>
                     @endif

@@ -195,7 +195,7 @@
     const tac_content = $("[name='_tac_content']").val();
     $("#terms-conditions").html(tac_content);
 
-    function deleteQuestion() {
+    function deleteQuestion(q_id) {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this question!",
@@ -205,7 +205,7 @@
         })
         .then((willDelete) => {
             if (willDelete) {
-                $(".delete-form").submit();
+                $(".delete-form-"+ q_id).submit();
                 swal({
                     title:"Question has been deleted!",
                     text:" ",
@@ -217,7 +217,8 @@
         });
     }
     $(".delete-btn").click(function() {
-        deleteQuestion();
+        const q_id = $(this).attr('question-id');
+        deleteQuestion(q_id);
     });
 
     @if(Session::has('updatequiz_done'))

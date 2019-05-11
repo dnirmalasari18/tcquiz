@@ -35,6 +35,8 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         
         Route::resource('quiz', 'QuizController');
         Route::get('quiz/{id}/generate', 'QuizController@generatePacket')->name('generatepacket');
+
+        Route::post('quiz/{id}/import', 'QuestionsController@importQuestion')->name('import.question');
     });
 });
 

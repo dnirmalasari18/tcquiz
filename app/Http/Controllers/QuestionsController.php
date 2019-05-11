@@ -67,4 +67,22 @@ class QuestionsController extends Controller
         $path = str_replace('/public', "", $path);
         return json_encode(['location' => $path]); 
     }
+
+    public function importQuestion(Request $request) {
+        $quiz = Quiz::find($request->import_id);
+        foreach ($quiz->quiz as $q) {
+            Questions::create([
+                'quiz_id'  =>  $request->quiz_id,
+                'question_description' =>  $q->question_description,
+                'option_1' =>  $q->option_1,
+                'option_2' =>  $q->option_2,
+                'option_3' =>  $q->option_3,
+                'option_4' =>  $q->option_4,
+                'option_5' =>  $q->option_5,
+                'correct_answer' =>  $q->correct_answer,
+                'question_score' =>  $q->question_score,
+            ]);
+        }
+        return redirect('/dosen/quiz/'.$request->quiz_id.'/#tab_question');
+    }
 }

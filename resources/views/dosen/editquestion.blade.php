@@ -19,7 +19,7 @@
                             <h3 class="m-0">{{ $quiz->nama_kuis }}</h3>
                         </div>
                         <div class="col ">
-                            <a class="btn btn-secondary float-right" href="/dosen/quiz/{{$quiz->id}}/questions" role="button">Back</a>
+                            <a class="btn btn-secondary float-right" href="/dosen/quiz/{{$quiz->id}}/#tab_question" role="button">Back</a>
                         </div>
                     </div>
                 </div>

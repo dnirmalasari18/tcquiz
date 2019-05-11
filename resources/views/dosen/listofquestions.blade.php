@@ -137,18 +137,17 @@
 </div>
 <div>
     <div>
-        <form action="" method="POST">
+        <form action="{{route('import.question', $kuis->id)}}" method="POST">
             {{csrf_field()}}
             <input type="hidden" name="quiz_id" value="{{ $kuis->id }}">
             <div class="form-group col-md-6">
-                <select class="form-control">
+                <select class="form-control" name="import_id">
                     @foreach ($allquiz as $a)        
                         <option value="{{ $a->id }}">{{ $a->nama_kuis }}</option>
                     @endforeach
                 </select>
             </div>
             <br>
-
             <div class="col-md-2">
                 <button id="" type="submit" class="btn btn-warning">
                     Import

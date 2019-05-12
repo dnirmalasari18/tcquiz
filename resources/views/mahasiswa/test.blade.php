@@ -75,7 +75,7 @@
                                 @if($t->option_2)
                                     <div class="radio">
                                       <label for="" class="form-check-label ">
-                                        <input type="radio" id="" name="ans[{{$q}}]" value="2" class="form-check-input"
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="2" class="form-check-input" onclick="ansSoal(event, '{{$q}}')"
                                         @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==2)
                                             checked
                                         @endif>
@@ -86,7 +86,7 @@
                                 @if($t->option_3)
                                     <div class="radio">
                                       <label for="" class="form-check-label ">
-                                        <input type="radio" id="" name="ans[{{$q}}]" value="3" class="form-check-input"
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="3" class="form-check-input" onclick="ansSoal(event, '{{$q}}')"
                                         @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==3)
                                             checked
                                         @endif>
@@ -97,7 +97,7 @@
                                 @if($t->option_4)
                                     <div class="radio">
                                       <label for="" class="form-check-label ">
-                                        <input type="radio" id="" name="ans[{{$q}}]" value="4" class="form-check-input"
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="4" class="form-check-input" onclick="ansSoal(event, '{{$q}}')"
                                         @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==4)
                                             checked
                                         @endif>
@@ -108,7 +108,7 @@
                                 @if($t->option_5)
                                     <div class="radio">
                                       <label for="" class="form-check-label ">
-                                        <input type="radio" id="" name="ans[{{$q}}]" value="5" class="form-check-input"
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="5" class="form-check-input" onclick="ansSoal(event, '{{$q}}')"
                                         @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==5)
                                             checked
                                         @endif>
@@ -221,6 +221,10 @@
             background-color: #ffc107;
             color: white !important;
         }
+        .soal-terjawab-aktif{
+            background-color: #63A64E;
+            color: white !important;
+        }     
     </style>
 
      <div class="card card-timer">
@@ -285,10 +289,14 @@
                 idFlag = idFlag.replace("nomer", "flag");
                 var x = document.getElementById(idFlag).checked;
                 if (x) {
+                    
                     soal[i].className = "card-body text-secondary soal-ragu";
+                    udahkejawab({{count($quiz)}})
                 }
                 else{
+            
                     soal[i].className = soal[i].className.replace(" soal-aktif", "");
+                    udahkejawab({{count($quiz)}})
                 }
         }
         var id = "soal" + num;
@@ -297,7 +305,10 @@
         idFlag2 = idFlag2.replace("nomer", "flag");
         var y = document.getElementById(idFlag2).checked;
         if (y) {
+            
             document.getElementById("nomer"+num).className = "card-body text-secondary soal-ragu-aktif";
+            udahkejawab({{count($quiz)}})
+
         }
         else{
             document.getElementById("nomer"+num).className = "card-body text-secondary soal-aktif";
@@ -311,18 +322,29 @@
         if (x) {
             var id = "nomer" + num;
             document.getElementById(id).className = "card-body text-secondary soal-ragu-aktif";
+            udahkejawab({{count($quiz)}})
         }
         else {
             var id = "nomer" + num;
             document.getElementById(id).className = "card-body text-secondary soal-aktif";
+            udahkejawab({{count($quiz)}})
         }
     }
     function ansSoal(evt, num){ //ijo in yg kejawab
-        var idAns = "flag" + num;
+        var idFlag = "flag" + num;
         var x = document.getElementById(idFlag).checked;
         if (true) {
             var id = "nomer" + num;
-            document.getElementById(id).className = "card-body text-secondary text-white bg-success";
+            if(x){
+                // alert("if");
+                document.getElementById(id).className = "card-body text-secondary soal-ragu-aktif";
+
+            }else{
+                // alert("else");
+                document.getElementById(id).className = "card-body text-secondary soal-terjawab-aktif";
+                
+
+            }
         }
         else {
             var id = "nomer" + num;

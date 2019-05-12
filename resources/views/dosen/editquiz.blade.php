@@ -3,19 +3,19 @@
         <input name="_method" type="hidden" value="PATCH">
         {{csrf_field()}}
         <div class="form-group col-md-6">
-            <label class="font-weight-bold" for="">Quiz Name</label>
-            <input type="text" class="form-control" id="" placeholder="" name="nama_kuis" value="{{ $kuis->nama_kuis }}" required>
+            <label class="font-weight-bold">Quiz Name</label>
+            <input type="text" class="form-control"  name="nama_kuis" value="{{ $kuis->nama_kuis }}" required>
         </div>
         <div class="form-group col-md-6">
-            <label class="font-weight-bold" for="">Duration</label>
+            <label class="font-weight-bold" >Duration</label>
             <div class="input-group">
-                <input type="number" id="" name="durasi" placeholder="" class="form-control" value="{{ $kuis->durasi }}" required>
+                <input type="number" name="durasi"  class="form-control" value="{{ $kuis->durasi }}" required>
                 <div class="input-group-addon">Minute(s)</div>
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="font-weight-bold" for="">Class</label>
-                <select class="form-control kelas-select" value="" required>  
+            <label class="font-weight-bold" >Class</label>
+                <select class="form-control kelas-select"required>  
                 @foreach ($agenda as $a)
                     @if($kuis->pertemuanke->agenda->idAgenda == $a->idAgenda)
                         <option selected value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>  
@@ -26,7 +26,7 @@
                 </select>
         </div>
         <div class="form-group col-md-6">
-            <label class="font-weight-bold" for="" >Schedule</label>
+            <label class="font-weight-bold" >Schedule</label>
             <select class="form-control jadwal-select" name="absenkuliah_id" value="{{ $kuis->absenkuliah_id }}" required>
                 @foreach($jadwals as $j)      
                     @if($j->id ==  $kuis->absenkuliah_id)
@@ -46,11 +46,11 @@
             <fieldset class="form-control waktuselesai-select" disabled>{{ $kuis->pertemuanke->waktuSelesai }}</fieldset>
         </div>
         <div class="form-group col-md-12">
-            <label class="font-weight-bold" for="">Terms & Conditions</label>
-            <textarea class="form-control" id="terms-conditions" placeholder="" name="terms_conditions" value="{{ $kuis->terms_conditions }}"></textarea>
+            <label class="font-weight-bold">Terms & Conditions</label>
+            <textarea class="form-control" id="terms-conditions" name="terms_conditions" value="{{ $kuis->terms_conditions }}"></textarea>
         </div><br>
         <div class="col-md-12">
-            <button id="" type="submit" class="btn btn-lg btn-info btn-block ">
+            <button  type="submit" class="btn btn-lg btn-info btn-block ">
                 Save
             </button><br><br>
         </div>
@@ -94,7 +94,7 @@
             <fieldset class="form-control waktuselesai-select" disabled>{{ $kuis->pertemuanke->waktuSelesai }}</fieldset>
         </div>
         <div class="form-group col-md-12">
-            <label class="font-weight-bold" for="">Terms & Conditions</label>
+            <label class="font-weight-bold">Terms & Conditions</label>
             {!! $kuis->terms_conditions !!}
         </div><br>
     </form>

@@ -50,7 +50,7 @@
 	@else
 	<div class="content mt-3" align="center">
 		<h1>Welcome to TCQUIZ!</h1><br>
-		<h3>Make your first quiz here</h3><br>
+		<h3>Make a quiz here</h3><br>
 		<a href="{{route('quiz.create')}}" role="button" class="btn btn-primary">Make Quiz</a>
 	</div>
 		

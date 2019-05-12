@@ -19,7 +19,6 @@ class DosenController extends Controller
                 $q->whereBetween('tglPertemuan', [
                 Carbon::parse('yesterday')->startOfDay(),
                 Carbon::parse('next friday')->endOfDay(),]);})->with('pertemuanke')->get();
-
         return view('dosen.dashboard', compact('quiz'));
     }
 

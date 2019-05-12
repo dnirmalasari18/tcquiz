@@ -14,7 +14,6 @@ class QuestionsController extends Controller
     {
         $quiz = Quiz::findorfail($idquiz);
         if ($quiz->finalize_status=='1') {
-            // return redirect('/dosen/quiz/'. $idquiz.'/questions')->with(['error' => 'Tidak dapat menambah soal! Kuis sudah difinalisasi']);
             return redirect('/dosen/quiz/'. $idquiz)->with(['cannot_add' => 'Cannot add question! Quiz has been finalized']);
         }
         return view('dosen.createquestion', compact('quiz'));
@@ -24,7 +23,6 @@ class QuestionsController extends Controller
     {
         $validated = $request->validated();
         Questions::create($request->all());
-        // return redirect('/dosen/quiz/'. $request->quiz_id.'/questions')->with(['create_done' => 'Question has been created']);
         return redirect('/dosen/quiz/'. $request->quiz_id.'/#tab_question')->with(['create_done' => 'Question has been created']);
     }
 
@@ -32,7 +30,6 @@ class QuestionsController extends Controller
     {
         $quiz = Quiz::findorfail($idquiz);
         if ($quiz->finalize_status=='1') {
-            // return redirect('/dosen/quiz/'. $idquiz.'/questions')->with(['error' => 'Tidak dapat edit soal! Kuis sudah difinalisasi']);
             return redirect('/dosen/quiz/'. $idquiz)->with(['cannot_edit' => 'Cannot edit question! Quiz has been finalized']);
         }
         $questions = Questions::findorfail($idquestions);
@@ -43,7 +40,6 @@ class QuestionsController extends Controller
     {
         $question = Questions::findorfail($questions);
         $question->update($request->all());
-        // return redirect('/dosen/quiz/'. $question->quiz_id.'/questions')->with(['update_done' => 'Question has been updated']);
         return redirect('/dosen/quiz/'. $question->quiz_id.'/#tab_question')->with(['update_done' => 'Question has been updated']);
     }
 
@@ -51,7 +47,6 @@ class QuestionsController extends Controller
     {
         $soal = Questions::findorfail($questions);
         $soal->delete();
-        // return redirect('/dosen/quiz/'.$soal->quiz_id.'/questions');
         return redirect('/dosen/quiz/'.$soal->quiz_id.'/#tab_question');
     }
 

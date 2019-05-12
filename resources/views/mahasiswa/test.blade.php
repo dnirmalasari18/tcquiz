@@ -57,11 +57,13 @@
                         </div>
                         <div class="card-body">
                             <div style="margin-bottom: 10px;"><strong>Answers</strong></div>
-                            <div class="form-check">
+                            <div id="form-jawaban-{{$q}}" class="form-check" onshow="udahkejawab({{count($quiz)}})">
+                            <button type="button" id="hehebtn" style="display:none" onclick="udahkejawab({{count($quiz)}})">hehe</button>
+                                
                                 @if($t->option_1)
                                     <div class="radio">
                                       <label for="" class="form-check-label ">
-                                        <input type="radio" id="" name="ans[{{$q}}]" value="1" class="form-check-input"
+                                        <input type="radio" id="" name="ans[{{$q}}]" value="1" class="form-check-input" onclick="ansSoal(event, '{{$q}}')"
                                         @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1]==1)
                                             checked
                                         @endif
@@ -259,13 +261,18 @@
                 @if($m%5==0 || $m==count($soal))
                     </div>
                 @endif
+                
             @endforeach
         </div>   
     </div>
+    
+
 
 </div>
 
 <script>
+
+
     function openSoal(evt, num) {
         var i, card, soal;
         card = document.getElementsByClassName("card nuzha");
@@ -294,7 +301,9 @@
         }
         else{
             document.getElementById("nomer"+num).className = "card-body text-secondary soal-aktif";
+            udahkejawab({{count($quiz)}})
         }
+        
     }
     function flagSoal(evt, num) {
         var idFlag = "flag" + num;
@@ -308,7 +317,21 @@
             document.getElementById(id).className = "card-body text-secondary soal-aktif";
         }
     }
+    function ansSoal(evt, num){ //ijo in yg kejawab
+        var idAns = "flag" + num;
+        var x = document.getElementById(idFlag).checked;
+        if (true) {
+            var id = "nomer" + num;
+            document.getElementById(id).className = "card-body text-secondary text-white bg-success";
+        }
+        else {
+            var id = "nomer" + num;
+            document.getElementById(id).className = "card-body text-secondary soal-aktif";
+        }
+    }
     document.getElementById("nomer1").click();
+
+    
 </script>
 
 @endsection
@@ -322,6 +345,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
 
 <script>
+    $( document ).ready(function() {
+  // Handler for .ready() called.
+        $("#hehebtn").click();
+    });
+
+    function udahkejawab(soalsize){
+        console.log(soalsize)
+        for(var i=1 ; i<=soalsize ; i++){
+            var test = "#form-jawaban-"+i+" input[type='radio']:checked";
+            if (!$(test).val()) {
+                console.log($(test).val());
+            }
+            else {
+                console.log($(test).val());
+                ansSoal("event", i)
+            }
+        }
+
+    }
+
     var start = moment();
     var nuzha_time = moment('{{date("Y-m-d", strtotime("7 hour"))}} {{$kuis->pertemuanke->waktuSelesai}}');
     var end = moment('{{ $mp->end_time }}').add({{ $kuis->durasi }}, 'minutes');

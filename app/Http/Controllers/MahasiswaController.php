@@ -114,10 +114,20 @@ class MahasiswaController extends Controller
 
             }
             else{
-                if(!absen ){
-                    //ambildataabsen
-                return abort(404);
-                } 
+                
+                $agenda = $q->pertemuanke->fk_idAgenda;
+                $username = Auth::user()->username;
+                $minggu = $q->pertemuanke->pertemuanKe;
+                $absen = DB::table('kehadiran')->where([
+                                                        ['idUser', '=', $username],
+                                                        ['idAgenda', '=', $agenda],
+                                                    ])->first();
+
+                $minggu = 'p'.$minggu;
+
+                if (!$absen->$minggu) {
+                    return abort(404);
+                }
 
                 if(!$mp->end_time){
                     $now = date("Y-m-d H:i:s", strtotime('7 hour'));

@@ -223,10 +223,10 @@
 
      <div class="card card-timer">
         <div class="card-header" align="center">
-            <h7 class="strong">Time Remaining: </h7>
-            <h7>
+            <h5 class="strong">Time Remaining: </h5>
+            <h5>
                 <span id="time" style="color:red;"></span>
-            </h7>
+            </h5>
         </div>
     </div>
     <br>

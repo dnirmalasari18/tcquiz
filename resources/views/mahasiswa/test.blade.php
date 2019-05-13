@@ -276,8 +276,10 @@
 
 <script>
 
-
+    //$(document).ready(openSoal(null,1));
+    window.onload=function(){openSoal(null,1)};
     function openSoal(evt, num) {
+        console.log(num+'hsdfjk');
         var i, card, soal;
         card = document.getElementsByClassName("card nuzha");
         for (i = 0; i < card.length; i++) {

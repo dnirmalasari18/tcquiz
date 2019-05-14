@@ -8,13 +8,17 @@ use App\Agenda;
 use App\AbsenKuliah;
 use App\Quiz;
 use App\Questions;
+use Carbon\Carbon;
 use Auth;
 
 class DosenController extends Controller
 {
 	public function index()
     {
-        $quiz = Quiz::where('dosen_id', Auth::user()->id)->get();
+        $quiz = Quiz::whereHas('pertemuanke', function($q) {
+                $q->whereBetween('tglPertemuan', [
+                Carbon::parse('yesterday')->startOfDay(),
+                Carbon::parse('next friday')->endOfDay(),]);})->with('pertemuanke')->get();
         return view('dosen.dashboard', compact('quiz'));
     }
 

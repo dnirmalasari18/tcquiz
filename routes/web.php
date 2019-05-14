@@ -33,16 +33,13 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::get('agenda/{jadwal_id}/waktus', 'DosenController@getAgendaWaktu');
 
         Route::resource('questions', 'QuestionsController');
-        Route::get('quiz/{id}/questions', 'QuestionsController@questionslist')->name('listofquestions');
         Route::get('quiz/{id}/questions/create', 'QuestionsController@create')->name('createquestion');
         Route::get('quiz/{quiz_id}/questions/{question_id}/edit', 'QuestionsController@edit')->name('editquestion');
         
         Route::resource('quiz', 'QuizController');
-        Route::get('quiz/{id}/participants', 'QuizController@participantsList')->name('participantslist');
         Route::get('quiz/{id}/generate', 'QuizController@generatePacket')->name('generatepacket');
 
-       
-        
+        Route::post('quiz/{id}/import', 'QuestionsController@importQuestion')->name('import.question');
     });
 });
 
@@ -57,31 +54,13 @@ Route::middleware(['is_authenticated', 'is_mahasiswa'])->group(function () {
             return view('mahasiswa.test');
         });
 
-        Route::get('/test2', function () {
-            return view('mahasiswa.test2');
-        });
-
-        Route::get('/test3', function () {
-            return view('mahasiswa.test3');
-        });
-
         Route::get('quiz/{id}/result', 'MahasiswaController@quizResult');
 
         Route::match(['put', 'patch'], '/quiz/submit', 'MahasiswaController@submitQuiz')->name('submit.quiz');
         Route::match(['put', 'patch'], '/quiz/submit/ajax', 'MahasiswaController@submitQuizAjax')->name('submit.quiz.ajax');
 
-        // Route::get('/coba', function () {
-        //     return view('mahasiswa.test_coba');
-        // });
     });
 });
 
 Route::post('upload/image', 'QuizController@uploadImage');
 Route::post('upload/image/question', 'QuestionsController@uploadImage');
-
-
-// Route::get('/login', function () {
-//     return redirect('/');
-// });
-
-// Route::get('/home', 'HomeController@index')->name('home');

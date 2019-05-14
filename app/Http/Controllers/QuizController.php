@@ -25,7 +25,7 @@ class QuizController extends Controller
     {
         $agenda = Agenda::orderBy('namaAgenda','asc')->get();
         $absenkuliah = AbsenKuliah::get();
-        return view ('dosen.createquiz', compact('absenkuliah', 'agenda'));
+        return view('dosen.createquiz', compact('absenkuliah', 'agenda'));
     }
 
     public function store(Request $request)
@@ -47,7 +47,7 @@ class QuizController extends Controller
     {
         $kuis = Quiz::findorfail($quiz);
         $kuis->update($request->all());
-        return redirect()->back()->with(['update_done' => 'Quiz has been updated']);
+        return redirect()->back()->with(['updatequiz_done' => 'Quiz has been updated']);
     }
 
     public function destroy($quiz)
@@ -81,11 +81,11 @@ class QuizController extends Controller
         $questions = Questions::where('quiz_id', $quiz1)->get();
 
         if ($questions->count()==0) {
-            return redirect()->back()->with(['error' => 'There is no question! Add question first']);
+            return redirect()->back()->with(['no_question' => 'There is no question! Add question first']);
         }
 
         if ($quiz->finalize_status=='1') {
-            return redirect('/dosen/quiz/'. $quiz1.'/questions')->with(['error' => 'Quiz has been finalized']);
+            return redirect('/dosen/quiz/'. $quiz1)->with(['finalized' => 'Quiz has been finalized']);
         }
 
         foreach ($participants as $participant) { 
@@ -120,4 +120,75 @@ class QuizController extends Controller
         $quiz->update();
         return redirect()->back();
     }
+
+    public function show($quiz)
+    {
+        $kuis = Quiz::findorfail($quiz);
+        $id_agenda = AbsenKuliah::find($kuis->absenkuliah_id)->fk_idAgenda;
+        $participant = Kehadiran::where('idAgenda', $id_agenda)->get();
+        $participants = MahasiswaPacket::whereHas('paketkuis', function($q) use ($quiz) {
+                        $q->where('quiz_id', $quiz);})->with('paketkuis')->get();
+
+        $agenda = Agenda::orderBy('namaAgenda','asc')->get();
+        $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();
+
+        $questions = Questions::where('quiz_id', $quiz)->get();
+
+        $average = $participants->avg('quiz_score');
+        $min_score = $participants->min('quiz_score');
+        $max_score = $participants->max('quiz_score');
+
+        $allquiz = Quiz::where('id', '!=',$quiz)->get();
+
+        $participant_details = [];
+        $soal_details = [];
+
+        // foreach ($participants as $p) {
+        //     $user_ans = explode(',', $p->user_answer_list);
+        //     array_pop($user_ans);
+
+            
+        //     $question_ids = $p->paketkuis->question_id_list;
+
+        //     $questions_ids_arr = explode(',', $question_ids);
+
+        //     $questions_arr = [];
+
+        //     array_pop($questions_ids_arr);
+        //     foreach ($questions_ids_arr as $q_id) {
+        //         $q = Questions::find($q_id);
+        //         array_push($questions_arr, $q);
+
+        //         $soal_details[(string)$q_id] = ['id' =>$q_id, 'wrong' => 0, 'right' => 0];
+        //     }
+
+        //     $ans_idx = 0;
+        //     $right = 0;
+        //     $wrong = 0;
+        //     foreach ($user_ans as $ans) {
+
+        //         $ans = trim($ans);
+
+        //         if ($ans == $questions_arr[$ans_idx]['correct_answer']) {
+
+        //             $soal_details[$questions_arr[$ans_idx]['id']]['right']++;
+        //             $right++;                    
+        //         }
+        //         else {
+        //             $soal_details[$questions_arr[$ans_idx]['id']]['wrong']++;
+        //             $wrong++;                    
+        //         }
+
+        //         $ans_idx++;
+        //     }
+
+        //     $participant_details [] = ['participant_id' => $p->id, 'wrong' => $wrong, 'right' => $right, 'correct_ans' =>implode(",",$questions_arr)];
+        // }
+
+        //return $soal_details;
+
+        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz'));
+    }
+
+
 }

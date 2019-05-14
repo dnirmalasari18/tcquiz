@@ -16,6 +16,9 @@ Route::get('/', function () {
     return redirect('login');
 });
 
+Route::get('mala',function(){
+    return view('coba.coba1');
+});
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('login', 'Auth\LoginController@loginPage');
 Auth::routes();

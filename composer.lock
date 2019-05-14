@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8405dee7be33121c0b0f134086c09b58",
+    "content-hash": "398ca4cfb8dcb96dc3a81a806e3567de",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -671,16 +671,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "5.8.x-dev",
+            "version": "v5.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "b3b35b61433e77d8673e51e3b99183d2db4621c1"
+                "reference": "0e360143d3476fe4141d267a260c140569fa207b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/b3b35b61433e77d8673e51e3b99183d2db4621c1",
-                "reference": "b3b35b61433e77d8673e51e3b99183d2db4621c1",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/0e360143d3476fe4141d267a260c140569fa207b",
+                "reference": "0e360143d3476fe4141d267a260c140569fa207b",
                 "shasum": ""
             },
             "require": {
@@ -735,7 +735,7 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "time": "2019-03-03T20:06:51+00:00"
+            "time": "2019-03-01T22:53:41+00:00"
         },
         {
             "name": "league/flysystem",

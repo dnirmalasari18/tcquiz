@@ -169,11 +169,11 @@
                                         @if($qp->user['user_id'] == $user_id)
                                             @if($qp->user->end_time)
                                                 <tr style="border-top-style: hidden;">
-                                                    <td>Start Time</td>
+                                                    <td><strong>Start Time</strong></td>
                                                     <td>: {{date("H:i:s",strtotime($qp->user->end_time))}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>End Time</td>
+                                                    <td><strong>End Time</strong></td>
                                                     <?php
                                                         $update = date("H:i:s",strtotime($qp->user->updated_at.'+7 hour'));
                                                         $selesai = $q->pertemuanke->waktuSelesai;
@@ -194,7 +194,7 @@
                                                     @endif
                                                 </tr>
                                                 <tr>
-                                                    <td>Score</td>
+                                                    <td><strong>Score</strong></td>
                                                     <td>: {{$qp->user->quiz_score}} / 100</td>
                                                 </tr>
                                                 <?php

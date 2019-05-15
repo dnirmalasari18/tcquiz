@@ -8,6 +8,14 @@
 <li class="active">Create a Quiz</li>
 @endsection
 
+@section('style')
+<style type="text/css">
+    .content-body {
+      display: none;
+    }
+</style>
+@endsection
+
 @section('content')
 <div class="animated fadeIn">
     <div class="row">
@@ -46,14 +54,14 @@
                 	        <input type="text" class="form-control" name="nama_kuis" required>
                     </div>
                     <div class="form-group col-md-6">
-                      <label class="font-weight-bold" for="">Duration</label>
+                      <label class="font-weight-bold">Duration</label>
                         <div class="input-group">
-                          <input type="number" id="" name="durasi" class="form-control" value="60" required>
+                          <input type="number" name="durasi" class="form-control" value="60" required>
                           <div class="input-group-addon">Minute(s)</div>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                      <label class="font-weight-bold" for="">Class</label>
+                      <label class="font-weight-bold">Class</label>
                       <select class="form-control kelas-select" required>
                         @foreach ($agenda as $a)        
                           <option value="{{ $a->idAgenda }}">{{ $a->namaAgenda }}</option>
@@ -61,7 +69,7 @@
                       </select>
                 	    </div>
                     <div class="form-group col-md-6">
-                      <label class="font-weight-bold" for="" >Schedule</label>
+                      <label class="font-weight-bold" >Schedule</label>
                       <select class="form-control jadwal-select" name="absenkuliah_id" required></select>
                     </div>
                     <div class="form-group col-md-6">
@@ -73,12 +81,17 @@
                       <fieldset class="form-control waktuselesai-select" disabled></fieldset>
                     </div>
                     <div class="form-group col-md-12">
-                      <label class="font-weight-bold" for="">Terms & Conditions</label>
-                      <input type="textarea" class="form-control" id="terms-conditions" placeholder="" name="terms_conditions">
+                      <label class="font-weight-bold">Terms & Conditions</label>
+                      <div class="loading">
+                          <img src="{{asset('img/spinner.gif')}}" width="60px">
+                      </div>
+                      <div class="content-body" style="display: none">
+                        <input type="textarea" class="form-control" id="terms-conditions" placeholder="" name="terms_conditions">
+                      </div>
                     </div>
                     <br>
                     <div class="col-md-12">
-                      <button id="" type="submit" class="btn btn-lg btn-info btn-block ">
+                      <button type="submit" class="btn btn-lg btn-info btn-block ">
                         Save
                       </button>
                     </div>
@@ -93,7 +106,12 @@
 @section('script')
 <script type="text/javascript">        
 (function($) {
-   $(".kelas-select").click(async function() {
+  setTimeout(function () {
+      $(".loading").html("");
+      $(".content-body").fadeIn(1000);
+  }, 900);
+
+  $(".kelas-select").click(async function() {
     let jadwals;
     const agenda_id = $(this).val();
 

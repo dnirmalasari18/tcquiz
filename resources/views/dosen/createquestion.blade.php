@@ -61,7 +61,7 @@
                             <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                             <div class="form-group col-md-12">
                                 <div class="col col-md-3">
-                                    <label class="font-weight-bold" for="">Question</label>
+                                    <label class="font-weight-bold">Question</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <div class="loading">
@@ -76,7 +76,7 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <div class="col col-md-3">
-                                    <label class="font-weight-bold" for="">Choices</label>
+                                    <label class="font-weight-bold">Choices</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <div class="form-check choices">
@@ -102,7 +102,7 @@
                                             <input type="radio" name="correct_answer" value="3" class="form-check-input">
                                             <p class="font-weight-bold">C</p>
                                             <div class="content-body">
-                                                <input type="textarea" id="option_c" class="form-control multiple-choice" placeholder="" name="option_3">
+                                                <input type="textarea" id="option_c" class="form-control multiple-choice" name="option_3">
                                             </div>
                                         </div> 
 
@@ -113,7 +113,7 @@
                                                 <img src="{{asset('img/spinner.gif')}}" width="60px">
                                             </div>
                                             <div class="content-body">
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4"  id="option_d">
+                                                <input type="textarea" class="form-control multiple-choice" name="option_4"  id="option_d">
                                             </div>
                                         </div>     
 
@@ -121,7 +121,7 @@
                                             <input type="radio" name="correct_answer" value="5" class="form-check-input">
                                             <p class="font-weight-bold">E</p>
                                             <div class="content-body">
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_5"
+                                                <input type="textarea" class="form-control multiple-choice" name="option_5"
                                                  id="option_e">
                                             </div>                             
                                         </div>
@@ -134,7 +134,7 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <div class="col col-md-3">
-                                    <label class="font-weight-bold" for="">Question Score</label>
+                                    <label class="font-weight-bold">Question Score</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="number" min="0" id="score" class="form-control" name="question_score">

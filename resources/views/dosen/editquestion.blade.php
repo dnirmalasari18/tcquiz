@@ -8,6 +8,14 @@
 <li class="active">{{ $quiz->nama_kuis }} Questions</li>
 @endsection
 
+@section('style')
+<style type="text/css">
+    .content-body {
+      display: none;
+    }
+</style>
+@endsection
+
 @section('content')
 <div class="animated fadeIn">
     <div class="row">
@@ -56,7 +64,12 @@
                                         <label class="font-weight-bold" for="">Question</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input class="form-control question-desc" name="question_description" id="question-desc" value="{{ $questions->question_description }}">
+                                        <div class="loading">
+                                            <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                        </div>
+                                        <div class="content-body" style="display: none">
+                                            <input class="form-control question-desc" name="question_description" id="question-desc" value="{{ $questions->question_description }}">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -73,7 +86,12 @@
                                                     <input type="radio" name="correct_answer" value="1" class="form-check-input" >
                                                     @endif
                                                     <p class="font-weight-bold">A</p>
-                                                    <input type="textarea" class="form-control multiple-choice" id="option_a" name="option_1" value="{{ $questions->option_1 }}">
+                                                    <div class="loading">
+                                                        <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                                    </div>
+                                                    <div class="content-body" style="display: none">
+                                                        <input type="textarea" class="form-control multiple-choice" id="option_a" name="option_1" value="{{ $questions->option_1 }}">
+                                                    </div>
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -84,7 +102,12 @@
                                                     <input type="radio" name="correct_answer" value="2" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">B</p>
-                                                    <input type="textarea" class="form-control multiple-choice" id="option_b" name="option_2" value="{{ $questions->option_2 }}">
+                                                    <div class="loading">
+                                                        <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                                    </div>
+                                                    <div class="content-body" style="display: none">
+                                                        <input type="textarea" class="form-control multiple-choice" id="option_b" name="option_2" value="{{ $questions->option_2 }}">
+                                                    </div>
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -95,7 +118,12 @@
                                                     <input type="radio" name="correct_answer" value="3" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">C</p>
-                                                    <input type="textarea" class="form-control multiple-choice"  id="option_c" name="option_3" value="{{ $questions->option_3 }}">
+                                                    <div class="loading">
+                                                        <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                                    </div>
+                                                    <div class="content-body" style="display: none">
+                                                        <input type="textarea" class="form-control multiple-choice"  id="option_c" name="option_3" value="{{ $questions->option_3 }}">
+                                                    </div>
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -106,7 +134,12 @@
                                                     <input type="radio" name="correct_answer" value="4" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">D</p>
-                                                    <input type="textarea" class="form-control multiple-choice"  id="option_d" name="option_4" value="{{ $questions->option_4 }}">
+                                                    <div class="loading">
+                                                        <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                                    </div>
+                                                    <div class="content-body" style="display: none">
+                                                        <input type="textarea" class="form-control multiple-choice"  id="option_d" name="option_4" value="{{ $questions->option_4 }}">
+                                                    </div>
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -117,7 +150,12 @@
                                                     <input type="radio" name="correct_answer" value="5" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">E</p>
-                                                    <input type="textarea" class="form-control multiple-choice" id="option_e" name="option_5" value="{{ $questions->option_5 }}">
+                                                    <div class="loading">
+                                                        <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                                    </div>
+                                                    <div class="content-body" style="display: none">
+                                                        <input type="textarea" class="form-control multiple-choice" id="option_e" name="option_5" value="{{ $questions->option_5 }}">
+                                                    </div>
                                                 </label>
                                             </div>
                                         </div>
@@ -128,7 +166,12 @@
                                         <label class="font-weight-bold" >Question Score</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="number" min="0" class="form-control" id="score" name="question_score" value="{{ $questions->question_score }}">
+                                        <div class="loading">
+                                            <img src="{{asset('img/spinner.gif')}}" width="60px">
+                                        </div>
+                                        <div class="content-body" style="display: none">
+                                            <input type="number" min="0" class="form-control" id="score" name="question_score" value="{{ $questions->question_score }}">
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
@@ -180,6 +223,11 @@
        }
   });
 (function($) {
+    setTimeout(function () {
+        $(".loading").html("");
+        $(".content-body").fadeIn(1000);
+    }, 900);
+
     $("#question_form").submit(function(e) {   
         const val = tinyMCE.get('question-desc').getContent();
         const question_score = document.getElementById("score").value;

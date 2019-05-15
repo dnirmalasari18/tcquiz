@@ -23,19 +23,19 @@
                 <table class="table">
                     <tbody>
                         <tr style="border-top-style: hidden;">
-                            <td>Quiz Name</td>
+                            <td><strong>Quiz Name</strong></td>
                             <td>: {{$q->nama_kuis}}</td>
                         </tr>
                         <tr>
-                            <td>Class</td>
+                            <td><strong>Class</strong></td>
                             <td>: {{$q->pertemuanke->agenda->namaAgenda}}</td>
                         </tr>
                         <tr>
-                            <td>Begin Time</td>
+                            <td><strong>Begin Time</strong></td>
                             <td>: {{date("H:i:s",strtotime($mp->end_time))}}</td>
                         </tr>
                         <tr>
-                            <td>End Time</td>
+                            <td><strong>End Time</strong></td>
                             <?php
                                 $update = date("H:i:s",strtotime($mp->updated_at.'+7 hour'));
                                 $selesai = $q->pertemuanke->waktuSelesai;
@@ -56,7 +56,7 @@
                             @endif
                         </tr>
                         <tr>
-                            <td>Point</td>
+                            <td><strong>Point</strong></td>
                             <td>: {{$mp->quiz_score}} / 100</td>
                         </tr>
                     </tbody>

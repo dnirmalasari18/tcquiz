@@ -6,7 +6,6 @@ use App\Questions;
 use App\Quiz;
 use Illuminate\Http\Request;
 use Validator;
-use App\Http\Requests\CreateQuestion;
 
 class QuestionsController extends Controller
 {
@@ -19,9 +18,15 @@ class QuestionsController extends Controller
         return view('dosen.createquestion', compact('quiz'));
     }
 
-    public function store(CreateQuestion $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
+        $request->validate([
+            'question_description' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'correct_answer' => 'required',
+            'question_score' => 'required',
+        ]);
         Questions::create($request->all());
         return redirect('/dosen/quiz/'. $request->quiz_id.'/#tab_question')->with(['create_done' => 'Question has been created']);
     }
@@ -38,6 +43,13 @@ class QuestionsController extends Controller
 
     public function update(Request $request, $questions)
     {
+        $request->validate([
+            'question_description' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'correct_answer' => 'required',
+            'question_score' => 'required',
+        ]);
         $question = Questions::findorfail($questions);
         $question->update($request->all());
         return redirect('/dosen/quiz/'. $question->quiz_id.'/#tab_question')->with(['update_done' => 'Question has been updated']);

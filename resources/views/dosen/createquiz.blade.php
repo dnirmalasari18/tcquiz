@@ -24,17 +24,31 @@
                     </div>
                 </div>
                 <div class="card-body">
+                  <div class="col-md-12">
+                      @if ($errors->any())
+                      <div class="alert alert-danger alert-dismissible fade show">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> 
+                      </div>
+                      @endif
+                  </div>
                 	<form action="{{route('quiz.store')}}" method="POST">
                     {{csrf_field()}}
                     <input type="hidden" name="dosen_id" value="{{ Auth::user()->id}}">
                 		<div class="form-group col-md-6">
                 	        <label class="font-weight-bold" for="">Quiz Name</label>
-                	        <input type="text" class="form-control" id="" placeholder="" name="nama_kuis" required>
+                	        <input type="text" class="form-control" name="nama_kuis" required>
                     </div>
                     <div class="form-group col-md-6">
                       <label class="font-weight-bold" for="">Duration</label>
                         <div class="input-group">
-                          <input type="number" id="" name="durasi" placeholder="" class="form-control" value="60" required>
+                          <input type="number" id="" name="durasi" class="form-control" value="60" required>
                           <div class="input-group-addon">Minute(s)</div>
                         </div>
                     </div>

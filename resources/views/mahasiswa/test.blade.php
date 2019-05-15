@@ -232,7 +232,7 @@
 
     <div class="card card-timer">
         <div class="card-header" align="center">
-            <h5 class="strong">Time Remaining: </h5>
+            <h5 class="strong">Time Remaining</h5>
             <h5>
                 <span id="time" style="color:red;"></span>
             </h5>

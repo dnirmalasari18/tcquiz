@@ -230,7 +230,7 @@
         }     
     </style>
 
-     <div class="card card-timer">
+    <div class="card card-timer">
         <div class="card-header" align="center">
             <h5 class="strong">Time Remaining: </h5>
             <h5>
@@ -239,6 +239,7 @@
         </div>
     </div>
     <br>
+    
     <div class="card card-soal">
         <div class="card-header" align="center">
             <strong class="card-title">Questions List</strong>
@@ -272,8 +273,40 @@
             @endforeach
         </div>   
     </div>
-    
+    <div class="card card-notes">
 
+        <style>
+
+            .color-gr{
+                background-color: #63a64e; 
+                width: 20px; 
+                height: 10px; 
+                display: inline-block; 
+                vertical-align: middle;
+            }
+
+            .color-yl{
+                background-color: #ffc107; 
+                width: 20px; 
+                height: 10px; 
+                display: inline-block; 
+                vertical-align: middle;
+            }
+
+            .text-box{
+                display: inline-block; 
+                vertical-align: middle; 
+                font-size: 15px; 
+                margin-left: 10px;
+            }
+
+        </style>
+
+        <div class="card-header" align="left">
+            <div class="color-gr"></div><div class="text-box"> is for answered question</div>
+            <div class="color-yl"></div><div class="text-box"> is for flagged question</div>
+        </div>
+    </div>
 
 </div>
 

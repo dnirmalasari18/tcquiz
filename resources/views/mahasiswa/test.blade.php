@@ -387,7 +387,7 @@
             }
         }
     }
-    var start = moment('{{$mp->end_time}}');
+    var start = moment('{{date("Y-m-d H:i:s", strtotime("7 hour"))}}');
     var nuzha_time = moment('{{date("Y-m-d", strtotime("7 hour"))}} {{$kuis->pertemuanke->waktuSelesai}}');
     var end = moment('{{ $mp->end_time }}').add({{ $kuis->durasi }}, 'minutes');
     if (end > nuzha_time) {

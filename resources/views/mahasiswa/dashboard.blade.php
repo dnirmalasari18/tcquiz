@@ -223,6 +223,10 @@
                                                         }
                                                     </style>
                                                     <div class="nuzha4" align="center">
+                                                        <strong>Terms & Conditions</strong>
+                                                        {!! $q->terms_conditions !!}
+                                                    </div>
+                                                    <div class="nuzha4" align="center">
                                                         Are you sure you want to take this quiz?
                                                     </div>
                                                     <div align="center">

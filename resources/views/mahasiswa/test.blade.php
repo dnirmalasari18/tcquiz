@@ -409,8 +409,9 @@
         else {
             var id = "nomer" + num;
             document.getElementById(id).className = "card-body text-secondary soal-terjawab-aktif";
-            document.getElementById("radio"+num).checked = true;
         }
+        
+        document.getElementById("radio"+num).checked = true;
     }
 
     document.getElementById("nomer1").click();

@@ -6,7 +6,6 @@
             <th>Name</th>
             <th>Quiz Packet</th>
             <th>Score</th>
-            <th>Menu</th>
         </tr>
     </thead>
     <tbody>
@@ -16,10 +15,6 @@
             <td>{{ $p->user->name }}</td>
             <td align="center">{{ $p->paketkuis->id }}</td>
             <td align="center">{{ $p->quiz_score }}</td>
-            <td align="center">
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#participant-detail-{{ $p->id }}">Detail
-                </button>
-            </td>
         </tr>
         @endforeach
     </tbody>
@@ -32,7 +27,6 @@
             <th>Nama</th>
             <th>Paket Soal</th>
             <th>Nilai</th>
-            <th>Menu</th>
         </tr>
     </thead>
     <tbody>
@@ -42,10 +36,6 @@
             <td>{{ $p->user->name }}</td>
             <td align="center"></td>
             <td align="center"></td>
-            <td align="center">
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#participant-detail-{{ $p->id }}">Detail
-                </button>
-            </td>
         </tr>
         @endforeach
     </tbody>

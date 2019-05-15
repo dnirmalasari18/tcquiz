@@ -11,7 +11,6 @@
 <link href="{!! asset('morrisjs/morris.css') !!}" rel="stylesheet">
 @endsection
 @section('content')
-@include('dosen.modalparticipant')
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">

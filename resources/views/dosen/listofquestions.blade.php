@@ -74,9 +74,9 @@
                         @else
                             B
                         @endif
-                        {!! $questions[$i]->option_2!!} 
-                       
-                        @if($questions[$i]->option_3!=null)    
+                        {!! $questions[$i]->option_2!!}
+
+                        @if($questions[$i]->option_3!=null)
                             @if($questions[$i]->correct_answer==3)
                                 <i class="fa fa-check" style="color: green;"></i>C
                             @else
@@ -84,7 +84,7 @@
                             @endif
                             {!! $questions[$i]->option_3!!}
                         @endif
-                        @if($questions[$i]->option_4!=null)    
+                        @if($questions[$i]->option_4!=null)
                             @if($questions[$i]->correct_answer==4)
                                 <i class="fa fa-check" style="color: green;"></i>D
                             @else
@@ -92,7 +92,7 @@
                             @endif
                             {!! $questions[$i]->option_4!!}
                         @endif
-                        @if($questions[$i]->option_5!=null)    
+                        @if($questions[$i]->option_5!=null)
                             @if($questions[$i]->correct_answer==5)
                                 <i class="fa fa-check" style="color: green;"></i>E
                             @else
@@ -122,7 +122,7 @@
                                     </div>
                                 @endif
                             @endif
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
             <input type="hidden" name="quiz_id" value="{{ $kuis->id }}">
             <div class="form-group col-md-6">
                 <select class="form-control" name="import_id">
-                    @foreach ($allquiz as $a)        
+                    @foreach ($allquiz as $a)
                         <option value="{{ $a->id }}">{{ $a->nama_kuis }}</option>
                     @endforeach
                 </select>
@@ -161,7 +161,7 @@
             <input type="hidden" name="quiz_id" value="{{ $kuis->id }}">
             <div class="form-group col-md-6">
                 <select class="form-control" name="import_id">
-                    @foreach ($allquiz as $a)        
+                    @foreach ($allquiz as $a)
                         <option value="{{ $a->id }}">{{ $a->nama_kuis }}</option>
                     @endforeach
                 </select>

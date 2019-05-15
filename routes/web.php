@@ -23,9 +23,7 @@ Auth::routes();
 
 Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
     Route::prefix('dosen')->group(function () {
-        Route::get('/mala', function(){
-            return view('coba.coba1');
-        });
+
         Route::get('/', 'DosenController@index');
         Route::get('/users', 'DosenController@listOfUsers');
         Route::get('/agenda', 'DosenController@listOfAgenda');
@@ -35,7 +33,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::resource('questions', 'QuestionsController');
         Route::get('quiz/{id}/questions/create', 'QuestionsController@create')->name('createquestion');
         Route::get('quiz/{quiz_id}/questions/{question_id}/edit', 'QuestionsController@edit')->name('editquestion');
-        
+
         Route::resource('quiz', 'QuizController');
         Route::get('quiz/{id}/generate', 'QuizController@generatePacket')->name('generatepacket');
 

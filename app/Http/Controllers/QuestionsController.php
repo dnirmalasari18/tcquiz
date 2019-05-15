@@ -53,14 +53,14 @@ class QuestionsController extends Controller
     public function questionslist($idquiz)
     {
         $quiz = Quiz::findorfail($idquiz);
-        $questions = Questions::where('quiz_id', $idquiz)->paginate(1);  
+        $questions = Questions::where('quiz_id', $idquiz)->paginate(1);
         return view('dosen.listofquestions', compact('quiz', 'questions'));
     }
 
     public function uploadImage(Request $request) {
         $path = asset('storage') . '/' . $request->file('file')->store('public/gambar-soal');
         $path = str_replace('/public', "", $path);
-        return json_encode(['location' => $path]); 
+        return json_encode(['location' => $path]);
     }
 
     public function importQuestion(Request $request) {

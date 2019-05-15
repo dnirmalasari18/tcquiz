@@ -7,7 +7,9 @@
 <li><a href="#">Quiz</a></li>
 <li class="active">{{$kuis->nama_kuis}}</li>
 @endsection
-
+@section('style')
+<link href="{!! asset('morrisjs/morris.css') !!}" rel="stylesheet">
+@endsection
 @section('content')
 @include('dosen.modalparticipant')
 <div class="animated fadeIn">
@@ -72,7 +74,7 @@
     if ('{{count($kuis->quiz)>0}}') {
         document.getElementById("nomor0").click();
     }
-    
+
 
 (function($) {
 
@@ -133,7 +135,7 @@
         $(".waktuselesai-select").html(html_end);
 
         console.log(waktus)
-    }); 
+    });
 
     function deleteQuiz() {
         swal({
@@ -191,7 +193,7 @@
             formData.append('file', blobInfo.blob(), blobInfo.filename());
             xhr.send(formData);
         }
-    });  
+    });
     const tac_content = $("[name='_tac_content']").val();
     $("#terms-conditions").html(tac_content);
 
@@ -228,7 +230,7 @@
             icon: "success",
             button: false,
             timer: 1500,
-      }); 
+      });
     @endif
 
     @if(Session::has('create_done'))
@@ -238,7 +240,7 @@
             icon: "success",
             button: false,
             timer: 1500,
-      }); 
+      });
     @endif
     @if(Session::has('update_done'))
       swal({
@@ -247,7 +249,7 @@
             icon: "success",
             button: false,
             timer: 1500,
-      }); 
+      });
     @endif
     @if(Session::has('no_question'))
       swal({
@@ -256,7 +258,7 @@
             icon: "warning",
             button: false,
             timer: 1500,
-      }); 
+      });
     @endif
 
     @if(Session::has('finalized'))
@@ -266,7 +268,7 @@
             icon: "warning",
             button: false,
             timer: 1500,
-      }); 
+      });
     @endif
 
     @if(Session::has('cannot_add'))
@@ -276,7 +278,7 @@
             icon: "warning",
             button: false,
             timer: 3000,
-      }); 
+      });
     @endif
 
     @if(Session::has('cannot_edit'))
@@ -286,7 +288,7 @@
             icon: "warning",
             button: false,
             timer: 3000,
-      }); 
+      });
     @endif
 
     function finalizeQuiz() {
@@ -358,5 +360,47 @@
         } );
     } );
 })(jQuery);
+</script>
+
+<script src="{!! asset('raphael/raphael.min.js') !!}"></script>
+<script src="{!! asset('morrisjs/morris.min.js') !!}"></script>
+<script src="{!! asset('morrisjs/morris-data.js') !!}"></script>
+<script>
+    new Morris.Line({
+            element: 'persebaranNilai',
+            data: [
+                { score: '60', studentAmount: 20 },
+                { score: '70', studentAmount: 10 },
+                { score: '80', studentAmount: 5 },
+                { score: '90', studentAmount: 5 },
+                { score: '100', studentAmount: 5 }
+            ],
+            xkey: 'score',
+            parseTime:false,
+            ykeys: ['studentAmount'],
+            labels: ['Jumlah Siswa'],
+            hideHover: 'always',
+            resize: true,
+            pointFillColors:['#ffffff'],
+            pointStrokeColors: ['black'],
+            lineColors:['#BDEDFF']
+        });
+        new Morris.Bar({
+            element: 'chart',
+            data: [
+                { answer: 'A', student: 12 },
+                { answer: 'B', student: 15 },
+                { answer: 'C', student: 32 },
+                { answer: 'D', student: 10 },
+
+            ],
+            xkey: 'answer',
+            parseTime:false,
+            ykeys: ['student'],
+            labels: ['Jawaban'],
+            hideHover: 'always',
+            resize: true,
+            barColors:['#BDEDFF']
+        });
 </script>
 @endsection

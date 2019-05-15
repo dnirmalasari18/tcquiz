@@ -39,7 +39,7 @@ class QuizController extends Controller
         $quiz = Quiz::findorfail($quiz);
         $agenda = Agenda::orderBy('namaAgenda','asc')->get();
         $id_agenda = AbsenKuliah::find($quiz->absenkuliah_id)->fk_idAgenda;
-        $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();        
+        $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();
         return view('dosen.editquiz', compact('quiz', 'agenda', 'jadwals'));
     }
 
@@ -60,7 +60,7 @@ class QuizController extends Controller
     public function uploadImage(Request $request) {
         $path = asset('storage') . '/' . $request->file('file')->store('public/gambar-terms');
         $path = str_replace('/public', "", $path);
-        return json_encode(['location' => $path]); 
+        return json_encode(['location' => $path]);
     }
 
     public function participantsList($quiz)
@@ -88,9 +88,9 @@ class QuizController extends Controller
             return redirect('/dosen/quiz/'. $quiz1)->with(['finalized' => 'Quiz has been finalized']);
         }
 
-        foreach ($participants as $participant) { 
+        foreach ($participants as $participant) {
             $randomized_questions = $questions->shuffle();
-            
+
             $questions_ids = '';
             $questions_right_ans = '';
             $questions_flag = '';
@@ -102,7 +102,7 @@ class QuizController extends Controller
                 $questions_flag .= '0,';
                 $user_ans_list .= ',';
             }
-            
+
             $q = QuizPacket::create([
                 'quiz_id' => $quiz1,
                 'question_id_list' => $questions_ids,
@@ -110,9 +110,9 @@ class QuizController extends Controller
             ]);
 
             MahasiswaPacket::create([
-                'user_id' => $participant->user->id, 
-                'quizpacket_id' => $q->id, 
-                'question_flag_list' => $questions_flag, 
+                'user_id' => $participant->user->id,
+                'quizpacket_id' => $q->id,
+                'question_flag_list' => $questions_flag,
                 'user_answer_list' => $user_ans_list
             ]);
         }
@@ -147,7 +147,7 @@ class QuizController extends Controller
         //     $user_ans = explode(',', $p->user_answer_list);
         //     array_pop($user_ans);
 
-            
+
         //     $question_ids = $p->paketkuis->question_id_list;
 
         //     $questions_ids_arr = explode(',', $question_ids);
@@ -172,11 +172,11 @@ class QuizController extends Controller
         //         if ($ans == $questions_arr[$ans_idx]['correct_answer']) {
 
         //             $soal_details[$questions_arr[$ans_idx]['id']]['right']++;
-        //             $right++;                    
+        //             $right++;
         //         }
         //         else {
         //             $soal_details[$questions_arr[$ans_idx]['id']]['wrong']++;
-        //             $wrong++;                    
+        //             $wrong++;
         //         }
 
         //         $ans_idx++;
@@ -190,5 +190,7 @@ class QuizController extends Controller
         return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz'));
     }
 
+    public function quizStatistics($quizid){
 
+    }
 }

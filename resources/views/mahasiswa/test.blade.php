@@ -60,8 +60,13 @@
                         </div>
                         <div class="card-body">
                             <div style="margin-bottom: 10px;"><strong>Answers</strong></div>
-                            <div id="form-jawaban-{{$q}}" class="form-check" onshow="udahkejawab({{count($quiz)}})">
-                            <button type="button" id="hehebtn" style="display:none" onclick="udahkejawab({{count($quiz)}})">hehe</button>
+                            <div class="form-check">
+
+                                <input type="radio" id="radio{{$q}}" style="display: none;"
+                                @if(array_map('intval', explode(",", $paket->user_answer_list))[$q-1])
+                                    checked
+                                @endif
+                                >
                                 
                                 @if($t->option_1)
                                     <div class="radio">
@@ -184,9 +189,11 @@
 </div>
 
 <style type="text/css">
+
     .nuzha3{
         max-width: 500px;
     }
+
 </style>
 
 <div class="col-md-3">
@@ -234,11 +241,15 @@
             color: white !important;
         }
 
+        .soal-terjawab{
+            background-color: #63A64E;
+        } 
+
         .soal-terjawab-aktif{
             background-color: #63A64E;
             color: white !important;
         } 
-            
+
     </style>
 
     <div class="card card-timer">
@@ -323,76 +334,85 @@
 
 <script>
 
-    window.onload=function(){openSoal(null,1)};
     function openSoal(evt, num) {
+
         var i, card, soal;
         card = document.getElementsByClassName("card nuzha");
         for (i = 0; i < card.length; i++) {
             card[i].style.display = "none";
         }
         soal = document.getElementsByClassName("card-body text-secondary");
-            for (i = 0; i < soal.length; i++) {
-                idFlag = soal[i].id;
-                idFlag = idFlag.replace("nomer", "flag");
-                var x = document.getElementById(idFlag).checked;
-                if (x) {
-                    
-                    soal[i].className = "card-body text-secondary soal-ragu";
-                    udahkejawab({{count($quiz)}})
+        for (i = 0; i < soal.length; i++) {
+            idFlag = soal[i].id;
+            idFlag = idFlag.replace("nomer", "flag");
+            idJawab = idFlag.replace("flag", "radio");
+            var x = document.getElementById(idFlag).checked;
+            if (x) {
+                soal[i].className = "card-body text-secondary soal-ragu";
+            }
+            else{
+                var test = document.getElementById(idJawab).checked;
+                if (test) {
+                    soal[i].className = "card-body text-secondary soal-terjawab";
                 }
-                else{
-            
-                    soal[i].className = soal[i].className.replace(" soal-aktif", "");
-                    udahkejawab({{count($quiz)}})
+                else {
+                    soal[i].className = "card-body text-secondary";
                 }
+            }
         }
         var id = "soal" + num;
         document.getElementById(id).style.display = "flex";
         idFlag2 = "nomer" + num;
         idFlag2 = idFlag2.replace("nomer", "flag");
+        idJawab2 = idFlag2.replace("flag", "radio");
         var y = document.getElementById(idFlag2).checked;
         if (y) {
             document.getElementById("nomer"+num).className = "card-body text-secondary soal-ragu-aktif";
-            udahkejawab({{count($quiz)}})
-
         }
         else{
-            document.getElementById("nomer"+num).className = "card-body text-secondary soal-aktif";
-            udahkejawab({{count($quiz)}})
+            var test2 = document.getElementById(idJawab2).checked;
+            if (test2) {
+                document.getElementById("nomer"+num).className = "card-body text-secondary soal-terjawab-aktif";
+            }
+            else {
+                document.getElementById("nomer"+num).className = "card-body text-secondary soal-aktif";
+            }
         }
-        
     }
+
     function flagSoal(evt, num) {
         var idFlag = "flag" + num;
         var x = document.getElementById(idFlag).checked;
         if (x) {
             var id = "nomer" + num;
             document.getElementById(id).className = "card-body text-secondary soal-ragu-aktif";
-            udahkejawab({{count($quiz)}})
         }
         else {
             var id = "nomer" + num;
-            document.getElementById(id).className = "card-body text-secondary soal-aktif";
-            udahkejawab({{count($quiz)}})
+            var idJawab = "radio" + num;
+            if (document.getElementById(idJawab).checked){
+                document.getElementById(id).className = "card-body text-secondary soal-terjawab-aktif";
+            }
+            else {
+                document.getElementById(id).className = "card-body text-secondary soal-aktif";
+            }            
         }
     }
+
     function ansSoal(evt, num){
         var idFlag = "flag" + num;
         var x = document.getElementById(idFlag).checked;
-        if (true) {
+        if (x) {
             var id = "nomer" + num;
-            if(x){
-                document.getElementById(id).className = "card-body text-secondary soal-ragu-aktif";
-
-            }else{
-                document.getElementById(id).className = "card-body text-secondary soal-terjawab-aktif";
-            }
+            document.getElementById(id).className = "card-body text-secondary soal-ragu-aktif";
         }
         else {
             var id = "nomer" + num;
-            document.getElementById(id).className = "card-body text-secondary soal-aktif";
+            document.getElementById(id).className = "card-body text-secondary soal-terjawab-aktif";
+            document.getElementById("radio"+num).checked = true;
         }
     }
+
     document.getElementById("nomer1").click();
 
 </script>
@@ -408,27 +428,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
 
 <script>
-    $( document ).ready(function() {
-        $("#hehebtn").click();
+
+    $(document).ready(function() {
         setTimeout(function () {
             $(".load").html("");
             $("#myForm").fadeIn(1000);
         }, 900);
     });
 
-    function udahkejawab(soalsize){
-        console.log(soalsize)
-        for(var i=1 ; i<=soalsize ; i++){
-            var test = "#form-jawaban-"+i+" input[type='radio']:checked";
-            if (!$(test).val()) {
-                console.log($(test).val());
-            }
-            else {
-                console.log($(test).val());
-                ansSoal("event", i)
-            }
-        }
-    }
     var start = moment('{{date("Y-m-d H:i:s", strtotime("7 hour"))}}');
     var nuzha_time = moment('{{date("Y-m-d", strtotime("7 hour"))}} {{$kuis->pertemuanke->waktuSelesai}}');
     var end = moment('{{ $mp->end_time }}').add({{ $kuis->durasi }}, 'minutes');

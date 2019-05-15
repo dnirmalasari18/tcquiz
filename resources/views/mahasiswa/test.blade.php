@@ -29,7 +29,10 @@
             $quiz[$i] = $i + 1;
         }
     ?>
-    <form action="{{route('submit.quiz')}}" method="POST" id="myForm" name="myForm">
+    <div class="load" align="center">
+        <img src="{{asset('img/spinner.gif')}}" width="60px">
+    </div>
+    <form action="{{route('submit.quiz')}}" method="POST" id="myForm" name="myForm" style="display: none;">
 
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
@@ -372,6 +375,10 @@
     $( document ).ready(function() {
   // Handler for .ready() called.
         $("#hehebtn").click();
+        setTimeout(function () {
+            $(".load").html("");
+            $("#myForm").fadeIn(1000);
+        }, 900);
     });
 
     function udahkejawab(soalsize){

@@ -192,42 +192,53 @@
 <div class="col-md-3">
 
     <style type="text/css">
+
         .card{
             margin-bottom: 0;
         }
+
         .card-soal{
             margin-bottom: 20px;
         }
+
         .soal{
             padding-bottom: 0px;
         }
+
         .row{
             font-size: 10px;
             padding-right: 15px;
             margin-bottom: 15px;
         }
+
         .col{
             padding-right: 0;
             max-width: 20%;
         }
+
         .card-body .text-secondary{
             padding: 6px 6px;
             cursor: pointer;
         }
+
         .soal-aktif{
             background-color: #f2f2f2;
         }
+
         .soal-ragu{
             background-color: #ffc107;
         }
+
         .soal-ragu-aktif{
             background-color: #ffc107;
             color: white !important;
         }
+
         .soal-terjawab-aktif{
             background-color: #63A64E;
             color: white !important;
-        }     
+        } 
+            
     </style>
 
     <div class="card card-timer">
@@ -314,7 +325,6 @@
 
     window.onload=function(){openSoal(null,1)};
     function openSoal(evt, num) {
-        console.log(num+'hsdfjk');
         var i, card, soal;
         card = document.getElementsByClassName("card nuzha");
         for (i = 0; i < card.length; i++) {
@@ -342,7 +352,6 @@
         idFlag2 = idFlag2.replace("nomer", "flag");
         var y = document.getElementById(idFlag2).checked;
         if (y) {
-            
             document.getElementById("nomer"+num).className = "card-body text-secondary soal-ragu-aktif";
             udahkejawab({{count($quiz)}})
 
@@ -377,8 +386,6 @@
 
             }else{
                 document.getElementById(id).className = "card-body text-secondary soal-terjawab-aktif";
-                
-
             }
         }
         else {
@@ -388,7 +395,6 @@
     }
     document.getElementById("nomer1").click();
 
-    
 </script>
 
 @endsection
@@ -493,7 +499,6 @@
             });
         });
     });
-    
     
 </script>
 

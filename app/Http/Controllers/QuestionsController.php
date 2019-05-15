@@ -20,6 +20,7 @@ class QuestionsController extends Controller
 
     public function store(Request $request)
     {
+        //return $request->correct_answer;
         $request->validate([
             'question_description' => 'required',
             'option_1' => 'required',
@@ -27,6 +28,24 @@ class QuestionsController extends Controller
             'correct_answer' => 'required',
             'question_score' => 'required',
         ]);
+
+        if ($request->correct_answer == 3){
+            $request->validate([
+                'option_3' => 'required',
+            ]);
+        }
+        else if ($request->correct_answer == 4){
+            $request->validate([
+                'option_4' => 'required',
+            ]);
+        }
+
+        if ($request->correct_answer == 5){
+            $request->validate([
+                'option_5' => 'required',
+            ]);
+        }
+
         Questions::create($request->all());
         return redirect('/dosen/quiz/'. $request->quiz_id.'/#tab_question')->with(['create_done' => 'Question has been created']);
     }
@@ -50,6 +69,13 @@ class QuestionsController extends Controller
             'correct_answer' => 'required',
             'question_score' => 'required',
         ]);
+
+        if ($request->correct_answer > 2){
+            $request->validate([
+                `option_{$request->correct_answer}` => 'required',
+            ]);
+        }
+
         $question = Questions::findorfail($questions);
         $question->update($request->all());
         return redirect('/dosen/quiz/'. $question->quiz_id.'/#tab_question')->with(['update_done' => 'Question has been updated']);

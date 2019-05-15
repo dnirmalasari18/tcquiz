@@ -16,9 +16,6 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('mala',function(){
-    return view('coba.coba1');
-});
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('login', 'Auth\LoginController@loginPage');
 Auth::routes();
@@ -26,6 +23,9 @@ Auth::routes();
 
 Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
     Route::prefix('dosen')->group(function () {
+        Route::get('/mala', function(){
+            return view('coba.coba1');
+        });
         Route::get('/', 'DosenController@index');
         Route::get('/users', 'DosenController@listOfUsers');
         Route::get('/agenda', 'DosenController@listOfAgenda');

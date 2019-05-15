@@ -142,31 +142,31 @@
                                                     <table class="table">
                                                         <tbody >
                                                             <tr style="border-top-style: hidden;">
-                                                                <td>Name</td>
+                                                                <td><strong>Name</strong></td>
                                                                 <td>: {{$q->nama_kuis}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Class</td>
+                                                                <td><strong>Class</strong></td>
                                                                 <td>: {{$q->pertemuanke->agenda->namaAgenda}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Date</td>
+                                                                <td><strong>Date</strong></td>
                                                                 <td>: {{$q->pertemuanke->tglPertemuan}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Begin Time</td>
+                                                                <td><strong>Begin Time</strong></td>
                                                                 <td>: {{$q->pertemuanke->waktuMulai}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>End Time</td>
+                                                                <td><strong>End Time</strong></td>
                                                                 <td>: {{$q->pertemuanke->waktuSelesai}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Duration</td>
+                                                                <td><strong>Duration</strong></td>
                                                                 <td>: {{$q->durasi}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Status</td>
+                                                                <td><strong>Status</strong></td>
                                                                 @if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai))
                                                                     <td>: <span class="badge badge-pill badge-dark">Inactive</span></td>
                                                                 @else

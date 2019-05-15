@@ -67,19 +67,19 @@
                     <table class="table">
                         <tbody >
                             <tr style="border-top-style: hidden;">
-                                <td>Kelas</td>
+                                <td><strong>Kelas</strong></td>
                                 <td>: {{ $c->agenda->namaAgenda }}</td>
                             </tr>
                             <tr>
-                                <td>Dosen Pengajar</td>
+                                <td><strong>Dosen Pengajar</strong></td>
                                 <td>: {{ $c->agenda->dosenpengajar->users->name }}</td>
                             </tr>
                             <tr>
-                                <td>Ruangan</td>
+                                <td><strong>Ruangan</strong></td>
                                 <td>: {{ $c->agenda->fk_idRuang }}</td>
                             </tr>
                             <tr>
-                                <td>Jadwal</td>
+                                <td><strong>Jadwal</strong></td>
                                 <td>: {{ $c->agenda->hari }}, {{ $c->agenda->WaktuMulai }} - {{ $c->agenda->WaktuSelesai}}</td>
                             </tr>
                         </tbody>

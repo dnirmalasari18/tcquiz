@@ -102,7 +102,7 @@
                                             <input type="radio" name="correct_answer" value="3" class="form-check-input">
                                             <p class="font-weight-bold">C</p>
                                             <div class="content-body">
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_3">
+                                                <input type="textarea" id="option_c" class="form-control multiple-choice" placeholder="" name="option_3">
                                             </div>
                                         </div> 
 
@@ -113,7 +113,7 @@
                                                 <img src="{{asset('img/spinner.gif')}}" width="60px">
                                             </div>
                                             <div class="content-body">
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4">
+                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_4"  id="option_d">
                                             </div>
                                         </div>     
 
@@ -121,7 +121,8 @@
                                             <input type="radio" name="correct_answer" value="5" class="form-check-input">
                                             <p class="font-weight-bold">E</p>
                                             <div class="content-body">
-                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_5">
+                                                <input type="textarea" class="form-control multiple-choice" placeholder="" name="option_5"
+                                                 id="option_e">
                                             </div>                             
                                         </div>
                                     </div><br>
@@ -191,7 +192,10 @@
         const question_score = document.getElementById("score").value;
         const option_a = tinyMCE.get('option_a').getContent();
         const option_b = tinyMCE.get('option_b').getContent();
-        // const answer = document.getElementsByClassName("choices").value;
+        const option_c = tinyMCE.get('option_c').getContent();
+        const option_d = tinyMCE.get('option_d').getContent();
+        const option_e = tinyMCE.get('option_e').getContent();
+
         if(val == "") {
             swal("Question description cannot be empty!");
             return false;
@@ -204,13 +208,36 @@
             swal("Choice B cannot be empty!");
             return false;
         }
-        // if(answer == "") {
-        //     swal("Choose 1 correct answer!");
-        //     return false;
-        // }
+
         if(question_score == "") {
             swal("Question score cannot be empty!");
             return false;
+        }
+
+        let $correct_answer = $("input[name='correct_answer']:checked").val();
+        console.log($correct_answer);        
+        if($correct_answer === undefined){
+            swal("Correct answer cannot be empty!");
+            return false;
+        }
+
+        if ($correct_answer == 3 ) {
+            if (option_c == "") {
+                swal("Choice C cannot be empty!");
+                return false;
+            }
+        }
+        else if ($correct_answer == 4 ) {
+            if (option_d == "") {
+                swal("Choice D cannot be empty!");
+                return false;
+            }
+        }
+        else if ($correct_answer == 5 ) {
+            if (option_e == "") {
+                swal("Choice E cannot be empty!");
+                return false;
+            }
         }
         //console.log(val)
     });

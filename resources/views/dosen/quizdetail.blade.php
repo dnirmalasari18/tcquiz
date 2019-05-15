@@ -37,6 +37,20 @@
                             </div>
                         </nav>
                         <div class="tab-content pl-3 pt-2" id="nav-tabContent">
+                            <div class="col-md-12">
+                                @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show">
+                                  <ul>
+                                      @foreach ($errors->all() as $error)
+                                          <li>{{ $error }}</li>
+                                      @endforeach
+                                  </ul>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button> 
+                                </div>
+                                @endif
+                            </div>
                             <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="nav-info-tab">
                                 @include('dosen.editquiz')
                             </div>

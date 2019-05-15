@@ -6,7 +6,6 @@ use App\Questions;
 use App\Quiz;
 use Illuminate\Http\Request;
 use Validator;
-use App\Http\Requests\CreateQuestion;
 
 class QuestionsController extends Controller
 {
@@ -19,9 +18,34 @@ class QuestionsController extends Controller
         return view('dosen.createquestion', compact('quiz'));
     }
 
-    public function store(CreateQuestion $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
+        //return $request->correct_answer;
+        $request->validate([
+            'question_description' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'correct_answer' => 'required',
+            'question_score' => 'required',
+        ]);
+
+        if ($request->correct_answer == 3){
+            $request->validate([
+                'option_3' => 'required',
+            ]);
+        }
+        else if ($request->correct_answer == 4){
+            $request->validate([
+                'option_4' => 'required',
+            ]);
+        }
+
+        if ($request->correct_answer == 5){
+            $request->validate([
+                'option_5' => 'required',
+            ]);
+        }
+
         Questions::create($request->all());
         return redirect('/dosen/quiz/'. $request->quiz_id.'/#tab_question')->with(['create_done' => 'Question has been created']);
     }
@@ -38,6 +62,20 @@ class QuestionsController extends Controller
 
     public function update(Request $request, $questions)
     {
+        $request->validate([
+            'question_description' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'correct_answer' => 'required',
+            'question_score' => 'required',
+        ]);
+
+        if ($request->correct_answer > 2){
+            $request->validate([
+                `option_{$request->correct_answer}` => 'required',
+            ]);
+        }
+
         $question = Questions::findorfail($questions);
         $question->update($request->all());
         return redirect('/dosen/quiz/'. $question->quiz_id.'/#tab_question')->with(['update_done' => 'Question has been updated']);

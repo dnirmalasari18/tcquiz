@@ -30,6 +30,11 @@ class QuizController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_kuis' => 'required',
+            'durasi' => 'required',
+            'absenkuliah_id' => 'required',
+        ]);
         Quiz::create($request->all());
         return redirect('/dosen/quiz')->with(['create_done' => 'Quiz has been created']);
     }
@@ -45,6 +50,11 @@ class QuizController extends Controller
 
     public function update(Request $request, $quiz)
     {
+        $request->validate([
+            'nama_kuis' => 'required',
+            'durasi' => 'required',
+            'absenkuliah_id' => 'required',
+        ]);
         $kuis = Quiz::findorfail($quiz);
         $kuis->update($request->all());
         return redirect()->back()->with(['updatequiz_done' => 'Quiz has been updated']);

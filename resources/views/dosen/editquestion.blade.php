@@ -25,6 +25,18 @@
                 </div>
                 <div class="card-body">
                     <div class="col-md-12">
+                        @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button> 
+                        </div>
+                        @endif
                         @if (\Session::has('update_done'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                               {!! \Session::get('update_done') !!}
@@ -83,7 +95,7 @@
                                                     <input type="radio" name="correct_answer" value="3" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">C</p>
-                                                    <input type="textarea" class="form-control multiple-choice"  name="option_3" value="{{ $questions->option_3 }}">
+                                                    <input type="textarea" class="form-control multiple-choice"  id="option_c" name="option_3" value="{{ $questions->option_3 }}">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -94,7 +106,7 @@
                                                     <input type="radio" name="correct_answer" value="4" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">D</p>
-                                                    <input type="textarea" class="form-control multiple-choice"  name="option_4" value="{{ $questions->option_4 }}">
+                                                    <input type="textarea" class="form-control multiple-choice"  id="option_d" name="option_4" value="{{ $questions->option_4 }}">
                                                 </label>
                                             </div><br>
                                             <div class="radio">
@@ -105,7 +117,7 @@
                                                     <input type="radio" name="correct_answer" value="5" class="form-check-input">
                                                     @endif
                                                     <p class="font-weight-bold">E</p>
-                                                    <input type="textarea" class="form-control multiple-choice"  name="option_5" value="{{ $questions->option_5 }}">
+                                                    <input type="textarea" class="form-control multiple-choice" id="option_e" name="option_5" value="{{ $questions->option_5 }}">
                                                 </label>
                                             </div>
                                         </div>
@@ -173,6 +185,10 @@
         const question_score = document.getElementById("score").value;
         const option_a = tinyMCE.get('option_a').getContent();
         const option_b = tinyMCE.get('option_b').getContent();
+        const option_c = tinyMCE.get('option_c').getContent();
+        const option_d = tinyMCE.get('option_d').getContent();
+        const option_e = tinyMCE.get('option_e').getContent();
+
         if(val == "") {
             swal("Question description cannot be empty!");
             return false;
@@ -188,6 +204,37 @@
         if(question_score == "") {
             swal("Question score cannot be empty!");
             return false;
+        }
+
+        if(question_score == "") {
+            swal("Question score cannot be empty!");
+            return false;
+        }
+
+        let $correct_answer = $("input[name='correct_answer']:checked").val();
+        console.log($correct_answer);        
+        if($correct_answer === undefined){
+            swal("Correct answer cannot be empty!");
+            return false;
+        }
+
+        if ($correct_answer == 3 ) {
+            if (option_c == "") {
+                swal("Choice C cannot be empty!");
+                return false;
+            }
+        }
+        else if ($correct_answer == 4 ) {
+            if (option_d == "") {
+                swal("Choice D cannot be empty!");
+                return false;
+            }
+        }
+        else if ($correct_answer == 5 ) {
+            if (option_e == "") {
+                swal("Choice E cannot be empty!");
+                return false;
+            }
         }
     });
 })(jQuery);

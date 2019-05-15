@@ -279,7 +279,6 @@
 
 <script>
 
-    //$(document).ready(openSoal(null,1));
     window.onload=function(){openSoal(null,1)};
     function openSoal(evt, num) {
         console.log(num+'hsdfjk');
@@ -335,17 +334,15 @@
             udahkejawab({{count($quiz)}})
         }
     }
-    function ansSoal(evt, num){ //ijo in yg kejawab
+    function ansSoal(evt, num){
         var idFlag = "flag" + num;
         var x = document.getElementById(idFlag).checked;
         if (true) {
             var id = "nomer" + num;
             if(x){
-                // alert("if");
                 document.getElementById(id).className = "card-body text-secondary soal-ragu-aktif";
 
             }else{
-                // alert("else");
                 document.getElementById(id).className = "card-body text-secondary soal-terjawab-aktif";
                 
 
@@ -373,7 +370,6 @@
 
 <script>
     $( document ).ready(function() {
-  // Handler for .ready() called.
         $("#hehebtn").click();
         setTimeout(function () {
             $(".load").html("");

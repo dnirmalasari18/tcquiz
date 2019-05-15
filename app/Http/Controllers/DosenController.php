@@ -15,7 +15,7 @@ class DosenController extends Controller
 {
 	public function index()
     {
-        $quiz = Quiz::whereHas('pertemuanke', function($q) {
+        $quiz = Quiz::where('dosen_id', Auth::user()->id)->whereHas('pertemuanke', function($q) {
                 $q->whereBetween('tglPertemuan', [
                 Carbon::parse('yesterday')->startOfDay(),
                 Carbon::parse('next friday')->endOfDay(),]);})->with('pertemuanke')->get();

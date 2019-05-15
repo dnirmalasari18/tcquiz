@@ -134,6 +134,9 @@ class QuizController extends Controller
     public function show($quiz)
     {
         $kuis = Quiz::findorfail($quiz);
+        if ($kuis->dosen_id != Auth::user()->id) {
+            return abort(401);
+        }
         $id_agenda = AbsenKuliah::find($kuis->absenkuliah_id)->fk_idAgenda;
         $participant = Kehadiran::where('idAgenda', $id_agenda)->get();
         $participants = MahasiswaPacket::whereHas('paketkuis', function($q) use ($quiz) {

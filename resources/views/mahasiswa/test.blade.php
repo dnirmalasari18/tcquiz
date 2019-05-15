@@ -254,7 +254,7 @@
 
     <div class="card card-timer">
         <div class="card-header" align="center">
-            <h5 class="strong">Time Remaining</h5>
+            <strong class="card-title">Time Remaining</strong>
             <h5>
                 <span id="time" style="color:red;"></span>
             </h5>
@@ -410,7 +410,7 @@
             var id = "nomer" + num;
             document.getElementById(id).className = "card-body text-secondary soal-terjawab-aktif";
         }
-        
+
         document.getElementById("radio"+num).checked = true;
     }
 

@@ -146,7 +146,7 @@ class QuizController extends Controller
         $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();
 
         $questions = Questions::where('quiz_id', $quiz)->get();
-
+        $total_score = $questions->sum('question_score');
         $average = $participants->avg('quiz_score');
         $min_score = $participants->min('quiz_score');
         $max_score = $participants->max('quiz_score');
@@ -217,10 +217,14 @@ class QuizController extends Controller
 
         //return $soal_details;
 
+<<<<<<< HEAD
         return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz', 'array', 'average', 'min_score', 'max_score'));
     }
 
     public function statistics(){
         $map = new Map();
+=======
+        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz', 'average', 'min_score', 'max_score', 'total_score'));
+>>>>>>> d21f6b1e8568ceb2a3ada3d43b370d0d3ca21609
     }
 }

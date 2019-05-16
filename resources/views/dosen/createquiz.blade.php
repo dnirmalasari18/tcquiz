@@ -50,7 +50,7 @@
                     {{csrf_field()}}
                     <input type="hidden" name="dosen_id" value="{{ Auth::user()->id}}">
                 		<div class="form-group col-md-6">
-                	        <label class="font-weight-bold" for="">Quiz Name</label>
+                	        <label class="font-weight-bold">Quiz Name</label>
                 	        <input type="text" class="form-control" name="nama_kuis" required>
                     </div>
                     <div class="form-group col-md-6">
@@ -86,7 +86,7 @@
                           <img src="{{asset('img/spinner.gif')}}" width="60px">
                       </div>
                       <div class="content-body" style="display: none">
-                        <input type="textarea" class="form-control" id="terms-conditions" placeholder="" name="terms_conditions">
+                        <input type="textarea" class="form-control" id="terms-conditions" name="terms_conditions">
                       </div>
                     </div>
                     <br>

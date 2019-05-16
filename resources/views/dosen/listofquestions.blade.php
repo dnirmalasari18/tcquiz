@@ -4,7 +4,7 @@
     }
 </style>
 @if(count($questions))
-    <div class="">
+    <div>
         <div class="col-md-4 float-right">
             <div class="card">
                 <div class="card-header text-center">
@@ -49,7 +49,7 @@
         <div class="col-md-8 float-left">
             <div class="card panel" id="soal{{$i}}">
                 <div class="card-header">
-                    <strong class="card-title mb-3" >Question {{$i+1}}</strong>
+                    <strong class="card-title mb-3" >Question {{$i+1}} <span class="badge badge-success">Score {{$questions[$i]->question_score}}</span></strong>
                     @if($kuis->finalize_status=='0')
                         <form class="delete-form-{{$questions[$i]->id}} float-right" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">
@@ -60,7 +60,7 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <div align="left">
+                    <div align="left">                       
                         {!!$questions[$i]->question_description!!}
                         @if($questions[$i]->correct_answer==1)
                             <i class="fa fa-check" style="color: green;"></i>A
@@ -142,7 +142,7 @@
             </div>
             <br>
             <div class="col-md-2">
-                <button id="" type="submit" class="btn btn-warning">
+                <button type="submit" class="btn btn-warning">
                     Import
                 </button>
             </div>
@@ -168,7 +168,7 @@
             </div>
             <br>
             <div class="col-md-2">
-                <button id="" type="submit" class="btn btn-warning">
+                <button type="submit" class="btn btn-warning">
                     Import
                 </button>
             </div>
@@ -181,5 +181,4 @@
          <a href="{{route('createquestion', $kuis->id)}}" class="btn btn-primary float-right">Add Question</a>
     </div>
 </div>
-
 @endif

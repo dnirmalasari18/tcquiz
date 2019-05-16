@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <td><strong>Point</strong></td>
-                            <td>: {{$mp->quiz_score}} / 100</td>
+                            <td>: {{$mp->quiz_score}} %</td>
                         </tr>
                     </tbody>
                     

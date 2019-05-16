@@ -307,7 +307,7 @@
     function finalizeQuiz() {
         swal({
             title: "{{$kuis->nama_kuis}}",
-            text: "{{$kuis->pertemuanke->agenda->singkatAgenda}}\n{{ date('d M y', strtotime($kuis->pertemuanke->tglPertemuan)) }}, {{$kuis->pertemuanKe->waktuMulai}} - {{$kuis->pertemuanKe->waktuSelesai}}\n{{count($kuis->quiz)}} question(s)",
+            text: "{{$kuis->pertemuanke->agenda->singkatAgenda}}\n{{ date('d M y', strtotime($kuis->pertemuanke->tglPertemuan)) }}, {{$kuis->pertemuanKe->waktuMulai}} - {{$kuis->pertemuanKe->waktuSelesai}}\n{{count($kuis->quiz)}} question(s)\nTotal score: {{$total_score}}",
             icon: "info",
             buttons: ["Cancel", "Next"],
             dangerMode: true,

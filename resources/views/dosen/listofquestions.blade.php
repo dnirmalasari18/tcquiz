@@ -4,7 +4,7 @@
     }
 </style>
 @if(count($questions))
-    <div class="">
+    <div>
         <div class="col-md-4 float-right">
             <div class="card">
                 <div class="card-header text-center">
@@ -142,7 +142,7 @@
             </div>
             <br>
             <div class="col-md-2">
-                <button id="" type="submit" class="btn btn-warning">
+                <button type="submit" class="btn btn-warning">
                     Import
                 </button>
             </div>
@@ -168,7 +168,7 @@
             </div>
             <br>
             <div class="col-md-2">
-                <button id="" type="submit" class="btn btn-warning">
+                <button type="submit" class="btn btn-warning">
                     Import
                 </button>
             </div>
@@ -181,5 +181,4 @@
          <a href="{{route('createquestion', $kuis->id)}}" class="btn btn-primary float-right">Add Question</a>
     </div>
 </div>
-
 @endif

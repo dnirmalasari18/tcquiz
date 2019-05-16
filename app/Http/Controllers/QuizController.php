@@ -200,10 +200,6 @@ class QuizController extends Controller
 
         //return $soal_details;
 
-        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz'));
-    }
-
-    public function quizStatistics($quizid){
-
+        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz', 'average', 'min_score', 'max_score'));
     }
 }

@@ -379,41 +379,43 @@
 <script src="{!! asset('morrisjs/morris.min.js') !!}"></script>
 <script src="{!! asset('morrisjs/morris-data.js') !!}"></script>
 <script>
+(function($) {
     new Morris.Line({
-            element: 'persebaranNilai',
-            data: [
-                { score: '60', studentAmount: 20 },
-                { score: '70', studentAmount: 10 },
-                { score: '80', studentAmount: 5 },
-                { score: '90', studentAmount: 5 },
-                { score: '100', studentAmount: 5 }
-            ],
-            xkey: 'score',
-            parseTime:false,
-            ykeys: ['studentAmount'],
-            labels: ['Jumlah Siswa'],
-            hideHover: 'always',
-            resize: true,
-            pointFillColors:['#ffffff'],
-            pointStrokeColors: ['black'],
-            lineColors:['#BDEDFF']
-        });
-        new Morris.Bar({
-            element: 'chart',
-            data: [
-                { answer: 'A', student: 12 },
-                { answer: 'B', student: 15 },
-                { answer: 'C', student: 32 },
-                { answer: 'D', student: 10 },
+        element: 'persebaranNilai',
+        data: [
+            { score: '60', studentAmount: 20 },
+            { score: '70', studentAmount: 10 },
+            { score: '80', studentAmount: 5 },
+            { score: '90', studentAmount: 5 },
+            { score: '100', studentAmount: 5 }
+        ],
+        xkey: 'score',
+        parseTime:false,
+        ykeys: ['studentAmount'],
+        labels: ['Jumlah Siswa'],
+        hideHover: 'always',
+        resize: true,
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['#BDEDFF']
+    });
+    new Morris.Bar({
+        element: 'chart',
+        data: [
+            { answer: 'A', student: 12 },
+            { answer: 'B', student: 15 },
+            { answer: 'C', student: 32 },
+            { answer: 'D', student: 10 },
 
-            ],
-            xkey: 'answer',
-            parseTime:false,
-            ykeys: ['student'],
-            labels: ['Jawaban'],
-            hideHover: 'always',
-            resize: true,
-            barColors:['#BDEDFF']
-        });
+        ],
+        xkey: 'answer',
+        parseTime:false,
+        ykeys: ['student'],
+        labels: ['Jawaban'],
+        hideHover: 'always',
+        resize: true,
+        barColors:['#BDEDFF']
+    });
+})(jQuery);
 </script>
 @endsection

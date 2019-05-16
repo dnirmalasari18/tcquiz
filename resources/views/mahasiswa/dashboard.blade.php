@@ -47,11 +47,8 @@
     </div>
 @else
     <div class="col-sm-12">
-        <div class="alert  alert-danger alert-dismissible fade show" role="alert">
-          <span class="badge badge-pill badge-danger">Note</span> You have no upcoming quizzes!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="alert  alert-danger fade show" role="alert">
+          You have no upcoming quizzes!
         </div>
     </div>
 @endif

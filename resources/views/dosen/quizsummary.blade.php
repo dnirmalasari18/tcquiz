@@ -2,7 +2,7 @@
     <h6>Quiz Score Total: {{$total_score}}</h6>
 </div>
 <div class="col-md-3">
-    <h6>Average Score: {{$average}}%</h6>
+    <h6>Average Score: {{number_format($average,2)}}%</h6>
 </div>
 <div class="col-md-3">
     <h6>Lowest Score: {{$min_score}}%</h6>
@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col">
                     <center>
-                        <h3>Persebaran nilai</h3>
+                        <h5>Quiz Distribution Score</h5>
                     </center>
                 </div>
             </div>

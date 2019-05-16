@@ -140,7 +140,7 @@ class QuizController extends Controller
         $id_agenda = AbsenKuliah::find($kuis->absenkuliah_id)->fk_idAgenda;
         $participant = Kehadiran::where('idAgenda', $id_agenda)->get();
         $participants = MahasiswaPacket::whereHas('paketkuis', function($q) use ($quiz) {
-                        $q->where('quiz_id', $quiz);})->with('paketkuis')->get();
+                        $q->where('quiz_id', $quiz);})->with('paketkuis');
 
         $agenda = Agenda::orderBy('namaAgenda','asc')->get();
         $jadwals = AbsenKuliah::where('fk_idAgenda', $id_agenda)->get();
@@ -150,6 +150,23 @@ class QuizController extends Controller
         $average = $participants->avg('quiz_score');
         $min_score = $participants->min('quiz_score');
         $max_score = $participants->max('quiz_score');
+        
+        $results = $participants->where('quiz_score','!=',NULL)->get();
+        $participants = $participants->get();
+                
+        $studentCount = array_fill(0, 101, 0);        
+        foreach($results as $result){
+            $studentCount[$result->quiz_score]++;
+        }
+
+        $array = [];
+        for($i = 0; $i <= 100; $i++){
+            array_push($array, [
+                'score' => $i,
+                'studentAmount' => $studentCount[$i]
+            ]);
+        }
+        $array = json_encode($array);
 
         $allquiz = Quiz::where('id', '!=',$quiz)->get();
 
@@ -200,6 +217,6 @@ class QuizController extends Controller
 
         //return $soal_details;
 
-        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz', 'average', 'min_score', 'max_score', 'total_score'));
-    }
+        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz', 'array', 'average', 'min_score', 'max_score', 'total_score'));
+    }    
 }

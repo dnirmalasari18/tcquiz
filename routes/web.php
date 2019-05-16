@@ -20,6 +20,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('login', 'Auth\LoginController@loginPage');
 Auth::routes();
 
+Route::get('coba','QuizController@statistics');
 
 Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
     Route::prefix('dosen')->group(function () {
@@ -37,7 +38,7 @@ Route::middleware(['is_authenticated', 'is_dosen'])->group(function () {
         Route::resource('quiz', 'QuizController');
         Route::get('quiz/{id}/generate', 'QuizController@generatePacket')->name('generatepacket');
 
-        Route::post('quiz/{id}/import', 'QuestionsController@importQuestion')->name('import.question');
+        Route::post('quiz/{id}/import', 'QuestionsController@importQuestion')->name('import.question');        
     });
 });
 

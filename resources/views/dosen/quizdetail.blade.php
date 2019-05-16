@@ -61,6 +61,22 @@
                             </div>
                             <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="nav-summary-tab">
                                 @include('dosen.quizsummary')
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header bg-white">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <center>
+                                                        <h3>Persebaran nilai</h3>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="persebaranNilai"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                 </div>
@@ -375,47 +391,69 @@
 })(jQuery);
 </script>
 
-<script src="{!! asset('raphael/raphael.min.js') !!}"></script>
-<script src="{!! asset('morrisjs/morris.min.js') !!}"></script>
-<script src="{!! asset('morrisjs/morris-data.js') !!}"></script>
-<script>
-(function($) {
-    new Morris.Line({
-        element: 'persebaranNilai',
-        data: [
-            { score: '60', studentAmount: 20 },
-            { score: '70', studentAmount: 10 },
-            { score: '80', studentAmount: 5 },
-            { score: '90', studentAmount: 5 },
-            { score: '100', studentAmount: 5 }
-        ],
-        xkey: 'score',
-        parseTime:false,
-        ykeys: ['studentAmount'],
-        labels: ['Jumlah Siswa'],
-        hideHover: 'always',
-        resize: true,
-        pointFillColors:['#ffffff'],
-        pointStrokeColors: ['black'],
-        lineColors:['#BDEDFF']
-    });
-    new Morris.Bar({
-        element: 'chart',
-        data: [
-            { answer: 'A', student: 12 },
-            { answer: 'B', student: 15 },
-            { answer: 'C', student: 32 },
-            { answer: 'D', student: 10 },
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
-        ],
-        xkey: 'answer',
-        parseTime:false,
-        ykeys: ['student'],
-        labels: ['Jawaban'],
-        hideHover: 'always',
-        resize: true,
-        barColors:['#BDEDFF']
-    });
-})(jQuery);
+{{-- <script src="{!! asset('raphael/raphael.min.js') !!}"></script>
+<script src="{!! asset('morrisjs/morris.min.js') !!}"></script>
+<script src="{!! asset('morrisjs/morris-data.js') !!}"></script> --}}
+<script>
+    $(document).ready(function(){
+        // console.log(JSON.parse({!! $array !!}))
+        new Morris.Line({
+            element: 'persebaranNilai',
+            data : {!! $array !!},
+            // data: [                
+            //     { score: '60', studentAmount: 20 },
+            //     { score: '70', studentAmount: 10 },
+            //     { score: '80', studentAmount: 5 },
+            //     { score: '90', studentAmount: 5 },
+            //     { score: '100', studentAmount: 5 }
+            // ],
+            xkey: 'score',
+            parseTime:false,
+            ykeys: ['studentAmount'],
+            labels: ['Jumlah Siswa'],
+            hideHover: 'always',
+            resize: true,
+            pointFillColors:['#ffffff'],
+            pointStrokeColors: ['black'],
+            lineColors:['#BDEDFF']
+        });
+        // Morris.Bar({
+        //     element: 'persebaranNilai',
+        //     data: [
+        //         { y: '2006', a: 100, b: 90 },
+        //         { y: '2007', a: 75, b: 65 },
+        //         { y: '2008', a: 50, b: 40 },
+        //         { y: '2009', a: 75, b: 65 },
+        //         { y: '2010', a: 50, b: 40 },
+        //         { y: '2011', a: 75, b: 65 },
+        //         { y: '2012', a: 100, b: 90 }
+        //     ],
+        //     xkey: 'y',
+        //     ykeys: ['a', 'b'],
+        //     labels: ['Series A', 'Series B']
+        // });
+        // new Morris.Bar({
+        //     element: 'chart',
+        //     data: [
+        //         { answer: 'A', student: 12 },
+        //         { answer: 'B', student: 15 },
+        //         { answer: 'C', student: 32 },
+        //         { answer: 'D', student: 10 },
+
+        //     ],
+        //     xkey: 'answer',
+        //     parseTime:false,
+        //     ykeys: ['student'],
+        //     labels: ['Jawaban'],
+        //     hideHover: 'always',
+        //     resize: true,
+        //     barColors:['#BDEDFF']
+        // });
+    })    
 </script>
 @endsection

@@ -3,7 +3,7 @@
 @section('create-quiz', 'active')
 
 @section('breadcrumbs')
-<li><a href="#">Dashboard</a></li>
+<li><a href="/">Dashboard</a></li>
 <li><a href="{{route('quiz.index')}}">Quiz</a></li>
 <li class="active">Create a Quiz</li>
 @endsection

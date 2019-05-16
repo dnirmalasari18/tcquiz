@@ -3,7 +3,7 @@
 @section('dashboard', 'active')
 
 @section('breadcrumbs')
-<li><a href="#">Dashboard</a></li>
+<li><a href="/">Dashboard</a></li>
 @endsection
 <?php 
 	$currentTime = Carbon\Carbon::today();

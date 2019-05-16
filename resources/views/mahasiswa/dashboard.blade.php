@@ -36,16 +36,7 @@
     @endforeach
 @endif    
 
-@if($count>0)
-    <div class="col-sm-12">
-        <div class="alert  alert-success alert-dismissible fade show" role="alert">
-          <span class="badge badge-pill badge-success">Reminder</span> You have upcoming quizzes!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
-@else
+@if($count==0)
     <div class="col-sm-12">
         <div class="alert  alert-danger fade show" role="alert">
           You have no upcoming quizzes!
@@ -148,7 +139,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Date</strong></td>
-                                                                <td>: {{$q->pertemuanke->tglPertemuan}}</td>
+                                                                <td>: {{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Begin Time</strong></td>
@@ -160,7 +151,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Duration</strong></td>
-                                                                <td>: {{$q->durasi}}</td>
+                                                                <td>: {{$q->durasi}} minute(s)</td>
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Status</strong></td>
@@ -220,8 +211,10 @@
                                                         }
                                                     </style>
                                                     <div class="nuzha4" align="center">
-                                                        <strong>Terms & Conditions</strong>
-                                                        {!! $q->terms_conditions !!}
+                                                        @if($q->terms_conditions)
+                                                            <strong>Terms & Conditions</strong>
+                                                            {!! $q->terms_conditions !!}
+                                                        @endif            
                                                     </div>
                                                     <div class="nuzha4" align="center">
                                                         Are you sure you want to take this quiz?

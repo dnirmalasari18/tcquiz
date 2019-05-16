@@ -3,7 +3,7 @@
 @section('quiz-list', 'active')
 
 @section('breadcrumbs')
-<li><a href="#">Dashboard</a></li>
+<li><a href="/">Dashboard</a></li>
 <li><a href="{{route('quiz.index')}}">Quiz</a></li>
 <li class="active">{{ $quiz->nama_kuis }} Questions</li>
 @endsection
@@ -61,7 +61,7 @@
                                 {{csrf_field()}}
                                 <div class="form-group col-md-12">
                                     <div class="col col-md-3">
-                                        <label class="font-weight-bold" for="">Question</label>
+                                        <label class="font-weight-bold">Question</label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <div class="loading">
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <div class="col col-md-3">
-                                        <label class="font-weight-bold" for="">Choices</label>
+                                        <label class="font-weight-bold">Choices</label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <div class="form-check">

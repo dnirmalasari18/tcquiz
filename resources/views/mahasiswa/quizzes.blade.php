@@ -3,7 +3,7 @@
 @section('quiz', 'active')
 
 @section('breadcrumbs')
-<li><a href="#">Dashboard</a></li>
+<li><a href="/">Dashboard</a></li>
 <li class="active">Quizzes</li>
 @endsection
 
@@ -42,7 +42,7 @@
                                     <tr >
                                         <td>{{$q->nama_kuis}}</td>
                                         <td>{{$q->pertemuanke->agenda->namaAgenda}}</td>
-                                        <td align="center">{{$q->pertemuanke->tglPertemuan}}</td>
+                                        <td align="center">{{ date('d M y', strtotime($q->pertemuanke->tglPertemuan)) }}</td>
                                         <td align="center">{{$q->pertemuanke->waktuMulai}}</td>
                                         <td align="center">{{$q->pertemuanke->waktuSelesai}}</td>
                                         <td align="center">{{$q->durasi}} minute(s)</td>
@@ -199,7 +199,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Score</strong></td>
-                                                    <td>: {{$qp->user->quiz_score}} / 100</td>
+                                                    <td>: {{$qp->user->quiz_score}}%</td>
                                                 </tr>
                                                 <?php
                                                     break;

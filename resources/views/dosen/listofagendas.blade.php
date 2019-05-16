@@ -3,7 +3,7 @@
 @section('classes', 'active')
 
 @section('breadcrumbs')
-<li><a href="#">Dashboard</a></li>
+<li><a href="/">Dashboard</a></li>
 <li class="active">Agenda</li>
 @endsection
 

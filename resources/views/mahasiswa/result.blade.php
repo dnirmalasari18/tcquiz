@@ -7,7 +7,7 @@
 @endsection
 
 @section('breadcrumbs')
-<li><a href="/mahasiswa">Dashboard</a></li>
+<li><a href="/">Dashboard</a></li>
 <li><a href="/mahasiswa/quizzes">Quizzes</a></li>
 <li class="active">{{$q->nama_kuis}}</li>
 @endsection
@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <td><strong>Point</strong></td>
-                            <td>: {{$mp->quiz_score}} %</td>
+                            <td>: {{$mp->quiz_score}}%</td>
                         </tr>
                     </tbody>
                     

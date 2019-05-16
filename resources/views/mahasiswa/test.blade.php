@@ -7,7 +7,7 @@
 @endsection
 
 @section('breadcrumbs')
-<li><a href="/mahasiswa">Dashboard</a></li>
+<li><a href="/">Dashboard</a></li>
 <li><a href="/mahasiswa/quizzes">Quizzes</a></li>
 <li class="active">{{$kuis->nama_kuis}}</li>
 @endsection

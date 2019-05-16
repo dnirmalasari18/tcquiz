@@ -11,3 +11,19 @@
     <h6>Highest Score: {{$max_score}}%</h6>  
 </div>
 <br><br>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header bg-white">
+            <div class="row">
+                <div class="col">
+                    <center>
+                        <h3>Persebaran nilai</h3>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="persebaranNilai"></div>
+        </div>
+    </div>
+</div>

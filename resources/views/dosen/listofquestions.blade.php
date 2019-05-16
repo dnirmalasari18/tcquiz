@@ -49,7 +49,7 @@
         <div class="col-md-8 float-left">
             <div class="card panel" id="soal{{$i}}">
                 <div class="card-header">
-                    <strong class="card-title mb-3" >Question {{$i+1}}</strong>
+                    <strong class="card-title mb-3" >Question {{$i+1}} <span class="badge badge-success">Score {{$questions[$i]->question_score}}</span></strong>
                     @if($kuis->finalize_status=='0')
                         <form class="delete-form-{{$questions[$i]->id}} float-right" method="POST" action="{{ route('questions.destroy', $questions[$i]->id) }}" accept-charset="UTF-8">
                             <input name="_method" type="hidden" value="Delete">
@@ -60,7 +60,7 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <div align="left">
+                    <div align="left">                       
                         {!!$questions[$i]->question_description!!}
                         @if($questions[$i]->correct_answer==1)
                             <i class="fa fa-check" style="color: green;"></i>A

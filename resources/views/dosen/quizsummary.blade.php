@@ -10,6 +10,7 @@
 <div class="col-md-3">
     <h6>Highest Score: {{$max_score}}%</h6>  
 </div>
+<br><br>
 <div class="col-md-12">
     <div class="card">
         <div class="card-header bg-white">

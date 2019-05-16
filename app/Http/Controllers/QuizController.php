@@ -217,14 +217,6 @@ class QuizController extends Controller
 
         //return $soal_details;
 
-<<<<<<< HEAD
         return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz', 'array', 'average', 'min_score', 'max_score'));
-    }
-
-    public function statistics(){
-        $map = new Map();
-=======
-        return view('dosen.quizdetail',compact('kuis', 'participants', 'participant', 'agenda', 'jadwals', 'questions', 'allquiz', 'average', 'min_score', 'max_score', 'total_score'));
->>>>>>> d21f6b1e8568ceb2a3ada3d43b370d0d3ca21609
-    }
+    }    
 }

@@ -44,6 +44,17 @@
     </div>
 @endif
 
+<div class="col-md-12">
+    @if (\Session::has('belum_absen'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {!! \Session::get('belum_absen') !!}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>                                    
+        </div>
+    @endif
+</div>
+
 <style type="text/css">
     .nuzha{
         height: 110px;

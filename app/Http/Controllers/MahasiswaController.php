@@ -94,6 +94,7 @@ class MahasiswaController extends Controller
             }
         }
         else{
+            // mencegah input URL GET manual, padahal quiz belum difinalisasi
             return abort(404);
         }
         
@@ -103,18 +104,17 @@ class MahasiswaController extends Controller
         
         if(strtotime(date("Y-m-d", strtotime('7 hour'))) == strtotime($q->pertemuanke->tglPertemuan)){
             if(strtotime(date("H:i:s", strtotime('7 hour'))) < strtotime($q->pertemuanke->waktuMulai)){
+                // mencegah input URL GET manual, padahal quiz belum mulai
                 return abort(404);
             }
             elseif(strtotime(date("H:i:s", strtotime('7 hour'))) > strtotime($q->pertemuanke->waktuSelesai)){
                 if($mp->end_time){
                     return redirect('/mahasiswa/quiz/' .$idquiz. '/result');
                 }
-
+                // waktu udah lewat, tapi belum ambil quiz (hangus)
                 return abort(404);
-
             }
             else{
-                
                 $agenda = $q->pertemuanke->fk_idAgenda;
                 $username = Auth::user()->username;
                 $minggu = $q->pertemuanke->pertemuanKe;
@@ -126,7 +126,7 @@ class MahasiswaController extends Controller
                 $minggu = 'p'.$minggu;
 
                 if (!$absen->$minggu) {
-                    return abort(404);
+                    return redirect('/mahasiswa')->with(['belum_absen' => 'You need to fill attendance first!']);
                 }
 
                 if(!$mp->end_time){
@@ -151,13 +151,16 @@ class MahasiswaController extends Controller
                 return view('mahasiswa.test', $data);
             }
         }
+        // bukan hari ini
         else{
+            // hari lewat
             if(strtotime(date("Y-m-d", strtotime('7 hour'))) > strtotime($q->pertemuanke->tglPertemuan)){
+                // tapi udah ambil quiz
                 if ($mp->status_ambil) {
                     return redirect('/mahasiswa/quiz/' .$idquiz. '/result');
                 }
             }
-            
+            // mencegah input URL GET manual, padahal quiz belum mulai, atau gak ambil quiz di hari lewat
             return abort(404);
         }
         
